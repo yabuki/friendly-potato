@@ -217,10 +217,16 @@ $ node_modules/zenn-cli/bin/zenn.js preview
 
 ## 記事の見直し
 
-* 文章の手直し
+
+* slugの文字列を意味あるモノに変更する
+    * Zenn Editorの警告に従うこと
 
 * Zenn Editorの警告を直す
-    * slugの制限があるので直す。
+    * slugの文字列は、0-9とハイフン、英文字の小文字50文字までとZenn Editorに怒られた記憶がある。
+
+* 文章の手直し
+
+    * そのうち、Redpenを自動的にかけるとかの文章チェックをかけたいね。
 
 ## 公開
 
