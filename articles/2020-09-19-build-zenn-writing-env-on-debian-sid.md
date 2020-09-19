@@ -101,7 +101,7 @@ git clone git@github.com:yabuki/friendly-potato.git
 
 ということで、docsブランチにZenn CLIをインストールします。
 
-```text
+```
 
 npm init --yes # プロジェクトをデフォルト設定で初期化
 Wrote to /home/yabuki/scm/git/friendly-potato/package.json:
