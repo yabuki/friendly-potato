@@ -6,6 +6,16 @@ topics: [Debian, nvm]
 published: true
 ---
 
+|     件名       |   日付   |
+|:----           |:----:|
+|記事を書いた日  |2020-09-19|
+|記事を変更した日|YYYY-MM-DD|
+
+上記は、この記事の鮮度を判断する一助のために、書き手が載せたものであり、詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照せよ。
+
+記事に対するTypoの指摘などは、pull reqをしてもらえると嬉しい。受け入れるかどうかは、差分とPull reqの文章で判断します。
+
+
 # はじめに
 
 Zenn.devという技術系の記事を書く場所ができたようだ。
