@@ -1,8 +1,8 @@
 ---
 title: "Debian GNU/Linux SidでZenn.devの記事を書く環境をつくる"
-emoji: "👻"
+emoji: "🎆"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [Debian]
+topics: [Debian, nvm]
 published: true
 ---
 
