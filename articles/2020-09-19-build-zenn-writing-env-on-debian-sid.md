@@ -82,7 +82,7 @@ lts/erbium -> v12.18.4
 
 ## githubのrepoを作る
 
-いまのgithubのrepoを作る時には、名前の提案をしてくれるんですね。提案名のfriendly-potatoがあまりにツボだったので、思わずその名前で連携してしまいました。
+いまのgithubのrepoを作る時には、名前の提案をしてくれるんですね。提案名の **friendly-potato** があまりにツボだったので、思わずその名前で連携してしまいました。
 
 あと、gh-pagesも有効にして、theme も決めておきました。これをどうするかはまだ試していないので設定だけしておきます。
 
@@ -90,7 +90,7 @@ lts/erbium -> v12.18.4
 
 * [GitHubリポジトリでZennのコンテンツを管理する | Zenn](https://zenn.dev/zenn/articles/connect-to-github)
 
-この記事をよんでやります。この段階ては、gh-pagesブランチしかなかったので、そこと連携します。
+この記事をよんでやります。この段階では、gh-pagesブランチしかなかったので、そこと連携します。
 
 
 ## git clone する
