@@ -90,7 +90,7 @@ lts/erbium -> v12.18.4
 
 * [GitHubリポジトリでZennのコンテンツを管理する | Zenn](https://zenn.dev/zenn/articles/connect-to-github)
 
-この記事をよんでやります。この段階ては、gh-pagesブランチしかなかったので、そこと連携します。
+この記事をよんでやります。この段階では、gh-pagesブランチしかなかったので、そこと連携します。
 
 
 ## git clone する
