@@ -109,7 +109,15 @@ git clone git@github.com:yabuki/friendly-potato.git
   remotes/origin/gh-pages
 ```
 
-ということで、docsブランチにZenn CLIをインストールします。
+
+## Zenn CLI のインストール
+
+グローバルにインストールするのではなく、このrepoだけにインストールしたいので、
+
+[Zenn CLIをインストールする | Zenn](https://zenn.dev/zenn/articles/install-zenn-cli)
+
+の中身を確認して、そのままのインストラクションで、docsブランチにZenn CLIをインストールします。
+
 
 ```
 
