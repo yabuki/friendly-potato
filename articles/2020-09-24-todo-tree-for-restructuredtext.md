@@ -49,7 +49,7 @@ Visual Studio Code (以下、vscode)や、その派生である VSCodium[^VSCodi
 
 ユーザー設定->設定　で設定画面をだして、拡張機能から、Todo Treeaを選択して、下記のような画面を出します。
 
-![Todo Tree 設定画面](https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_18-26.png =600px)
+![Todo Tree settings](https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_18-26.png =600x)
 
 ここに書いてあるタグでたりないなら、チームで、共有するならワークスペース経由で、個人ならそのまま設定に書きます。
 
