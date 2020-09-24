@@ -41,13 +41,14 @@ screenshotは、環境に左右されるので、下記は、Xを使っている
 * gnome-screenshot
   * i3wmのmeta-dのdmenu経由で使っていた。
 * scrot
-  * コマンドラインから、指定してscreenshotを取るのは便利だが、ちゃんと .i3/config にbindsym として登録しておかないと毎回manを引くことになり、最初の設定を怠ったので、あんまり使わなくなって、インストールが使っていない状態になってしまった。
-  * そのコンピュータdesktopの状態をg定点観測の用途にも使えるので、また使うことがあるかもしれない。
+  * コマンドラインから、指定してscreenshotを取るのは便利だが、ちゃんと .i3/config にbindsym として登録しておかないと毎回manを引くことになり、最初の設定を怠ったので、あんまり使わなくなって、インストールしているが使っていない状態になってしまった。
+  * そのコンピュータdesktopの状態を定点観測の用途にも使えるので、また使うことがあるかもしれない。
 * flameshot
 
 いまのおすすめは、flameshot で、Debian GNU/Linux Bullseye/Sidなら `apt install flameshot` で入ります。
 
 Screenshotを取ると~/Pictures/に保存されます。
+
 
 ```
 $ ls
