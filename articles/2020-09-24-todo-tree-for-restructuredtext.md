@@ -2,7 +2,7 @@
 title: "Visual Stdio CodeでRestructured Textを書いているときに、TODO Treeを使いたい"
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["RestrucutredText", "Sphinx", "VisualStudioCode", "VSCodium"]
+topics: ["Sphinx", "VisualStudioCode", "VSCodium"]
 published: true
 ---
 
@@ -19,6 +19,8 @@ published: true
 # はじめに
 
 Visual Studio Code (以下、vscode)や、その派生である VSCodium[^VSCodium] を使って、Sphinx[^Sphinx] のドキュメント RestructuredText[^RestructuredText]を扱っている人向けの記事です。
+
+TagのRestructuredtextは、タグが切れるので抜きました。
 
 # TODO Tree とはなにか。
 
