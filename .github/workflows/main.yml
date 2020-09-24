@@ -24,11 +24,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-     # Install sphinx and plantuml
-     - name: Install sphinx
-       run: |
-         echo `pwd`
-         echo `id`
+      # Install sphinx and plantuml
+      - name: Install sphinx
+        run: |
+          echo `pwd`
+          echo `id`
 #        apt install python3-sphinx python3-sphinx-rtd-theme python3-sphinxcontrib.plantuml plantuml
 #
 #     - name: Commit Changed Files
