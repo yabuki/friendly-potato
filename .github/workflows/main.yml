@@ -24,18 +24,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Install sphinx and plantuml
-      - name: Install sphinx
-        run: apt install python3-sphinx python3-sphinx-rtd-theme python3-sphinxcontrib.plantuml plantuml
-
-      - name: Commit Changed Files
-        run: |
-          echo `pwd`
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add --all
-          git commit -m "Add changes" -a
-
+#     # Install sphinx and plantuml
+#     - name: Install sphinx
+#       run: apt install python3-sphinx python3-sphinx-rtd-theme python3-sphinxcontrib.plantuml plantuml
+#
+#     - name: Commit Changed Files
+#       run: |
+#         echo `pwd`
+#         git config --local user.email "action@github.com"
+#         git config --local user.name "GitHub Action"
+#         git add --all
+#         git commit -m "Add changes" -a
+#
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
