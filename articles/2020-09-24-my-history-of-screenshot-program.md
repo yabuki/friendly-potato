@@ -54,4 +54,4 @@ $ ls
 2020-09-24_15-31.png'
 ```
 
-[!my desktop image](https://github.com/yabuki/friendly-potato/blob/gh-pages/articles/images/2020-09-24_15-31.png)
+![my desktop image](https://github.com/yabuki/friendly-potato/blob/gh-pages/articles/images/2020-09-24_15-31.png =480x)
