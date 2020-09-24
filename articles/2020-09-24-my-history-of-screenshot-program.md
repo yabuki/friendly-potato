@@ -54,7 +54,7 @@ $ ls
 2020-09-24_15-31.png'
 ```
 
-![my desktop image](https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_15-31.png =480x)
+![my desktop image](https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_15-31.png =600x)
 
 # 付録
 
@@ -67,3 +67,12 @@ gh pagesブランチに　gh pagesをデプロイする設定にしている場�
 <https://github.com/yabuki/friendly-potato/blob/gh-pages/articles/images/2020-09-24_15-31.png> 
 のような置き方になる。それをgh pagesから見たらどうなるかを想像して、下記のようなURLに変換して画像へのリンクを書けばいい。
 <https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_15-31.png>
+
+## 自分の環境のpreviewだと
+
+600xに指定するとちょうどいいのだが。
+
+## 疑問点
+
+zenn のマークダウン記法で画像をクリックすると拡大したimageが得られる記法ってあるの?
+
