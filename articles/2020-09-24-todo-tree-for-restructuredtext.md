@@ -6,6 +6,16 @@ topics: ["RestrucutredText", "Sphinx", "VisualStudioCode", "VSCodium"]
 published: true
 ---
 
+|     件名       |   日付   |
+|:----           |:----:|
+|記事を書いた日  |2020-09-24|
+|記事を変更した日|----------|
+
+上記は、この記事の鮮度を判断する一助のために、書き手が載せたものであり、詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
+
+記事に対するTypoの指摘などは、pull reqをしてもらえると嬉しい。受け入れるかどうかは、差分とPull reqの文章で判断します。
+
+
 # はじめに
 
 Visual Studio Code (以下、vscode)や、その派生である VSCodium[^VSCodium] を使って、Sphinx[^Sphinx] のドキュメント RestructuredText[^RestructuredText]を扱っている人向けの記事です。
@@ -39,6 +49,7 @@ Visual Studio Code (以下、vscode)や、その派生である VSCodium[^VSCodi
 
 ユーザー設定->設定　で設定画面をだして、拡張機能から、Todo Treeaを選択して、下記のような画面を出します。
 
+![Todo Tree 設定画面](https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_18-26.png =600px)
 
 ここに書いてあるタグでたりないなら、チームで、共有するならワークスペース経由で、個人ならそのまま設定に書きます。
 
