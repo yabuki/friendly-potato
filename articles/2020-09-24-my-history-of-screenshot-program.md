@@ -54,4 +54,16 @@ $ ls
 2020-09-24_15-31.png'
 ```
 
-![my desktop image](https://github.com/yabuki/friendly-potato/blob/gh-pages/articles/images/2020-09-24_15-31.png =480x)
+![my desktop image](https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_15-31.png =480x)
+
+# 付録
+
+## Zenn で、github 連携をしている時に画像を使いたい。
+
+多分気がついている人多数だと思うが、zennと連携しているrepoでgh pages設定をしている所に画像を置くと、読み込める。どういうことかというと。
+
+
+gh pagesブランチに　gh pagesをデプロイする設定にしている場合に、ファイルを artcles/imagesの配下に置くと決めるとする。
+<https://github.com/yabuki/friendly-potato/blob/gh-pages/articles/images/2020-09-24_15-31.png> 
+のような置き方になる。それをgh pagesから見たらどうなるかを想像して、下記のようなURLに変換して画像へのリンクを書けばいい。
+<https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_15-31.png>
