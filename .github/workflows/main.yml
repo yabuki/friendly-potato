@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the gh-pages branch
+on:
+  push:
+    branches: [ gh-pages ]
+  pull_request:
+    branches: [ gh-pages ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    # ubuntu-latest means ubuntu-18.04
+    # runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Install sphinx and plantuml
+      - name: Install sphinx
+        run: |
+          echo `pwd`
+          echo `id`
+#        apt install python3-sphinx python3-sphinx-rtd-theme python3-sphinxcontrib.plantuml plantuml
+#
+#     - name: Commit Changed Files
+#       run: |
+#         echo `pwd`
+#         git config --local user.email "action@github.com"
+#         git config --local user.name "GitHub Action"
+#         git add --all
+#         git commit -m "Add changes" -a
+#
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
