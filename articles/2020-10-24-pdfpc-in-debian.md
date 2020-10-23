@@ -44,3 +44,39 @@ Debian GNU/Linux における、pdf-presenter-console の更新状況は、 [Deb
 下記は、メンテナーに確認していないので想像で書きます。pdfpcというバイナリの名前は一緒だが、パッケージ名はより説明的な名前を選択したのだとおもいます。
 
 Ubuntuなどの Debian からの派生プロジェクトにも、なにもなければ、このパッケージ名でインストールすることになると思いますので、一筆言上さしあげました。
+
+# 別解
+
+下記のように、rootか、sudo で apt-file update 後に、一般ユーザーでpdfpc を含むファイルを探すことで、どのパッケージに、そのファイルが属しているかを調べることができます。
+
+存外に喜ばしいのは、pdfpcのLaTeXスタイルがあることが分かったことです。これを使えばスライドの時間などの情報を指定できる模様です。あと動画埋め込みも。
+
+```bash
+$ apt-file search pdfpc
+pdf-presenter-console: /etc/pdfpcrc
+pdf-presenter-console: /usr/bin/pdfpc
+pdf-presenter-console: /usr/share/man/man1/pdfpc.1.gz
+pdf-presenter-console: /usr/share/man/man5/pdfpcrc.5.gz
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/blank.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/empty.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/eraser.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/hidden.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/highlight.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/linewidth.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/loaded.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/locked.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/move.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/pause.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/pdfpc.css
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/pen.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/saved.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/settings.svg
+pdf-presenter-console: /usr/share/pixmaps/pdfpc/snow.svg
+texlive-latex-extra: /usr/share/texlive/texmf-dist/tex/latex/pdfpc-movie/pdfpc-movie.sty
+texlive-latex-extra: /usr/share/texlive/texmf-dist/tex/latex/pdfpc/pdfpc.sty
+texlive-latex-extra-doc: /usr/share/doc/texlive-doc/latex/pdfpc-movie/README.md
+texlive-latex-extra-doc: /usr/share/doc/texlive-doc/latex/pdfpc-movie/pdfpc-movie-doc.pdf
+texlive-latex-extra-doc: /usr/share/doc/texlive-doc/latex/pdfpc/README.md
+texlive-latex-extra-doc: /usr/share/doc/texlive-doc/latex/pdfpc/pdfpc-doc.pdf
+texlive-latex-extra-doc: /usr/share/doc/texlive-doc/latex/pdfpc/pdfpc-doc.tex.gz
+```
