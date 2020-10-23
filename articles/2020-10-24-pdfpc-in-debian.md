@@ -33,3 +33,14 @@ pdfを使って、プレゼンテーションをするソフトウェアに、 [
 
 Enjoy!
 
+# 昔の名前で出ています?
+
+pdfpc の前身は、 pdf-presenter-console という名前でした。[jakobwesthoff/Pdf-Presenter-Console: A Keynote like presenter console with multi-monitor support and the ability to read PDF as input files.](https://github.com/jakobwesthoff/Pdf-Presenter-Console)に、その時のrepoが残っています。
+
+Debian GNU/Linux における、pdf-presenter-console の更新状況は、 [Debian Package Tracker - pdf-presenter-console](https://tracker.debian.org/pkg/pdf-presenter-console) で確認ができます。
+
+ここを見ると、パッケージ名は、昔の名前ですが、新しいコミットを適用しているのが確認できます。
+
+下記は、想像でメンテナーに確認していないので想像で書きます。pdfpcというバイナリの名前は一緒だが、パッケージ名はより説明的な名前を選択したのだとおもいます。
+
+Ubuntuなどの Debian からの派生プロジェクトにも、なにもなければ、このパッケージ名でインストールすることになると思いますので、一筆言上さしあげました。
