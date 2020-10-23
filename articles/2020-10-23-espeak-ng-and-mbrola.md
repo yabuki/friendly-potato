@@ -2,7 +2,7 @@
 title: "Debian GNU/Linux のFLOSSで音声合成をしてみる"
 emoji: "🦔"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [TTS, 音声合成]
+topics: [TTS, 音声合成, Debian]
 published: true
 ---
 
