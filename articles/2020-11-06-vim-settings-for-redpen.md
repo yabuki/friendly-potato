@@ -36,6 +36,8 @@ install方法は、ドキュメントを読んでください。私の場合は�
 
 # ~/.vimrc に追加する内容
 
+~/.vimrc に下記を追加してください。
+
 ```
 "
 " Redpen
@@ -46,16 +48,18 @@ augroup RedpenSettings
     autocmd FileType changelog let &l:makeprg='redpen %'
     autocmd Filetype changelog let &l:errorformat = '%f:%l: Validation%t%*[a-z]%m at line:%.\*'
 augroup END
+```
 
 `{redpen_filetype}` の部分は、例のように、自分が校正するファイルのファイルタイプを指定してください。`echo &filetype` で、今開いているファイルのファイルタイプを確認できます。
 
-```
 
 # Redpen を動かす方法
 
 `:make`
 
- で、redpenを起動してください。makeprgで置き換えています。結果は、`:cNext` などのquickfixを移動する方法でお願いします。人によってバインドがちがうでしょうし。この表記で。
+ で、redpenを起動してください。makeprgで置き換えています。
+
+結果は、`:cNext` などのquickfixを移動する方法でお願いします。人によってバインドがちがうでしょうし。この表記で。
 
 # おわりに
 
