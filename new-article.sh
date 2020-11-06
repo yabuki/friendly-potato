@@ -6,7 +6,7 @@ charcnt=${#arg1}
 echo $charcnt
 # 2020-09-24- 11characters
 # 50-11=39
-if [ 39 -ge $charcnt ]; then
+if [ $charcnt -lt 39 ]; then
     echo "doit"
     npx zenn new:article --slug `date +%Y-%m-%d`-$1
 else
