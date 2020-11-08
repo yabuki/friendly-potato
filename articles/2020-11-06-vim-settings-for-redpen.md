@@ -9,9 +9,9 @@ published: true
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2020-11-06|
-|記事を変更した日|----------|
+|記事を変更した日|2020-11-08|
 
-上記は、この記事の鮮度を判断する一助のために、書き手が載せたものであり、詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
+上記はこの記事の鮮度を判断する一助のために書き手が載せたものです。詳細な変更履歴は [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
 
 記事に対するTypoの指摘などは、pull reqをしてもらえると嬉しい。受け入れるかどうかは、差分とPull reqの文章で判断いたします。
 
@@ -21,12 +21,13 @@ published: true
 
 # はじめに
 
-VOoM などの、アウトライナーを使って文章を作っていると、Redpenなどの文章校正ツールが使いたくなってきます。textlintなどの他のツールもありますが、
-Redpenには、この手の文章がなかったので書いておきます。
+VOoM などの、アウトライナを使って文章を作っていると、Redpenなどの文章校正ツールが使いたくなってきます。^[Redpen の他にtextlint, prh などのツールもあります。この文章は校正ツール比較は対象範囲外なのでこれ以上は言及しません。誰か包括的な比較文書を書いてくれるといいのですが。]
+
+私の知る限りでは、vim で簡単に Redpen を使い始める文章が見つけられなかったので書いておきます。
 
 # 対象となる Redpen のバージョン
 
-[Release Release 1.10.4 · redpen-cc/redpen](https://github.com/redpen-cc/redpen/releases/tag/redpen-1.10.4) を使っています。これ以前だとジャンプに必要な情報がたりないかと思います。
+[Release Release 1.10.4 · redpen-cc/redpen](https://github.com/redpen-cc/redpen/releases/tag/redpen-1.10.4) を使っています。これ以前だとジャンプに必要な情報が足りないかと思います。
 
 install方法は、ドキュメントを読んでください。私の場合は、openjdkをいれているので、ダウンロードして実行場所にpathを通しただけで動いています。`redpen-distribution-1.10.4/bin`の下ですね。
 
@@ -59,7 +60,7 @@ augroup END
 
  で、redpenを起動してください。makeprgで置き換えています。
 
-結果は、`:cNext` などのquickfixを移動する方法でお願いします。人によってバインドがちがうでしょうし。この表記で。
+結果は、`:cNext` などのquickfixを移動する方法でお願いします。人によって割り当て先のキー・バインドがちがうでしょうし。この表記で。
 
 # おわりに
 
