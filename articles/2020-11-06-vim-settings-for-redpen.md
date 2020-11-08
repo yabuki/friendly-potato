@@ -1,8 +1,8 @@
 ---
 title: "vimでできるだけ簡単に文章校正ツールのRedpenを使う設定"
 emoji: "✨"
-type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [vim, Redpen, 文章校正]
+type: "tech"
+topics: [vim,Redpen,文章校正]
 published: true
 ---
 
@@ -13,31 +13,34 @@ published: true
 
 上記はこの記事の鮮度を判断する一助のために書き手が載せたものです。詳細な変更履歴は [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
 
-記事に対するTypoの指摘などは、pull reqをしてもらえると嬉しい。受け入れるかどうかは、差分とPull reqの文章で判断いたします。
+記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。受け入れるかどうかは、差分とPull reqの文章で判断いたします。
 
 # 謝辞
 
-この記事は、vim の slack で教えて頂いた内容をまとめております。助言を頂いた方々に感謝をいたします。
+この記事は、vimのslackで教えて頂いた内容をまとめております。助言を頂いた方々に感謝をいたします。
 
 # はじめに
 
-VOoM などの、アウトライナを使って文章を作っていると、Redpenなどの文章校正ツールが使いたくなってきます。^[Redpen の他にtextlint, prh などのツールもあります。この文章は校正ツール比較は対象範囲外なのでこれ以上は言及しません。誰か包括的な比較文書を書いてくれるといいのですが。]
+<!-- @suppress  -->
+VOoMなどの、アウトライナを使って文章を作っていると、Redpenなどの文章校正ツールが使いたくなってきます。^[Redpenの他にtextlint,prhなどのツールもあります。この文章は校正ツール比較に対して対象範囲外です。これ以上言及しません。誰か包括的な比較文書を書いてくれるといいのですが。]
 
-私の知る限りでは、vim で簡単に Redpen を使い始める文章が見つけられなかったので書いておきます。
+私の知る限りでは、vimで簡単にRedpenを使い始める文章が見つけられなかったので書いておきます。
 
-# 対象となる Redpen のバージョン
+# 対象となるRedpenのバージョン
 
 [Release Release 1.10.4 · redpen-cc/redpen](https://github.com/redpen-cc/redpen/releases/tag/redpen-1.10.4) を使っています。これ以前だとジャンプに必要な情報が足りないかと思います。
 
-install方法は、ドキュメントを読んでください。私の場合は、openjdkをいれているので、ダウンロードして実行場所にpathを通しただけで動いています。`redpen-distribution-1.10.4/bin`の下ですね。
+Installする方法は、ドキュメントを読んでください。私の場合は、openjdkをいれているので、ダウンロードして実行場所にpathを通しただけで動いています。`redpen-distribution-1.10.4/bin`の下ですね。
 
 # 対象となるvim/nvimのバージョン
 
 特に、依存はないと思います。
 
-# ~/.vimrc に追加する内容
+<!-- @suppress -->
+# ~/.vimrcに追加する内容
 
-~/.vimrc に下記を追加してください。
+<!-- @suppress -->
+ ~/.vimrc に下記を追加してください。
 
 ```
 "
@@ -54,7 +57,7 @@ augroup END
 `{redpen_filetype}` の部分は、例のように、自分が校正するファイルのファイルタイプを指定してください。`echo &filetype` で、今開いているファイルのファイルタイプを確認できます。
 
 
-# Redpen を動かす方法
+# Redpenを動かす方法
 
 `:make`
 
