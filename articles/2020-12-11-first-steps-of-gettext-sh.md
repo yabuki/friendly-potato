@@ -2,7 +2,7 @@
 title: "シェルスクリプトでも、いろんな言語を表示したい! --- gettext.sh 最初の一歩"
 emoji: "😽"
 type: "tech"
-topics: [gettext, shell, 翻訳, Debian]
+topics: [gettext, shell, 翻訳, Unix, Linux, Debian]
 published: true
 ---
 # 要約
