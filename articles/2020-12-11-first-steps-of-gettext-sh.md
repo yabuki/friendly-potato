@@ -264,7 +264,7 @@ gettext を使ってプログラム作成から翻訳を入れ、表示する文
 * 出力ファイルやディレクトリを指定するオプション。とりわけdefault-domainはそのプログラム名、またはプロジェクト名の概念なので、インターネットのドメインと取り違えないように。
 * 既存のファイルに追加する -j --joinexisting
 * TAGという概念 (調べて書く必要がある)
-* コメント どのように使うかは調べる必要がある
+* コメント どのように使うかは例示がいるか。
 <!-- @suppress ParenthesizedSentence -->
 * --check でunicodeの妥当性チェック (ellipsis-unicode, space-ellipsis, quote-unicode, bullet-unicode)
 * --copyright-holder=STRING poファイルの翻訳に著作権者人を書く
