@@ -2,7 +2,7 @@
 title: "シェルスクリプトでも、いろんな言語を表示したい! --- gettext.sh 最初の一歩"
 emoji: "😽"
 type: "tech"
-topics: [gettext, shell, 翻訳, Unix, Linux, Debian]
+topics: [gettext, shell, 翻訳, Unix, Linux] # 5つまで
 published: true
 ---
 # 要約
@@ -22,7 +22,7 @@ published: true
 
 最近はありがたいことにUTF-8のシステムが増えて、日本語など英語以外の言語でも、コンピュータ上で表示しやすくなりました。
 
-コンピュータ上で複数の言語を扱うには複数の方法があります。その中でのメジャーな実装の1つが、gettextです。
+コンピュータ上で複数の言語を扱うにはいくつか方法があります。その中でメジャーな実装の1つが、gettextです。
 
 <!-- @suppress DoubledJoshi -->
 プログラマが新しく言語を覚えたいときはまず環境構築をします。その次に動作確認のためプログラマは儀式めいた慣習ですが コンソール(外部の世界)へ "hello world" を出力するプログラムを書くことがあります。この文章はそれにならって gettext の "hello world" を出力する shell script を例に文章を書きます。
@@ -243,6 +243,43 @@ gettext を使ってプログラム作成から翻訳を入れ、表示する文
 
 <!-- @suppress SentenceLength -->
 [^3]: ja.po ファイルって、確かに日本語の翻訳ファイル名ということで納得していました。が、msginit に `--locale=ja_JP.UTF-8`を与えることで、`ja_JP.UTF-8`が Tokenize されて、ja.poのファイルないに展開され、出力ファイル名も日本の地域=jaを表すファイルが生成されて、納得度が高まりました。
+
+## shell script における gettext 対象
+
+プログラムの説明でもでてきた gettext "foo" の foo が翻訳対象になり、LANGの値によって書き換わります。
+
+## xgettext コマンド
+
+対象とするブログラム(po4aの場合は文書)内の文字列をスキャンして、指定がないときは、 messages.po を生成します。プログラムの開発が進むと表示すべき文字列の増減や変更はしばしばあります。
+
+<!-- @suppress SuggestExpression -->
+その変更に追従するため gettextコマンドを実行する必要があります。そうやって翻訳内容を追従させるのです。
+
+必要に応じて `man 1 xgettext` を参考にしてください。いくつか書く必要があるオプションを書き出します。
+
+<!-- @suppress DoubledJoshi CommaNumber SentenceLength ParenthesizedSentence -->
+* -L または --language オプション 今回の場合なら -L "shell"を渡します。(C, C++, ObjectiveC, PO, Shell, Python, Lisp, EmacsLisp, librep, Scheme, Smalltalk, Java, JavaProperties, C#, awk, YCP, Tcl, Perl, PHP, GCC-source, NXStringTable, RST, Glade,  Lua, JavaScript, Vala, Desktop) が対象のもようです。これは man からの引用なので、ソースコードは確認していません。
+<!-- @suppress SuccessiveSentence -->
+* 入力ファイルやディレクトリを指定するオプション
+* 出力ファイルやディレクトリを指定するオプション。とりわけdefault-domainはそのプログラム名、またはプロジェクト名の概念なので、インターネットのドメインと取り違えないように。
+* 既存のファイルに追加する -j --joinexisting
+* TAGという概念 (調べて書く必要がある)
+* コメント どのように使うかは調べる必要がある
+<!-- @suppress ParenthesizedSentence -->
+* --check でunicodeの妥当性チェック (ellipsis-unicode, space-ellipsis, quote-unicode, bullet-unicode)
+* --copyright-holder=STRING poファイルの翻訳に著作権者人を書く
+* --foreign-user omit FSF copyright in output for foreign user
+* --package-name=PACKAGE set package name in output
+* --package-version=VERSION set package version in output
+* --msgid-bugs-address=EMAIL@ADDRESS set report address for msgid bugs
+
+パッケージの概念や、バージョニングの概念自体はどういう風にするかは裁量があるのだろう。
+
+翻訳による著作権の話は発生する。とだけ書いて済ましたい。全部同一人物でやるならなんら問題はない。
+
+<!-- @suppress SuggestExpression -->
+問題となる前に対処して置くのがいいでしょう。具体的には翻訳結果も取りまとめて管理するか、 翻訳はすべてソースコードと矛盾しないオープンソースなライセンスにするなどです。
+
 
 # 参考にしたドキュメントたち
 
