@@ -267,15 +267,15 @@ gettext を使ってプログラム作成から翻訳を入れ、表示する文
 * コメント どのように使うかは例示がいるか。
 <!-- @suppress ParenthesizedSentence -->
 * --check でunicodeの妥当性チェック (ellipsis-unicode, space-ellipsis, quote-unicode, bullet-unicode)
-* --copyright-holder=STRING poファイルの翻訳に著作権者人を書く
+* --copyright-holder=STRING poファイルの翻訳をした著作権者を書く(著作の管理に関する事項です)
 * --foreign-user omit FSF copyright in output for foreign user
 * --package-name=PACKAGE set package name in output
 * --package-version=VERSION set package version in output
-* --msgid-bugs-address=EMAIL@ADDRESS set report address for msgid bugs
+* --msgid-bugs-address=EMAIL@ADDRESS set report address for msgid bugs msgidに不具合があったときの連絡メールアドレスを設定する。
 
 パッケージの概念や、バージョニングの概念自体はどういう風にするかは裁量があるのだろう。
 
-翻訳による著作権の話は発生する。とだけ書いて済ましたい。プログラミングから翻訳まで全部同一人物でやるならなんら問題はない。
+翻訳による著作権の話は発生する。とだけ書いて済ましたい。プログラミングから翻訳まで全部同一人物でやるなら、なんら問題はない。
 
 <!-- @suppress SuggestExpression -->
 問題となる前に対処して置くのがいいでしょう。具体的には翻訳結果も取りまとめて管理するか、 翻訳はすべてソースコードと矛盾しないオープンソースなライセンスにするなどです。
