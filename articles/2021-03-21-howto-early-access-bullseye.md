@@ -121,7 +121,30 @@ sudo  cp /home/yabuki/Downloads/debian-testing-amd64-DVD-1.iso /dev/sdd
 
 F1を使う作法や、DELを使う作法などありますが、Lenovo M75t は F1 でした。ユーザマニュアルを見ましょう。中にアクセスしてハードウェアの確認などで読むでしょ?
 
+### install
 
+とくに、初期状態だと、日本語を選択したあとは、マシン名とか、rootやユーザ設定をするぐらい。
+
+ディスクの切り方にこだわりがあるなら、好きなように切ってください。わたしは HDDとM2 を積んでいるので、/ は btrfs にして、swap はHDDに置きました。SWAPしたら負けかなって。
+
+その他はとくに気にならなかった。secure boot も on になっていたが、bios を変更せずに、インストールして boot してきた。
+
+desktop とかも、わざとdefault 設定のまま、gnome でやった。
+
+### 追加でやったこと
+
+Gnome を選択したので、ログインしたら当然gnomeがあがってくる。sudo の設定はせずに root を有効にしていたため、su - したい。そのため検索で　term と打つと gnome-terminal? が選べる
+んで、`su -`する。そのあと`apt update;apt install ibus-mozc` をすると、DVDを入れろといわれるので、もうネットワークにつながっているなら、
+
+`vi /etc/apt/source.ist`をして、DVDの参照をやめてしまおう。apt lineが、初期値では main  のみになっているので、必要に応じて contrib や non-free を追加する。
+
+ログアウトして、ログインしたら gnome-terminal で ibus-mozc が動いているのが確認できる。
+
+ちなみに、つないだキーボードがHHK Professional だったので、漢字キーを探すのが面倒で、全部GUIで日本語入力をonにしました。使い込むなら、このへんも ibus-setup あたりで確認して設定するのでしょうね。　
+
+### 別の記事でやる予定のこと。
+
+画面解像度を変えたり、自分のメインの環境は、i3wm なんで、その設定や、nicola入力が恋しいので、その設定等はまた別の機会に。
 
 # 参考にしたドキュメントたち
 
