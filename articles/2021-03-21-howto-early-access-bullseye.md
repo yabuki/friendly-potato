@@ -110,6 +110,12 @@ usb meory stick をぶっ刺してから sudo dmesg すると
 sudo  cp /home/yabuki/Downloads/debian-testing-amd64-DVD-1.iso /dev/sdd
 ```
 
+素っ気なく、なにもメッセージがでることなく、終わります。
+
+### usbからbootするように、biosを変更する。
+
+F1を使う作法や、DELを使う作法などありますが、Lenovo M75t は F1 でした。ユーザマニュアルを見ましょう。中にアクセスしてハードウェアの確認などで読むでしょ?
+
 # 参考にしたドキュメントたち
 
 
