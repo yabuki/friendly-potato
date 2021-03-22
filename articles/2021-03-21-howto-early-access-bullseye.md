@@ -15,7 +15,7 @@ published: true
 この記事を書いている段階で、Debian 11 Bullseye のインストーラーを
 試す方法を記録として残しておきます。
 
-usb stick memory を使って、Ryzen 7の入った、Lenovo M75t へインストールします。
+usb memory stick を使って、Ryzen 7の入った、Lenovo M75t gen2 へインストールします。
 
 とくにおすすめは、AMDのRyzenを使っているひとは、これを使うと新しめのカーネルを
 つかってインストールできるので、使う価値があると考えます。
@@ -40,7 +40,7 @@ Linux のコンソールを使っている。かつ Debian installer のテス�
 
 ## PC
 
-Lenovo M75t Ryzen 7
+Lenovo M75t gen 2  Ryzen 7 
 
 ## secure boot
 
@@ -104,9 +104,9 @@ usb meory stick をぶっ刺してから sudo dmesg すると
 
 `$sudo cp path/to/debian-testing-amd64-DVD-1.iso /dev/sdX`
 
-で書き込みます。ネットでは様々な方法で書き込む方法が掲示してありますが、ここではDebianの前のバージョン buster のインストール方法で述べてある方法を使いました。
+で書き込みます。ネットでは様々な方法で書き込む方法が掲示してありますが、ここではDebianの前のバージョン buster のインストール方法で述べてある方法を使いました。[^1]
 
-私の場合は上記の情報から、下記になります。**各自の環境は違うのでこのままコピペ実行しないで**
+私の場合は上記の情報から、下記になります。**各自の環境は違うのでこのままコピペ実行しないで** 間違えて書き込むと書き込んだ先のデータが潰れます。
 
 ```
 sudo  cp /home/yabuki/Downloads/debian-testing-amd64-DVD-1.iso /dev/sdd
@@ -115,11 +115,11 @@ sudo  cp /home/yabuki/Downloads/debian-testing-amd64-DVD-1.iso /dev/sdd
 素っ気なく、なにもメッセージがでることなく、終わります。書き込みが無事に全部終わっていることを確認すべく、sync コマンドを実行しておくのが良いでしょう。
 心配性のひとは、accessランプがついた、usb memory stick を使うといいのでは。
 
-わたしは、CPコマンドが帰ってきてから、sync 三回ぐらいしたら、おもむろに usb を引っこ抜いて、Lenovo M75t にさします。
+わたしは、CPコマンドが帰ってきてから、sync 三回ぐらいしたら、おもむろに usb を引っこ抜いて、Lenovo M75t gen 2にさします。
 
 ### usbからbootするように、biosを変更する。
 
-F1を使う作法や、DELを使う作法などありますが、Lenovo M75t は F1 でした。ユーザマニュアルを見ましょう。中にアクセスしてハードウェアの確認などで読むでしょ?
+F1を使う作法や、DELを使う作法などありますが、Lenovo M75t gen 2 は F1 でした。ユーザマニュアルを見ましょう。中にアクセスしてハードウェアの確認などで読むでしょ?
 
 ### install
 
@@ -148,10 +148,15 @@ Gnome を選択したので、ログインしたら当然gnomeがあがってく
 
 # 参考にしたドキュメントたち
 
+参考にしたドキュメントは、footnote に番号で対応付けてあります。
+
+- [^1]:[Debian GNU/Linux インストールガイド](https://www.debian.org/releases/bullseye//amd64/install.ja.pdf) の 「4.3 USB メモリでの起動用ファイルの準備」
+- [^2]:[m75t_gen2_ug_ja.pdf](https://download.lenovo.com/pccbbs/thinkcentre_pdf/m75t_gen2_ug_ja.pdf)
 
 
 # 謝辞
 
+2021-03-22 に開催された、Debian 勉強会にて、情報を頂いた各位
 
 # さいごに
 
