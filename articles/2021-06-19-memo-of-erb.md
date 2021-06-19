@@ -2,7 +2,7 @@
 title: "erbに関する私的メモ"
 emoji: "📚"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [erb, ruby]
+topics: [erb, ruby, Debian]
 published: true
 ---
 # 要約
