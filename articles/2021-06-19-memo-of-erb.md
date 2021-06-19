@@ -40,6 +40,7 @@ yadm のドキュメントにもあるが、shell script や ~/.vimrc など実�
 
 ```erb
 <? xml version="1.0" ?>
+<%# コメントだよ %>
 <% user = ENV["USER"] %>
 <% require 'prime' -%>
 <erb-example>
@@ -55,6 +56,15 @@ hello yukiharu
   <% else %>
 hello you
   <% end %>
+  <% machine = `/usr/bin/hostname`.chomp %>
+  <%= $?.to_s %>
+  <%= machine %>
+  <% case machine
+  when "Oraanth", "Odayla", "Malkion" %>
+  you are in Debian/Sid.
+  <% else %>
+  you are in Debian/Buster.
+  <% end %>
 </erb-example>
 ```
 下記のように実行する。
@@ -62,6 +72,7 @@ hello you
 
 ```
 <? xml version="1.0" ?>
+
 
 <erb-example>
   <calc>2</calc>
@@ -71,11 +82,20 @@ hello you
   
 hello yabuki
   
+  
+  pid 2619878 exit 0
+  Orlanth
+  
+you are in Debian/Sid.
+  
+
 </erb-example>
 
 ```
 
-空白行ができる件については、設定ファイルなら問題にならないこともあるので、問題にぶつかるまでは放置。erb -T オプションと、その使い方
+空白行ができる件については、設定ファイルなら問題にならないこともあるので、問題にぶつかるまでは放置。erb -T オプションと、その使い方かなぁ。コメント書くと空白行が増えるのはいまいちだけど。あと、これは自動生成だから、yadm.source を触れというのもいるな。
+
+erbには、まだまだわかっていないことがあって `<%`でなく `%` で始まるのは、どこでどう有効なのかとか。 -T オプションの使い方とか。わかったら追記していこう
 
 # 参考にしたドキュメントたち
 
