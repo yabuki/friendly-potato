@@ -115,6 +115,15 @@ erbには、まだまだわかっていないことがあって `<%`でなく `%
 - [ERB and the case statement](https://gist.github.com/davidphasson/91613)
   - ERB で、case when は、このように書け。というのは、この gist で学んだ。
 
+## 関連するかも知れないドキュメントたち
+
+- [k0kubun/mruby-erb: Direct port of ERB from CRuby -&gt; MRuby](https://github.com/k0kubun/mruby-erb)
+  - mruby での cruby からの移植
+
+- [itamae-kitchen/mitamae: mitamae is a fast, simple, and single-binary configuration management tool with a DSL like Chef](https://github.com/itamae-kitchen/mitamae)
+  - ドキュメントを読むとわかるが、mitamae は、erb も使える模様です。
+  - see also [Dockerコンテナでの設定ファイル生成にテンプレートとしてERBを使う - Qiita](https://qiita.com/nowlinuxing/items/6109fb0c153c3cd91cfa)
+    - この記事内で、mruby 単体だとerbが使えないので、mitamae を使っていると解説している。busybox 的というか、kitchen sink アプローチというか。相対的に小さい単体のバイナリは便利だねメソッド。
 
 # 謝辞
 
