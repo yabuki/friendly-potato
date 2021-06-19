@@ -60,7 +60,7 @@ hello you
   <%= $?.to_s %>
   <%= machine %>
   <% case machine
-  when "Oraanth", "Odayla", "Malkion" %>
+  when "Orlanth", "Odayla", "Malkion" %>
   you are in Debian/Sid.
   <% else %>
   you are in Debian/Buster.
