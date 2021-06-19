@@ -112,6 +112,8 @@ erbには、まだまだわかっていないことがあって `<%`でなく `%
   - `<<-` の記法の読み方がよく分からなかったので、'ruby here document' でヒットした、この記事で、`<<-`の意味を知った。
   - [リテラル (Ruby 2.6.0 リファレンスマニュアル)](https://docs.ruby-lang.org/ja/2.6.0/doc/spec=2fliteral.html#here)上記で、言葉がわかったので、ここのヒア・ドキュメントも参照して、答え合わせをする。
   - `<<~` を使うと、`.gsub(/^  /, '')` とか `.gsub(/^ */, "")` の処理はいらなくなっているのでは。
+- [ERB and the case statement](https://gist.github.com/davidphasson/91613)
+  - ERB で、case when は、このように書け。というのは、この gist で学んだ。
 
 
 # 謝辞
