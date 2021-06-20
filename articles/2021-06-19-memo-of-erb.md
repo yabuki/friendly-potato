@@ -39,6 +39,7 @@ yadm のドキュメントにもあるが、shell script や ~/.vimrc など実�
 知見がたまったら、また書く。program の中のヒアドキュメントとして使われる例が多数だが、テンプレート展開として、こう使うといいみたいのができるといいな。
 
 ```erb
+
 <? xml version="1.0" ?>
 <%# コメントだよ %>
 <% user = ENV["USER"] %>
@@ -56,19 +57,20 @@ hello yukiharu
   <% else %>
 hello you
   <% end %>
-  <% machine = `/usr/bin/hostname`.chomp %>
+  <% machine = `hostname`.chomp %>
   <%= $?.to_s %>
   <%= machine %>
   <% case machine
-  when "Orlanth", "Odayla", "Malkion" %>
-  you are in Debian/Sid.
+  when "Orlanth", "Odayla" %>
+you are in Debian/Sid.
   <% else %>
-  you are in Debian/Buster.
+you are in Debian/Buster.
   <% end %>
+
 </erb-example>
 ```
 下記のように実行する。
-`erb -T -  exables.erb `
+`erb -T -  examples.erb `
 
 ```
 <? xml version="1.0" ?>
@@ -76,14 +78,14 @@ hello you
 
 <erb-example>
   <calc>2</calc>
-  <var>exables.erb</var>
+  <var>examples.erb</var>
   <library>2, 3, 5, 7</library>
    hello yabuki 
   
 hello yabuki
   
   
-  pid 2619878 exit 0
+  pid 3878586 exit 0
   Orlanth
   
 you are in Debian/Sid.
