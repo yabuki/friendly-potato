@@ -13,7 +13,7 @@ published: true
 
 ## この文章を書いた動機
 
-dotfile の管理プログラムに、[TheLocehiliosan/yadm: Yet Another Dotfiles Manager](https://github.com/TheLocehiliosan/yadm) というプログラムがある。このプログラムには、template と呼ばれる機能があり、呼び出された OS, マシン名, クラス(自分で定義できるスキーマみたいなの), ユーザ名, distroなどを受け取って、テンプレート展開できる。 see [Templates - yadm](https://yadm.io/docs/templates#) これを使うと、dotfiles を symbolic link で作っていると実行可能なファイルは自分で動的に切り替えられるが、そうでないファイルは編集し回らないといけない手間が減る。
+dotfiles の管理プログラムに、[TheLocehiliosan/yadm: Yet Another Dotfiles Manager](https://github.com/TheLocehiliosan/yadm) というプログラムがある。このプログラムには、template と呼ばれる機能があり、呼び出された OS, マシン名, クラス(自分で定義できるスキーマみたいなの), ユーザ名, distroなどを受け取って、テンプレート展開できる。 see [Templates - yadm](https://yadm.io/docs/templates#) これを使うと、dotfiles を symbolic link で作っていると実行可能なファイルは自分で動的に切り替えられるが、そうでないファイルは編集し回らないといけない手間が減る。
 
 現在 yadm は、素朴なawkによる実装、esh(shで作られた、テンプレートエンジン), j2cli(pythonのjinja2), envtpl をサポートしている。どれをメインで使うのがいいのか、それとも erb を使うのがいいのかを判断する一助として本文章を書いている。主に自分のためであり、動的に設定ファイルを生成したい時にこの文章を見ることになろう。
 
