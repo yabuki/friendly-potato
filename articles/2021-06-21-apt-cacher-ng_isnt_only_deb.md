@@ -2,8 +2,8 @@
 title: "apt-cacher-ng は、deb 以外でも使える。"
 emoji: "😽"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [Linux]
-published: false
+topics: [Linux, Debian, LXD, yadm, ncat]
+published: true
 ---
 # 要約
 
