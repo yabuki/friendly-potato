@@ -73,6 +73,7 @@ nc と ncat のオプションを確認後、完全に置き換え可能だと�
 このソフトの本格的な使い方は、また記事を書きますが、 [Alternate Files - yadm](https://yadm.io/docs/alternates) と template を使って使う環境ごとに使いまわしをする部分と固有の情報を分離できるので
 実験をして使って見ました。yadm add した段階でテンプレートから生成され思ったようになりました。
 
+
 # 参考にしたドキュメントたち
 
 - [doc/README · upstream/experimental · Adrián Pablo José Sedoski Croce / apt-cacher-ng · GitLab](https://salsa.debian.org/asedoski/apt-cacher-ng/-/blob/upstream/experimental/doc/README)
