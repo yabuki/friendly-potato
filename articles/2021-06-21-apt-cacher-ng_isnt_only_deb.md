@@ -74,6 +74,89 @@ nc と ncat のオプションを確認後、完全に置き換え可能だと�
 このソフトの本格的な使い方は、また記事を書きますが、 [Alternate Files - yadm](https://yadm.io/docs/alternates) と template を使って使う環境ごとに使いまわしをする部分と固有の情報を分離できるので
 実験をして使って見ました。yadm add した段階でテンプレートから生成され思ったようになりました。
 
+## 作業記録
+
+下記のような感じ。LXD ではなく、LXC 単体での記録ですが、こんな感じです。
+
+```
+lxc shell apt-cacher-ng
+WARNING: cgroup v2 is not fully supported yet, proceeding with partial confinement
+root@apt-cacher-ng:~# apt update
+Hit:1 http://deb.debian.org/debian buster InRelease
+Get:2 http://security.debian.org/debian-security buster/updates InRelease [65.4 kB]
+Get:3 http://security.debian.org/debian-security buster/updates/main amd64 Packages [290 kB]
+Get:4 http://security.debian.org/debian-security buster/updates/main Translation-en [150 kB]
+Fetched 506 kB in 1s (416 kB/s)     
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+All packages are up to date.
+root@apt-cacher-ng:~# apt install apt-cacher-ng
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libwrap0
+Suggested packages:
+  doc-base libfuse2 avahi-daemon
+The following NEW packages will be installed:
+  apt-cacher-ng libwrap0
+0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.
+Need to get 589 kB of archives.
+After this operation, 1,575 kB of additional disk space will be used.
+Do you want to continue? [Y/n]
+```
+
+abahi-daemon も入れる。
+
+```
+apt install avahi-daemon
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  bind9-host geoip-database libavahi-common-data libavahi-common3 libavahi-core7 libbind9-161 libdaemon0 libdns1104 libfstrm0 libgeoip1 libicu63 libisc1100 libisccc161 libisccfg163 liblmdb0 liblwres161
+  libnss-mdns libprotobuf-c1 libxml2
+Suggested packages:
+  avahi-autoipd geoip-bin avahi-autoipd | zeroconf
+The following NEW packages will be installed:
+  avahi-daemon bind9-host geoip-database libavahi-common-data libavahi-common3 libavahi-core7 libbind9-161 libdaemon0 libdns1104 libfstrm0 libgeoip1 libicu63 libisc1100 libisccc161 libisccfg163 liblmdb0
+  liblwres161 libnss-mdns libprotobuf-c1 libxml2
+0 upgraded, 20 newly installed, 0 to remove and 0 not upgraded.
+Need to get 15.0 MB of archives.
+After this operation, 52.7 MB of additional disk space will be used.
+Do you want to continue? [Y/n] 
+```
+
+```
+ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+8: eth0@if9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 00:16:3e:c3:a9:fc brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.133.152.75/24 brd 10.133.152.255 scope global dynamic eth0
+       valid_lft 3110sec preferred_lft 3110sec
+    inet6 fd42:b00f:803e:1956:216:3eff:fec3:a9fc/64 scope global dynamic mngtmpaddr 
+       valid_lft 3511sec preferred_lft 3511sec
+    inet6 fe80::216:3eff:fec3:a9fc/64 scope link 
+       valid_lft forever preferred_lft forever
+10: eth1@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 00:16:3e:89:62:26 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 192.168.1.76/24 brd 192.168.1.255 scope global dynamic eth1
+       valid_lft 83339sec preferred_lft 83339sec
+    inet6 fe80::216:3eff:fe89:6226/64 scope link 
+       valid_lft forever preferred_lft forever
+```
+
+- 自分の中だと、10.133.152.75
+- 他のマシンからだと 192.168.1.76
+
+設定を /etc/apt/apt-conf.d/05proxyに設定を書いて、apt update してから、動作確認
+動いている。バンザーイ。
 
 # 参考にしたドキュメントたち
 
