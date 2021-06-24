@@ -106,7 +106,7 @@ After this operation, 1,575 kB of additional disk space will be used.
 Do you want to continue? [Y/n]
 ```
 
-abahi-daemon も入れる。
+avahi-daemon も入れる。
 
 ```
 apt install avahi-daemon
@@ -177,12 +177,16 @@ ip a
 - [apt-cacher-ng: Apt のキャッシュプロキシ 平衡点(2017-12-11)](https://uwabami.junkhub.org/log/20171211.html#p01)
   - https に関する設定について言及があったのでこっちに移す。
 
-## repositoies
+## repositories
+
+これらの repositories は、あなたが思っているようなブランチ構成にはなっていないかもしれません。git-buildpackage/gbp コマンドで便利に使えるようなブランチ構成になっています。[gbp-buildpackage(1) — git-buildpackage — Debian testing — Debian Manpages](https://manpages.debian.org/testing/git-buildpackage/gbp-buildpackage.1.en.html) あたりから調べてください。
 
 - [Efreak/apt-cacher-ng at debian/sid](https://github.com/Efreak/apt-cacher-ng/tree/debian/sid)
   - 上記の apt-cacher-ng は、"clone of https://alioth.debian.org/anonscm/git/apt-cacher-ng/apt-cacher-ng.git for easy browsing. Laziness ftw." と書いてあるが、alioth.debian.org は salsa.debian.org の gitlab に移行しています。
+
 - [doc/README · upstream/experimental · Adrián Pablo José Sedoski Croce / apt-cacher-ng · GitLab](https://salsa.debian.org/asedoski/apt-cacher-ng/-/blob/upstream/experimental/doc/README)
-  - 
+  - ドキュメント参照をした repository
+
 
 ## 大規模につかうなら
 
