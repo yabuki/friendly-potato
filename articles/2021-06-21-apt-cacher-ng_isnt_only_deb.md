@@ -7,7 +7,7 @@ published: true
 ---
 # 要約
 
-apt-cacher-ng は、Debian や ubuntu だけでなく、OpenSuSE, Arch Linux, Sourceforge mirror network, Cygwin, などuに対するアクセスを減らせるプロキシーです。
+apt-cacher-ng は、Debian や ubuntu だけでなく、OpenSuSE, Arch Linux, Sourceforge mirror network, Cygwin, などに対するアクセスを減らせるプロキシーです。[^1]
 
 Docker や LXD また、ご家庭にPCが上記のソフトウェアが入っている場合なら、ネットワークに取りにいくよりも、通信料を下げたり、ローカルネットにあるサーバからデータを取得するので、ほとんどの場合インストールが速くなったりします。
 
@@ -219,4 +219,5 @@ ip a
   <!-- 読んだひとにどういう行動をしてもらいたいのか -->
 <!-- だれに向けての文章か -->
 <!-- この文章の肝はどこか -->
- 
+
+[^1]: Fedra に関しては、もはやサポート外とドキュメントにありました。ちゃんと調べてないけど、rpm 系は別の素敵な仕組みがあるのだと思う。
