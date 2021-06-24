@@ -7,7 +7,7 @@ published: true
 ---
 # 要約
 
-apt-cacher-ng は、Debian や ubuntu だけでなく、OpenSuSE, Arch Linux, Sourceforge mirror network, Cygwin, などでも使えるプロキシーです。
+apt-cacher-ng は、Debian や ubuntu だけでなく、OpenSuSE, Arch Linux, Sourceforge mirror network, Cygwin, などuに対するアクセスを減らせるプロキシーです。
 
 Docker や LXD また、ご家庭にPCが上記のソフトウェアが入っている場合なら、ネットワークに取りにいくよりも、通信料を下げたり、ローカルネット
 からデータを取得するので、インストールが速くなったりするでしょう。
