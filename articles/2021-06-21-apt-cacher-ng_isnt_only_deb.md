@@ -92,6 +92,8 @@ nc と ncat のオプションを確認後、完全に置き換え可能だと�
 - apt-cacher-ng の web page [Apt-Cacher NG - Software Package Download Proxy](https://www.unix-ag.uni-kl.de/~bloch/acng/)
   - ドキュメントとしての価値は、salsa.debian.org にあるやつのほうが高いが、あんまり量もないので、ザッと一回は見ておくといいのかも。Alioth は、いまの salsa.debian.org のことです。
 
+- [apt-cacher-ng: Apt のキャッシュプロキシ 平衡点(2017-12-11)](https://uwabami.junkhub.org/log/20171211.html#p01)
+  - https に関する設定について言及があったのでこっちに移す。
 
 ## repositoies
 
