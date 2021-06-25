@@ -7,9 +7,9 @@ published: true
 ---
 # 要約
 
-apt-cacher-ng は、Debian や ubuntu だけでなく、OpenSuSE, Arch Linux, Sourceforge mirror network, Cygwin, などに対するアクセスを減らせるプロキシーです。[^1]
+apt-cacher-ng は、Debian や ubuntu だけでなく、OpenSuSE, Arch Linux, Sourceforge mirror network, Cygwin, などに対するアクセスを減らせるプロキシーです。Fedoraについては[^1]を参照のこと。
 
-Docker や LXD また、ご家庭にPCが上記のソフトウェアが入っている場合なら、ネットワークに取りにいくよりも、通信料を下げたり、ローカルネットにあるサーバからデータを取得するので、ほとんどの場合インストールが速くなったりします。
+Docker や LXD また、ご家庭にある複数台のPCが上記のOSやソフトウェアを参照している場合なら、ネットワークに取りにいくよりも、通信料を下げたり、ローカルネットにあるサーバからデータを取得するので、ほとんどの場合インストールが速くなったりします。
 
 追加のスクリプトを書くと、apt-cacher-ng のサーバが存在している場合は、そこから取得ない場合は、直接サーバに取りに行くという、複数のネットワークを渡り歩くノートパソコンにとって便利な設定も可能です。
 
