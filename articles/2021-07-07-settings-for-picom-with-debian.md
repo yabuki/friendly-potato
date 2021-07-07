@@ -65,7 +65,7 @@ openat(AT_FDCWD, "/etc/xdg/compton/compton.conf", O_RDONLY) = -1 ENOENT (その�
 ### deprecated 
 
 * [Debian -- sid の compton パッケージに関する詳細](https://packages.debian.org/sid/compton)
-  * *This package is deprecated and will soon be removed, please switch to picom.*
+  * > **This package is deprecated and will soon be removed, please switch to picom.**
 
 ### compton-conf
 
