@@ -9,7 +9,7 @@ published: true
 
 compton がメンテされなくなり、picom[^1] に移行しろということで移行文書を残す。
 
-[1] 本家の文書では、picom は一環して picom と表記されておりPicom ではないので、本文書でも picom に統一する。
+[^1]: 本家の文書では、picom は一環して picom と表記されておりPicom ではないので、本文書でも picom に統一する。
 
 設定が安定するまでは、何か分かった時点で内容を書き換えます。たまに見にくると内容が書き換わっているかも知れません。(ってか、どんな設定ファイルにするかの設定を調べる前に力尽きそうなので、調べるポイントをまとめてまずは公開メソッドで)
 
@@ -19,8 +19,8 @@ compton がメンテされなくなり、picom[^1] に移行しろというこ�
 ^
 任せるが、著者はタイル型ウインドウ・マネージャの i3wm[^3] をを使っており、主に見栄えの向上(Effect)を実現するために、コンポジット・マネージャを利用している。
 
-[2] 英語圏では compositor と呼ばれているようだ。see also [picom - Debian Package Tracker](https://tracker.debian.org/pkg/picom)
-[3] [i3 - improved tiling wm](https://i3wm.org/) は i3wm と呼ばれることもある。i3 の正式名称は i3 のようだが、本文書では i3wm も広く使われているので、 i3wm 表記を使うことにする。
+[^2]: 英語圏では compositor と呼ばれているようだ。see also [picom - Debian Package Tracker](https://tracker.debian.org/pkg/picom)
+[^3]: [i3 - improved tiling wm](https://i3wm.org/) は i3wm と呼ばれることもある。i3 の正式名称は i3 のようだが、本文書では i3wm も広く使われているので、 i3wm 表記を使うことにする。
 
 この文書を書いている人間は、Debian GNU/Linux Sid を使っている。Debian GNU/Linux の次のリリースであるBullseyeでi3wm などを使ってコンポジット・マネージャを利用している人が設定する時にも有益な情報でありたい。もちろんDistro依存の部分は自分が気がつく範囲で書くので、他のDistroの人にも情報提供できると信じる。
 
