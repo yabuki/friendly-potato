@@ -17,7 +17,7 @@ compton がメンテされなくなり、picom[^1] に移行しろというこ�
 
 コンポジット・マネージャ[^2] というウインドウの見た目を管理するプログラムがある。ちゃんとした定義は他の人に任せるが、著者はタイル型ウインドウ・マネージャの i3wm[^3] をを使っており、主に見栄えの向上(Effect)から得られる認識の向上を実現するために、コンポジット・マネージャを利用している。 --- どれぐらいこの設定に時間を使うべきかは人によるので便利な設定が流通すると私もありがたい。そのためにも文書を公開して利用者が増えると私もHappyなので、可能なら設定公開して文書を書いてもらえるとありがたい。
 
-[^2]: 英語圏では compositor と呼ばれているようだ。see also [picom - Debian Package Tracker](https://tracker.debian.org/pkg/picom)
+[^2]: 英語圏では compositor と呼ばれているようだ。see also [picom - Debian Package Tracker](https://tracker.debian.org/pkg/picom) とはいえ、この様な表記もある。似てるがちょっとずつ違う。 [Compositing window manager - Wikipedia](https://en.wikipedia.org/wiki/Compositing_window_manager)
 [^3]: [i3 - improved tiling wm](https://i3wm.org/) は i3wm と呼ばれることもある。i3 の正式名称は i3 のようだが、本文書では i3wm も広く使われているので、 i3wm 表記を使うことにする。
 
 この文書を書いている人間は、Debian GNU/Linux Sid を使っている。Debian GNU/Linux の次のリリースであるBullseyeでi3wm などを使ってコンポジット・マネージャを利用している人が設定する時にも有益な情報でありたい。もちろんDistro依存の部分は自分が気がつく範囲で書くので、他のDistroの人にも情報提供できると信じる。
@@ -58,6 +58,12 @@ openat(AT_FDCWD, "/etc/xdg/compton/compton.conf", O_RDONLY) = -1 ENOENT (その�
 
 ## 設定ファイルの内容
 
+## 私がハマった所
+
+* ~/.config/compton.conf が存在するので、~/.config/picom.conf が自動生成され、~/.config/picom/picom.conf よりも先に読み込まれて、自分が設定したファイルでない部分にエラーがでる。
+  * 自分が書いてない設定に関してエラーが出たら、思い出しましょう。
+
+
 ## 関連情報
 
 ### deprecated 
@@ -96,7 +102,7 @@ compton には、qtで書かれた設定ファイル設定ファイル設定ツ�
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2021-07-07|
-|記事を変更した日|----------|
+|記事を変更した日|2021-07-08|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
