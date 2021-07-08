@@ -60,6 +60,19 @@ openat(AT_FDCWD, "/etc/xdg/compton/compton.conf", O_RDONLY) = -1 ENOENT (その�
 
 ## 私がハマった所
 
+下記のようなエラーが発生する。でも、~/.config/picom/picom.conf にはそんなエントリーはない。
+
+```
+[ 2021年07月08日 08:20:48.077 parse_config_libconfig WARN ] Option `no-dock-shadow` is deprecated, and will be removed. Please use the wintype option `shadow` of `dock` instead.
+[ 2021年07月08日 08:20:48.077 parse_config_libconfig WARN ] Option `no-dnd-shadow` is deprecated, and will be removed. Please use the wintype option `shadow` of `dnd` instead.
+[ 2021年07月08日 08:20:48.077 parse_config_libconfig WARN ] Option `menu-opacity` is deprecated, and will be removed.Please use the wintype option `opacity` of `popup_menu` and `dropdown_menu` instead.
+[ 2021年07月08日 08:20:48.078 parse_config_libconfig WARN ] vsync option will take a boolean from now on. "none" is interpreted as "false" for compatibility, but this will stop working soon
+[ 2021年07月08日 08:20:48.078 parse_config_libconfig WARN ] glx-swap-method has been deprecated since v6, your setting "undefined" should be replaced by `use-damage = true`.
+[ 2021年07月08日 08:20:48.078 parse_config_libconfig WARN ] "clear-shadow" is removed as an option, and is always enabled now. Consider removing it from your config file
+[ 2021年07月08日 08:20:48.078 parse_config_libconfig ERROR ] "paint-on-overlay" has been removed as an option, and the feature is enabled whenever possible
+[ 2021年07月08日 08:20:48.078 main FATAL ERROR ] Failed to create new session.
+```
+
 * ~/.config/compton.conf が存在するので、~/.config/picom.conf が自動生成され、~/.config/picom/picom.conf よりも先に読み込まれて、自分が設定したファイルでない部分にエラーがでる。
   * 自分が書いてない設定に関してエラーが出たら、思い出しましょう。
 
