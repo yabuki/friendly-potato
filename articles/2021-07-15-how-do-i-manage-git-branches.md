@@ -38,6 +38,26 @@ published: false
 | リモートのブランチ一覧 | `git ls-remote` ||
 | ローカルから見た<br>ローカルとリモート<br>のブランチ一覧| `git branch -a` | 他者と作業しているなら、リモートのブランチは非同期で増えるので、必要なら `git ls-remote` を実行する必要があるかもしれない。 |
 
+## upstream とは
+
+大まかなイメージ
+```mermaid
+graph LR
+    ローカル --> リモート
+    あなたのリポジトリ --> GitHubのリポジトリ
+```
+
+具体的には
+
+```mermaid
+graph LR
+    ローカルのブランチ --> リモートのブランチ
+    あなたのリポジトリのbranchA --> GitHubのリポジトリ1のmainブランチ
+    あなたのリポジトリのbranchB --> GitLabのリポジトリ1のmainブランチ
+    あなたのリポジトリのbranchC --> GitHubのリポジトリ2のdevブランチ
+```
+
+
 ## remote branch
 
 - [Git - リモートブランチ](https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81)
