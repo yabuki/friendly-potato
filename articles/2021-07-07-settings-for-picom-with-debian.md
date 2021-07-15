@@ -7,7 +7,7 @@ published: true
 ---
 # 要約
 
-compton がメンテされなくなり、picom[^1] に移行しろということで移行文書を残す。
+compton がメンテされなくなり、picom[^1] に移行しろ[deprecated](./2021-07-07-settings-for-picom-with-debian#deprecated)ということで移行文書を残す。
 
 [^1]: 本家の文書では、picom は一環して picom と表記されておりPicom ではないので、本文書でも picom に統一する。
 
