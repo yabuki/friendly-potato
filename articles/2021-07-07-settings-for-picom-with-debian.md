@@ -7,7 +7,7 @@ published: true
 ---
 # 要約
 
-compton がメンテされなくなり、picom[^1] に移行しろ[ see also deprecated ](./2021-07-07-settings-for-picom-with-debian#deprecated)ということで移行文書を残す。
+compton がメンテされなくなり、picom[^1] に移行しろ[ \[see also deprecated\] ](./2021-07-07-settings-for-picom-with-debian#deprecated)ということで移行文書を残す。
 
 [^1]: 本家の文書では、picom は一環して picom と表記されておりPicom ではないので、本文書でも picom に統一する。
 
@@ -115,7 +115,7 @@ compton には、qtで書かれた設定ファイル設定ファイル設定ツ�
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2021-07-07|
-|記事を変更した日|2021-07-08|
+|記事を変更した日|2021-07-15|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
