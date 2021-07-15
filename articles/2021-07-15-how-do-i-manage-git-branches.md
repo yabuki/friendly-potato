@@ -22,11 +22,11 @@ published: false
 
 # 本文
 
-| 動作 | コマンド | gitの挙動 |
+| 条件 | コマンド | gitの挙動 |
 | ---- | -------- | ---- |
-| ブランチを作成 | `git checkout -b ブランチ名` | |
-| ブランチを作成 | `git branch ブランチ名` | ブランチ作成するもブランチを移動せず<br>`git switch/checkout` で移動するのを忘れないように。 |
-| ブランチを作成<br>そのブランチがある場合| `git branch ブランチ名` | `git branch yabuki` <br> `fatal: A branch named 'yabuki' already exists.` |
+| ブランチを作成<br>かつ<br>そのブランチがない場合 | `git checkout -b ブランチ名` | |
+| ブランチを作成<br>かつ<br>そのブランチがない場合 | `git branch ブランチ名` | ブランチ作成するもブランチを移動せず<br>`git switch/checkout` で移動するのを忘れないように。 |
+| ブランチを作成<br>かつ<br>そのブランチがある場合| `git branch ブランチ名` | `git branch yabuki` <br> `fatal: A branch named 'yabuki' already exists.` |
 | 指定ブランチへ移動 | `git checkout ブランチ名` | そのブランチへ移動する |
 | 指定ブランチへ移動 | `git switch ブランチ名` | そのブランチへ移動する |
 | 存在しない指定<br>ブランチへ移動 | `git checkout ブランチ名` | エラー発生し移動せず。<br>`git checkout hoge`<br> error: pathspec 'hoge' did not match any file(s) known to git  |
