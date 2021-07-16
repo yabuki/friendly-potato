@@ -40,23 +40,38 @@ published: false
 
 ## upstream とは
 
-大まかなイメージ
-```mermaid
-graph LR
-    ローカル --> リモート
-    あなたのリポジトリ --> GitHubのリポジトリ
-```
+--track, --no-track, --set-upstream とかで出てくる概念をまとめておく
 
-具体的には
+下記のような図を見てイメージをつかんでほしい。
+
+### 大まかなイメージ
 
 ```mermaid
 graph LR
-    ローカルのブランチ --> リモートのブランチ
-    あなたのリポジトリのbranchA --> GitHubのリポジトリ1のmainブランチ
-    あなたのリポジトリのbranchB --> GitLabのリポジトリ1のmainブランチ
-    あなたのリポジトリのbranchC --> GitHubのリポジトリ2のdevブランチ
+    ローカル -- upstream ---> リモート
+    あなたのリポジトリ -- upstream ---> GitHubのリポジトリ
 ```
 
+### ブランチベースから見ると
+
+```mermaid
+graph LR
+    ローカルのブランチ -- upstream ---> リモートのブランチ
+    あなたのリポジトリのbranchA -- upstream ---> GitHubのリポジトリ1のmainブランチ
+    あなたのリポジトリのbranchB -- upstream ---> GitLabのリポジトリ1のmainブランチ
+    あなたのリポジトリのbranchC -- upstream ---> GitHubのリポジトリ2のdevブランチ
+```
+
+### 作業ベースから見ると
+
+ブランチは、機能だったり、人だったりが作業しているので下記のようなイメージ
+
+```mermaid
+graph LR
+    あなたのリポジトリのbranchA -- upstream ---> Aさんの作業内容(GitHubのリポジトリ1のmainブランチ)
+    あなたのリポジトリのbranchB -- upstream ---> Bさんの作業内容(GitLabのリポジトリ1のmainブランチ)
+    あなたのリポジトリのbranchC -- upstream ---> Cさんの作業内容(GitHubのリポジトリ2のdevブランチ)
+```
 
 ## remote branch
 
