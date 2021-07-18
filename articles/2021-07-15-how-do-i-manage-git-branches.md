@@ -120,6 +120,8 @@ git remote show orign
 
 # 参考にしたドキュメントたち
 
+- [不安なくOrphanブランチを作る方法 by GitHub(リモートgit) - Qiita](https://qiita.com/PharaohKJ/items/f90336ce216cf9e57ce2)
+  - (親を持たない)まっさらな状態で、branch を作りたい時の方法を書いている。
 
 # 謝辞
 
