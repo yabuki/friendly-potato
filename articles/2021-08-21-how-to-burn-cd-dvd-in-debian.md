@@ -41,7 +41,7 @@ Xface なら、 [Debian -- パッケージ検索結果 -- xfburn](https://packag
 
 KDEなら、[Debian -- パッケージ検索結果 -- k3b](https://packages.debian.org/search?keywords=k3b) でしょうか。
 
-わたしは i3wm なのでやっばり、GUIでなくてCUIを使うかもしれません。
+わたしは i3wm なのでやっぱり、GUIでなくてCUIを使うかもしれません。
 
 # 本文
 
