@@ -2,7 +2,7 @@
 title: "Debian GNU/Linux で T480のBIOS updateのためCD-Rを焼くメモ"
 emoji: "🐷"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [Debian, CD]
+topics: [Debian, CD-R]
 published: true
 ---
 # 要約
