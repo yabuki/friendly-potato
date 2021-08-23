@@ -35,8 +35,7 @@ Linux で、物理のCD/DVDを焼く必要があり、環境設定をする必�
 
 上記の「この文章はだれ向けか」でも、書いているが ssh 越しに、CD/DVDを焼きたいので、主に CUI のプログラム wodim について記述する。
 
-GUIのプログラムがお好みであれば、GNOMEなら [Debian -- パッケージ検索結果 -- brasero](https://packages.debian.org/search?keywords=brasero) が、Nautilus にある
-イメージを連携して焼いてくれるとかの設定ができる模様です。
+GUIのプログラムがお好みであれば、GNOMEなら [Debian -- パッケージ検索結果 -- brasero](https://packages.debian.org/search?keywords=brasero) が、Nautilus にあるイメージを連携して焼いてくれるとかの設定ができる模様です。
 
 Xface なら、 [Debian -- パッケージ検索結果 -- xfburn](https://packages.debian.org/search?keywords=xfburn) が良さそうです。
 
