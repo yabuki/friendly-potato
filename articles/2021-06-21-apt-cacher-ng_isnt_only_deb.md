@@ -39,7 +39,7 @@ apt-cacher-ng を立てるだけなら、参考にしたドキュメントたち
 # 本文
 
 ルータから、IPv4 のアドレスを配ってもらっているマシンやコンテナと、固定アドレスを振って使っているマシンがあります。apt-cacher-ng の管理は、apt-cacher-ng が動いているマシン(コンテナ)の 3142 ボート
-にアクセスします。(このボート番号はもちろん設定で変更できます。) コンテナで、avahi を動かしている場合、<http://apt-cacher-ng.local:3142/acng-report.html?doCount=Count+Data#stats> のようにアクセル
+にアクセスします。(このボート番号はもちろん設定で変更できます。) コンテナで、avahi を動かしている場合、<http://apt-cacher-ng.local:3142/acng-report.html?doCount=Count+Data#stats> のようにアクセス
 すると下記の画面のような表示がでます。
 
 ![apt-cacher-ng web image](https://yabuki.github.io/friendly-potato/articles/images/2021-06-23_17-47.png =600x)
@@ -205,7 +205,7 @@ ip a
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2021-06-21|
-|記事を変更した日|2021-06-24|
+|記事を変更した日|2022-03-30|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
