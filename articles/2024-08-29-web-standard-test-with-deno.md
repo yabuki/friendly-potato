@@ -65,8 +65,8 @@ describe('Testing My App', () => {
 
 が与えられている。これをこのまま、`deno test src/index.test.ts`とすると、エラーになる。
 
-#. import app from './index' に拡張子がない
-#. describeやexpectが見つからない。
+1. import app from './index' に拡張子がない
+2. describeやexpectが見つからない。
 
 とか指摘される。
 
