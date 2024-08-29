@@ -2,7 +2,7 @@
 title: "Denoでやるweb標準のバックエンドアプリのテストの記事"
 emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [Deno Web]
+topics: [Deno, Web]
 published: true
 ---
 # 要約
