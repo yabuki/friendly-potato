@@ -79,7 +79,7 @@ describe('Testing My App', () => {
 
 ### BDDなキーワードがみつからない
 
-describeやexpect、後から出てくるitなどは denoは親切にも
+describeやexpect、後から出てくるitなどはdenoは親切にも
 ```
 error: TS2582 [ERROR]: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
 describe('Testing My App', () => {
