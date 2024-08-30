@@ -1,8 +1,8 @@
 ---
-title: "Denoでやるweb標準のバックエンドアプリのテストの記事"
+title: "Denoでやる「web標準のバックエンドアプリのテスト」の記事"
 emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [Deno, Web]
+topics: [Deno, Web, TypeScript, JavaScript]
 published: true
 ---
 # 要約
@@ -134,7 +134,7 @@ import { expect } from "jsr:@std/expect";
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2024-08-29|
-|記事を変更した日|2024-08-30|
+|記事を変更した日|2024-08-31|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
