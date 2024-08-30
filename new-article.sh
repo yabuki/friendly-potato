@@ -8,7 +8,8 @@ echo $charcnt
 # 50-11=39
 if [ $charcnt -lt 39 ]; then
     echo "doit"
-    npx zenn new:article --slug `date +%Y-%m-%d`-$1
+    #npx zenn new:article --slug `date +%Y-%m-%d`-$1
+    deno task zenn new:article --slug `date +%Y-%m-%d`-$1
 else
     echo "Too long slug. Be more shorten"
 fi
