@@ -83,6 +83,17 @@ lv ../old-po4a/po4a.cfg # 失敗したブランチの内容を確認する
 
 ### 新しく作業ブランチを作る
 
+- `git switch -c new_branch`
+
+現在はmainいる設定なので、下記を実行する。
+```sh
+git switch -c po4a
+Switched to a new branch 'po4a'
+```
+
+任意のブランチ、コミットから作業を開始したいなら、下記の「参考にしたドキュメント」を
+見てほしい。
+
 ### 実際に作業する
 
 この部分は、人によります。
@@ -104,6 +115,11 @@ lv ../old-po4a/po4a.cfg # 失敗したブランチの内容を確認する
     - [Git - git-branch Documentation](https://git-scm.com/docs/git-branch)
     - [『【改訂新版】Gitポケットリファレンス』のレビュー 岡本隆史 (YABUKI Yukiharuさん) - ブクログ](https://booklog.jp/users/yyabuki/archives/1/4774185930)
         - p147
+
+- `git switch`
+    - `man 1 git-switch`
+    - [Git - git-switch Documentation](https://git-scm.com/docs/git-switch)
+    - [『【改訂新版】Gitポケットリファレンス』のレビュー 岡本隆史 (YABUKI Yukiharuさん) - ブクログ](https://booklog.jp/users/yyabuki/archives/1/4774185930)
 
 - `git worktree`
     - `man 1 git-worktree`
