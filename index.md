@@ -38,4 +38,5 @@ Having trouble with Pages? Check out our [documentation](https://docs.github.com
 
 ## links
 
-- <https://yabuki.github.io/friendly-potato/articles/2024-09-07-correct-po4a-mistake.md>
+- [correct-po4a-mistake](https://yabuki.github.io/friendly-potato/articles/2024-09-07-correct-po4a-mistake.md)
+- [relative link](./articles/2024-09-07-correct-po4a-mistake.md)
