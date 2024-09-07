@@ -79,6 +79,7 @@ Preparing worktree (checking out 'po4a-old')
 HEAD is now at 89687af Delete *-ja.md # 最後のコミットメッセージが出てる
 ls ../old-po4a/ # 失敗したブランチの内容を確認する
 lv ../old-po4a/po4a.cfg # 失敗したブランチの内容を確認する
+```
 
 ### 新しく作業ブランチを作る
 
@@ -90,11 +91,11 @@ lv ../old-po4a/po4a.cfg # 失敗したブランチの内容を確認する
 
 ### 後始末
 
-- 作業ツリーを削除する rmコマンド
+- 作業ツリーを削除するrmコマンド
 - `git worktree list`で現状を確認
 - `git worktree prune --dry-run` で削除対象を確認
 - `git worktree prune` または `--verbose`オプション付きで実際に削除する
-- git worktree list 削除を確認する。
+- git worktree list削除を確認する。
 
 # 参考にしたドキュメントたち
 
