@@ -1,0 +1,22 @@
+{
+  "tasks": {
+    "cache": "deno cache deps.ts",
+    "zenn": "deno run -A npm:zenn-cli",
+    "zenn:preview": "deno task zenn preview --port 3005",
+    "zenn:create:article": "deno task zenn new:article",
+    "zenn:create:book": "deno task zenn new:book",
+    "lint": "deno run -A npm:textlint",
+    "lint:fix": "deno task lint --fix",
+    "lint:dry": "deno task lint --dry-run",
+    "markdownlint": "deno run -A npm:markdownlint-cli2",
+    "markdownlint:fix": "deno task markdownlint --fix '**/*.md'"
+  },
+  "fmt": {
+    "useTabs": false,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": false,
+    "proseWrap": "preserve",
+    "include": ["/articles", "/books"]
+  }
+}
