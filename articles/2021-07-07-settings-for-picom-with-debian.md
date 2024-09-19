@@ -7,7 +7,7 @@ published: true
 ---
 # 要約
 
-compton がメンテされなくなり、picom[^1] に移行しろ[ \[see also deprecated\] ](./2021-07-07-settings-for-picom-with-debian#deprecated)ということで移行文書を残す。
+compton がメンテされなくなり、picom[^1] に移行しろ[\[see also deprecated\]](./2021-07-07-settings-for-picom-with-debian#deprecated)ということで移行文書を残す。
 
 [^1]: 本家の文書では、picom は一環して picom と表記されておりPicom ではないので、本文書でも picom に統一する。
 
@@ -22,7 +22,6 @@ compton がメンテされなくなり、picom[^1] に移行しろ[ \[see also d
 
 この文書を書いている人間は、Debian GNU/Linux Sid を使っている。Debian GNU/Linux の次のリリースであるBullseyeでi3wm などを使ってコンポジット・マネージャを利用している人が設定する時にも有益な情報でありたい。もちろんDistro依存の部分は自分が気がつく範囲で書くので、他のDistroの人にも情報提供できると信じる。
 
-
 ## この文章はだれ向けか
 
 コンポジット・マネージャ picom を設定する必要のある人、とりわけ Debian GNU/Linux の bullseye 以降を使っている人
@@ -34,7 +33,6 @@ compton がメンテされなくなり、picom[^1] に移行しろ[ \[see also d
 ## 設定ファイルの置き場所
 
 私は、XDGに準拠した置き場所の ~/.config/picom/picom.conf に設定ファイルを置くことにしました。他の置き場所については、次の「調べ方」を読んでください。特に興味がなければ、次の「調べ方」はスキップして「設定ファイルの内容」へ読み進めてください。
-
 
 ### 調べ方
 
@@ -76,10 +74,9 @@ openat(AT_FDCWD, "/etc/xdg/compton/compton.conf", O_RDONLY) = -1 ENOENT (その�
 * ~/.config/compton.conf が存在するので、~/.config/picom.conf が自動生成され、~/.config/picom/picom.conf よりも先に読み込まれて、自分が設定したファイルでない部分にエラーがでる。
   * 自分が書いてない設定に関してエラーが出たら、思い出しましょう。
 
-
 ## 関連情報
 
-### deprecated 
+### deprecated
 
 * [Debian -- sid の compton パッケージに関する詳細](https://packages.debian.org/sid/compton)
   * > **This package is deprecated and will soon be removed, please switch to picom.**
@@ -106,9 +103,7 @@ compton には、qtで書かれた設定ファイル設定ファイル設定ツ�
 * [Debian -- sid の compton-conf パッケージに関する詳細](https://packages.debian.org/sid/compton-conf)
 * [Debian -- sid の compton-conf-l10n パッケージに関する詳細](https://packages.debian.org/sid/compton-conf-l10n)
 
-
 # 謝辞
-
 
 # さいごに
 
@@ -123,10 +118,8 @@ compton には、qtで書かれた設定ファイル設定ファイル設定ツ�
 
 記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。受け入れるかどうかは、差分とPull reqの文章で判断いたします。
 
-
 <!-- 文章の目的は何か -->
   <!-- 読み手に何の情報を伝えるのか -->
   <!-- 読んだひとにどういう行動をしてもらいたいのか -->
 <!-- だれに向けての文章か -->
 <!-- この文章の肝はどこか -->
-

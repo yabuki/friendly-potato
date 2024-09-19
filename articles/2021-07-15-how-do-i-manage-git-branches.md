@@ -7,16 +7,11 @@ published: false
 ---
 # 要約
 
-
-
 # はじめに
-
 
 ## この文章を書いた動機
 
-
 ## この文章はだれ向けか
-
 
 ## この文書の読み方
 
@@ -81,9 +76,9 @@ graph LR
 
 ```mermaid
 sequenceDiagram
-	作業tree ->> index: git add
-	index ->> local: git commit
-	local ->> remote: git push
+ 作業tree ->> index: git add
+ index ->> local: git commit
+ local ->> remote: git push
 %% コメントだよ
 ```
 
@@ -108,15 +103,14 @@ git remote show orign
 
 ### orphan
 
-* gh-pages 用の docs ブランチを切る時。ドキュメントは別途コードの部分を含まなくていいですよね。
+- gh-pages 用の docs ブランチを切る時。ドキュメントは別途コードの部分を含まなくていいですよね。
 
 # 疑問点
 
-* --track, --no-track とは?
-*  git checkout は git branch へ丸投げしている。いまは
-* --orphan と --detach の違い。
-* detach とは何か?
-
+- --track, --no-track とは?
+- git checkout は git branch へ丸投げしている。いまは
+- --orphan と --detach の違い。
+- detach とは何か?
 
 # 参考にしたドキュメントたち
 
@@ -124,7 +118,6 @@ git remote show orign
   - (親を持たない)まっさらな状態で、branch を作りたい時の方法を書いている。
 
 # 謝辞
-
 
 # さいごに
 
@@ -138,7 +131,6 @@ git remote show orign
 詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
 
 記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。受け入れるかどうかは、差分とPull reqの文章で判断いたします。
-
 
 <!-- 文章の目的は何か -->
   <!-- 読み手に何の情報を伝えるのか -->

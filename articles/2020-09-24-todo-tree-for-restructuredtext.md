@@ -15,14 +15,13 @@ published: true
 
 記事に対するTypoの指摘などは、pull reqをしてもらえると嬉しい。受け入れるかどうかは、差分とPull reqの文章で判断します。
 
-
 # はじめに
 
 Visual Studio Code (以下、vscode)や、その派生である VSCodium[^VSCodium] を使って、Sphinx[^Sphinx] のドキュメント RestructuredText[^RestructuredText]を扱っている人向けの記事です。
 
 TagのRestructuredtextは、タグが切れるので抜きました。
 
-# TODO Tree とはなにか。
+# TODO Tree とはなにか
 
 プログラムや文書う作っている時に、
 
@@ -42,7 +41,6 @@ TagのRestructuredtextは、タグが切れるので抜きました。
 1. 自分の使っているタグがないことがある
 1. 残念なことに、Todo Treeのデフォルト状態では、restructured textのコメント形式には、対応していないので、文中に書き込まない限り、Todo Treeは検知しません。
 
-
 なので、
 
 # Todo Treeをrestructued textに対応させる
@@ -51,24 +49,25 @@ TagのRestructuredtextは、タグが切れるので抜きました。
 
 ユーザー設定->設定　で設定画面をだして、拡張機能から、Todo Treeaを選択して、下記のような画面を出します。
 
-![Todo Tree settings](https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_18-26.png =600x)
+![Todo Tree settings](<https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_18-26.png> =600x)
 
 ここに書いてあるタグでたりないなら、チームで、共有するならワークスペース経由で、個人ならそのまま設定に書きます。
 
 例えば、人によっては *NOTE* Tag が足りてないと思う人もいるでしょう。ただし、sphinxの記法で 注釈を表す
+
 ```
 .. note::
 ```
+
 記法があるので、注意深くUpper Lowerを管理できる人でないなら、Restructured textというか、sphinx
 の時には気をつけた方がいいでしょう。
-
 
 Restructured textのコメントになる条件は、みなさん一度はハマるので、確認したほうがいいとおもいますが、
 簡単に言うと　.. (dot)2つでコメントです。
 
 restructued textもpythonと同じく、**インデント**が重要なのです。
 
-## コメントにしてもTagを認識させる。
+## コメントにしてもTagを認識させる
 
 > Regex: Regex
 > Regular expression for matching TODOs. Note: $TAGS will be replaced by the tag list.

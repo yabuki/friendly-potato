@@ -43,4 +43,3 @@ non-freeに分類される section に、mbrola-us1, mbrola-us2, mbrola-us3, mbr
 -v の部分を mb-us2, mb-us3, mb-en1 など変えて試してみてください。enjoy!
 
 `espeak-ng -a 200 -v mb-us1 -s 150 "Hello World!"`
-

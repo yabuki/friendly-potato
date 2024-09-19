@@ -5,4 +5,4 @@
 ## 2024-08-30
 
 - [Denoでtextlintを使ってZennリポジトリを運用する](https://zenn.dev/estra/articles/deno-textlint-zenn)
-    - この記事で再設定した。
+  - この記事で再設定した。

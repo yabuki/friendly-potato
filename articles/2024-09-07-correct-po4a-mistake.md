@@ -69,6 +69,7 @@ To github.com:yabuki/deno-docs.git
 
 - `git worktree list` # 現状の確認
 - リポジトリのtop levelへ移動する
+
 ```
 $ cd `git rev-parse --show-toplevel`
 $ git branch -a
@@ -86,6 +87,7 @@ lv ../old-po4a/po4a.cfg # 失敗したブランチの内容を確認する
 - `git switch -c new_branch`
 
 現在はmainいる設定なので、下記を実行する。
+
 ```sh
 git switch -c po4a
 Switched to a new branch 'po4a'
@@ -111,24 +113,23 @@ Switched to a new branch 'po4a'
 # 参考にしたドキュメントたち
 
 - `git branch`
-    - `man 1 git-branch`
-    - [Git - git-branch Documentation](https://git-scm.com/docs/git-branch)
-    - [『【改訂新版】Gitポケットリファレンス』のレビュー 岡本隆史 (YABUKI Yukiharuさん) - ブクログ](https://booklog.jp/users/yyabuki/archives/1/4774185930)
-        - p147
+  - `man 1 git-branch`
+  - [Git - git-branch Documentation](https://git-scm.com/docs/git-branch)
+  - [『【改訂新版】Gitポケットリファレンス』のレビュー 岡本隆史 (YABUKI Yukiharuさん) - ブクログ](https://booklog.jp/users/yyabuki/archives/1/4774185930)
+    - p147
 
 - `git switch`
-    - `man 1 git-switch`
-    - [Git - git-switch Documentation](https://git-scm.com/docs/git-switch)
-    - [『【改訂新版】Gitポケットリファレンス』のレビュー 岡本隆史 (YABUKI Yukiharuさん) - ブクログ](https://booklog.jp/users/yyabuki/archives/1/4774185930)
+  - `man 1 git-switch`
+  - [Git - git-switch Documentation](https://git-scm.com/docs/git-switch)
+  - [『【改訂新版】Gitポケットリファレンス』のレビュー 岡本隆史 (YABUKI Yukiharuさん) - ブクログ](https://booklog.jp/users/yyabuki/archives/1/4774185930)
 
 - `git worktree`
-    - `man 1 git-worktree`
-    - [Git - git-worktree Documentation](https://git.github.io/git-scm.com/docs/git-worktree)
-    - [『【改訂新版】Gitポケットリファレンス』のレビュー 岡本隆史 (YABUKI Yukiharuさん) - ブクログ](https://booklog.jp/users/yyabuki/archives/1/4774185930)
-        - P160からP164
+  - `man 1 git-worktree`
+  - [Git - git-worktree Documentation](https://git.github.io/git-scm.com/docs/git-worktree)
+  - [『【改訂新版】Gitポケットリファレンス』のレビュー 岡本隆史 (YABUKI Yukiharuさん) - ブクログ](https://booklog.jp/users/yyabuki/archives/1/4774185930)
+    - P160からP164
 
 # 謝辞
-
 
 # さいごに
 

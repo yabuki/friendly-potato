@@ -11,7 +11,7 @@ Debian GNU/Linuxで、KensingtonのTrackball slimbladeの設定変更方法に�
 
 # はじめに
 
-赤い大玉が特徴的な、4つのボタンがついたTrackballである 
+赤い大玉が特徴的な、4つのボタンがついたTrackballである
 [スリムブレードトラックボール | トラックボール | Kensington](https://www.kensington.com/ja-jp/p/%E8%A3%BD%E5%93%81/%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/%E3%83%88%E3%83%A9%E3%83%83%E3%82%AF%E3%83%9C%E3%83%BC%E3%83%AB/%E3%82%B9%E3%83%AA%E3%83%A0%E3%83%96%E3%83%AC%E3%83%BC%E3%83%89%E3%83%88%E3%83%A9%E3%83%83%E3%82%AF%E3%83%9C%E3%83%BC%E3%83%AB/)
 を入手した。
 
@@ -35,10 +35,7 @@ Linuxを使っていて、Kensington slimbladeの設定を変えてみたい人
 下記が、わたし好みの設定です。1,2,3,8と書いているのは、slimbladeの4つのボタンです。Oが赤玉だと見立てていただければさいわいです。
 これをこのまま、使いたいひとは、完成した設定ファイルまでお進みください。
 
-
 そうでない人は、軽く目次を見つつ、必要な部分を拾い読みしてください。
-
-
 
 1: 左クリック
 2: 右クリック
@@ -55,7 +52,6 @@ Linuxを使っていて、Kensington slimbladeの設定を変えてみたい人
 手前
 ```
 
-
 # 本文
 
 ## 準備
@@ -68,9 +64,7 @@ Linuxを使っていて、Kensington slimbladeの設定を変えてみたい人
 
 xinputだけは、わたしの場合は`sudo apt install xinput`として追加インストールしました。
 
-
 slimbladeをlinux boxに挿入し、下記のように情報を収集します。
-
 
 ## 完成した設定ファイル
 
@@ -79,7 +73,6 @@ slimbladeをlinux boxに挿入し、下記のように情報を収集します�
 1. [ubuntu - Configuring Kensington Slimblade in Linux - Unix &amp; Linux Stack Exchange](https://unix.stackexchange.com/questions/453069/configuring-kensington-slimblade-in-linux "ubuntu - Configuring Kensington Slimblade in Linux - Unix &amp; Linux Stack Exchange")
 
 # 謝辞
-
 
 # さいごに
 

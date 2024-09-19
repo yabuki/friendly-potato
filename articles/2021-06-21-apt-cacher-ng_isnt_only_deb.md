@@ -48,7 +48,7 @@ apt-cacher-ng を立てるだけなら、参考にしたドキュメントたち
 にアクセスします。(このボート番号はもちろん設定で変更できます。) コンテナで、avahi を動かしている場合、<http://apt-cacher-ng.local:3142/acng-report.html?doCount=Count+Data#stats> のようにアクセス
 すると下記の画面のような表示がでます。
 
-![apt-cacher-ng web image](https://yabuki.github.io/friendly-potato/articles/images/2021-06-23_17-47.png =600x)
+![apt-cacher-ng web image](<https://yabuki.github.io/friendly-potato/articles/images/2021-06-23_17-47.png> =600x)
 
 ## ときどき困る点
 
@@ -57,7 +57,7 @@ avahiはだいたい答えを返してくれますが、うまく返してくれ
 
 所が、スクリプトで利用している netcat は、IPv6 に対応していないので、毎回 lxc list で IP address を確認してから cache を使っている不便さです。そこで、参考にしたドキュメントたちの netcat の記事を見つけたのです。
 
-## どう解決したか。
+## どう解決したか
 
 上記の記事を読んでから、Debian sid にも ncat パッケージがあることを確認したので、インストール。
 
@@ -187,11 +187,10 @@ ip a
 これらの repositories は、あなたが思っているようなブランチ構成にはなっていないかもしれません。git-buildpackage/gbp コマンドで便利に使えるようなブランチ構成になっています。[gbp-buildpackage(1) — git-buildpackage — Debian testing — Debian Manpages](https://manpages.debian.org/testing/git-buildpackage/gbp-buildpackage.1.en.html) あたりから調べてください。
 
 - [Efreak/apt-cacher-ng at debian/sid](https://github.com/Efreak/apt-cacher-ng/tree/debian/sid)
-  - 上記の apt-cacher-ng は、"clone of https://alioth.debian.org/anonscm/git/apt-cacher-ng/apt-cacher-ng.git for easy browsing. Laziness ftw." と書いてあるが、alioth.debian.org は salsa.debian.org の gitlab に移行しています。
+  - 上記の apt-cacher-ng は、"clone of <https://alioth.debian.org/anonscm/git/apt-cacher-ng/apt-cacher-ng.git> for easy browsing. Laziness ftw." と書いてあるが、alioth.debian.org は salsa.debian.org の gitlab に移行しています。
 
 - [doc/README · upstream/experimental · Adrián Pablo José Sedoski Croce / apt-cacher-ng · GitLab](https://salsa.debian.org/asedoski/apt-cacher-ng/-/blob/upstream/experimental/doc/README)
   - ドキュメント参照をした repository
-
 
 ## 大規模につかうなら
 
@@ -205,7 +204,6 @@ ip a
 
 # 謝辞
 
-
 # さいごに
 
 |     件名       |   日付   |
@@ -218,7 +216,6 @@ ip a
 詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
 
 記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。受け入れるかどうかは、差分とPull reqの文章で判断いたします。
-
 
 <!-- 文章の目的は何か -->
   <!-- 読み手に何の情報を伝えるのか -->

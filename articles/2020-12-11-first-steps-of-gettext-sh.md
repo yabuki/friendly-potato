@@ -11,7 +11,6 @@ published: true
 
 [^i18n]: Internationalization つづりが長いので真ん中と最後の文字を18文字省略しているとの意味です。 see also [I18N(国際化対応) - MDN Web Docs 用語集: ウェブ関連用語の定義 | MDN](https://developer.mozilla.org/ja/docs/Glossary/I18N)]
 
-
 身近に利益を感じてもらうため hello world レベルの shell スクリプトを gettext.sh 使って国際化する方法を書いている。
 
 例題を試すための github repository も用意している。
@@ -46,7 +45,6 @@ gettextを扱えるひとが増えて、より多くの優れたソフトウェ�
 すぐに使えるのは日常的にシェルスクリプトを書いている人で、複数の言語への対応をしたいと考えている人です。
 
 例題はシェルスクリプトですが、gettext における作業手順について他のプログラム言語でgettextを扱うとき応用ができるように書きます。
-
 
 ## この文書の読み方
 
@@ -84,6 +82,7 @@ gettext-base: /usr/bin/gettext.sh
 ```
 
 なので、
+
 ```
 dpkg -l gettext*
 要望=(U)不明/(I)インストール/(R)削除/(P)完全削除/(H)保持
@@ -95,6 +94,7 @@ ii  gettext        0.19.8.1-10  amd64        GNU Internationalization utilities
 ii  gettext-base   0.19.8.1-10  amd64        GNU Internationalization utilities for the base system
 ii  gettext-doc    0.19.8.1-10  all          Documentation for GNU gettext
 ```
+
 を参考に入れて下さい。ドキュメントはお好みで offline でも参照できる文書が欲しい派なのでわたしは入れています。
 
 ## サンプルの導入
@@ -130,6 +130,7 @@ message.po に枝番をつけたファイルは、初期に `xgettext` コマン
 git clone した所から、cd dash/gettest.sh へ移動して、`dash ./hello.sh` と実行してください。
 
 私の環境では、
+
 ```
 $ dash ./hello.sh 
 こんにちは世界
@@ -158,28 +159,28 @@ Hello World
 ございました。おかげで私の理解が進みました。
 
 ```sh:hello.sh
-     1	#!/bin/dash -x
-     2	
-     3	# 下記をやる
-     4	. gettext.sh
-     5	
-     6	# TEXTDOMAIN=@PACKAGE@
-     7	TEXTDOMAIN=hello
-     8	export TEXTDOMAIN
-     9	# TEXTDOMAINDIR=/home/yabuki/lib/locale
-    10	TEXTDOMAINDIR=`pwd`/locale
-    11	export TEXTDOMAINDIR
-    12	
-    13	eval_gettext "Hello World"; echo
-    14	echo "`eval_gettext "Hello World"`"
+     1 #!/bin/dash -x
+     2 
+     3 # 下記をやる
+     4 . gettext.sh
+     5 
+     6 # TEXTDOMAIN=@PACKAGE@
+     7 TEXTDOMAIN=hello
+     8 export TEXTDOMAIN
+     9 # TEXTDOMAINDIR=/home/yabuki/lib/locale
+    10 TEXTDOMAINDIR=`pwd`/locale
+    11 export TEXTDOMAINDIR
+    12 
+    13 eval_gettext "Hello World"; echo
+    14 echo "`eval_gettext "Hello World"`"
 ```
 
-* 1行め 実行内容をトレースしながら動け
-* 4行め おまじない
-* 7行め 実行プログラム名などを入れる。翻訳の入ったmoファイル名でもあります。
-* 10行め どこにmoファイルを置くlocaleディレクトリが存在しているか。を **絶対ディレクトリ**で指定します。相対ではダメです。`pwd`コマンドが効いてきます。
-* 13行め eval_gettext に文字を渡して、翻訳した結果を受け取ります。echoで改行してます。
-* 14行め echo を先に書きたい派の人はこっちを使います。この段階では、13行めと14行めの書き方は好みの範囲です。変数が関係するとエスケープの個数を変化させる必要があります。しかし、いまはこれ以上踏み込みません。
+- 1行め 実行内容をトレースしながら動け
+- 4行め おまじない
+- 7行め 実行プログラム名などを入れる。翻訳の入ったmoファイル名でもあります。
+- 10行め どこにmoファイルを置くlocaleディレクトリが存在しているか。を **絶対ディレクトリ**で指定します。相対ではダメです。`pwd`コマンドが効いてきます。
+- 13行め eval_gettext に文字を渡して、翻訳した結果を受け取ります。echoで改行してます。
+- 14行め echo を先に書きたい派の人はこっちを使います。この段階では、13行めと14行めの書き方は好みの範囲です。変数が関係するとエスケープの個数を変化させる必要があります。しかし、いまはこれ以上踏み込みません。
 
 ここまでで、やりたいことの半分が達成できました。
 
@@ -261,20 +262,20 @@ gettext を使ってプログラム作成から翻訳を入れ、表示する文
 必要に応じて `man 1 xgettext` を参考にしてください。いくつか書く必要があるオプションを書き出します。
 
 <!-- @suppress DoubledJoshi CommaNumber SentenceLength ParenthesizedSentence -->
-* -L または --language オプション 今回の場合なら -L "shell"を渡します。(C, C++, ObjectiveC, PO, Shell, Python, Lisp, EmacsLisp, librep, Scheme, Smalltalk, Java, JavaProperties, C#, awk, YCP, Tcl, Perl, PHP, GCC-source, NXStringTable, RST, Glade,  Lua, JavaScript, Vala, Desktop) が対象のもようです。これは man からの引用なので、ソースコードは確認していません。
+- -L または --language オプション 今回の場合なら -L "shell"を渡します。(C, C++, ObjectiveC, PO, Shell, Python, Lisp, EmacsLisp, librep, Scheme, Smalltalk, Java, JavaProperties, C#, awk, YCP, Tcl, Perl, PHP, GCC-source, NXStringTable, RST, Glade,  Lua, JavaScript, Vala, Desktop) が対象のもようです。これは man からの引用なので、ソースコードは確認していません。
 <!-- @suppress SuccessiveSentence -->
-* 入力ファイルやディレクトリを指定するオプション
-* 出力ファイルやディレクトリを指定するオプション。とりわけdefault-domainはそのプログラム名、またはプロジェクト名の概念なので、インターネットのドメインと取り違えないように。
-* 既存のファイルに追加する -j --joinexisting
-* TAGという概念 (調べて書く必要がある)
-* コメント どのように使うかは例示がいるか。
+- 入力ファイルやディレクトリを指定するオプション
+- 出力ファイルやディレクトリを指定するオプション。とりわけdefault-domainはそのプログラム名、またはプロジェクト名の概念なので、インターネットのドメインと取り違えないように。
+- 既存のファイルに追加する -j --joinexisting
+- TAGという概念 (調べて書く必要がある)
+- コメント どのように使うかは例示がいるか。
 <!-- @suppress ParenthesizedSentence -->
-* --check でunicodeの妥当性チェック (ellipsis-unicode, space-ellipsis, quote-unicode, bullet-unicode)
-* --copyright-holder=STRING poファイルの翻訳をした著作権者を書く(著作の管理に関する事項です)
-* --foreign-user omit FSF copyright in output for foreign user
-* --package-name=PACKAGE set package name in output
-* --package-version=VERSION set package version in output
-* --msgid-bugs-address=EMAIL@ADDRESS set report address for msgid bugs msgidに不具合があったときの連絡メールアドレスを設定する。
+- --check でunicodeの妥当性チェック (ellipsis-unicode, space-ellipsis, quote-unicode, bullet-unicode)
+- --copyright-holder=STRING poファイルの翻訳をした著作権者を書く(著作の管理に関する事項です)
+- --foreign-user omit FSF copyright in output for foreign user
+- --package-name=PACKAGE set package name in output
+- --package-version=VERSION set package version in output
+- --msgid-bugs-address=EMAIL@ADDRESS set report address for msgid bugs msgidに不具合があったときの連絡メールアドレスを設定する。
 
 パッケージの概念や、バージョニングの概念自体はどういう風にするかは裁量があるのだろう。
 
@@ -287,29 +288,27 @@ gettext を使ってプログラム作成から翻訳を入れ、表示する文
 
 `man 1 msginit` を読もう。
 
-
 ## msgfmt コマンド
 
 `man 1 msgfmt` を読もう。
 
 # 参考にしたドキュメントたち
 
-* [GNU gettext utilities: Preparing Shell Scripts](https://ayatakesi.github.io/gettext/0.18.3/html/Preparing-Shell-Scripts.html)
+- [GNU gettext utilities: Preparing Shell Scripts](https://ayatakesi.github.io/gettext/0.18.3/html/Preparing-Shell-Scripts.html)
   - 同じドキュメントは、Debianのgettext-docパッケージをインストールすると、/usr/share/doc/gettext-doc/gettext_15.html で読むことができます。Offlineで集中したい人は、あらかじめパッケージをインストールして、お好きなブラウザで、ローカルファイルを指定して読んでください。
-* [GNU gettext utilities: Preparing Strings](https://ayatakesi.github.io/gettext/0.18.3/html/Preparing-Strings.html#Preparing-Strings)
+- [GNU gettext utilities: Preparing Strings](https://ayatakesi.github.io/gettext/0.18.3/html/Preparing-Strings.html#Preparing-Strings)
 <!-- @suppress DoubledJoshi JapaneseAmbiguousNounConjunction -->
-* [gettext API - Oracle Solaris でのアプリケーションの国際化とローカライズ](https://docs.oracle.com/cd/E56342_01/html/E54072/gnkbn.html)
+- [gettext API - Oracle Solaris でのアプリケーションの国際化とローカライズ](https://docs.oracle.com/cd/E56342_01/html/E54072/gnkbn.html)
 <!-- @suppress DoubledJoshi -->
-* [gettext のコマンドラインツールを使おう: SuperTuxKart を例に - Qiita](https://qiita.com/okano_t/items/da2ba18a65f46b31b699)
-* `man 1 xgettext`
-* `man 1 msginit`
-* `man 1 msgfmt`
+- [gettext のコマンドラインツールを使おう: SuperTuxKart を例に - Qiita](https://qiita.com/okano_t/items/da2ba18a65f46b31b699)
+- `man 1 xgettext`
+- `man 1 msginit`
+- `man 1 msgfmt`
 
 # 謝辞
 
 下記の「参考にしたドキュメントたち」を読んで、試しながらこの文章と、試した結果を手元でも再現できるリポジトリを作りました。gettextを
 shellで使えるように整備してもらい、この文章ができました。ありがとうございます。
-
 
 # さいごに
 
@@ -323,5 +322,3 @@ shellで使えるように整備してもらい、この文章ができました
 詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
 
 記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。受け入れるかどうかは、差分とPull reqの文章で判断いたします。
-
-
