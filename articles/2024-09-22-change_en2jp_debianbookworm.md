@@ -19,7 +19,7 @@ Debian GNU/Linux 12(Bookworm)を自分好みの設定にしたいことがあり
 そこで新規にコンテナを使って自分好みの設定にするべく作業した記録を残して
 将来の自分のために書き残しておきます。
 
-[^1]: incusについては、[第824回 Dockerコンテナをダイレクトに動かせるようになった「Incus 6.3」を、Ubuntu 24.04で試す | gihyo.jp](https://gihyo.jp/admin/serial/01/ubuntu-recipe/0824) などから、情報をたぐってみてください。わたしはdockerもいいけど、永続化できるコンテナで管理しやすく、軽量なものを探していたので、incusを使っています。
+[^1]: incusについては、[第824回 Dockerコンテナをダイレクトに動かせるようになった「Incus 6.3」を、Ubuntu 24.04で試す | gihyo.jp](https://gihyo.jp/admin/serial/01/ubuntu-recipe/0824) などから、情報をたぐってみてください。わたしはdockerもいいけど、永続化できるコンテナで管理しやすく、軽量なものを探していたので、incusを使っています。ちなみに`incus file mount`コマンドは、dockerのvolumeより、私にはわかりやすかったです。sshfs経由で設定ファイルをコピーすればいいので、lxdのときのcpより使いやすいです。
 
 
 ## この文章はだれ向けか
