@@ -56,7 +56,6 @@ augroup END
 
 `{redpen_filetype}` の部分は、例のように、自分が校正するファイルのファイルタイプを指定してください。`echo &filetype` で、今開いているファイルのファイルタイプを確認できます。
 
-
 # Redpenを動かす方法
 
 `:make`
@@ -68,7 +67,6 @@ augroup END
 # おわりに
 
 この設定をすると、文章校正が楽になります。
-
 
 別解としては、[mattn/efm-langserver: General purpose Language Server](https://github.com/mattn/efm-langserver) を使うという手もあるかと思います。
 

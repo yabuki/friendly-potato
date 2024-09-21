@@ -79,6 +79,7 @@ describe('Testing My App', () => {
 ### BDDなキーワードがみつからない
 
 describeやexpect、後から出てくるitなどはdenoは親切に下記のメッセージがでます。
+
 ```
 error: TS2582 [ERROR]: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
 describe('Testing My App', () => {
@@ -119,7 +120,7 @@ import { expect } from "jsr:@std/expect";
 
 - [Web標準のバックエンドアプリのテスト](https://zenn.dev/yusukebe/articles/9a6335ed793c43)
 - [Testing](https://docs.deno.com/runtime/fundamentals/testing/#behavior-driven-development)
-    - docs.deno.comにあるBDDについての文書
+  - docs.deno.comにあるBDDについての文書
 
 # 謝辞
 

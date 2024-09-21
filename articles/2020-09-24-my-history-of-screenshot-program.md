@@ -15,7 +15,6 @@ published: true
 
 記事に対するTypoの指摘などは、pull reqをしてもらえると嬉しい。受け入れるかどうかは、差分とPull reqの文章で判断します。
 
-
 # はじめに
 
 「百聞は一見に如かず」とのことわざがある。コンピュータを使って、他人とコミュニケーションをとる時にぜんぶ言葉でやろうとして、とても大変な苦労をしたことがあるかとおもう。
@@ -56,17 +55,16 @@ $ ls
 2020-09-24_15-31.png'
 ```
 
-![my desktop image](https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_15-31.png =600x)
+![my desktop image](<https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_15-31.png> =600x)
 
 # 付録
 
-## Zenn で、github 連携をしている時に画像を使いたい。
+## Zenn で、github 連携をしている時に画像を使いたい
 
 多分気がついている人多数だと思うが、zennと連携しているrepoでgh pages設定をしている所に画像を置くと、読み込める。どういうことかというと。
 
-
 gh pagesブランチに　gh pagesをデプロイする設定にしている場合に、ファイルを artcles/imagesの配下に置くと決めるとする。
-<https://github.com/yabuki/friendly-potato/blob/gh-pages/articles/images/2020-09-24_15-31.png> 
+<https://github.com/yabuki/friendly-potato/blob/gh-pages/articles/images/2020-09-24_15-31.png>
 のような置き方になる。それをgh pagesから見たらどうなるかを想像して、下記のようなURLに変換して画像へのリンクを書けばいい。
 <https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_15-31.png>
 
@@ -77,4 +75,3 @@ gh pagesブランチに　gh pagesをデプロイする設定にしている場�
 ## 疑問点
 
 zenn のマークダウン記法で画像をクリックすると拡大したimageが得られる記法ってあるの?
-

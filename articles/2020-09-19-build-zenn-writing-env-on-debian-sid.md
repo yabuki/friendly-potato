@@ -58,11 +58,13 @@ githubと連携して記事をgithubに残すことができるので記事の�
 [nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)の中身をよく読んでインストールしてください。
 
 使うnodejsは、
+
 ```bash
 nvm install --lts
 ```
 
 で、2020-09-19現在のltsである lts/eribuimを使っています。
+
 ```bash
 nvm ls
 ->     v12.18.4
@@ -86,12 +88,11 @@ lts/erbium -> v12.18.4
 
 あと、gh-pagesも有効にして、theme も決めておきました。これをどうするかはまだ試していないので設定だけしておきます。
 
-## zenn と連携する。
+## zenn と連携する
 
 * [GitHubリポジトリでZennのコンテンツを管理する | Zenn](https://zenn.dev/zenn/articles/connect-to-github)
 
 この記事をよんでやります。この段階では、gh-pagesブランチしかなかったので、そこと連携します。
-
 
 ## git clone する
 
@@ -110,7 +111,6 @@ git clone git@github.com:yabuki/friendly-potato.git
   remotes/origin/gh-pages
 ```
 
-
 ## Zenn CLI のインストール
 
 グローバルにインストールするのではなく、このrepoだけにインストールしたいので、
@@ -118,7 +118,6 @@ git clone git@github.com:yabuki/friendly-potato.git
 [Zenn CLIをインストールする | Zenn](https://zenn.dev/zenn/articles/install-zenn-cli)
 
 の中身を確認して、そのままのインストラクションで、docsブランチにZenn CLIをインストールします。
-
 
 ```
 
@@ -200,6 +199,7 @@ npx zenn init
  yabuki   docs … 6  ~  scm  git  friendly-potato  zenn new:article
 bash: zenn: コマンドが見つかりません
 ```
+
 ってことで、fullpath指定で、
 
 ```
@@ -243,16 +243,15 @@ found 5 low severity vulnerabilities
 
 ## 記事の見直し
 
-
 * slugの文字列を意味あるモノに変更する
-    * Zenn Editorの警告に従うこと
+  * Zenn Editorの警告に従うこと
 
 * Zenn Editorの警告を直す
-    * slugの文字列は、0-9とハイフン、英文字の小文字50文字までとZenn Editorに怒られた記憶がある。
+  * slugの文字列は、0-9とハイフン、英文字の小文字50文字までとZenn Editorに怒られた記憶がある。
 
 * 文章の手直し
 
-    * そのうち、Redpenを自動的にかけるとかの文章チェックをかけたいね。
+  * そのうち、Redpenを自動的にかけるとかの文章チェックをかけたいね。
 
 ## 公開
 

@@ -42,7 +42,7 @@ Linux のコンソールを使っている。かつ Debian installer のテス�
 
 ## PC
 
-Lenovo M75t gen 2  Ryzen 7 
+Lenovo M75t gen 2  Ryzen 7
 
 ## secure boot
 
@@ -54,7 +54,7 @@ enabled
 
 1. isoのダウンロード
 1. usb memory stick の用意
-1. usb へ iso イメージを書き込む。　
+1. usb へ iso イメージを書き込む。
 1. usb から boot するように、bios を設定してreboot
 1. installer を実行
 
@@ -127,9 +127,9 @@ sudo  cp /home/yabuki/Downloads/debian-testing-amd64-DVD-1.iso /dev/sdd
 
 そして、おもむろに usb を引っこ抜いて、Lenovo M75t gen 2 にさします。
 
-### usbからbootするように、biosを変更する。
+### usbからbootするように、biosを変更する
 
-F1を使う作法や、DELを使う作法などありますが、Lenovo M75t gen 2 は F1 でした。ユーザマニュアルを見ましょう。[^2] 
+F1を使う作法や、DELを使う作法などありますが、Lenovo M75t gen 2 は F1 でした。ユーザマニュアルを見ましょう。[^2]
 
 ### install
 
@@ -164,7 +164,7 @@ apt lineが、初期値では main  のみになので、必要に応じて cont
 
 ログアウトして、ログインしたら gnome-terminal で ibus-mozc が動いているのが確認できる。
 
-ちなみに、つないだキーボードがHHK Professional でした。漢字キーを探すのが面倒で、全部GUIで日本語入力をonにしました。使い込むなら、このへんも ibus-setup あたりで確認して設定するのでしょうね。　
+ちなみに、つないだキーボードがHHK Professional でした。漢字キーを探すのが面倒で、全部GUIで日本語入力をonにしました。使い込むなら、このへんも ibus-setup あたりで確認して設定するのでしょうね。
 
 ### 別の記事でやる予定
 
@@ -180,7 +180,6 @@ apt lineが、初期値では main  のみになので、必要に応じて cont
 
 [^1]:[Debian GNU/Linux インストールガイド](https://www.debian.org/releases/bullseye//amd64/install.ja.pdf) の 「4.3 USB メモリでの起動用ファイルの準備」
 [^2]:[m75t_gen2_ug_ja.pdf](https://download.lenovo.com/pccbbs/thinkcentre_pdf/m75t_gen2_ug_ja.pdf)
-
 
 # 謝辞
 
@@ -198,5 +197,3 @@ apt lineが、初期値では main  のみになので、必要に応じて cont
 詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
 
 記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。受け入れるかどうかは、差分とPull reqの文章で判断いたします。
-
-
