@@ -2,7 +2,7 @@
 title: "英語設定のDebian 12サーバーを日本語設定にする"
 emoji: "🎉"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [debian]
+topics: [debian,linux]
 published: true
 ---
 # 要約
