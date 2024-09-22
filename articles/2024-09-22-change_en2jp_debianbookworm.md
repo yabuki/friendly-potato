@@ -55,6 +55,17 @@ sshサーバーの鍵の再生成について調べるのを
 `/etc/locale.gen`のファイルを確認します。rootでviやnanoなど
 で ja_JP.UTF-8の行が有効になっているか確認します。
 
+有功かどうかを確認するのに、コマンドでやる方法としては
+rootで`validlocale ja_JP.UTF-8`を実行してみるのも良い
+でしょう。
+
+以下にja_JP.EUC-JPを確認した時の例を載せておきます。
+```
+# validlocale ja_JP.EUC-JP
+locale 'ja_JP.EUC-JP' not available
+ja_JP.EUC-JP EUC-JP
+```
+
 大抵の場合は、行頭に#があり、コメントになっているので、
 行頭の#を外して、有効な行とします。
 
