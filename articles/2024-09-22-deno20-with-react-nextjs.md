@@ -149,13 +149,13 @@ lrwxrwxrwx 1 yabuki yabuki  45  9月 22 14:22 react-dom -> .deno/react-dom@18.3.
 $ deno task
 Available tasks:
 - dev
-    next dev
+    deno run -A npm:next dev
 - build
-    next build
+    deno run -A npm:next build
 - start
-    next start
+    deno run -A npm:next start
 - lint
-    next lint
+    deno run -A npm:next lint
 ```
 
 ## サンプルコードを動かす
