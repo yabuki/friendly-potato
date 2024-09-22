@@ -11,21 +11,25 @@ Deno 2.0 rc.4で、reactとnext.jsの環境設定をしてみる。
 
 # はじめに
 
-
-
-## この文章を書いた動機
-
+Deno 2.0 がもうすぐリリースされる。今はRC(release candidate)がでており、フィードバックを求められている。
+私も Deno 2.0 でいくつかの環境を試して、記録に残そうとしている。
 
 ## この文章はだれ向けか
 
+Deno を使ってアプリケーションの実行環境を作ってみたい人向けの文章です。
 
 ## この文書の読み方
 
+足りてない部分は、参考にした文書に書いてあるかと思います。分かっているひとは拾い読みでもいいかもしれませんが、
+deno初心者は別の文書を読む必要があるかもしれません。
 
 # 本文
 
+大まかな方針
+
 1. deno.jsonに、既定値のnoneではなく、manualを設定する。 [Deno 2.0 Release Candidate](https://deno.com/blog/v2.0-release-candidate#the-manual-mode)
-1. denoで読み替えて、`deno add npm:next@latest npm:react@latest npm:react-dom@latest`を実行する。typescriptの実行環境はdenoが持っているし、型情報は困ったら考える。
+1. denoで読み替えて、`deno add npm:next@latest npm:react@latest npm:react-dom@latest`を実行する。
+    - typescriptの実行環境はdenoが持っているし、型情報は--devでインストールする
 
 ## 下準備
 
