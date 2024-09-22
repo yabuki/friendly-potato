@@ -184,8 +184,47 @@ Task dev next dev
 
 ## 問題点
 
-動かしただけなので、正しく設定されているかについて自信がないです。特にtypescriptをnpmで
-導入しており、denoで動いているのか。自信がないです。
+動かしただけなので、正しく設定されているかについて自信がないです。
+特にdenoで動かしているが、依存関係でtypescriptをnpmで
+導入しているのが気になっています。
+
+発生していたエラー `deno add --dev npm:typescirpt`すると、もちろん発生しない。
+```
+$ deno task dev
+Task dev deno run -A npm:next dev
+  ▲ Next.js 14.2.13
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+It looks like you're trying to use TypeScript but do not have the required package(s) installed.
+Installing dependencies
+
+If you are not trying to use TypeScript, please remove the tsconfig.json file from your package root (and any TypeScript files in your pages directory).
+
+
+Installing devDependencies (npm):
+- typescript
+
+error: Uncaught Error: spawnSync npm ENOENT
+    at __node_internal_captureLargerStackTrace (ext:deno_node/internal/errors.ts:93:9)
+    at __node_internal_errnoException (ext:deno_node/internal/errors.ts:141:10)
+    at _createSpawnSyncError (ext:deno_node/internal/child_process.ts:683:17)
+    at new ChildProcess (ext:deno_node/internal/child_process.ts:285:13)
+    at Object.spawn (node:child_process:118:10)
+    at spawn (file:///home/yabuki/src/etude-react/second/node_modules/.deno/next@14.2.13/node_modules/next/dist/compiled/cross-spawn/index.js:1:370)
+    at file:///home/yabuki/src/etude-react/second/node_modules/.deno/next@14.2.13/node_modules/next/dist/lib/helpers/install.js:82:47
+    at new Promise (<anonymous>)
+    at install (file:///home/yabuki/src/etude-react/second/node_modules/.deno/next@14.2.13/node_modules/next/dist/lib/helpers/install.js:27:14)
+    at installDependencies (file:///home/yabuki/src/etude-react/second/node_modules/.deno/next@14.2.13/node_modules/next/dist/lib/install-dependencies.js:31:36)
+error: Uncaught (in promise) TypeError: Unknown signal: 0
+    at toDenoSignal (ext:deno_node/internal/child_process.ts:387:11)
+    at ChildProcess.kill (ext:deno_node/internal/child_process.ts:296:53)
+    at handleSessionStop (file:///home/yabuki/src/etude-react/second/node_modules/.deno/next@14.2.13/node_modules/next/dist/cli/next-dev.js:84:51)
+    at ChildProcess.<anonymous> (file:///home/yabuki/src/etude-react/second/node_modules/.deno/next@14.2.13/node_modules/next/dist/cli/next-dev.js:253:23)
+    at ChildProcess.emit (ext:deno_node/_events.mjs:393:28)
+    at ext:deno_node/internal/child_process.ts:275:16
+    at eventLoopTick (ext:core/01_core.js:175:7)
+```
 
 # 参考にしたドキュメントたち
 
@@ -201,7 +240,7 @@ Task dev next dev
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2024-09-22|
-|記事を変更した日|----------|
+|記事を変更した日|2024-09-23|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
