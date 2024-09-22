@@ -126,10 +126,10 @@ lrwxrwxrwx 1 yabuki yabuki  45  9月 22 14:22 react-dom -> .deno/react-dom@18.3.
 {
   "nodeModulesDir": "manual",
   "tasks": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "deno run -A npm:next dev",
+    "build": "deno run -A npm:next build",
+    "start": "deno run -A npm:next start",
+    "lint": "deno run -A npm:next lint"
   },
   "imports": {
     "@types/node": "npm:@types/node@^22.5.5",
