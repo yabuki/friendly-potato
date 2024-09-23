@@ -255,9 +255,6 @@ Version 5.6.2
     - 英語の記事ですが、いまdeno 2.0を試すならよく読んで起きましょう。
 - [とほほのNext.js入門 - とほほのWWW入門](https://www.tohoho-web.com/ex/nextjs.html)
 
-# 謝辞
-
-
 # さいごに
 
 |     件名       |   日付   |
