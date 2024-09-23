@@ -8,5 +8,5 @@
 
 - [Deno 2.0 rcでreactとnext.jsの設定を試すのプレビュー](./articles/2024-09-22-deno20-with-react-nextjs.md)
 - [Deno 2.0 rcでreactとnext.jsの設定を試すのプレビュー](./articles/2024-09-22-deno20-with-react-nextjs.html)
-- <https://yabuki.github.io/friendly-potato/articles/2024-09-22-cdeno20-with-react-nextjs.html>
+- <https://yabuki.github.io/friendly-potato/articles/2024-09-22-deno20-with-react-nextjs.html>
 
