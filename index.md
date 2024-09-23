@@ -4,5 +4,5 @@
 
 ## zennに出してない記事
 
-- [Deno 2.0 rcでreactとnext.jsの設定を試すのプレビュー](./articles/2024-09-22-deno20-with-react-nextjs)
+- [Deno 2.0 rcでreactとnext.jsの設定を試すのプレビュー](./articles/2024-09-22-deno20-with-react-nextjs.md)
 
