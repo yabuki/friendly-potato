@@ -182,11 +182,15 @@ Task dev next dev
 
 ブラウザで、アクセスして表示されるまでを確認しました。
 
-## 問題点
+## この記事の問題点
+
+### Permissionの設定
 
 2点あります。denoのpermissionをちゃんと検討するなら、taskを実行させる時に`deno run -A`を
 使わないで必要な権限だけ許可するようにしましょう。その辺のことは、動かしてあたりをつける
 のを目的としており、スパッと緩くしています。
+
+### 動かしただけ
 
 動かしただけなので、正しく設定されているかについて自信がないです。
 特にtypescriptの実行環境であるdenoで動かしているが、
@@ -228,6 +232,15 @@ error: Uncaught (in promise) TypeError: Unknown signal: 0
     at ChildProcess.emit (ext:deno_node/_events.mjs:393:28)
     at ext:deno_node/internal/child_process.ts:275:16
     at eventLoopTick (ext:core/01_core.js:175:7)
+```
+
+### 横道にそれるが deno で tsc を実行してみる
+
+どんな意味があるかはよくわからないが、試したらできた。
+
+```
+$ deno run -A npm:typescript/tsc -v
+Version 5.6.2
 ```
 
 # 参考にしたドキュメントたち
