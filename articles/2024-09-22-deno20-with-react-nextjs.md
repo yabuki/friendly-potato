@@ -3,7 +3,7 @@ title: "Deno 2.0 rcでreactとnext.jsの設定を試す"
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [react,nextjs,deno]
-published: false
+published: true
 ---
 # 要約
 
