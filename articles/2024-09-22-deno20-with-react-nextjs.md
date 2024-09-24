@@ -251,8 +251,10 @@ Version 5.6.2
 
 # 参考にしたドキュメントたち
 
+- [Deno: the easiest, most secure JavaScript runtime | Deno Docs](https://docs.deno.com/)
+    - 本家ドキュメント。まずはココから。
 - [Deno 2.0 Release Candidate](https://deno.com/blog/v2.0-release-candidate)
-    - 英語の記事ですが、いまdeno 2.0を試すならよく読んで起きましょう。
+    - 英語の記事ですが、いまdeno 2.0を試すならよく読んでおきましょう。
 - [とほほのNext.js入門 - とほほのWWW入門](https://www.tohoho-web.com/ex/nextjs.html)
 
 # さいごに
@@ -260,7 +262,7 @@ Version 5.6.2
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2024-09-22|
-|記事を変更した日|2024-09-23|
+|記事を変更した日|2024-09-24|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
