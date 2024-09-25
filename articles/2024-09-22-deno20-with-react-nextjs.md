@@ -2,30 +2,30 @@
 title: "Deno 2.0 rcでreactとnext.jsの設定を試す"
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [react,nextjs,deno]
+topics: [react,nextjs,deno,frontend]
 published: true
 ---
-# 要約
+## 要約
 
 Deno 2.0 rc.4で、reactとnext.jsの環境設定をしてみる。
 
-# はじめに
+## はじめに
 
 Deno 2.0がもうすぐリリースされる。今はRC(release candidate)がでており、フィードバックを求められている。
 私もDeno 2.0でいくつかの環境を試して、記録に残そうとしている。
 
-## この文章はだれ向けか
+### この文章はだれ向けか
 
 Denoを使ってアプリケーションの実行環境を作ってみたい人向けの文章です。
 
-## この文書の読み方
+### この文書の読み方
 
 足りてない部分は、「参考にしたドキュメントたち」にあります。
 deno初心者は足りない情報を別の文書で探して読む必要があります。
 必要に応じて、検索やコミュニティへの参加などのアクションを取って
 ください。
 
-# 本文
+## 本文
 
 大まかな方針は下記になります。
 
@@ -33,11 +33,11 @@ deno初心者は足りない情報を別の文書で探して読む必要があ�
 1. denoで読み替えて、`deno add npm:next@latest npm:react@latest npm:react-dom@latest`を実行する。
     - typescriptの実行環境はdenoが持っているし、型情報は`--dev`でインストールする
 
-## 下準備
+### 下準備
 
 私の場合は、incusでコンテナ環境を作って、denoをインストールし、その後deno 2.0のリリース候補にアップグレードして試しています。
 
-```
+```sh
 $ deno --version
 deno 2.0.0-rc.4 (release candidate, release, x86_64-unknown-linux-gnu)
 v8 12.9.202.13-rusty
@@ -46,25 +46,27 @@ typescript 5.6.2
 
 一般ユーザーのsrcディレクトリを作り、etude-react/firstという場所を割り当てて実験しています。
 
-## deno の初期設定
+### deno の初期設定
 
 deno.jsonを作って、下記の内容にします。
+
 ```json:deno.json
 {
   "nodeModulesDir": "manual",
 }
 ```
 
-## deno add で環境設定
+### deno add で環境設定
 
 - 必要なパッケージを下記のようにインストールする。
 
-```
+```sh
 $ deno add npm:next@latest npm:react@latest npm:react-dom@latest
 Add npm:next@14.2.13
 Add npm:react@18.3.1
 Add npm:react-dom@18.3.1
 ```
+
 ```json:deno.json
 {
   "nodeModulesDir": "manual",
@@ -76,7 +78,7 @@ Add npm:react-dom@18.3.1
 }
 ```
 
-```
+```sh
 deno add --dev npm:@types/react npm:@types/node npm:typescript
 Add npm:@types/react@18.3.8
 Add npm:@types/node@22.5.5
@@ -99,7 +101,7 @@ Add npm:typescript@5.6.2
 
 ファイルも、package-lock.jsonと同様なdeno.lockができています。もちろんnode_modules/ディレクトリにパッケージも入っています。
 
-```
+```sh
 ls -la
 合計 12
 drwxr-xr-x 1 yabuki yabuki   60  9月 22 14:22 .
@@ -109,7 +111,7 @@ drwxr-xr-x 1 yabuki yabuki   10  9月 22 13:51 ..
 drwxr-xr-x 1 yabuki yabuki   54  9月 22 14:22 node_modules
 ```
 
-```
+```sh
 $ ls -la node_modules/
 合計 12
 drwxr-xr-x 1 yabuki yabuki  54  9月 22 14:22 .
@@ -122,6 +124,7 @@ lrwxrwxrwx 1 yabuki yabuki  45  9月 22 14:22 react-dom -> .deno/react-dom@18.3.
 ```
 
 実行するスクリプトを`deno.json`に記述します。下記の例のtasksに注目してください。
+
 ```json:deno.json
 {
   "nodeModulesDir": "manual",
@@ -142,10 +145,11 @@ lrwxrwxrwx 1 yabuki yabuki  45  9月 22 14:22 react-dom -> .deno/react-dom@18.3.
 }
 ```
 
-## タスクの設定
+### タスクの設定
 
 設定したら、denoは下記のように認識します。
-```
+
+```sh
 $ deno task
 Available tasks:
 - dev
@@ -158,14 +162,14 @@ Available tasks:
     deno run -A npm:next lint
 ```
 
-## サンプルコードを動かす
+### サンプルコードを動かす
 
-`mkdir app`を行い、とほほさんが例示している`layout.tsx`と`page.tsx`を作ります。
+`mkdir app`を行い、appディレクトリを作ります。
+そして、とほほさんが例示している`layout.tsx`と`page.tsx`を作ります。
 
+### 動かして、アクセスしてみる
 
-## 動かして、アクセスしてみる
-
-```
+```sh
 $ deno task dev
 Task dev next dev
   ▲ Next.js 14.2.13
@@ -182,19 +186,19 @@ Task dev next dev
 
 ブラウザで、アクセスして表示されるまでを確認しました。
 
-# 付記
+## 付記
 
-## この記事の問題点
+### この記事の問題点
 
 2点あります。
 
-### DenoでのPermissionの設定
+#### DenoでのPermissionの設定
 
 denoのpermissionをちゃんと検討するなら、taskを実行させる時に`deno run -A`を
 使わないで必要な権限だけ許可するようにしましょう。その辺のことは、動かしてあたりをつける
 のを目的としており、スパッと緩くしています。
 
-### 動作確認
+#### 動作確認
 
 動きました。が、正しく設定されているか。との間には距離があるのは技術者なら自覚していますよね。
 他の方もどんどん試して、記事にして切磋琢磨していくことになるでしょう。
@@ -203,7 +207,8 @@ denoのpermissionをちゃんと検討するなら、taskを実行させる時�
 依存関係でtypescriptを導入しているのが気になっています。
 
 発生していたエラー `deno add --dev npm:typescirpt`すると、もちろん発生しない。
-```
+
+```sh
 $ deno task dev
 Task dev deno run -A npm:next dev
   ▲ Next.js 14.2.13
@@ -240,38 +245,41 @@ error: Uncaught (in promise) TypeError: Unknown signal: 0
     at eventLoopTick (ext:core/01_core.js:175:7)
 ```
 
-## 横道にそれるが deno で tsc を実行してみる
+### 横道にそれるが deno で tsc を実行してみる
 
 どんな意味があるかはよくわからないが、試したらできた。
 
-```
+```sh
 $ deno run -A npm:typescript/tsc -v
 Version 5.6.2
 ```
 
-# 参考にしたドキュメントたち
+## 参考にしたドキュメントたち
 
 - [Deno: the easiest, most secure JavaScript runtime | Deno Docs](https://docs.deno.com/)
-    - 本家ドキュメント。まずはココから。
+  - 本家ドキュメント。まずはココから。
 - [Deno 2.0 Release Candidate](https://deno.com/blog/v2.0-release-candidate)
-    - 英語の記事ですが、いまdeno 2.0を試すならよく読んでおきましょう。
+  - 英語の記事ですが、いまdeno 2.0を試すならよく読んでおきましょう。
 - [とほほのNext.js入門 - とほほのWWW入門](https://www.tohoho-web.com/ex/nextjs.html)
 
-# さいごに
+## さいごに
 
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2024-09-22|
-|記事を変更した日|2024-09-24|
+|記事を変更した日|2024-09-26|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
-詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
+詳細な変更履歴は、
+[GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato)
+参照してください。
 
-記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。受け入れるかどうかは、差分とPull reqの文章で判断いたします。
+記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。受け入れるかどうかは、
+差分とPull reqの文章で判断いたします。
 
 <!-- 文章の目的は何か -->
-    <!-- 読み手に何の情報を伝えるのか -->
-    <!-- 読んだひとにどういう行動をしてもらいたいのか -->
+<!-- 読み手に何の情報を伝えるのか -->
+<!-- 読んだひとにどういう行動をしてもらいたいのか -->
 <!-- だれに向けての文章か -->
 <!-- この文章の肝はどこか -->
