@@ -144,11 +144,6 @@ debconf: /usr/share/man/man8/dpkg-reconfigure.8.gz
 `adduser yabuki` としました。
 
 新規作成した一般ユーザでもsudoを使えるように、`visudo`コマンドで、/etc/sudoersを編集します。
-<<<<<<< HEAD
-=======
-
-visudoを使うとsudoersの設定をミスると終了前に教えてくれるのが良い所です。
->>>>>>> 2e8eca6f650166ced4772d5c31803c5efd6200d9
 
 visudoを使うとsudoersの設定をミスると終了前に教えてくれるのが良い所です。
 
