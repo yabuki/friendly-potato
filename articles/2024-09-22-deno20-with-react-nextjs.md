@@ -275,8 +275,8 @@ Version 5.6.2
 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato)
 参照してください。
 
-記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。受け入れるかどうかは、
-差分とPull reqの文章で判断いたします。
+記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。
+受け入れるかどうかは、差分とPull reqの文章で判断いたします。
 
 <!-- 文章の目的は何か -->
 <!-- 読み手に何の情報を伝えるのか -->
