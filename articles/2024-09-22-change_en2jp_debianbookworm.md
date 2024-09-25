@@ -70,8 +70,11 @@ ja_JP.EUC-JP EUC-JP
 
 rootで、`locale-gen`コマンドを実行し、ja_JP.UTF-8を生成するをの確認します。
 
-[^1:]exコマンドを使って編集処理を一括処理にできそうです。[usr_26 - Vim日本語ドキュメント](https://vim-jp.org/vimdoc-ja/usr_26.html#26.4)の「シェルスクリプトからVimを使う」を参照してください。
-echoコマンドと、exやedコマンドを組み合わせて、編集を自動化するのって、便利なんだけど。
+[^1:]exコマンドを使って編集処理を一括処理にできそうです。
+[usr_26 - Vim日本語ドキュメント](https://vim-jp.org/vimdoc-ja/usr_26.html#26.4)
+の「シェルスクリプトからVimを使う」を参照してください。
+echoコマンドと、exやedコマンドを組み合わせて、編集を自動化するのは便利ですよ。
+
 
 ```sh
 # locale-gen 
@@ -141,6 +144,11 @@ debconf: /usr/share/man/man8/dpkg-reconfigure.8.gz
 `adduser yabuki` としました。
 
 新規作成した一般ユーザでもsudoを使えるように、`visudo`コマンドで、/etc/sudoersを編集します。
+<<<<<<< HEAD
+=======
+
+visudoを使うとsudoersの設定をミスると終了前に教えてくれるのが良い所です。
+>>>>>>> 2e8eca6f650166ced4772d5c31803c5efd6200d9
 
 visudoを使うとsudoersの設定をミスると終了前に教えてくれるのが良い所です。
 
