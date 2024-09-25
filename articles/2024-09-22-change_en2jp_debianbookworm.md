@@ -66,9 +66,11 @@ ja_JP.EUC-JP EUC-JP
 ```
 
 大抵の場合は行頭に#がありコメントになっています。
-行頭の#を外して、有効な行とします。
+行頭の#を外して、有効な行とします。[^1]
 
 rootで、`locale-gen`コマンドを実行し、ja_JP.UTF-8を生成するをの確認します。
+
+[^1]:exコマンドを使って編集処理を一括処理にできそうです。[usr_26 - Vim日本語ドキュメント](https://vim-jp.org/vimdoc-ja/usr_26.html#26.4)の「シェルスクリプトからVimを使う」を参照してください。
 
 ```
 # locale-gen 
@@ -136,9 +138,9 @@ debconf: /usr/share/man/man8/dpkg-reconfigure.8.gz
 `adduser`で、普段使いのユーザーを作ります。私の場合は、rootで
 `adduser yabuki` としました。
 
-新規作成した一般ユーザでもsudoを便利に使えるように、`visudo`コマンド
-で、/etc/sudoersを編集します。visudoを使うとsudoersの設定をミスると
-終了前に教えてくれるのが良い所です。
+新規作成した一般ユーザでもsudoを使えるように、`visudo`コマンドで、/etc/sudoersを編集します。
+
+visudoを使うとsudoersの設定をミスると終了前に教えてくれるのが良い所です。
 
 # 参考にしたドキュメントたち
 
