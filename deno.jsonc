@@ -1,4 +1,5 @@
 {
+  "node-modules-dir": "none",
   "tasks": {
     "cache": "deno cache deps.ts",
     "zenn": "deno run -A npm:zenn-cli",
