@@ -88,6 +88,42 @@ class Hoge {
 }
 ```
 
+### データ組み立て
+
+#### Object.assign
+
+受け取ったデータに、付加情報を与えて使いたいときなど。
+
+- [オブジェクトのマージと複製](https://jsprimer.net/basic/object/#copy-and-merge)
+```typescript
+// 使い方
+const obj = Object.assign(target, ...sources);
+
+// 例示
+const objectA = { a: "a" };
+const objectB = { b: "b" };
+const merged = Object.assign({}, objectA, objectB);
+console.log(merged); // => { a: "a", b: "b" }
+
+// `version`のプロパティ名が被っている
+const objectA = { version: "a" };
+const objectB = { version: "b" };
+const merged = Object.assign({}, objectA, objectB);
+// 後ろにある`objectB`のプロパティで上書きされる
+console.log(merged); // => { version: "b" }
+```
+- [[ES2018] オブジェクトのspread構文でのマージ](https://jsprimer.net/basic/object/#object-spread-syntax)
+```typescript
+const objectA = { a: "a" };
+const objectB = { b: "b" };
+const merged = {
+    ...objectA,
+    ...objectB
+};
+console.log(merged); // => { a: "a", b: "b" }
+```
+
+
 ### 非同期処理
 
 いくつかのトピックがある。
