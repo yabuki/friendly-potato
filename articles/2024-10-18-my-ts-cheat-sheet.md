@@ -123,6 +123,36 @@ const merged = {
 console.log(merged); // => { a: "a", b: "b" }
 ```
 
+### モジュール
+
+```typescript:src/index.ts
+export default { // ファイルに一個しか置けない
+  fetch: (req?: Request) => { // 下で解説する
+    return new Response('Hi')
+  },
+}
+```
+を
+```typescript:src/index.test.ts
+import app from './index'
+
+describe('Testing My App', () => {
+  it('Should return 200 response', () => {
+    const res = app.fetch()
+    expect(res.status).toBe(200)
+  })
+})
+```
+
+でテストできるのは、`src/index.ts`
+
+- src/index.tsの解説
+    - fetch:で、そのモジュールでオブジェクト生成したときに、fetchというメソッドを定義している
+    - (req?: Request) 引数のこの部分は、req?でオプショナル引数で、引数がなくてもokとしている。Requestは型です。
+- src/index.test.tsの解説
+    - なぜ拡張子をつけてないかは、まだよくわからん。'./index.ts'でないなら、Denoでは`--unstable-sloopy-imports`をオプションとして与えないといけない。see details [Unstable feature flags --unstable-sloppy-imports](https://docs.deno.com/runtime/reference/cli/unstable_flags/#--unstable-sloppy-imports)
+    - `app.fetch()`でfetchを引数なしで呼び出している。
+    - responseオブジェクトが帰ってきているので、テストしている
 
 ### 非同期処理
 
@@ -141,6 +171,7 @@ console.log(merged); // => { a: "a", b: "b" }
 ## 参考にしたドキュメントたち
 
 - [付録: JavaScriptチートシート · JavaScript Primer #jsprimer](https://jsprimer.net/cheatsheet/#cheat-sheet)
+- [Web標準のバックエンドアプリのテスト](https://zenn.dev/yusukebe/articles/9a6335ed793c43)
 
 
 ## 謝辞
