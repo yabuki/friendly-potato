@@ -9,6 +9,7 @@ deno.jsoncに "node-modules-dir": "none"
 deno cache -r deps.ts 
 または、
 deno install -r --entrypont deps.ts (2.0からはこっちがおすすめらしい)
+deno install -r -e deps.ts も等価
 
 単に deno install すると node-modules/やpackage.json, package-lock.jsonができて
 しまう。
