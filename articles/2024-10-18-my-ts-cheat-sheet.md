@@ -174,6 +174,33 @@ describe('Testing My App', () => {
 TypeScriptの場合、戻り値の型にPromiseがあるかどうかをlspに教えてもらえばよいってことか?
 たぶん、そう。VS Codeで確認したら、ちゃんと教えてくれる。
 
+### 型
+
+#### satifies
+
+- 型推論を活かしながら型を注釈できる機能
+
+```ts
+interface Foo {
+  id: number,
+  name: string
+}
+
+const json = JSON.stringify({id: 1, name:'yabuki'} satisfies Foo);
+```
+
+これで、anyからjsonに型が付く
+- [TypeScript: satisfiesオペレーターの使い所のひとつとして #TypeScript - Qiita](https://qiita.com/suin/items/1b74645158263d2fa9af)
+
+- [Typescript satisfiesの活用シーン](https://zenn.dev/makoto1995/articles/ts-satisfies)
+
+>   Typescript では、変数が特定のプロパティだけを持つことを保証してコードを堅牢にするために、型注釈が利用されます。
+>   一方それは、型推論がより具体的な型を導き出す可能性があるのにも関わらず、一般的な型で上書きしてしまうことになります。
+>
+>    型推論の柔軟性を維持しつつ、型安全性を担保したいシーンで、satisfies の利用を検討してみると良いと思いました。
+
+- [TypeScript4.9で追加されたsatisfiesを理解する](https://zenn.dev/toshinobu/articles/208f2ea21ce8d0)
+
 ## 参考にしたドキュメントたち
 
 - [付録: JavaScriptチートシート · JavaScript Primer #jsprimer](https://jsprimer.net/cheatsheet/#cheat-sheet)
