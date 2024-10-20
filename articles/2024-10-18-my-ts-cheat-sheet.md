@@ -201,6 +201,10 @@ const json = JSON.stringify({id: 1, name:'yabuki'} satisfies Foo);
 
 - [TypeScript4.9で追加されたsatisfiesを理解する](https://zenn.dev/toshinobu/articles/208f2ea21ce8d0)
 
+- as const は、widening を防止する。
+    - as constの挙動は、[as constとは---TypeScript 4.9のas const satisfiesが便利。型チェックとwidening防止を同時に行う](https://zenn.dev/tonkotsuboy_com/articles/typescript-as-const-satisfies#as-const-%E3%81%A8%E3%81%AF)
+    - wideningとは、[wideningとは---TypeScript 4.9のas const satisfiesが便利。型チェックとwidening防止を同時に行う](https://zenn.dev/tonkotsuboy_com/articles/typescript-as-const-satisfies#widening-%E3%81%A8%E3%81%AF)
+
 ## 参考にしたドキュメントたち
 
 - [付録: JavaScriptチートシート · JavaScript Primer #jsprimer](https://jsprimer.net/cheatsheet/#cheat-sheet)
