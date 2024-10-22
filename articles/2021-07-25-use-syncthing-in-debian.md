@@ -12,12 +12,9 @@ Debian GNU/Linux の次のリリースである、Bullseye において、Dropbo
 
 # はじめに
 
-
 ## この文章を書いた動機
 
-
 ## この文章はだれ向けか
-
 
 ## この文書の読み方
 
@@ -46,16 +43,12 @@ syncthing-relaysrv - decentralized file synchronization - relay server
 syncthing-gtk - GTK3-based GUI and notification area icon for syncthing
 ```
 
-
 # 参考にしたドキュメントたち
 
 - [Syncthing — Syncthing v1 documentation](https://docs.syncthing.net/users/syncthing.html)
   - 公式ユーザードキュメント(英語)
 
-
-
 # 謝辞
-
 
 # さいごに
 

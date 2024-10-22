@@ -6,7 +6,7 @@
 
 deno upgrade rc でdeno 2.0.0-rc.8にバージョンを上げる。
 deno.jsoncに "node-modules-dir": "none"
-deno cache -r deps.ts 
+deno cache -r deps.ts
 または、
 deno install -r --entrypont deps.ts (2.0からはこっちがおすすめらしい)
 deno install -r -e deps.ts も等価

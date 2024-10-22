@@ -75,7 +75,6 @@ rootで、`locale-gen`コマンドを実行し、ja_JP.UTF-8を生成するを�
 の「シェルスクリプトからVimを使う」を参照してください。
 echoコマンドと、exやedコマンドを組み合わせて、編集を自動化するのは便利ですよ。
 
-
 ```sh
 # locale-gen 
 Generating locales (this might take a while)...
