@@ -10,7 +10,8 @@ published: true
   <!-- 読んだひとにどういう行動をしてもらいたいのか -->
 <!-- だれに向けての文章か -->
 <!-- この文章の肝はどこか -->
-# 要約
+
+## 要約
 
 Debian 11 Bullseye のインストーラを試す方法です。これは記録です。
 
@@ -22,33 +23,33 @@ AMDのRyzenを使っているひとは、Debian bullseye installer を使うと�
 これを書いている段階では、Kernel 5.10.0-4 がインストールされます。内容は試した
 時期によって変わることがあります。
 
-# はじめに
+## はじめに
 
 作業をやった部分から、更新します。
 
-## この文章を書いた動機
+### この文章を書いた動機
 
 Debian installer をテスト時、まごつかないようにドキュメントを整備する。
 
 自分がやったことを他人にも試してもらうため。
 
-## この文章はだれ向けか
+### この文章はだれ向けか
 
 Linux のコンソールを使っている。かつ Debian installer のテストをしたい人。Install時から新しめのカーネルを使って Ryzen を動かしたい人
 
-## この文書の読み方
+### この文書の読み方
 
-# つかったもの
+## つかったもの
 
-## PC
+### PC
 
 Lenovo M75t gen 2  Ryzen 7
 
-## secure boot
+### secure boot
 
 enabled
 
-# 手順
+## 手順
 
 概略の手順として、下記の順番になります。
 
@@ -68,21 +69,21 @@ Gnome 以外をインストールして、日本語環境を設定したり、Gn
 
 あくまでも既定値でインストールしたとき日本語がはいらない。というのを救う手段なので。
 
-## isoのダウンロード
+### isoのダウンロード
 
 [Index of /cdimage/weekly-builds/amd64/iso-dvd](https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-dvd/) から、iso イメージをダウンロードします。でかいので、ぼちぼちどうぞ。
 
-## usb memory stick の用意
+### usb memory stick の用意
 
 上記の DVD image が、3.7Gなんで、それより大きい usb memory stick を用意します。最近は安価に出回っているので、中身を潰してもいいヤツを確保してください。
 
-## usb へ iso image を書き込む
+### usb へ iso image を書き込む
 
 *注意* usb memory の中身を上書きします。
 
-### 確認方法
+#### 確認方法
 
-#### Linux マシンでの確認方法
+##### Linux マシンでの確認方法
 
 usb memory stick を linux machine にさして、 dmesg を確認して、/dev/sdX のxが何に割当たっているか確認します。ここを間違えると、正常な機器をぶっ壊すことになるので、指差し呼称をして確認するぐらいの慎重さがいるでしょう。
 
@@ -103,7 +104,7 @@ usb meory stick をぶっ刺してから sudo dmesg すると
 [97648.214339] sd 5:0:0:0: [sdd] Attached SCSI removable disk
 ```
 
-### 書き込み
+#### 書き込み
 
 <!-- @suppress SuggestExpression -->
 `$sudo cp path/to/debian-testing-amd64-DVD-1.iso /dev/sdX`
@@ -127,11 +128,11 @@ sudo  cp /home/yabuki/Downloads/debian-testing-amd64-DVD-1.iso /dev/sdd
 
 そして、おもむろに usb を引っこ抜いて、Lenovo M75t gen 2 にさします。
 
-### usbからbootするように、biosを変更する
+#### usbからbootするように、biosを変更する
 
 F1を使う作法や、DELを使う作法などありますが、Lenovo M75t gen 2 は F1 でした。ユーザマニュアルを見ましょう。[^2]
 
-### install
+#### install
 
 とくに、初期状態だと、日本語を選択したあとは、マシン名とか、rootやユーザ設定をするぐらい。
 
@@ -146,7 +147,7 @@ swap はHDDに置きました。SWAPすると負け前提です。
 
 desktop とかも、わざとdefault 設定のまま、gnome でやった。
 
-### 追加でやったこと
+#### 追加でやったこと
 
 Gnome を選択したので、ログインしたら当然gnomeがあがってくる。
 
@@ -166,7 +167,7 @@ apt lineが、初期値では main  のみになので、必要に応じて cont
 
 ちなみに、つないだキーボードがHHK Professional でした。漢字キーを探すのが面倒で、全部GUIで日本語入力をonにしました。使い込むなら、このへんも ibus-setup あたりで確認して設定するのでしょうね。
 
-### 別の記事でやる予定
+#### 別の記事でやる予定
 
 下記のリストは、別の記事でやる予定です。
 
@@ -174,23 +175,23 @@ apt lineが、初期値では main  のみになので、必要に応じて cont
 - 自分が主に使っている i3wm へ変更方法
 - NICOLA(親指シフト)入力が恋しいので、その設定方法
 
-# 参考にしたドキュメントたち
+## 参考にしたドキュメントたち
 
 参考にしたドキュメントは、footnote に番号で対応付けてあります。
 
 [^1]:[Debian GNU/Linux インストールガイド](https://www.debian.org/releases/bullseye//amd64/install.ja.pdf) の 「4.3 USB メモリでの起動用ファイルの準備」
 [^2]:[m75t_gen2_ug_ja.pdf](https://download.lenovo.com/pccbbs/thinkcentre_pdf/m75t_gen2_ug_ja.pdf)
 
-# 謝辞
+## 謝辞
 
 2021-03-22 に開催された、Debian 勉強会にて、情報を頂いた各位
 
-# さいごに
+## さいごに
 
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2021-03-21|
-|記事を変更した日|----------|
+|記事を変更した日|2024-10-23|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 

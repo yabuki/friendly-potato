@@ -5,7 +5,8 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [picom, i3wm, Debian]
 published: true
 ---
-# 要約
+
+## 要約
 
 compton がメンテされなくなり、picom[^1] に移行しろ[\[see also deprecated\]](./2021-07-07-settings-for-picom-with-debian#deprecated)ということで移行文書を残す。
 
@@ -13,7 +14,7 @@ compton がメンテされなくなり、picom[^1] に移行しろ[\[see also de
 
 設定が安定するまでは、何か分かった時点で内容を書き換えます。たまに見にくると内容が書き換わっているかも知れません。(ってか、どんな設定ファイルにするかの設定を調べる前に力尽きそうなので、調べるポイントをまとめてまずは公開メソッドで)
 
-# はじめに
+## はじめに
 
 コンポジット・マネージャ[^2] というウインドウの見た目を管理するプログラムがある。ちゃんとした定義は他の人に任せるが、著者はタイル型ウインドウ・マネージャの i3wm[^3] をを使っており、主に見栄えの向上(Effect)から得られる認識の向上を実現するために、コンポジット・マネージャを利用している。 --- どれぐらいこの設定に時間を使うべきかは人によるので便利な設定が流通すると私もありがたい。そのためにも文書を公開して利用者が増えると私もHappyなので、可能なら設定公開して文書を書いてもらえるとありがたい。
 
@@ -22,19 +23,19 @@ compton がメンテされなくなり、picom[^1] に移行しろ[\[see also de
 
 この文書を書いている人間は、Debian GNU/Linux Sid を使っている。Debian GNU/Linux の次のリリースであるBullseyeでi3wm などを使ってコンポジット・マネージャを利用している人が設定する時にも有益な情報でありたい。もちろんDistro依存の部分は自分が気がつく範囲で書くので、他のDistroの人にも情報提供できると信じる。
 
-## この文章はだれ向けか
+### この文章はだれ向けか
 
 コンポジット・マネージャ picom を設定する必要のある人、とりわけ Debian GNU/Linux の bullseye 以降を使っている人
 
-## この文書の読み方
+### この文書の読み方
 
-# 本文
+## 本文
 
-## 設定ファイルの置き場所
+### 設定ファイルの置き場所
 
 私は、XDGに準拠した置き場所の ~/.config/picom/picom.conf に設定ファイルを置くことにしました。他の置き場所については、次の「調べ方」を読んでください。特に興味がなければ、次の「調べ方」はスキップして「設定ファイルの内容」へ読み進めてください。
 
-### 調べ方
+#### 調べ方
 
 ここは読み飛ばしてokです。
 
@@ -54,9 +55,9 @@ openat(AT_FDCWD, "/etc/xdg/compton/compton.conf", O_RDONLY) = -1 ENOENT (その�
 
 `picom --config path/to/設定ファイル名` で設定ファイルを読み込むことも可能だが、上記の順番で設定ファイルを読むので、上記の順番を知っていても損はない。また compton から移行する時にも既存の設定ファイルの置き場所を確認するのにも良いだろう。
 
-## 設定ファイルの内容
+### 設定ファイルの内容
 
-## 私がハマった所
+### 私がハマった所
 
 下記のようなエラーが発生する。でも、~/.config/picom/picom.conf にはそんなエントリーはない。
 
@@ -74,18 +75,18 @@ openat(AT_FDCWD, "/etc/xdg/compton/compton.conf", O_RDONLY) = -1 ENOENT (その�
 * ~/.config/compton.conf が存在するので、~/.config/picom.conf が自動生成され、~/.config/picom/picom.conf よりも先に読み込まれて、自分が設定したファイルでない部分にエラーがでる。
   * 自分が書いてない設定に関してエラーが出たら、思い出しましょう。
 
-## 関連情報
+### 関連情報
 
-### deprecated
+#### deprecated
 
 * [Debian -- sid の compton パッケージに関する詳細](https://packages.debian.org/sid/compton)
   * > **This package is deprecated and will soon be removed, please switch to picom.**
 
-### compton-conf
+#### compton-conf
 
 compton には、qtで書かれた設定ファイル設定ファイル設定ツールがある。[Debian -- sid の compton-conf パッケージに関する詳細](https://packages.debian.org/sid/compton-conf) 。l10nのパッケージもある。[Debian -- sid の compton-conf-l10n パッケージに関する詳細](https://packages.debian.org/sid/compton-conf-l10n)しかし、compton の設定ファイルがどの程度移行できるかどうかわからないので、自分で設定ファイルを書いた方が結局は早いかもしれない。私にノウハウが少ないのでないとも分からない。
 
-# 参考にしたドキュメントたち
+## 参考にしたドキュメントたち
 
 * [yshui/picom: A lightweight compositor for X11](https://github.com/yshui/picom)
   * 本家
@@ -98,19 +99,19 @@ compton には、qtで書かれた設定ファイル設定ファイル設定ツ�
 * [【Linux】コンポジットマネージャをComptonからPicomに移行する - 一応理系男子](https://scienceboy.jp/88io/2021/01/compton2picom/)
   * 先行文献です。いくつか気になる部分があったので、貢献できると思いこの文章を書きました。
 
-## compton related
+### compton related
 
 * [Debian -- sid の compton-conf パッケージに関する詳細](https://packages.debian.org/sid/compton-conf)
 * [Debian -- sid の compton-conf-l10n パッケージに関する詳細](https://packages.debian.org/sid/compton-conf-l10n)
 
-# 謝辞
+## 謝辞
 
-# さいごに
+## さいごに
 
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2021-07-07|
-|記事を変更した日|2021-07-15|
+|記事を変更した日|2024-10-23|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 

@@ -9,19 +9,19 @@ published: true
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2020-09-24|
-|記事を変更した日|----------|
+|記事を変更した日|2024-10-23|
 
 上記は、この記事の鮮度を判断する一助のために、書き手が載せたものであり、詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
 
 記事に対するTypoの指摘などは、pull reqをしてもらえると嬉しい。受け入れるかどうかは、差分とPull reqの文章で判断します。
 
-# はじめに
+## はじめに
 
 Visual Studio Code (以下、vscode)や、その派生である VSCodium[^VSCodium] を使って、Sphinx[^Sphinx] のドキュメント RestructuredText[^RestructuredText]を扱っている人向けの記事です。
 
 TagのRestructuredtextは、タグが切れるので抜きました。
 
-# TODO Tree とはなにか
+## TODO Tree とはなにか
 
 プログラムや文書う作っている時に、
 
@@ -34,7 +34,7 @@ TagのRestructuredtextは、タグが切れるので抜きました。
 
 ファイル毎に、それらのマークアップを視覚化します。リンク先を見たらよりわかりやすいです。
 
-# 問題点
+## 問題点
 
 2つあります。
 
@@ -43,9 +43,9 @@ TagのRestructuredtextは、タグが切れるので抜きました。
 
 なので、
 
-# Todo Treeをrestructued textに対応させる
+## Todo Treeをrestructued textに対応させる
 
-## Tagの追加
+### Tagの追加
 
 ユーザー設定->設定　で設定画面をだして、拡張機能から、Todo Treeaを選択して、下記のような画面を出します。
 
@@ -67,7 +67,7 @@ Restructured textのコメントになる条件は、みなさん一度はハマ
 
 restructued textもpythonと同じく、**インデント**が重要なのです。
 
-## コメントにしてもTagを認識させる
+### コメントにしてもTagを認識させる
 
 > Regex: Regex
 > Regular expression for matching TODOs. Note: $TAGS will be replaced by the tag list.
