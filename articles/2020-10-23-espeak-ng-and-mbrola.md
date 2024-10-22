@@ -9,13 +9,13 @@ published: true
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2020-10-23|
-|記事を変更した日|----------|
+|記事を変更した日|2024-10-23|
 
 上記は、この記事の鮮度を判断する一助のために、書き手が載せたものであり、詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照せよ。
 
 記事に対するTypoの指摘などは、pull reqをしてもらえると嬉しい。受け入れるかどうかは、差分とPull reqの文章で判断します。
 
-# はじめに
+## はじめに
 
 TTS(Text-To-Speech)という、ソフトウエアの分野がある。これを読んでいる人も、AndroidやiOS, Windows, はたまた、クラウドのサービスとして、文字入力したものを読み上げるサービスを使っているかもしれない。
 
@@ -25,7 +25,7 @@ TTS(Text-To-Speech)という、ソフトウエアの分野がある。これを�
 
 下記は、英語の発音において、eSpeak-ngをエンジンとして、mbrolaの発音データを用いて、eSpeakの発音を人に近づける方法について記す。
 
-# install
+## install
 
 試したのは、2020-10-23の時点で、Debian GNU/Linux sid/bullseye である。
 
@@ -36,7 +36,7 @@ TTS(Text-To-Speech)という、ソフトウエアの分野がある。これを�
 
 non-freeに分類される section に、mbrola-us1, mbrola-us2, mbrola-us3, mbrola-en1 などの発音データが存在するのでインストールする。
 
-# 文字列を与えて喋らせる
+## 文字列を与えて喋らせる
 
 コマンドラインから、下記のように、指示してみてください。
 

@@ -5,17 +5,18 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [git]
 published: false
 ---
-# 要約
 
-# はじめに
+## 要約
 
-## この文章を書いた動機
+## はじめに
 
-## この文章はだれ向けか
+### この文章を書いた動機
 
-## この文書の読み方
+### この文章はだれ向けか
 
-# 本文
+### この文書の読み方
+
+## 本文
 
 | 条件 | コマンド | gitの挙動 |
 | ---- | -------- | ---- |
@@ -33,13 +34,13 @@ published: false
 | リモートのブランチ一覧 | `git ls-remote` ||
 | ローカルから見た<br>ローカルとリモート<br>のブランチ一覧| `git branch -a` | 他者と作業しているなら、リモートのブランチは非同期で増えるので、必要なら `git ls-remote` を実行する必要があるかもしれない。 |
 
-## upstream とは
+### upstream とは
 
 --track, --no-track, --set-upstream とかで出てくる概念をまとめておく
 
 下記のような図を見てイメージをつかんでほしい。
 
-### 大まかなイメージ
+#### 大まかなイメージ
 
 ```mermaid
 graph LR
@@ -47,7 +48,7 @@ graph LR
     あなたのリポジトリ -- upstream ---> GitHubのリポジトリ
 ```
 
-### ブランチベースから見ると
+#### ブランチベースから見ると
 
 ```mermaid
 graph LR
@@ -57,7 +58,7 @@ graph LR
     あなたのリポジトリのbranchC -- upstream ---> GitHubのリポジトリ2のdevブランチ
 ```
 
-### 作業ベースから見ると
+#### 作業ベースから見ると
 
 ブランチは、機能だったり、人だったりが作業しているので下記のようなイメージ
 
@@ -68,11 +69,11 @@ graph LR
     あなたのリポジトリのbranchC -- upstream ---> Cさんの作業内容(GitHubのリポジトリ2のdevブランチ)
 ```
 
-## remote branch
+### remote branch
 
 - [Git - リモートブランチ](https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81)
 
-### git remote show
+#### git remote show
 
 ```mermaid
 sequenceDiagram
@@ -99,27 +100,27 @@ git remote show orign
     gh-pages pushes to gh-pages (up to date)
 ```
 
-## 利用シーン
+### 利用シーン
 
-### orphan
+#### orphan
 
 - gh-pages 用の docs ブランチを切る時。ドキュメントは別途コードの部分を含まなくていいですよね。
 
-# 疑問点
+## 疑問点
 
 - --track, --no-track とは?
 - git checkout は git branch へ丸投げしている。いまは
 - --orphan と --detach の違い。
 - detach とは何か?
 
-# 参考にしたドキュメントたち
+## 参考にしたドキュメントたち
 
 - [不安なくOrphanブランチを作る方法 by GitHub(リモートgit) - Qiita](https://qiita.com/PharaohKJ/items/f90336ce216cf9e57ce2)
   - (親を持たない)まっさらな状態で、branch を作りたい時の方法を書いている。
 
-# 謝辞
+## 謝辞
 
-# さいごに
+## さいごに
 
 |     件名       |   日付   |
 |:----           |:----:|

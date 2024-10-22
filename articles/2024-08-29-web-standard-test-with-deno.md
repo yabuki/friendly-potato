@@ -5,16 +5,17 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Deno, Web, TypeScript, JavaScript]
 published: true
 ---
-# 要約
+
+## 要約
 
 yusukebeさんの [Web標準のバックエンドアプリのテスト](https://zenn.dev/yusukebe/articles/9a6335ed793c43)の記事をdenoで
 やっています。
 
-# はじめに
+## はじめに
 
 かなり長い間、zennに記事を書いてないので、もっと気軽に記事を出してみるテスト。
 
-## この文章を書いた動機
+### この文章を書いた動機
 
 他のプログラミング言語でプログラムを書いた経験はある人であっても、typescriptでプログラミング
 を始めるには、私はちょっとめんどくさいと思っています。
@@ -27,16 +28,16 @@ Denoでのやりかたをわかっていないとまごつくので、その試�
 
 JS/TSの開発環境は、流れが早いので、2024-08-29時点でのスナップショットになります。
 
-## この文章はだれ向けか
+### この文章はだれ向けか
 
 他言語から、TypeScriptの環境でWeb開発、テストについて興味がありDenoを使ってみようと思っている人が対象です。
 
-## この文書の読み方
+### この文書の読み方
 
 元文書のyusukebeさんの[Web標準のバックエンドアプリのテスト](https://zenn.dev/yusukebe/articles/9a6335ed793c43)を読んでいること。
 あとは、そんなに長くしないので、サクッとざっくり読み下しておいてください。
 
-# 本文
+## 本文
 
 zennのトレンドに、yusukebeさんの[Web標準のバックエンドアプリのテスト](https://zenn.dev/yusukebe/articles/9a6335ed793c43)が投稿されていたので、記事を読みながら、Denoでやるとどうするのか。実際に手を動かしてみました。
 
@@ -44,7 +45,7 @@ zennのトレンドに、yusukebeさんの[Web標準のバックエンドアプ�
 
 最初の部分は当たり前だが、Denoへの言及もあり、そのままコピペしても動きます。
 
-## 提示されている「最小限のテスト」をどう実行するか
+### 提示されている「最小限のテスト」をどう実行するか
 
 - <https://zenn.dev/yusukebe/articles/9a6335ed793c43#%E6%9C%80%E5%B0%8F%E9%99%90%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88>
 
@@ -70,13 +71,13 @@ describe('Testing My App', () => {
 
 とか指摘される。
 
-### 拡張子がない
+#### 拡張子がない
 
 拡張子がないことは、拡張子なくても実行できるように
 `deno test src/index.test.ts --unstable-sloppy-imports`
 で回避する方法もある。拡張子を付ける方法もあるかも知れないが、bunやnodejsの作法がいまいち分かってないので、ひとまずこれで。
 
-### BDDなキーワードがみつからない
+#### BDDなキーワードがみつからない
 
 describeやexpect、後から出てくるitなどはdenoは親切に下記のメッセージがでます。
 
@@ -116,13 +117,13 @@ import { expect } from "jsr:@std/expect";
 
 では、楽しんでください。
 
-# 参考にしたドキュメントたち
+## 参考にしたドキュメントたち
 
 - [Web標準のバックエンドアプリのテスト](https://zenn.dev/yusukebe/articles/9a6335ed793c43)
 - [Testing](https://docs.deno.com/runtime/fundamentals/testing/#behavior-driven-development)
   - docs.deno.comにあるBDDについての文書
 
-# 謝辞
+## 謝辞
 
 下記の方々に感謝します。
 
@@ -130,12 +131,12 @@ import { expect } from "jsr:@std/expect";
 [fix: bdd testing example by kt3k · Pull Request #760 · denoland/docs](https://github.com/denoland/docs/pull/760)
 をfixしてくれたkt3kさん。
 
-# さいごに
+## さいごに
 
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2024-08-29|
-|記事を変更した日|2024-08-31|
+|記事を変更した日|2024-10-23|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
@@ -144,7 +145,7 @@ import { expect } from "jsr:@std/expect";
 記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。受け入れるかどうかは、差分とPull reqの文章で判断いたします。
 
 <!-- 文章の目的は何か -->
-    <!-- 読み手に何の情報を伝えるのか -->
-    <!-- 読んだひとにどういう行動をしてもらいたいのか -->
+<!-- 読み手に何の情報を伝えるのか -->
+<!-- 読んだひとにどういう行動をしてもらいたいのか -->
 <!-- だれに向けての文章か -->
 <!-- この文章の肝はどこか -->

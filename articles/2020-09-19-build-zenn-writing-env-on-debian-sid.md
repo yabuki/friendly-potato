@@ -9,7 +9,7 @@ published: true
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2020-09-19|
-|記事を変更した日|2020-09-20|
+|記事を変更した日|2024-10-23|
 
 上記は、この記事の鮮度を判断する一助のために、書き手が載せたものであり、詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照せよ。
 
@@ -17,7 +17,7 @@ published: true
 
 slugに時系列の概念を入れておきたかったので、公開日を埋めるようにしました。そのため、いただいたハートが消えています。初期の試行錯誤ということでお許しください。＞ハートをつけていただいた人
 
-# はじめに
+## はじめに
 
 Zenn.devという技術系の記事を書く場所ができたようだ。
 
@@ -25,35 +25,35 @@ githubと連携して記事をgithubに残すことができるので記事の�
 
 ロックイン指向のサービスがちらほら人気を得ているが、自分で自分の記事をコントロールしたい私でも書いてみようかと思わせるサービスだったので、まずは本記事を書く。
 
-# install環境
+## install環境
 
-## Hardware
+### Hardware
 
 * Thinkpad X200 C2D Memory 8G
 
-## OS
+### OS
 
 * Debian GNU/Linux Sid
 
-## 上記以外で使っているソフトウエア
+### 上記以外で使っているソフトウエア
 
 * [nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)
 
-## ここで出てくるWebサービス
+### ここで出てくるWebサービス
 
 * Zenn
 * GitHub
 
-# 前提条件
+## 前提条件
 
 1. GitHubにアカウントがあって使い方がわかっている前提です。ここを読む人にこの前提は妥当だとおもっています。
 1. Zenn.devにアカウントを作っていること。これは、2020-09-19現在Google Accountしか作れないようなので、さまざまな理由でブロック要因になるかと思いますが、そこも前提条件とさせてください。
 1. Debian GNU/Linux Sid これは、Debianの開発版を使っていますが、本記事の範囲であれば、Linuxでやってるね。ぐらいの話です。
 1. nvm は、[nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)で、userのホームディレクトリで複数のバージョンのnodejsを管理できるので、わたしは必要に迫られて使っていますが、他の人は別の方法でnodejsをインストールしているでしょう。
 
-# Install
+## Install
 
-## nvm.shのインストール
+### nvm.shのインストール
 
 [nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)の中身をよく読んでインストールしてください。
 
@@ -82,19 +82,19 @@ lts/dubnium -> v10.22.1 (-> N/A)
 lts/erbium -> v12.18.4
 ```
 
-## githubのrepoを作る
+### githubのrepoを作る
 
 いまのgithubのrepoを作る時には、名前の提案をしてくれるんですね。提案名の **friendly-potato** があまりにツボだったので、思わずその名前で連携してしまいました。
 
 あと、gh-pagesも有効にして、theme も決めておきました。これをどうするかはまだ試していないので設定だけしておきます。
 
-## zenn と連携する
+### zenn と連携する
 
 * [GitHubリポジトリでZennのコンテンツを管理する | Zenn](https://zenn.dev/zenn/articles/connect-to-github)
 
 この記事をよんでやります。この段階では、gh-pagesブランチしかなかったので、そこと連携します。
 
-## git clone する
+### git clone する
 
 私は，~/scm/git/のしたにgit repoをおいているので、そこで
 
@@ -111,7 +111,7 @@ git clone git@github.com:yabuki/friendly-potato.git
   remotes/origin/gh-pages
 ```
 
-## Zenn CLI のインストール
+### Zenn CLI のインストール
 
 グローバルにインストールするのではなく、このrepoだけにインストールしたいので、
 
@@ -213,7 +213,7 @@ $ node_modules/zenn-cli/bin/zenn.js preview
 
 こんな感じで記事を作って、あとは好きなエディタで記事を使って記事を書く。
 
-## zenn CLIをlatestにアップグレード
+### zenn CLIをlatestにアップグレード
 
 下記のようなエラーが出たものの無事に書き込んだら自動リロードしてくれるバージョンに変わった模様だ。
 
@@ -239,9 +239,9 @@ found 5 low severity vulnerabilities
   run `npm audit fix` to fix them, or `npm audit` for details
 ```
 
-# 記事を書き終わってから
+## 記事を書き終わってから
 
-## 記事の見直し
+### 記事の見直し
 
 * slugの文字列を意味あるモノに変更する
   * Zenn Editorの警告に従うこと
@@ -253,6 +253,6 @@ found 5 low severity vulnerabilities
 
   * そのうち、Redpenを自動的にかけるとかの文章チェックをかけたいね。
 
-## 公開
+### 公開
 
 公開するために、gh-pages ブランチ に、docs ブランチをマージする。

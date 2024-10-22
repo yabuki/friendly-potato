@@ -5,7 +5,8 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Linux, Debian, LXD, yadm, ncat]
 published: true
 ---
-# 要約
+
+## 要約
 
 apt-cacher-ng は、Debian や ubuntu だけでなく、OpenSuSE, Arch Linux, Sourceforge mirror network, Cygwin, などに対するアクセスを減らせるプロキシーです。Fedoraについては[^1]を参照のこと。
 
@@ -13,7 +14,7 @@ Docker や LXD また、ご家庭にある複数台のPCが上記のOSやソフ�
 
 追加のスクリプトを書くと、apt-cacher-ng のサーバが存在している場合は、そこから取得ない場合は、直接サーバに取りに行くという、複数のネットワークを渡り歩くノートパソコンにとって便利な設定も可能です。
 
-# はじめに
+## はじめに
 
 この記事では、自分の環境での設定方法を書いておきます。LXD を使っていますが、実機や Docker であっても考え方は同じです。
 
@@ -24,11 +25,11 @@ Docker や LXD また、ご家庭にある複数台のPCが上記のOSやソフ�
 わたしが、apt-cacher-ng を使っている環境は、自宅で10台以下のDebian machineおよび、仮想環境/コンテナ環境を作っている。主に実マシンと、LXD によるコンテナから apt-cacher-ng を使っている。
 docker を使うことがあるので、その時にも何度も外部にパッケージを取りに行くのはネットワークと時間の浪費なので家庭内LANにおけて便利に使っています。
 
-## ネットワーク
+### ネットワーク
 
 LXD をディフォルトでインストールすると、LXD は、IPv4 の Class A な Private IP address をコンテナに割り振ります。また IPv6 のアドレスをホストマシンおよび、コンテナに割り振り振ります。
 
-## この文章はだれ向けか
+### この文章はだれ向けか
 
 以下の条件を満たす人です。
 
@@ -38,11 +39,11 @@ LXD をディフォルトでインストールすると、LXD は、IPv4 の Cla
 
 上記の人が、環境を再考するときの考慮点を示すためです。
 
-## この文書の読み方
+### この文書の読み方
 
 apt-cacher-ng を立てるだけなら、参考にしたドキュメントたち　を読んでいただけれ事足りるかと思います。それらの情報を読んだとして、私の環境における差異を書いておきますので、関係のありそうな部分を拾い読みしてください。
 
-# 本文
+## 本文
 
 ルータから、IPv4 のアドレスを配ってもらっているマシンやコンテナと、固定アドレスを振って使っているマシンがあります。apt-cacher-ng の管理は、apt-cacher-ng が動いているマシン(コンテナ)の 3142 ボート
 にアクセスします。(このボート番号はもちろん設定で変更できます。) コンテナで、avahi を動かしている場合、<http://apt-cacher-ng.local:3142/acng-report.html?doCount=Count+Data#stats> のようにアクセス
@@ -50,14 +51,14 @@ apt-cacher-ng を立てるだけなら、参考にしたドキュメントたち
 
 ![apt-cacher-ng web image](<https://yabuki.github.io/friendly-potato/articles/images/2021-06-23_17-47.png> =600x)
 
-## ときどき困る点
+### ときどき困る点
 
 ホストマシンが再起動したり、avahi がうまくアドレスを返してくれないことがあります。とくに、ホストマシンからコンテナのIPv4アドレスは、ときたまIP Addressが変わったりすることがあるので即値で書きたくありません。
 avahiはだいたい答えを返してくれますが、うまく返してくれないこともあり、原因追究よりはワークアラウンドして、いつも同じアドレスを振っていそうなIPv6をで apt-cacher-ng を指定したいことがあります。
 
 所が、スクリプトで利用している netcat は、IPv6 に対応していないので、毎回 lxc list で IP address を確認してから cache を使っている不便さです。そこで、参考にしたドキュメントたちの netcat の記事を見つけたのです。
 
-## どう解決したか
+### どう解決したか
 
 上記の記事を読んでから、Debian sid にも ncat パッケージがあることを確認したので、インストール。
 
@@ -78,7 +79,7 @@ nc と ncat のオプションを確認後、完全に置き換え可能だと�
 このソフトの本格的な使い方は、また記事を書きますが、 [Alternate Files - yadm](https://yadm.io/docs/alternates) と template を使って使う環境ごとに使いまわしをする部分と固有の情報を分離できるので
 実験をして使って見ました。yadm add した段階でテンプレートから生成され思ったようになりました。
 
-## 作業記録
+### 作業記録
 
 下記のような感じ。LXD ではなく、LXC 単体での記録ですが、こんな感じです。
 
@@ -162,7 +163,7 @@ ip a
 設定を /etc/apt/apt-conf.d/05proxyに設定を書いて、apt update してから、動作確認
 動いている。バンザーイ。
 
-# 参考にしたドキュメントたち
+## 参考にしたドキュメントたち
 
 - [doc/README · upstream/experimental · Adrián Pablo José Sedoski Croce / apt-cacher-ng · GitLab](https://salsa.debian.org/asedoski/apt-cacher-ng/-/blob/upstream/experimental/doc/README)
   - どれが、一番開発が進んでいるかは、 [apt-cacher-ng · Search · GitLab](https://salsa.debian.org/search?search=apt-cacher-ng) を見て決めた方がいいかも。
@@ -182,7 +183,7 @@ ip a
 - [apt-cacher-ng: Apt のキャッシュプロキシ 平衡点(2017-12-11)](https://uwabami.junkhub.org/log/20171211.html#p01)
   - https に関する設定について言及があったのでこっちに移す。
 
-## repositories
+### repositories
 
 これらの repositories は、あなたが思っているようなブランチ構成にはなっていないかもしれません。git-buildpackage/gbp コマンドで便利に使えるようなブランチ構成になっています。[gbp-buildpackage(1) — git-buildpackage — Debian testing — Debian Manpages](https://manpages.debian.org/testing/git-buildpackage/gbp-buildpackage.1.en.html) あたりから調べてください。
 
@@ -192,24 +193,24 @@ ip a
 - [doc/README · upstream/experimental · Adrián Pablo José Sedoski Croce / apt-cacher-ng · GitLab](https://salsa.debian.org/asedoski/apt-cacher-ng/-/blob/upstream/experimental/doc/README)
   - ドキュメント参照をした repository
 
-## 大規模につかうなら
+### 大規模につかうなら
 
 - [アーティファクトの管理について、あるいは go-apt-cacher / go-apt-mirror の紹介 - Cybozu Inside Out | サイボウズエンジニアのブログ](https://blog.cybozu.io/entry/2016/07/19/103000)
 - [go-apt-cacherによるお手軽APT専用キャッシュサーバーの導入方法 - 2018-03-06 - ククログ](https://www.clear-code.com/blog/2018/3/6.html)
 
-## netcat
+### netcat
 
 - [ネットワーク診断の現場から（netcat編・その1） | NTTデータ先端技術株式会社](https://www.intellilink.co.jp/article/column/security-net01.html)
   - netcat には3種類あって、オリジナルにはIPv6は対応していないのを知った。
 
-# 謝辞
+## 謝辞
 
-# さいごに
+## さいごに
 
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2021-06-21|
-|記事を変更した日|2022-12-28|
+|記事を変更した日|2024-10-23|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 

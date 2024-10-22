@@ -5,29 +5,30 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [erb, ruby, Debian]
 published: true
 ---
-# 要約
+
+## 要約
 
 自分の使いやすいテンプレートエンジンを求めて、このメモを残します。
 
-# はじめに
+## はじめに
 
-## この文章を書いた動機
+### この文章を書いた動機
 
 dotfiles の管理プログラムに、[TheLocehiliosan/yadm: Yet Another Dotfiles Manager](https://github.com/TheLocehiliosan/yadm) というプログラムがある。このプログラムには、template と呼ばれる機能があり、呼び出された OS, マシン名, クラス(自分で定義できるスキーマみたいなの), ユーザ名, distroなどを受け取って、テンプレート展開できる。 see [Templates - yadm](https://yadm.io/docs/templates#) これを使うと、dotfiles を symbolic link で作っていると実行可能なファイルは自分で動的に切り替えられるが、そうでないファイルは編集し回らないといけない手間が減る。
 
 現在 yadm は、素朴なawkによる実装、esh(shで作られた、テンプレートエンジン), j2cli(pythonのjinja2), envtpl をサポートしている。どれをメインで使うのがいいのか、それとも erb を使うのがいいのかを判断する一助として本文章を書いている。主に自分のためであり、動的に設定ファイルを生成したい時にこの文章を見ることになろう。
 
-## この文章はだれ向けか
+### この文章はだれ向けか
 
 主に自分、erb に興味を持っている人。動的に設定ファイルを作る方法について興味がある人
 
-## この文書の読み方
+### この文書の読み方
 
 この文書は、本文だけだと意味がわからないと思うので、必要に応じて動機なども確認してください。
 
-# 本文
+## 本文
 
-## sample
+### sample
 
 下記はサンプルを改変して、yadm で使ったときに便利そうな書き方を試している。
 
@@ -100,7 +101,7 @@ you are in Debian/Sid.
 
 erbには、まだまだわかっていないことがあって `<%`でなく `%` で始まるのは、どこでどう有効なのかとか。 -T オプションの使い方とか。わかったら追記していこう
 
-# 参考にしたドキュメントたち
+## 参考にしたドキュメントたち
 
 - [標準添付ライブラリ紹介 【第 10 回】 ERB](https://magazine.rubyist.net/articles/0017/0017-BundledLibraries.html)
   - 昔、西山さんが書いていた、この記事から芋づる式にオンラインで引っ掛けることができる文章を読むことにする。
@@ -118,7 +119,7 @@ erbには、まだまだわかっていないことがあって `<%`でなく `%
 - [ERB and the case statement](https://gist.github.com/davidphasson/91613)
   - ERB で、case when は、このように書け。というのは、この gist で学んだ。
 
-## 関連するかも知れないドキュメントたち
+### 関連するかも知れないドキュメントたち
 
 - [k0kubun/mruby-erb: Direct port of ERB from CRuby -&gt; MRuby](https://github.com/k0kubun/mruby-erb)
   - mruby での cruby からの移植
@@ -128,16 +129,16 @@ erbには、まだまだわかっていないことがあって `<%`でなく `%
   - see also [Dockerコンテナでの設定ファイル生成にテンプレートとしてERBを使う - Qiita](https://qiita.com/nowlinuxing/items/6109fb0c153c3cd91cfa)
     - この記事内で、mruby 単体だとerbが使えないので、mitamae を使っていると解説している。busybox 的というか、kitchen sink アプローチというか。相対的に小さい単体のバイナリは便利だねメソッド。
 
-# 謝辞
+## 謝辞
 
 erb 作者、そして、erb 周辺のドキュメントを整備していただいている方々に。
 
-# さいごに
+## さいごに
 
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2021-06-19|
-|記事を変更した日|----------|
+|記事を変更した日|2024-10-23|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
