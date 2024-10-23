@@ -13,3 +13,7 @@ rules:
         to:   技術書典
   #
   # - expected
+  - expected: ソフトウェア
+    patterns:
+      - /ソフトウ[エ|ェ]アー/
+      - ソフトウエア
