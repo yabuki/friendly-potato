@@ -35,7 +35,7 @@ githubと連携して記事をgithubに残すことができるので記事の�
 
 * Debian GNU/Linux Sid
 
-### 上記以外で使っているソフトウエア
+### 上記以外で使っているソフトウェア
 
 * [nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)
 
@@ -96,7 +96,7 @@ lts/erbium -> v12.18.4
 
 ### git clone する
 
-私は,~/scm/git/のしたにgit repoをおいているので、そこで
+私は、~/scm/git/のしたにgit repoをおいているので、そこで
 
 ```
 git clone git@github.com:yabuki/friendly-potato.git
