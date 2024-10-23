@@ -27,19 +27,19 @@ TTS(Text-To-Speech)という、ソフトウエアの分野がある。これを�
 
 ## install
 
-試したのは、2020-10-23の時点で、Debian GNU/Linux sid/bullseye である。
+試したのは、2020-10-23の時点で、Debian GNU/Linux sid/bullseyeである。
 
 `apt install espeak-ng`
 `apt install mbrola`
 
-そして、aptitude を使って、mbrolaの発音データを探した。
+そして、aptitudeを使って、mbrolaの発音データを探した。
 
-non-freeに分類される section に、mbrola-us1, mbrola-us2, mbrola-us3, mbrola-en1 などの発音データが存在するのでインストールする。
+non-freeに分類されるsectionに、mbrola-us1, mbrola-us2, mbrola-us3, mbrola-en1などの発音データが存在するのでインストールする。
 
 ## 文字列を与えて喋らせる
 
 コマンドラインから、下記のように、指示してみてください。
 
--v の部分を mb-us2, mb-us3, mb-en1 など変えて試してみてください。enjoy!
+-vの部分をmb-us2, mb-us3, mb-en1など変えて試してみてください。enjoy!
 
 `espeak-ng -a 200 -v mb-us1 -s 150 "Hello World!"`

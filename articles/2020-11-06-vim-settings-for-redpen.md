@@ -40,7 +40,7 @@ Installする方法は、ドキュメントを読んでください。私の場�
 ## ~/.vimrcに追加する内容
 
 <!-- @suppress -->
- ~/.vimrc に下記を追加してください。
+ ~/.vimrcに下記を追加してください。
 
 ```
 "
@@ -70,4 +70,4 @@ augroup END
 
 別解としては、[mattn/efm-langserver: General purpose Language Server](https://github.com/mattn/efm-langserver) を使うという手もあるかと思います。
 
-P.S. autocmd の :setlocal は、&l: と等価であり、エスケープの部分が楽になるという知見も得ました。
+P.S. autocmdの :setlocalは、&l: と等価であり、エスケープの部分が楽になるという知見も得ました。

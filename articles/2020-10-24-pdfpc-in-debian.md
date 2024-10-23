@@ -17,11 +17,11 @@ published: true
 
 ## はじめに
 
-pdfを使って、プレゼンテーションをするソフトウェアに、 [pdfpc/pdfpc: A presenter console with multi-monitor support for PDF files.](https://github.com/pdfpc/pdfpc) があります。このソフトウェアも Debian GNU/Linux には収録されているのですが、名前が説明的な名前になっています。
+pdfを使って、プレゼンテーションをするソフトウェアに、 [pdfpc/pdfpc: A presenter console with multi-monitor support for PDF files.](https://github.com/pdfpc/pdfpc) があります。このソフトウェアもDebian GNU/Linuxには収録されているのですが、名前が説明的な名前になっています。
 
-タイトルにあるように、pdf-presenter-console です。
+タイトルにあるように、pdf-presenter-consoleです。
 
-コマンドの名前は、pdfpc で変わりません。
+コマンドの名前は、pdfpcで変わりません。
 
 ## install 方法
 
@@ -29,25 +29,25 @@ pdfを使って、プレゼンテーションをするソフトウェアに、 [
 
 ## 使い方というか終了方法
 
-終了の仕方は、ctrl+q です。操作する前に、man を読んだりして、操作に習熟しておくのをオススメします。
+終了の仕方は、ctrl+qです。操作する前に、manを読んだりして、操作に習熟しておくのをオススメします。
 
 Enjoy!
 
 ## 昔の名前で出ています?
 
-pdfpc の前身は、 pdf-presenter-console という名前でした。[jakobwesthoff/Pdf-Presenter-Console: A Keynote like presenter console with multi-monitor support and the ability to read PDF as input files.](https://github.com/jakobwesthoff/Pdf-Presenter-Console)に、その時のrepoが残っています。
+pdfpcの前身は、 pdf-presenter-consoleという名前でした。[jakobwesthoff/Pdf-Presenter-Console: A Keynote like presenter console with multi-monitor support and the ability to read PDF as input files.](https://github.com/jakobwesthoff/Pdf-Presenter-Console)に、その時のrepoが残っています。
 
-Debian GNU/Linux における、pdf-presenter-console の更新状況は、 [Debian Package Tracker - pdf-presenter-console](https://tracker.debian.org/pkg/pdf-presenter-console) で確認ができます。
+Debian GNU/Linuxにおける、pdf-presenter-consoleの更新状況は、 [Debian Package Tracker - pdf-presenter-console](https://tracker.debian.org/pkg/pdf-presenter-console) で確認ができます。
 
 ここを見ると、パッケージ名は、昔の名前ですが、新しいコミットを適用しているのが確認できます。
 
 下記は、メンテナーに確認していないので想像で書きます。pdfpcというバイナリの名前は一緒だが、パッケージ名はより説明的な名前を選択したのだとおもいます。
 
-Ubuntuなどの Debian からの派生プロジェクトにも、なにもなければ、このパッケージ名でインストールすることになると思いますので、一筆言上さしあげました。
+UbuntuなどのDebianからの派生プロジェクトにも、なにもなければ、このパッケージ名でインストールすることになると思いますので、一筆言上さしあげました。
 
 ## 別解
 
-下記のように、rootか、sudo で apt-file update 後に、一般ユーザーでpdfpc を含むファイルを探すことで、どのパッケージに、そのファイルが属しているかを調べることができます。
+下記のように、rootか、sudoでapt-file update後に、一般ユーザーでpdfpcを含むファイルを探すことで、どのパッケージに、そのファイルが属しているかを調べることができます。
 
 存外に喜ばしいのは、pdfpcのLaTeXスタイルがあることが分かったことです。これを使えばスライドの時間などの情報を指定できる模様です。あと動画埋め込みも。
 

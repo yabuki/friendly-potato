@@ -17,7 +17,7 @@ published: true
 
 ## はじめに
 
-Visual Studio Code (以下、vscode)や、その派生である VSCodium[^VSCodium] を使って、Sphinx[^Sphinx] のドキュメント RestructuredText[^RestructuredText]を扱っている人向けの記事です。
+Visual Studio Code (以下、vscode)や、その派生であるVSCodium[^VSCodium] を使って、Sphinx[^Sphinx] のドキュメントRestructuredText[^RestructuredText]を扱っている人向けの記事です。
 
 TagのRestructuredtextは、タグが切れるので抜きました。
 
@@ -53,7 +53,7 @@ TagのRestructuredtextは、タグが切れるので抜きました。
 
 ここに書いてあるタグでたりないなら、チームで、共有するならワークスペース経由で、個人ならそのまま設定に書きます。
 
-例えば、人によっては *NOTE* Tag が足りてないと思う人もいるでしょう。ただし、sphinxの記法で 注釈を表す
+例えば、人によっては *NOTE* Tagが足りてないと思う人もいるでしょう。ただし、sphinxの記法で注釈を表す
 
 ```
 .. note::
@@ -78,7 +78,7 @@ restructued textもpythonと同じく、**インデント**が重要なのです
 ((//|#|<!--|;|/\*|^)\s*($TAGS)|^\s*- \[ \])
 ```
 
-.. も見てくれるように\\.\\.を追加したのが下記になります。--と;の間に正規表現を追加しています。
+.. も見てくれるように\\.\\。を追加したのが下記になります。--と;の間に正規表現を追加しています。
 
 Escapeせずに書いてて、dotが正規表現だったことを思い出して、この記事を書いてよかった。
 

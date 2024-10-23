@@ -58,7 +58,7 @@ const hoge = function inneHoge() { // innerHogeは関数内からのみアクセ
 ```
 
 - 関数定義
-  - もともとの関数定義、使い分けはどうする?
+  - もともとの関数定義、使い分けはどうする？
 
 ```TypeScript
 funciton hoge () {
@@ -76,7 +76,7 @@ class名には大文字で開始し、クラスのインスタンスは小文字
 
 - プロバティの先頭に#がついている。
   - [\[ES2022\] Privateクラスフィールド](https://jsprimer.net/basic/class/#private-class-fields)
-  - Private クラスフィールドが出きるまでは、慣習で変数名を\_(アンダースコア)で始める慣習で対処していた。
+  - Privateクラスフィールドが出きるまでは、慣習で変数名を\_(アンダースコア)で始める慣習で対処していた。
 
 ```TypeScript
 class Hoge {
@@ -164,7 +164,7 @@ describe('Testing My App', () => {
 
 - 同期処理
 - 非同期処理
-  - try catch同期処理だけか? Promiseにつながる?
+  - try catch同期処理だけか？ Promiseにつながる？
   - どうやって非同期処理の関数か調べるには
 - イベントループ
 - Promise
@@ -172,11 +172,11 @@ describe('Testing My App', () => {
 
 処理順序が気になるなら、イベントループで実行環境のランタイムのキュー(複数)にどのように積まれ、取り出されるのかを気になるだろう。
 
-そこまで気にせず、処理について集中するなら，Promiseと、その発展形のasync/awaitをやることになる。とはいえ最低限のイベントループのイメージを持つ必要はあるだろう。
+そこまで気にせず、処理について集中するなら,Promiseと、その発展形のasync/awaitをやることになる。とはいえ最低限のイベントループのイメージを持つ必要はあるだろう。
 
 #### どうやって非同期処理の関数かを調べるには
 
-TypeScriptの場合、戻り値の型にPromiseがあるかどうかをlspに教えてもらえばよいってことか?
+TypeScriptの場合、戻り値の型にPromiseがあるかどうかをlspに教えてもらえばよいってことか？
 たぶん、そう。VS Codeで確認したら、ちゃんと教えてくれる。
 
 ### 型
@@ -207,7 +207,7 @@ const json = JSON.stringify({id: 1, name:'yabuki'} satisfies Foo);
 
 - [TypeScript4.9で追加されたsatisfiesを理解する](https://zenn.dev/toshinobu/articles/208f2ea21ce8d0)
 
-- as const は、widening を防止する。
+- as constは、wideningを防止する。
   - as constの挙動は、[as constとは---TypeScript 4.9のas const satisfiesが便利。型チェックとwidening防止を同時に行う](https://zenn.dev/tonkotsuboy_com/articles/typescript-as-const-satisfies#as-const-%E3%81%A8%E3%81%AF)
   - wideningとは、[wideningとは---TypeScript 4.9のas const satisfiesが便利。型チェックとwidening防止を同時に行う](https://zenn.dev/tonkotsuboy_com/articles/typescript-as-const-satisfies#widening-%E3%81%A8%E3%81%AF)
 

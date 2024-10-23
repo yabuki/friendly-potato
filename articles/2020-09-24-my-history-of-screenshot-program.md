@@ -19,7 +19,7 @@ published: true
 
 「百聞は一見に如かず」とのことわざがある。コンピュータを使って、他人とコミュニケーションをとる時にぜんぶ言葉でやろうとして、とても大変な苦労をしたことがあるかとおもう。
 
-手軽にscreenshotを取って他人と共有することで、相互理解を深めやすいが、実際は面倒くさいので、不利益を得ていることもあるだろう。そこで最近教えてもらった flameshotを交えつつ
+手軽にscreenshotを取って他人と共有することで、相互理解を深めやすいが、実際は面倒くさいので、不利益を得ていることもあるだろう。そこで最近教えてもらったflameshotを交えつつ
 これまで使ってきたプログラムの名前を列挙しておきたい。
 
 ## 使ったことがあるツール
@@ -35,16 +35,16 @@ screenshotは、環境に左右されるので、下記は、Xを使っている
 
 * gimp
   * 範囲指定とかもしやすかったが、やっぱりscreenshot取るだけに使うにはtoo much
-* imagemagick の import コマンド
+* imagemagickのimportコマンド
   * コマンドラインから簡単にscreenshotを取るのに使っていたが、毎回使い方を思い出さないといけなかった。
 * gnome-screenshot
   * i3wmのmeta-dのdmenu経由で使っていた。
 * scrot
-  * コマンドラインから、指定してscreenshotを取るのは便利だが、ちゃんと .i3/config にbindsym として登録しておかないと毎回manを引くことになり、最初の設定を怠ったので、あんまり使わなくなって、インストールしているが使っていない状態になってしまった。
+  * コマンドラインから、指定してscreenshotを取るのは便利だが、ちゃんと .i3/configにbindsymとして登録しておかないと毎回manを引くことになり、最初の設定を怠ったので、あんまり使わなくなって、インストールしているが使っていない状態になってしまった。
   * そのコンピュータdesktopの状態を定点観測の用途にも使えるので、また使うことがあるかもしれない。
 * flameshot
 
-いまのおすすめは、flameshot で、Debian GNU/Linux Bullseye/Sidなら `apt install flameshot` で入ります。
+いまのおすすめは、flameshotで、Debian GNU/Linux Bullseye/Sidなら `apt install flameshot` で入ります。
 
 Screenshotを取ると~/Pictures/に保存されます。
 
@@ -63,7 +63,7 @@ $ ls
 
 多分気がついている人多数だと思うが、zennと連携しているrepoでgh pages設定をしている所に画像を置くと、読み込める。どういうことかというと。
 
-gh pagesブランチに　gh pagesをデプロイする設定にしている場合に、ファイルを artcles/imagesの配下に置くと決めるとする。
+gh pagesブランチにgh pagesをデプロイする設定にしている場合に、ファイルをartcles/imagesの配下に置くと決めるとする。
 <https://github.com/yabuki/friendly-potato/blob/gh-pages/articles/images/2020-09-24_15-31.png>
 のような置き方になる。それをgh pagesから見たらどうなるかを想像して、下記のようなURLに変換して画像へのリンクを書けばいい。
 <https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_15-31.png>
@@ -74,4 +74,4 @@ gh pagesブランチに　gh pagesをデプロイする設定にしている場�
 
 ### 疑問点
 
-zenn のマークダウン記法で画像をクリックすると拡大したimageが得られる記法ってあるの?
+zennのマークダウン記法で画像をクリックすると拡大したimageが得られる記法ってあるの？

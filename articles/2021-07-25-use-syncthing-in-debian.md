@@ -8,8 +8,8 @@ published: false
 
 ## 要約
 
-Debian GNU/Linux の次のリリースである、Bullseye において、Dropbox などのようにファイル同期を行う syncthing というソフトウェアを用いてファイル同期を行う。
-実例として、現在私が使っている、CLIでのタスク管理と時間管理を行う、taskwarrior と timewarrior を事例する記事です。
+Debian GNU/Linuxの次のリリースである、Bullseyeにおいて、Dropboxなどのようにファイル同期を行うsyncthingというソフトウェアを用いてファイル同期を行う。
+実例として、現在私が使っている、CLIでのタスク管理と時間管理を行う、taskwarriorとtimewarriorを事例する記事です。
 
 ## はじめに
 
@@ -32,7 +32,7 @@ Debian GNU/Linux の次のリリースである、Bullseye において、Dropbo
 
 ### Debian における syncthing 関係のパッケージ
 
-Debian bullseye には下記のパッケージが存在します。`apt-cache search syncthing` コマンドで関連するプログラムの検索をcliからしています。
+Debian bullseyeには下記のパッケージが存在します。`apt-cache search syncthing` コマンドで関連するプログラムの検索をcliからしています。
 
 ```
 apt-cache search syncthing

@@ -36,7 +36,7 @@ published: false
 
 ### upstream とは
 
---track, --no-track, --set-upstream とかで出てくる概念をまとめておく
+--track, --no-track, --set-upstreamとかで出てくる概念をまとめておく
 
 下記のような図を見てイメージをつかんでほしい。
 
@@ -104,19 +104,19 @@ git remote show orign
 
 #### orphan
 
-- gh-pages 用の docs ブランチを切る時。ドキュメントは別途コードの部分を含まなくていいですよね。
+- gh-pages用のdocsブランチを切る時。ドキュメントは別途コードの部分を含まなくていいですよね。
 
 ## 疑問点
 
-- --track, --no-track とは?
-- git checkout は git branch へ丸投げしている。いまは
-- --orphan と --detach の違い。
-- detach とは何か?
+- --track, --no-trackとは？
+- git checkoutはgit branchへ丸投げしている。いまは
+- --orphanと --detachの違い。
+- detachとは何か？
 
 ## 参考にしたドキュメントたち
 
 - [不安なくOrphanブランチを作る方法 by GitHub(リモートgit) - Qiita](https://qiita.com/PharaohKJ/items/f90336ce216cf9e57ce2)
-  - (親を持たない)まっさらな状態で、branch を作りたい時の方法を書いている。
+  - (親を持たない)まっさらな状態で、branchを作りたい時の方法を書いている。
 
 ## 謝辞
 

@@ -8,59 +8,59 @@ published: true
 
 ## 要約
 
-apt-cacher-ng は、Debian や ubuntu だけでなく、OpenSuSE, Arch Linux, Sourceforge mirror network, Cygwin, などに対するアクセスを減らせるプロキシーです。Fedoraについては[^1]を参照のこと。
+apt-cacher-ngは、Debianやubuntuだけでなく、OpenSuSE, Arch Linux, Sourceforge mirror network, Cygwin, などに対するアクセスを減らせるプロキシーです。Fedoraについては[^1]を参照のこと。
 
-Docker や LXD また、ご家庭にある複数台のPCが上記のOSやソフトウェアを参照している場合なら、ネットワークに取りにいくよりも、通信料を下げたり、ローカルネットにあるサーバからデータを取得するので、ほとんどの場合インストールが速くなったりします。
+DockerやLXDまた、ご家庭にある複数台のPCが上記のOSやソフトウェアを参照している場合なら、ネットワークに取りにいくよりも、通信料を下げたり、ローカルネットにあるサーバからデータを取得するので、ほとんどの場合インストールが速くなったりします。
 
-追加のスクリプトを書くと、apt-cacher-ng のサーバが存在している場合は、そこから取得ない場合は、直接サーバに取りに行くという、複数のネットワークを渡り歩くノートパソコンにとって便利な設定も可能です。
+追加のスクリプトを書くと、apt-cacher-ngのサーバが存在している場合は、そこから取得ない場合は、直接サーバに取りに行くという、複数のネットワークを渡り歩くノートパソコンにとって便利な設定も可能です。
 
 ## はじめに
 
-この記事では、自分の環境での設定方法を書いておきます。LXD を使っていますが、実機や Docker であっても考え方は同じです。
+この記事では、自分の環境での設定方法を書いておきます。LXDを使っていますが、実機やDockerであっても考え方は同じです。
 
 複数台のPCおよび、それなりの数のコンテナを作っては壊ししていると、いちいち外部にパッケージを取得しに行っていると、むだが多い。
 プロキシーサーバを立てて、コンテンツのキャッシュをつくろうとしたときに、自分の用途に適しており、時間をかける価値があると思って
 構築した。
 
-わたしが、apt-cacher-ng を使っている環境は、自宅で10台以下のDebian machineおよび、仮想環境/コンテナ環境を作っている。主に実マシンと、LXD によるコンテナから apt-cacher-ng を使っている。
-docker を使うことがあるので、その時にも何度も外部にパッケージを取りに行くのはネットワークと時間の浪費なので家庭内LANにおけて便利に使っています。
+わたしが、apt-cacher-ngを使っている環境は、自宅で10台以下のDebian machineおよび、仮想環境/コンテナ環境を作っている。主に実マシンと、LXDによるコンテナからapt-cacher-ngを使っている。
+dockerを使うことがあるので、その時にも何度も外部にパッケージを取りに行くのはネットワークと時間の浪費なので家庭内LANにおけて便利に使っています。
 
 ### ネットワーク
 
-LXD をディフォルトでインストールすると、LXD は、IPv4 の Class A な Private IP address をコンテナに割り振ります。また IPv6 のアドレスをホストマシンおよび、コンテナに割り振り振ります。
+LXDをディフォルトでインストールすると、LXDは、IPv4のClass AなPrivate IP addressをコンテナに割り振ります。またIPv6のアドレスをホストマシンおよび、コンテナに割り振り振ります。
 
 ### この文章はだれ向けか
 
 以下の条件を満たす人です。
 
 1. ある程度の量のパッケージをダウンロードする必要がある
-2. まだ Proxy を利用していない
+2. まだProxyを利用していない
 3. 通信料やダウンロード時間を短くしたいと考えている
 
 上記の人が、環境を再考するときの考慮点を示すためです。
 
 ### この文書の読み方
 
-apt-cacher-ng を立てるだけなら、参考にしたドキュメントたち　を読んでいただけれ事足りるかと思います。それらの情報を読んだとして、私の環境における差異を書いておきますので、関係のありそうな部分を拾い読みしてください。
+apt-cacher-ngを立てるだけなら、参考にしたドキュメントたち　を読んでいただけれ事足りるかと思います。それらの情報を読んだとして、私の環境における差異を書いておきますので、関係のありそうな部分を拾い読みしてください。
 
 ## 本文
 
-ルータから、IPv4 のアドレスを配ってもらっているマシンやコンテナと、固定アドレスを振って使っているマシンがあります。apt-cacher-ng の管理は、apt-cacher-ng が動いているマシン(コンテナ)の 3142 ボート
-にアクセスします。(このボート番号はもちろん設定で変更できます。) コンテナで、avahi を動かしている場合、<http://apt-cacher-ng.local:3142/acng-report.html?doCount=Count+Data#stats> のようにアクセス
+ルータから、IPv4のアドレスを配ってもらっているマシンやコンテナと、固定アドレスを振って使っているマシンがあります。apt-cacher-ngの管理は、apt-cacher-ngが動いているマシン(コンテナ)の3142ボート
+にアクセスします。(このボート番号はもちろん設定で変更できます) コンテナで、avahiを動かしている場合、<http://apt-cacher-ng.local:3142/acng-report.html?doCount=Count+Data#stats> のようにアクセス
 すると下記の画面のような表示がでます。
 
 ![apt-cacher-ng web image](<https://yabuki.github.io/friendly-potato/articles/images/2021-06-23_17-47.png> =600x)
 
 ### ときどき困る点
 
-ホストマシンが再起動したり、avahi がうまくアドレスを返してくれないことがあります。とくに、ホストマシンからコンテナのIPv4アドレスは、ときたまIP Addressが変わったりすることがあるので即値で書きたくありません。
-avahiはだいたい答えを返してくれますが、うまく返してくれないこともあり、原因追究よりはワークアラウンドして、いつも同じアドレスを振っていそうなIPv6をで apt-cacher-ng を指定したいことがあります。
+ホストマシンが再起動したり、avahiがうまくアドレスを返してくれないことがあります。とくに、ホストマシンからコンテナのIPv4アドレスは、ときたまIP Addressが変わったりすることがあるので即値で書きたくありません。
+avahiはだいたい答えを返してくれますが、うまく返してくれないこともあり、原因追究よりはワークアラウンドして、いつも同じアドレスを振っていそうなIPv6をでapt-cacher-ngを指定したいことがあります。
 
-所が、スクリプトで利用している netcat は、IPv6 に対応していないので、毎回 lxc list で IP address を確認してから cache を使っている不便さです。そこで、参考にしたドキュメントたちの netcat の記事を見つけたのです。
+所が、スクリプトで利用しているnetcatは、IPv6に対応していないので、毎回lxc listでIP addressを確認してからcacheを使っている不便さです。そこで、参考にしたドキュメントたちのnetcatの記事を見つけたのです。
 
 ### どう解決したか
 
-上記の記事を読んでから、Debian sid にも ncat パッケージがあることを確認したので、インストール。
+上記の記事を読んでから、Debian sidにもncatパッケージがあることを確認したので、インストール。
 
 ```
 $ apt-cache search netcat|grep netcat
@@ -73,15 +73,15 @@ netrw - netcat like tool with nice features to transport files over network
 ncat - NMAP netcat reimplementation
 ```
 
-nc と ncat のオプションを確認後、完全に置き換え可能だと判断して置き換えました。
+ncとncatのオプションを確認後、完全に置き換え可能だと判断して置き換えました。
 
-スクリプトの中で、どこのマシンで動いているのか確認もできますが、私は dotfiles の管理に [TheLocehiliosan/yadm: Yet Another Dotfiles Manager](https://github.com/TheLocehiliosan/yadm) を使っています。
-このソフトの本格的な使い方は、また記事を書きますが、 [Alternate Files - yadm](https://yadm.io/docs/alternates) と template を使って使う環境ごとに使いまわしをする部分と固有の情報を分離できるので
-実験をして使って見ました。yadm add した段階でテンプレートから生成され思ったようになりました。
+スクリプトの中で、どこのマシンで動いているのか確認もできますが、私はdotfilesの管理に [TheLocehiliosan/yadm: Yet Another Dotfiles Manager](https://github.com/TheLocehiliosan/yadm) を使っています。
+このソフトの本格的な使い方は、また記事を書きますが、 [Alternate Files - yadm](https://yadm.io/docs/alternates) とtemplateを使って使う環境ごとに使いまわしをする部分と固有の情報を分離できるので
+実験をして使って見ました。yadm addした段階でテンプレートから生成され思ったようになりました。
 
 ### 作業記録
 
-下記のような感じ。LXD ではなく、LXC 単体での記録ですが、こんな感じです。
+下記のような感じ。LXDではなく、LXC単体での記録ですが、こんな感じです。
 
 ```
 lxc shell apt-cacher-ng
@@ -112,7 +112,7 @@ After this operation, 1,575 kB of additional disk space will be used.
 Do you want to continue? [Y/n]
 ```
 
-avahi-daemon も入れる。
+avahi-daemonも入れる。
 
 ```
 apt install avahi-daemon
@@ -158,9 +158,9 @@ ip a
 ```
 
 - 自分の中だと、10.133.152.75
-- 他のマシンからだと 192.168.1.76
+- 他のマシンからだと192.168.1.76
 
-設定を /etc/apt/apt-conf.d/05proxyに設定を書いて、apt update してから、動作確認
+設定を /etc/apt/apt-conf.d/05proxyに設定を書いて、apt updateしてから、動作確認
 動いている。バンザーイ。
 
 ## 参考にしたドキュメントたち
@@ -175,23 +175,23 @@ ip a
 
 - [apt-cacher-ng：仮想環境にてホストOS自身もキャッシュを利用する: 個人的健忘録 from 2013](http://bluearth.cocolog-nifty.com/blog/2020/04/post-182a10.html)
 - [apt-cacher-ng：使用できないプロキシは無視したい: 個人的健忘録 from 2013](http://bluearth.cocolog-nifty.com/blog/2020/04/post-4dea15.html)
-  - とてもいいのだが、残念なことにオリジナルの netcat は、IPv6 に対応していないのでちょっだけ困った。
+  - とてもいいのだが、残念なことにオリジナルのnetcatは、IPv6に対応していないのでちょっだけ困った。
 
-- apt-cacher-ng の web page [Apt-Cacher NG - Software Package Download Proxy](https://www.unix-ag.uni-kl.de/~bloch/acng/)
-  - ドキュメントとしての価値は、salsa.debian.org にあるやつのほうが高いが、あんまり量もないので、ザッと一回は見ておくといいのかも。Alioth は、いまの salsa.debian.org のことです。
+- apt-cacher-ngのweb page [Apt-Cacher NG - Software Package Download Proxy](https://www.unix-ag.uni-kl.de/~bloch/acng/)
+  - ドキュメントとしての価値は、salsa.debian.orgにあるやつのほうが高いが、あんまり量もないので、ザッと一回は見ておくといいのかも。Aliothは、いまのsalsa.debian.orgのことです。
 
 - [apt-cacher-ng: Apt のキャッシュプロキシ 平衡点(2017-12-11)](https://uwabami.junkhub.org/log/20171211.html#p01)
-  - https に関する設定について言及があったのでこっちに移す。
+  - httpsに関する設定について言及があったのでこっちに移す。
 
 ### repositories
 
-これらの repositories は、あなたが思っているようなブランチ構成にはなっていないかもしれません。git-buildpackage/gbp コマンドで便利に使えるようなブランチ構成になっています。[gbp-buildpackage(1) — git-buildpackage — Debian testing — Debian Manpages](https://manpages.debian.org/testing/git-buildpackage/gbp-buildpackage.1.en.html) あたりから調べてください。
+これらのrepositoriesは、あなたが思っているようなブランチ構成にはなっていないかもしれません。git-buildpackage/gbpコマンドで便利に使えるようなブランチ構成になっています。[gbp-buildpackage(1) — git-buildpackage — Debian testing — Debian Manpages](https://manpages.debian.org/testing/git-buildpackage/gbp-buildpackage.1.en.html) あたりから調べてください。
 
 - [Efreak/apt-cacher-ng at debian/sid](https://github.com/Efreak/apt-cacher-ng/tree/debian/sid)
-  - 上記の apt-cacher-ng は、"clone of <https://alioth.debian.org/anonscm/git/apt-cacher-ng/apt-cacher-ng.git> for easy browsing. Laziness ftw." と書いてあるが、alioth.debian.org は salsa.debian.org の gitlab に移行しています。
+  - 上記のapt-cacher-ngは、"clone of <https://alioth.debian.org/anonscm/git/apt-cacher-ng/apt-cacher-ng.git> for easy browsing. Laziness ftw." と書いてあるが、alioth.debian.orgはsalsa.debian.orgのgitlabに移行しています。
 
 - [doc/README · upstream/experimental · Adrián Pablo José Sedoski Croce / apt-cacher-ng · GitLab](https://salsa.debian.org/asedoski/apt-cacher-ng/-/blob/upstream/experimental/doc/README)
-  - ドキュメント参照をした repository
+  - ドキュメント参照をしたrepository
 
 ### 大規模につかうなら
 
@@ -201,7 +201,7 @@ ip a
 ### netcat
 
 - [ネットワーク診断の現場から（netcat編・その1） | NTTデータ先端技術株式会社](https://www.intellilink.co.jp/article/column/security-net01.html)
-  - netcat には3種類あって、オリジナルにはIPv6は対応していないのを知った。
+  - netcatには3種類あって、オリジナルにはIPv6は対応していないのを知った。
 
 ## 謝辞
 
@@ -224,4 +224,4 @@ ip a
 <!-- だれに向けての文章か -->
 <!-- この文章の肝はどこか -->
 
-[^1]: Fedra に関しては、もはやサポート外とドキュメントにありました。ちゃんと調べてないけど、rpm 系は別の素敵な仕組みがあるのだと思う。
+[^1]: Fedraに関しては、もはやサポート外とドキュメントにありました。ちゃんと調べてないけど、rpm系は別の素敵な仕組みがあるのだと思う。

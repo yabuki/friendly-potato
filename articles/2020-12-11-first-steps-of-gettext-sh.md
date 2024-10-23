@@ -11,11 +11,11 @@ published: true
 
 あなたのプログラムや文書をいろんな国のひとに使ってもらえる可能性が増える方法として国際化(i18n)[^i18n]がある。
 
-[^i18n]: Internationalization つづりが長いので真ん中と最後の文字を18文字省略しているとの意味です。 see also [I18N(国際化対応) - MDN Web Docs 用語集: ウェブ関連用語の定義 | MDN](https://developer.mozilla.org/ja/docs/Glossary/I18N)]
+[^i18n]: Internationalizationつづりが長いので真ん中と最後の文字を18文字省略しているとの意味です。 see also [I18N(国際化対応) - MDN Web Docs 用語集: ウェブ関連用語の定義 | MDN](https://developer.mozilla.org/ja/docs/Glossary/I18N)]
 
-身近に利益を感じてもらうため hello world レベルの shell スクリプトを gettext.sh 使って国際化する方法を書いている。
+身近に利益を感じてもらうためhello worldレベルのshellスクリプトをgettext.sh使って国際化する方法を書いている。
 
-例題を試すための github repository も用意している。
+例題を試すためのgithub repositoryも用意している。
 
 ## はじめに
 
@@ -26,16 +26,16 @@ published: true
 コンピュータ上で複数の言語を扱うにはいくつか方法があります。その中でメジャーな実装の1つが、gettextです。
 
 <!-- @suppress DoubledJoshi -->
-プログラマが新しく言語を覚えたいときはまず環境構築をします。その次に動作確認のためプログラマは儀式めいた慣習ですが コンソール(外部の世界)へ "hello world" を出力するプログラムを書くことがあります。この文章はそれにならって gettext の "hello world" を出力する shell script を例に文章を書きます。
+プログラマが新しく言語を覚えたいときはまず環境構築をします。その次に動作確認のためプログラマは儀式めいた慣習ですがコンソール(外部の世界)へ "hello world" を出力するプログラムを書くことがあります。この文章はそれにならってgettextの "hello world" を出力するshell scriptを例に文章を書きます。
 
-gettext はプログラムが出力する言語を切り替えるために使われてきました。
+gettextはプログラムが出力する言語を切り替えるために使われてきました。
 現在では、[man po4a (1): PO ファイルと翻訳済みドキュメントを一括更新](http://ja.manpages.org/po4a) を使って文書の翻訳に使う例もあります。
 
 技術文書のように頻繁に更新され翻訳が追いつかない部分は英語でいいから把握したいというニーズに応えます。^[ [nginx をネタに po4a で翻訳管理を始めてみる例 - Qiita](https://qiita.com/nabetaro/items/fe05e35b48dad3566a02)]
 
 ### この文章を書いた動機
 
-最初「ssft はいいぞ」という文章を書きたかったのですが、その前提となる gettext.sh について自分にとってわかりやすい文章がなかったので書きました。
+最初「ssftはいいぞ」という文章を書きたかったのですが、その前提となるgettext.shについて自分にとってわかりやすい文章がなかったので書きました。
 gettextを扱えるひとが増えて、より多くの優れたソフトウェアや技術文書が言語のカベを越えて流通することで自分もそれにあやかりたい。という動機です。
 
 そして文書を書いて公開することで、より詳しい人からツッコミを入れてもらい自分の理解を深めるためです。
@@ -46,7 +46,7 @@ gettextを扱えるひとが増えて、より多くの優れたソフトウェ�
 
 すぐに使えるのは日常的にシェルスクリプトを書いている人で、複数の言語への対応をしたいと考えている人です。
 
-例題はシェルスクリプトですが、gettext における作業手順について他のプログラム言語でgettextを扱うとき応用ができるように書きます。
+例題はシェルスクリプトですが、gettextにおける作業手順について他のプログラム言語でgettextを扱うとき応用ができるように書きます。
 
 ### この文書の読み方
 
@@ -58,8 +58,8 @@ gettextを扱えるひとが増えて、より多くの優れたソフトウェ�
 
 ## 実践
 
-1. Debian GNU/Linux 上での環境設定
-1. gettext.sh の説明をして
+1. Debian GNU/Linux上での環境設定
+1. gettext.shの説明をして
 1. リポジトリのクローンをして、プログラムが動くのを確認します。
 1. その背景の説明をします。
 
@@ -70,11 +70,11 @@ gettextを扱えるひとが増えて、より多くの優れたソフトウェ�
 - gettext
 - git
 
-です。その他のプログラムはご自分でお好きに選んでください。Debian 標準は dash を sh として使っているのでdashを利用しますが、たぶんbashでも動くでしょう。
+です。その他のプログラムはご自分でお好きに選んでください。Debian標準はdashをshとして使っているのでdashを利用しますが、たぶんbashでも動くでしょう。
 
-この記事を書いている時点(2020-12-13)で、私が利用しているのは、Debian GNU/Linux bullseye/sid です。gettextは充分に古いので、他の Unix 系でも何らかの方法でパッケージなどがあるでしょう。
+この記事を書いている時点(2020-12-13)で、私が利用しているのは、Debian GNU/Linux bullseye/sidです。gettextは充分に古いので、他のUnix系でも何らかの方法でパッケージなどがあるでしょう。
 
-私はすでにgettextをパッケージで導入していたので、gettext-base が入っていました。gettext.shがどのパッケージにあるのか確認する方法は下記です。
+私はすでにgettextをパッケージで導入していたので、gettext-baseが入っていました。gettext.shがどのパッケージにあるのか確認する方法は下記です。
 
 ```
 apt-file search gettext.sh
@@ -97,12 +97,12 @@ ii  gettext-base   0.19.8.1-10  amd64        GNU Internationalization utilities 
 ii  gettext-doc    0.19.8.1-10  all          Documentation for GNU gettext
 ```
 
-を参考に入れて下さい。ドキュメントはお好みで offline でも参照できる文書が欲しい派なのでわたしは入れています。
+を参考に入れて下さい。ドキュメントはお好みでofflineでも参照できる文書が欲しい派なのでわたしは入れています。
 
 ### サンプルの導入
 
 <!-- @suppress SentenceLength -->
-[yabuki/gettext-sandbox: This is a sandbox which is test for gettext with program.](https://github.com/yabuki/gettext-sandbox) を git clone してください。
+[yabuki/gettext-sandbox: This is a sandbox which is test for gettext with program.](https://github.com/yabuki/gettext-sandbox) をgit cloneしてください。
 
 #### ディレクトリ構成
 
@@ -125,11 +125,11 @@ ii  gettext-doc    0.19.8.1-10  all          Documentation for GNU gettext
           - hello.mo
 ```
 
-message.po に枝番をつけたファイルは、初期に `xgettext` コマンドが生成したものを1、msginit コマンドが生成したものを2という風に変化を見るべく置いていました。
+message.poに枝番をつけたファイルは、初期に `xgettext` コマンドが生成したものを1、msginitコマンドが生成したものを2という風に変化を見るべく置いていました。
 
 ### サンプルの実行
 
-git clone した所から、cd dash/gettest.sh へ移動して、`dash ./hello.sh` と実行してください。
+git cloneした所から、cd dash/gettest.shへ移動して、`dash ./hello.sh` と実行してください。
 
 私の環境では、
 
@@ -177,12 +177,12 @@ Hello World
     14 echo "`eval_gettext "Hello World"`"
 ```
 
-- 1行め 実行内容をトレースしながら動け
-- 4行め おまじない
-- 7行め 実行プログラム名などを入れる。翻訳の入ったmoファイル名でもあります。
-- 10行め どこにmoファイルを置くlocaleディレクトリが存在しているか。を **絶対ディレクトリ**で指定します。相対ではダメです。`pwd`コマンドが効いてきます。
-- 13行め eval_gettext に文字を渡して、翻訳した結果を受け取ります。echoで改行してます。
-- 14行め echo を先に書きたい派の人はこっちを使います。この段階では、13行めと14行めの書き方は好みの範囲です。変数が関係するとエスケープの個数を変化させる必要があります。しかし、いまはこれ以上踏み込みません。
+- 1行め:実行内容をトレースしながら動け
+- 4行め:おまじない
+- 7行め:実行プログラム名などを入れる。翻訳の入ったmoファイル名でもあります。
+- 10行め:どこにmoファイルを置くlocaleディレクトリが存在しているか。を **絶対ディレクトリ**で指定します。相対ではダメです。`pwd`コマンドが効いてきます。
+- 13行め:eval_gettextに文字を渡して、翻訳した結果を受け取ります。echoで改行してます。
+- 14行め:echoを先に書きたい派の人はこっちを使います。この段階では、13行めと14行めの書き方は好みの範囲です。変数が関係するとエスケープの個数を変化させる必要があります。しかし、いまはこれ以上踏み込みません。
 
 ここまでで、やりたいことの半分が達成できました。
 
@@ -190,10 +190,10 @@ Hello World
 
 ## po ファイル作成手順
 
-1. xgettext コマンドで、shell scriptから、翻訳すべき文字列を取り出す。指定がなければ message.po ファイルを生成する。
-1. msginit コマンドで、ロケール情報、扱う文字列のエンコード情報などの情報をあたえて、日本語で指定がないなら、ja.po ファイルを生成する。
+1. xgettextコマンドで、shell scriptから、翻訳すべき文字列を取り出す。指定がなければmessage.poファイルを生成する。
+1. msginitコマンドで、ロケール情報、扱う文字列のエンコード情報などの情報をあたえて、日本語で指定がないなら、ja.poファイルを生成する。
 1. 好きなエディタで、poファイルを編集する。
-1. 翻訳ができあがったら msgfmt コマンドで mo ファイルを生成します。その時ファイル名はTEXTDOMAINと合わせること。
+1. 翻訳ができあがったらmsgfmtコマンドでmoファイルを生成します。その時ファイル名はTEXTDOMAINと合わせること。
 1. moファイルができたらつぎのようにします。
 1. TEXTDIMAINDIRで指定されている`pwd`/localeを起点として、ja(地域と同じ)のディレクトリ配下にLC_MESSAGESのディレクトリがあることを確認します。英語圏ならjaの代わりにenです。フランス語ならfrです。同一地域で複数言語ならbn_ID,bn_BDになるのでしょう。en@arabicのような表記については不勉強なのですいませんがわかりません。
 1. `pwd`/local/ja/LC_MESSAGES/ファイルをコピーします。
@@ -220,59 +220,59 @@ ja_JP.UTF-8
 
 いま見てもらったのは、端末(Terminal)で、日本語入力や表示をする仕組みの一部です。
 
-書いたプログラムに gettext を適用し、先ほど見た LANG 環境変数によって表示する文字列を切り替えます。英語から日本語のように。ちなみに、先ほどのLANGにCを代入することで、一時的に文字列を英語にして、プログラムでパースしやすくするというテクニックをご存知のひとも多いでしょう。
+書いたプログラムにgettextを適用し、先ほど見たLANG環境変数によって表示する文字列を切り替えます。英語から日本語のように。ちなみに、先ほどのLANGにCを代入することで、一時的に文字列を英語にして、プログラムでパースしやすくするというテクニックをご存知のひとも多いでしょう。
 
 日本語を扱う[^1]場合には、最近のUnix系システムでは、UTF-8というエンコード[^2]を使っています。なので、日本という地域の日本語をUTF-8エンコードで扱います。という宣言をしています。
 
-地域によっては、小数点が dot だけでなく comma のことがあります。また数字の区切りが3桁や4桁、それ以外など異なっています。このように元が同じデータであっても、その地域に応じた表示を必要とします。
+地域によっては、小数点がdotだけでなくcommaのことがあります。また数字の区切りが3桁や4桁、それ以外など異なっています。このように元が同じデータであっても、その地域に応じた表示を必要とします。
 
-gettext は、そのうち表示文字について翻訳する部分を担当しています。
+gettextは、そのうち表示文字について翻訳する部分を担当しています。
 
 <!-- @suppress DoubledJoshi -->
-gettext を使ってプログラム作成から翻訳を入れ、表示する文字を切り替える一連の作業は、技術者の間では、 gettextize と呼びます。
+gettextを使ってプログラム作成から翻訳を入れ、表示する文字を切り替える一連の作業は、技術者の間では、 gettextizeと呼びます。
 
 技術者の間では、会話の情報密度をあげるのに複数のことがらを1つにまとめる言葉を専門用語として使っていることがあります。
 
 <!-- @suppress SentenceLength -->
-[^1]: 細かい話をすると、そこには何が入るのかについて、IETF言語タグの話 [IETF language tag - Wikipedia](https://en.wikipedia.org/wiki/IETF_language_tag) とか ISO 639-1 の話や言語コード毎にジャンプできる [ISO 639-3 - Wikipedia](https://en.wikipedia.org/wiki/ISO_639-3) の話をする必要があるのかもしれませんが、ここはふんわりとした理解でまずは慣れよう。という記事です。
+[^1]: 細かい話をすると、そこには何が入るのかについて、IETF言語タグの話 [IETF language tag - Wikipedia](https://en.wikipedia.org/wiki/IETF_language_tag) とかISO 639-1の話や言語コード毎にジャンプできる [ISO 639-3 - Wikipedia](https://en.wikipedia.org/wiki/ISO_639-3) の話をする必要があるのかもしれませんが、ここはふんわりとした理解でまずは慣れよう。という記事です。
 [^2]: 文字コードの符号化について、エンコードも説明する必要があるかも知れないが、符号化以上にもろもろをコンパクトに説明するほど理解できていないので、他の本や文書を参照してほしい。
 
 ### gettext を使う手順
 
 1. gettextを適用するオリジナルのプログラムを作ったり、見つけて改変します。どのように改変するかは、後述します。
-1. xgettext コマンドで翻訳対象とする文字列が入ったファイル、(指示をしなければ)message.poファイルを作成する
-1. msginit コマンドで前述のmessage.poファイルを入力とし、コマンドラインから取得した情報を入れてja.poなどのファイルとして出力します。[^3]このプログラムを使うと手で書く部分が減って間違いが減ります。
+1. xgettextコマンドで翻訳対象とする文字列が入ったファイル、(指示をしなければ)message.poファイルを作成する
+1. msginitコマンドで前述のmessage.poファイルを入力とし、コマンドラインから取得した情報を入れてja.poなどのファイルとして出力します。[^3]このプログラムを使うと手で書く部分が減って間違いが減ります。
 1. ja.poを慣れているエディタで開いて翻訳します。多くのエディタ(vimやEmacsなど)はpoファイルを編集するのに便利な機能を提供しています。余裕があれば調べておくと良いでしょう。
 <!-- @suppress DobuleJoshi -->
-1. 人間が読みやすい ja.po ファイルから、msgfmt コマンドを用いて、gettextプログラムが扱いやすい moファイル形式へ変更します。
+1. 人間が読みやすいja.poファイルから、msgfmtコマンドを用いて、gettextプログラムが扱いやすいmoファイル形式へ変更します。
 1. 生成された、既定のファイルをプログラムが読み取る場所にコピーします。
 
 <!-- @suppress SentenceLength -->
-[^3]: ja.po ファイルって、確かに日本語の翻訳ファイル名ということで納得していました。が、msginit に `--locale=ja_JP.UTF-8`を与えることで、`ja_JP.UTF-8`が Tokenize されて、ja.poのファイルないに展開され、出力ファイル名も日本の地域=jaを表すファイルが生成されて、納得度が高まりました。
+[^3]: ja.poファイルって、確かに日本語の翻訳ファイル名ということで納得していました。が、msginitに `--locale=ja_JP.UTF-8`を与えることで、`ja_JP.UTF-8`がTokenizeされて、ja.poのファイルないに展開され、出力ファイル名も日本の地域=jaを表すファイルが生成されて、納得度が高まりました。
 
 ### shell script における gettext 対象
 
-プログラムの説明でもでてきた gettext "foo" の foo が翻訳対象になり、LANGの値によって書き換わります。
+プログラムの説明でもでてきたgettext "foo" のfooが翻訳対象になり、LANGの値によって書き換わります。
 
 ### xgettext コマンド
 
-対象とするブログラム(po4aの場合は文書)内の文字列をスキャンして、指定がないときは、 messages.po を生成します。プログラムの開発が進むと表示すべき文字列の増減や変更はしばしばあります。
+対象とするブログラム(po4aの場合は文書)内の文字列をスキャンして、指定がないときは、 messages.poを生成します。プログラムの開発が進むと表示すべき文字列の増減や変更はしばしばあります。
 
 <!-- @suppress SuggestExpression -->
-その変更に追従するため gettextコマンドを実行する必要があります。そうやって翻訳内容を追従させるのです。
+その変更に追従するためgettextコマンドを実行する必要があります。そうやって翻訳内容を追従させるのです。
 
 必要に応じて `man 1 xgettext` を参考にしてください。いくつか書く必要があるオプションを書き出します。
 
 <!-- @suppress DoubledJoshi CommaNumber SentenceLength ParenthesizedSentence -->
-- -L または --language オプション 今回の場合なら -L "shell"を渡します。(C, C++, ObjectiveC, PO, Shell, Python, Lisp, EmacsLisp, librep, Scheme, Smalltalk, Java, JavaProperties, C#, awk, YCP, Tcl, Perl, PHP, GCC-source, NXStringTable, RST, Glade,  Lua, JavaScript, Vala, Desktop) が対象のもようです。これは man からの引用なので、ソースコードは確認していません。
+- -Lまたは --languageオプション今回の場合なら -L "shell"を渡します。(C, C++, ObjectiveC, PO, Shell, Python, Lisp, EmacsLisp, librep, Scheme, Smalltalk, Java, JavaProperties, C#, awk, YCP, Tcl, Perl, PHP, GCC-source, NXStringTable, RST, Glade,  Lua, JavaScript, Vala, Desktop) が対象のもようです。これはmanからの引用なので、ソースコードは確認していません。
 <!-- @suppress SuccessiveSentence -->
 - 入力ファイルやディレクトリを指定するオプション
 - 出力ファイルやディレクトリを指定するオプション。とりわけdefault-domainはそのプログラム名、またはプロジェクト名の概念なので、インターネットのドメインと取り違えないように。
 - 既存のファイルに追加する -j --joinexisting
 - TAGという概念 (調べて書く必要がある)
-- コメント どのように使うかは例示がいるか。
+- コメントどのように使うかは例示がいるか。
 <!-- @suppress ParenthesizedSentence -->
-- --check でunicodeの妥当性チェック (ellipsis-unicode, space-ellipsis, quote-unicode, bullet-unicode)
+- --checkでunicodeの妥当性チェック (ellipsis-unicode, space-ellipsis, quote-unicode, bullet-unicode)
 - --copyright-holder=STRING poファイルの翻訳をした著作権者を書く(著作の管理に関する事項です)
 - --foreign-user omit FSF copyright in output for foreign user
 - --package-name=PACKAGE set package name in output
@@ -297,7 +297,7 @@ gettext を使ってプログラム作成から翻訳を入れ、表示する文
 ## 参考にしたドキュメントたち
 
 - [GNU gettext utilities: Preparing Shell Scripts](https://ayatakesi.github.io/gettext/0.18.3/html/Preparing-Shell-Scripts.html)
-  - 同じドキュメントは、Debianのgettext-docパッケージをインストールすると、/usr/share/doc/gettext-doc/gettext_15.html で読むことができます。Offlineで集中したい人は、あらかじめパッケージをインストールして、お好きなブラウザで、ローカルファイルを指定して読んでください。
+  - 同じドキュメントは、Debianのgettext-docパッケージをインストールすると、/usr/share/doc/gettext-doc/gettext_15.htmlで読むことができます。Offlineで集中したい人は、あらかじめパッケージをインストールして、お好きなブラウザで、ローカルファイルを指定して読んでください。
 - [GNU gettext utilities: Preparing Strings](https://ayatakesi.github.io/gettext/0.18.3/html/Preparing-Strings.html#Preparing-Strings)
 <!-- @suppress DoubledJoshi JapaneseAmbiguousNounConjunction -->
 - [gettext API - Oracle Solaris でのアプリケーションの国際化とローカライズ](https://docs.oracle.com/cd/E56342_01/html/E54072/gnkbn.html)

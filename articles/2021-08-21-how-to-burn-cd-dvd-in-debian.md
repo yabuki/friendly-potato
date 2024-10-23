@@ -8,53 +8,53 @@ published: true
 
 ## 要約
 
-Debian GNU/Linux で、CD/DVDのイメージから、CD/DVDに焼きこむ作業に関するメモです。
+Debian GNU/Linuxで、CD/DVDのイメージから、CD/DVDに焼きこむ作業に関するメモです。
 
 ## はじめに
 
-昨今(さっこん)は、めっきりCDやDVDのイメージを物理デバイスに書き込むことが減りました。やったとしても USB memory stick が安価になり容量の制限も緩くなっているからです。
+昨今(さっこん)は、めっきりCDやDVDのイメージを物理デバイスに書き込むことが減りました。やったとしてもUSB memory stickが安価になり容量の制限も緩くなっているからです。
 
-とはいえ、私の場合 Think Pad T480 の BIOS を更新するのにisoイメージがあったのと、もう使わないだろうが、残っているCD media を使い切るために、久しぶりに CD を焼いてみるので、記事にまとめておきます。
+とはいえ、私の場合Think Pad T480のBIOSを更新するのにisoイメージがあったのと、もう使わないだろうが、残っているCD mediaを使い切るために、久しぶりにCDを焼いてみるので、記事にまとめておきます。
 
 自分が、次にCD/DVDを焼く環境を設定する時に参考になるように。
 
 ちなみに、BIOSのバージョンがある程度新しいと、LinuxからでもBIOS updateは可能になるので、この作業は必要なくなるかとは思います。
 
-Thinkpad T480以外の新しい機種だと最初から Linux でupdateできるかも知れません。私のように必要な人だけがやれば良いのですが、もはや古(いにしえ)の技術になったので書いておきます。
+Thinkpad T480以外の新しい機種だと最初からLinuxでupdateできるかも知れません。私のように必要な人だけがやれば良いのですが、もはや古(いにしえ)の技術になったので書いておきます。
 
 貧乏性なのか、まだ使える空メディアを捨てることができないので、こうやって使ってから長い間つかっていないメディアを捨てていきたい。
 
 ### この文章はだれ向けか
 
-Linux で、物理のCD/DVDを焼く必要があり、環境設定をする必要のある人
+Linuxで、物理のCD/DVDを焼く必要があり、環境設定をする必要のある人
 
-ただ、著者がDebian GNU/Linux を使っているのと、ssh越しに CD を焼く必要があるので、書いている内容は必ずしもあなたのニーズに一致しないかも知れない。
+ただ、著者がDebian GNU/Linuxを使っているのと、ssh越しにCDを焼く必要があるので、書いている内容は必ずしもあなたのニーズに一致しないかも知れない。
 
 その時は、いくつか私が思いついたフックを書いておくので、自分なりに試してほしい。
 
 ### この文書の読み方
 
-上記の「この文章はだれ向けか」でも、書いているが ssh 越しに、CD/DVDを焼きたいので、主に CUI のプログラム wodim について記述する。
+上記の「この文章はだれ向けか」でも、書いているがssh越しに、CD/DVDを焼きたいので、主にCUIのプログラムwodimについて記述する。
 
-GUIのプログラムがお好みであれば、GNOMEなら [Debian -- パッケージ検索結果 -- brasero](https://packages.debian.org/search?keywords=brasero) が、Nautilus にあるイメージを連携して焼いてくれるとかの設定ができる模様です。
+GUIのプログラムがお好みであれば、GNOMEなら [Debian -- パッケージ検索結果 -- brasero](https://packages.debian.org/search?keywords=brasero) が、Nautilusにあるイメージを連携して焼いてくれるとかの設定ができる模様です。
 
-Xface なら、 [Debian -- パッケージ検索結果 -- xfburn](https://packages.debian.org/search?keywords=xfburn) が良さそうです。
+Xfaceなら、 [Debian -- パッケージ検索結果 -- xfburn](https://packages.debian.org/search?keywords=xfburn) が良さそうです。
 
 KDEなら、[Debian -- パッケージ検索結果 -- k3b](https://packages.debian.org/search?keywords=k3b) でしょうか。
 
-わたしは i3wm なのでやっぱり、GUIでなくてCUIを使うかもしれません。
+わたしはi3wmなのでやっぱり、GUIでなくてCUIを使うかもしれません。
 
 ## 本文
 
-wodim は、cdrecord から派生した。CUIの CD/DVD ライティングソフトです。
+wodimは、cdrecordから派生した。CUIのCD/DVDライティングソフトです。
 
-wodim はここに書いている以上の機能をもっています。詳しくはドキュメントを参照してください。
+wodimはここに書いている以上の機能をもっています。詳しくはドキュメントを参照してください。
 
 ### インストール
 
-私が利用しているのは、Debian GNU/Linux Sid ですが、Debian 11 --- bullseye がリリースされたばかりなので、限りなく bullseye に近いです。
+私が利用しているのは、Debian GNU/Linux Sidですが、Debian 11 --- bullseyeがリリースされたばかりなので、限りなくbullseyeに近いです。
 
-apt コマンドを使って wodim をインストールします。特権(root権限)が必要なので、`su` コマンドか `sudo` コマンドなどを使うことになるか思います。
+aptコマンドを使ってwodimをインストールします。特権(root権限)が必要なので、`su` コマンドか `sudo` コマンドなどを使うことになるか思います。
 
 ```
 apt install wodim
@@ -73,11 +73,11 @@ apt install wodim
 続行しますか? [Y/n]
 ```
 
-cdrkit-doc は、ドキュメント(英文)ですが、入れておいて必要に応じて読むと、私が書いている機能以外についても知ることができるでしょう。
+cdrkit-docは、ドキュメント(英文)ですが、入れておいて必要に応じて読むと、私が書いている機能以外についても知ることができるでしょう。
 
 ### CD/DVD ドライブの確認
 
-私の CD/DVD ドライブはUSB接続なので、マシンに接続して dmesg で下記のようなメッセージを確認します。
+私のCD/DVDドライブはUSB接続なので、マシンに接続してdmesgで下記のようなメッセージを確認します。
 
 ```
 [135541.216435] usb 1-1: new high-speed USB device number 6 using xhci_hcd
@@ -107,7 +107,7 @@ brw-rw----+ 1 root cdrom 11, 0  8月 21 16:27 /dev/sr0
 uid=1000(yabuki) gid=1000(yabuki) groups=1000(yabuki),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),108(netdev),111(bluetooth),999(docker)
 ```
 
-Debian GNU/Linux だと勝手に、/dev/sr0 へ /dev/cdrom や /dev/dvd からシンボリックリンクを作ってくれています。また、`id`コマンドで、自分のユーザが、/dev/sr0 に書き込めることを確認しています。
+Debian GNU/Linuxだと勝手に、/dev/sr0へ /dev/cdromや /dev/dvdからシンボリックリンクを作ってくれています。また、`id`コマンドで、自分のユーザが、/dev/sr0に書き込めることを確認しています。
 
 さて、接続を確認します。
 
@@ -128,15 +128,15 @@ scsibus4:
 
 ### iso イメージの取得
 
-自分で、cd-image を作るなら、`genisoimage` コマンドについて調べてください。
+自分で、cd-imageを作るなら、`genisoimage` コマンドについて調べてください。
 
-私の場合は、目的が Thinkpad T480 の BIOS update のため、Lenovo のサイトからダウンロードします。一応データが化けていないか、md5sum コマンドで、サイトに掲示してある値とつき合わせておきます。
+私の場合は、目的がThinkpad T480のBIOS updateのため、Lenovoのサイトからダウンロードします。一応データが化けていないか、md5sumコマンドで、サイトに掲示してある値とつき合わせておきます。
 
 ### お試し
 
 自分のCD-Rの書き込み速度を確認しておきます。遅い分には時間がかかるだけなので、分からないなら0を指定するのがいいかもしれません。
 
-私のドライブは書き込みは x24 の模様です。
+私のドライブは書き込みはx24の模様です。
 
 試し焼きのログです。
 
@@ -222,7 +222,7 @@ wodim: fifo had 551 puts and 551 gets.
 wodim: fifo was 0 times empty and 343 times full, min fill was 96%.
 ```
 
-それぞれのオプションの意味は、2021-08-21 に実行している時点の man から引用
+それぞれのオプションの意味は、2021-08-21に実行している時点のmanから引用
 
 ```
        -dummy The CD/DVD-Recorder will go through all steps of the recording process, but the laser is turned off during  this  proce‐
@@ -253,7 +253,7 @@ wodim: fifo was 0 times empty and 343 times full, min fill was 96%.
               -pad remains valid until disabled by -nopad.
 ```
 
-本番では、-dummy を抜いて実行します。
+本番では、-dummyを抜いて実行します。
 
 ```
   Odayla  yabuki  ~  wodim -v speed=24 -eject -data -pad ~/Downloads/n24ur26w.iso 
@@ -346,12 +346,12 @@ wodim: fifo was 0 times empty and 342 times full, min fill was 96%.
 - [BurnCd - Debian Wiki](https://wiki.debian.org/BurnCd)
 - [cdrecord が wodim になっていた](http://www.ice.is.kit.ac.jp/~umehara/misc/comp/20061122.html)
 
-- Thinkpad T480 関連
+- Thinkpad T480関連
   - [シリアル番号の探し方 - PC - Lenovo Support JP](https://support.lenovo.com/jp/ja/solutions/HT510152#cmm)
 
 ## 謝辞
 
-wodim をメンテナンスしている人たちへ謝辞を送ります。また参考にしたドキュメントを書いた方々にも謝辞を送ります。
+wodimをメンテナンスしている人たちへ謝辞を送ります。また参考にしたドキュメントを書いた方々にも謝辞を送ります。
 
 ## 将来の自分ためのメモ
 
@@ -360,13 +360,13 @@ wodim をメンテナンスしている人たちへ謝辞を送ります。ま�
     - ファームウェアの更新情報は見つけることができなかった。
 
 - ファームウェア
-  - 現在のバージョンは、DX09 というのが、wodim のメッセージから分かる。
+  - 現在のバージョンは、DX09というのが、wodimのメッセージから分かる。
   - 新しいバージョンは、 [Optiarc AD-7560A Firmware Downloads - Firmware HQ](https://www.firmwarehq.com/Optiarc/AD-7560A/files.html) にあるようだが、下記の3点で、更新に躊躇している。問題にぶつかるまではいまのままでも良いような気もする。
     - (1)出自がいまいち分からない
     - (2)どれをあてていいのかわからない。
     - (3)更新方法がわからない。
 
-ちなみに、wodim のドキュメントを読むと、ファームのバグで書き込みに失敗する事例があり問題切り分けをしてパグレポートをするときに何をリファレンスとするか注意すること。
+ちなみに、wodimのドキュメントを読むと、ファームのバグで書き込みに失敗する事例があり問題切り分けをしてパグレポートをするときに何をリファレンスとするか注意すること。
 
 ## さいごに
 
