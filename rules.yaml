@@ -1,0 +1,15 @@
+version: 1
+rules:
+  # 大文字小文字全角半角の統一
+  - expected: JavaScript
+  - expected: jQuery
+  #
+  - expected: 技術書典
+    pattern:  /技術書(店|点|展|てん)/
+    specs:
+      - from: 技術書点
+        to:   技術書典
+      - from: 技術書展
+        to:   技術書典
+  #
+  # - expected

@@ -15,6 +15,12 @@
       "sentence-length": false,
       "no-exclamation-question-mark": false,
       "no-hankaku-kana": true
+    },
+    "prh": {
+      "rulePaths": [
+        "~/.cache/deno/npm/registry.npmjs.org/prh/5.4.4/prh-rules/languages/ja/typo.yml",
+        "./rules.yaml"
+      ]
     }
   }
 }
