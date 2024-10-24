@@ -99,9 +99,9 @@ Denoのサンプルプログラムをいくつも作るにあたって、いち�
 
 ### リポジトリでのVisual Studio Codeの設定
 
-リンク[この文章を書いた動機](#この文章を書いた動機)にもあるように、Deno自身のインストールや、拡張機能のDenoのリンク[Deno - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)はできているものとします。
+[この文章を書いた動機](#この文章を書いた動機)にもあるように、Deno自身のインストールや、拡張機能のDenoの[Deno - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)設定はできているものとします。
 
-リンク[リポジトリの構成](#リポジトリの構成)のプロジェクト例にある`.vscode`ディレクトリー配下の`settings.json`について私の設定をした出します。設定内容の意味は、Visual Studio Codeのホバーが教えてくれますし、ドキュメントはリンク[Deno &amp; Visual Studio Code](https://docs.deno.com/runtime/reference/vscode/)を参照します。
+[リポジトリの構成](#リポジトリの構成)のプロジェクト例にある`.vscode`ディレクトリー配下の`settings.json`について私の設定を下記に例示します。設定内容の意味は、Visual Studio Codeのホバーが教えてくれますし、ドキュメントは[Deno &amp; Visual Studio Code](https://docs.deno.com/runtime/reference/vscode/)を参照します。
 
 私に取ってはCode Lens機能はないと困るので、有効にしています。editor関係の設定は、`deno fmt`の設定に合わせること。デフォルトでは同じはずです。ですが、設定を変えたときハマらないように注意喚起をしておきます。
 
@@ -217,7 +217,7 @@ describe("権限なしのディレクトリの存在チェックテスト", {
 
 #### テストとDenoの権限管理
 
-既存のランタイムとの優位として、Denoは権限管理(permissions)を持っています。ファイルシステムの読み書き、ネットへのアクセスなど許可しておかないと権限要求されているけどええのか。とプロンプトが出ます。
+既存のランタイムとの優位として、Denoは権限管理(permissions)を持っています。ファイルシステムの読み書き、ネットへのアクセスなど許可しておかないと権限要求されているけどええのか。とプロンプトが出ます。詳しくは、本家ドキュメント[Security and permissions](https://docs.deno.com/runtime/fundamentals/security/)を参照しましょう。
 
 基本的なこととして、権限の許可は人間がプログラム実行時に行います。ただ、ユニットテストとしては、権限がない時のテストもしたいわけで、それが上記のmain_test.tsの最後の部分になります。権限がないのに実行しようとすると例外があがります。
 
