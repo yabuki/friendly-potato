@@ -60,7 +60,7 @@ Denoのサンプルプログラムをいくつも作るにあたって、いち�
 
 `deno init`すると、`deno bench`の雛形もあって、書いたコードの計測、テスト`deno test`、カバレッジ`deno test --coverage`と `deno coverage`、フォーマッター`deno fmt`やリンター`deno lint`が付いているのでコードを書くこと、と書いたコードの計測に集中できます。
 
-下記はプロジェクトの例です。
+下記はプロジェクトのレイアウト例です。
 
 ```
 /etude-deno/
@@ -94,6 +94,8 @@ Denoのサンプルプログラムをいくつも作るにあたって、いち�
 │       │   └── main_test.ts
 │       └── main_test.ts
 ```
+<!-- markdownlint-disable-next-line -->
+*プロジェクトのレイアウト例*
 
 ### リポジトリでのVisual Studio Codeの設定
 
@@ -119,6 +121,8 @@ Denoのサンプルプログラムをいくつも作るにあたって、いち�
     "deno.codeLens.test": true
 }
 ```
+<!-- markdownlint-disable-next-line -->
+*settings.jsonの例*
 
 `.vscode/launch.json`については、後ほど例示と解説をします。リポジトリを作ったばかりだと、`launch.json`は存在していないのが正しいです。
 
@@ -265,6 +269,8 @@ Monorepoの場合、デバックするときには対象となるプログラム
   ]
 }
 ```
+<!-- markdownlint-disable-next-line -->
+*デバッガの設定例*
 
 説明が必要そうなのは、既定値が`deno run`であったり`--unstable`オプションが指定してあったの削除したり"--inspect-wait"を"--inpect-brk"に変えた部分でしょうか。
 
