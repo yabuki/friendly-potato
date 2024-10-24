@@ -3,7 +3,7 @@
   "tasks": {
     "cache": "deno cache deps.ts",
     // Install or Update package
-    "update-package": "deno install -r -e deps.ts",
+    "update": "deno install -r -e deps.ts",
     "zenn": "deno run -A npm:zenn-cli",
     "zenn:preview": "deno task zenn preview --port 3005",
     "zenn:create:article": "deno task zenn new:article",
