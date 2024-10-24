@@ -17,3 +17,19 @@ rules:
     patterns:
       - /ソフトウ[エ|ェ]アー/
       - ソフトウエア
+  - expected: リポジトリ
+    patterns:
+      - /リ[ポ|ボ][ジ|ヂ]トリ[ィ|ー]/
+    specs:
+      - from: リポジトリー
+        to:   リポジトリ
+      - from: リポジトリィ
+        to:   リポジトリ
+  - expected: プロジェクト
+    patterns:
+      - /[プ|ブ]ロ[ジ|ヂ][エ|ェ]クト/
+    specs:
+      - from: プロジェクト
+        to:   プロジェクト
+      - from: プロジエクト
+        to:   プロジェクト
