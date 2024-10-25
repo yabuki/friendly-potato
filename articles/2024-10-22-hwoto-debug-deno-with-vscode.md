@@ -137,7 +137,7 @@ Denoはあるバージョンから、--unstableのオプションを細分化し
 
 ### テストを書く
 
-Deno.test`のスタイルや、bddなスタイルなとを選ぶことができます。お好みで使い分けてください。
+`Deno.test`のスタイルや、bddなスタイルなとを選ぶことができます。お好みで使い分けてください。 see also [Testing](https://docs.deno.com/runtime/fundamentals/testing/)
 
 サンプルとしてBDDスタイルの下記を置いておきます。expectを使いたい人は、deno addしてから、コメントのimportを有効にして書いてみると良いでしょう。
 
