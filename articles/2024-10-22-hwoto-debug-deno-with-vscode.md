@@ -94,8 +94,7 @@ Denoのサンプルプログラムをいくつも作るにあたって、いち�
 │       │   └── main_test.ts
 │       └── main_test.ts
 ```
-<!-- markdownlint-disable-next-line -->
-*プロジェクトのレイアウト例*
+*プロジェクトのレイアウト例* <!-- markdownlint-disable-line -->
 
 ### リポジトリでのVisual Studio Codeの設定
 
@@ -121,8 +120,7 @@ Denoのサンプルプログラムをいくつも作るにあたって、いち�
     "deno.codeLens.test": true
 }
 ```
-<!-- markdownlint-disable-next-line -->
-*settings.jsonの例*
+*settings.jsonの例* <!-- markdownlint-disable-line -->
 
 `.vscode/launch.json`については、後ほど例示と解説をします。リポジトリを作ったばかりだと、`launch.json`は存在していないのが正しいです。
 
@@ -269,8 +267,7 @@ Monorepoの場合、デバックするときには対象となるプログラム
   ]
 }
 ```
-<!-- markdownlint-disable-next-line -->
-*デバッガの設定例*
+*デバッガの設定例*<!-- markdownlint-disable-line -->
 
 説明が必要そうなのは、既定値が`deno run`であったり`--unstable`オプションが指定してあったの削除したり"--inspect-wait"を"--inpect-brk"に変えた部分でしょうか。
 
@@ -324,8 +321,3 @@ Deno Slackにいらっしゃる方々から色々と教えを受けています�
 記事に対するTypoの指摘などは、pull reqを希望する。
 受け入れるかどうかは、差分とPull reqの文章で判断します。
 
-<!-- 文章の目的は何か -->
-<!-- 読み手に何の情報を伝えるのか -->
-<!-- 読んだひとにどういう行動をしてもらいたいのか -->
-<!-- だれに向けての文章か -->
-<!-- この文章の肝はどこか -->
