@@ -43,7 +43,7 @@ published: false
 
 ## 本文
 
-## 参考にしたドキュメントたち
+## 参考文献
 
 以下の参考文献を背景にこの記事を書いている。
 
@@ -59,6 +59,11 @@ published: false
   - [naoya_t:ポール・グレアムのエッセイと和訳一覧](https://practical-scheme.net/wiliki/wiliki.cgi?naoya_t%3A%E3%83%9D%E3%83%BC%E3%83%AB%E3%83%BB%E3%82%B0%E3%83%AC%E3%82%A2%E3%83%A0%E3%81%AE%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4%E3%81%A8%E5%92%8C%E8%A8%B3%E4%B8%80%E8%A6%A7)
   - 他のポール・グレアムのエッセイは上記のリンクからたどれます。
 <!-- textlint-enable -->
+
+### Podcast
+
+- [28. 技術選定の審美眼(1) w/ twada](https://fukabori.fm/episode/28)
+  - ここの最初の審美眼というよりも、「選球眼」だという部分で、とこに時間を使うのかについて考えさせられる。
 
 ### 書籍
 
