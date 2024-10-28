@@ -13,6 +13,8 @@ rules:
         to:   技術書典
   #
   # - expected
+  - expected: プログラマ
+    patterns: プログラマー
   - expected: ソフトウェア
     patterns:
       - /ソフトウ[エ|ェ]アー/
