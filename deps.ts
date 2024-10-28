@@ -1,4 +1,4 @@
-import "npm:zenn-cli@^0.1";
+import "npm:zenn-cli@^0.1.158";
 import "npm:textlint@^14.0.0";
 import "npm:textlint-filter-rule-comments@^1.2.2";
 import "npm:textlint-rule-preset-ja-spacing@^2.4.3";
