@@ -3,6 +3,7 @@
     "comments": true
   },
   "rules": {
+    "no-dropping-the-ra": true,
     "preset-ja-spacing": true,
     "preset-jtf-style": {
       "1.1.3.箇条書き": false,
