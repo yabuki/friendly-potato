@@ -2,6 +2,9 @@ name: reviewdog
 
 # Controls when the action will run. 
 on:
+  workflow_dispatch:
+    branches: [ docs ]
+on:
   # Triggers the workflow on push or pull request events but only for the docs branch
   pull_request:
     branches: [ docs ]
