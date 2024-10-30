@@ -22,7 +22,7 @@
     },
     "prh": {
       "rulePaths": [
-        "~/.cache/deno/npm/registry.npmjs.org/prh/5.4.4/prh-rules/languages/ja/typo.yml",
+        "./typo.yml",
         "./rules.yaml"
       ]
     }
