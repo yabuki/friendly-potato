@@ -1,0 +1,48 @@
+name: reviewdog
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the docs branch
+  pull_request:
+    branches: [ docs ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  reviewdog-github-check:
+    name: reviewdog (github-check)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+
+      - name: Setup Node/npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # キャッシュ取得
+      - name: cache-node-modules
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            node-
+
+      - name: Install textlint
+        run:  'npm install --save-dev textlint textlint-rule-preset-ja-technical-writing textlint-rule-prh textlint-filter-rule-allowlist'
+
+      # デバッグ用SSHアクション
+#      - name: Setup tmate session
+#        uses: mxschmitt/action-tmate@v3
+
+      - name: Exec textlint-github-pr-check
+        uses: tsuyoshicho/action-textlint@v3
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: warning
+          textlint_flags: "articles/**"
