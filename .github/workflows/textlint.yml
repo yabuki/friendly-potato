@@ -4,7 +4,7 @@ name: reviewdog
 on:
   # Triggers the workflow on push or pull request events but only for the docs branch
   pull_request:
-    branches: [ docs ]
+    branches: [ gh_pages ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -14,7 +14,7 @@ jobs:
     
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
 
       - name: Setup Node/npm
         uses: actions/setup-node@v4
