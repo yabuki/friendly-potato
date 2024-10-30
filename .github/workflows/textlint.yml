@@ -33,7 +33,7 @@ jobs:
             node-
 
       - name: Install textlint
-        run:  'npm install --save-dev textlint textlint-rule-preset-ja-technical-writing textlint-rule-prh textlint-filter-rule-allowlist textlint-filter-rule-comments textlint-rule-preset-ja-spacing test-lint-rule-preset-jtf-style @proofdict/textlint-rule-proofdict'
+        run:  'npm install --save-dev textlint textlint-rule-preset-ja-technical-writing textlint-rule-prh textlint-filter-rule-allowlist textlint-filter-rule-comments textlint-rule-preset-ja-spacing textlint-rule-preset-jtf-style @proofdict/textlint-rule-proofdict'
 
       # デバッグ用SSHアクション
 #      - name: Setup tmate session
