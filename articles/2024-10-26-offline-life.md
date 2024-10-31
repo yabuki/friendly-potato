@@ -2,7 +2,7 @@
 title: "オフラインで集中して成果を出したい 2024年11月版"
 emoji: "😽"
 type: "idea" # tech: 技術記事 / idea: アイデア
-topics: [offline, poem]
+topics: [offline, ポエム]
 published: false
 ---
 ## 要約
