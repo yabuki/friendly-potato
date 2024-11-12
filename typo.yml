@@ -24,3 +24,5 @@ rules:
     pattern:  をを
   - expected: です。
     pattern: でず。
+  - expected: ます。
+    pattern: まず。
