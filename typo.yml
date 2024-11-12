@@ -22,3 +22,5 @@ rules:
         to:   Aまでです
   - expected: を
     pattern:  をを
+  - expected: す。
+    pattern: ず。
