@@ -1,6 +1,7 @@
 version: 1
 rules:
   # 大文字小文字全角半角の統一
+  - expected: TypeScript
   - expected: JavaScript
   - expected: jQuery
   #
@@ -11,8 +12,31 @@ rules:
         to:   技術書典
       - from: 技術書展
         to:   技術書典
-  #
-  # - expected
+
+  ### 語尾や接続表現
+  - expected: すべき
+    pattern:
+      - するべき
+
+  ### 漢字とひらがな
+  - expected: おこなう
+    pattern:
+      - 行う
+      - 行なう
+  - expected: すべて
+    pattern:
+      - 全て
+  - expected: および
+    pattern:
+      - 及び
+
+  ### カタカナ表記・外来語
+  - expected: ユーザー
+    pattern:  /ユーザ(?!ー)/
+  - expected: サーバー
+    pattern:  /サーバ(?!ー)/
+  - expected: レイヤー
+    pattern:  /レイヤ(?!ー)/
   - expected: プログラマ
     patterns: プログラマー
   - expected: ソフトウェア
@@ -35,3 +59,30 @@ rules:
         to:   プロジェクト
       - from: プロジエクト
         to:   プロジェクト
+
+  ### 送り仮名
+  - expected: 取り扱い
+    pattern: 取扱い
+  - expected: 割り当て
+    pattern: 割当て
+
+  ### 数字や全角・半角
+  - expected: ひとつ
+    pattern:
+      - 一つ
+      - 1つ
+
+  ### 英字・カタカナ
+  - expected: "web ACL"
+    pattern:
+      - "ウェブACL"
+      - "ウェブ ACL"
+
+  ### 略語
+  - expected: オンプレミス
+    pattern:  /オンプレ(?!ミス)/
+    specs:
+      - from: オンプレ
+        to: オンプレミス
+      - from: オンプレミス
+        to: オンプレミス
