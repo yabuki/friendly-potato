@@ -96,6 +96,9 @@ rules:
   - expected: "PageEdit"
     pattern:
         - "pageedit"
+  - expected: "Pandoc"
+    pattern:
+      - "pandoc"
 
   ### 略語
   - expected: オンプレミス
