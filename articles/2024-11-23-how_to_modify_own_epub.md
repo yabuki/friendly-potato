@@ -59,20 +59,20 @@ Debian GNU/Linuxで、Sigilを導入します。
 
 ![環境設定ダイアログ](<https://yabuki.github.io/friendly-potato/articles/images/2024-11-23_18-11.png> =600x)
 
-変更点は、EPUBのversionを3に指定すること。次のセクションでpageeditを使うなら、エディターのパスを設定する事です。
-Sigilとpageeditをaptでいれるなら、画像と同じ設定にしてください。
+変更点は、EPUBのversionを3に指定すること。次のセクションでPageEditを使うなら、エディターのパスを設定する事です。
+SigilとPageEditをaptでいれるなら、画像と同じ設定にしてください。
 
 ### EPUBの編集
 
-pageeditなしでもちょこちょこと変更はできます。OCRの誤認識由来の文字化けを訂正したり
+PageEditなしでもちょこちょこと変更はできます。OCRの誤認識由来の文字化けを訂正したり
 ルビをつけるぐらいならなくても不便ではありません。
 
-#### pageedit
+#### PageEdit
 
-ちょこちょこ書き換えるのではく、がっつりと書き換えるのなら、pageeditを使ってみるのも良いでしょう。
+ちょこちょこ書き換えるのではく、がっつりと書き換えるのなら、PageEditを使ってみるのも良いでしょう。
 `sudo apt install pageedit`
 
-pageeditは、Sigilと同じ所が開発しているEPUBエディターです。(XHTMLエディターというべきか)
+PageEditは、Sigilと同じ所が開発しているEPUBエディターです。(XHTMLエディターというべきか)
 
 余談ですが、他にEPUBを生成するには下記の方法があります。
 
@@ -102,7 +102,7 @@ pandocについては、自分で書くドキュメントも読み上げ可能�
 
 - [Sigilの初心者向け使い方、電子書籍のEPUBの作成に最適！ | 定年後のスローライフブログ](https://yanai-ke.com/sigil/)
 
-### pageedit
+### PageEdit
 
 - [What is PageEdit? - Sigil-Ebook](https://sigil-ebook.com/pageedit/)
 
