@@ -77,6 +77,11 @@ rules:
     pattern:
       - "ウェブACL"
       - "ウェブ ACL"
+  - expected: "EPUB"
+    patterns:
+      - "epub"
+      - "Epub"
+      - "EPub"
 
   ### 略語
   - expected: オンプレミス
