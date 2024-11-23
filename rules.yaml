@@ -82,6 +82,11 @@ rules:
       - "epub"
       - "Epub"
       - "EPub"
+  - expected: "Sigil"
+    pattern:
+      - "sigil"
+      - "sigile"
+      - "sigle"
 
   ### 略語
   - expected: オンプレミス
