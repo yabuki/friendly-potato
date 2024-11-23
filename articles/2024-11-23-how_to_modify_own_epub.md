@@ -3,7 +3,7 @@ title: "Linuxで自分の持っているEPUBファイルを修正する2024年11
 emoji: "🎉"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Debian,Linux,epub]
-published: false
+published: true
 ---
 ## 要約
 
