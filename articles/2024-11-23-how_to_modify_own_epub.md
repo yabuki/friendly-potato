@@ -18,7 +18,7 @@ EPUBには、規格があります。[EPUB 3.3](https://www.w3.org/TR/epub-33/)
 大まかな導入として、EPUB3の特徴については、[JEPA｜日本電子出版協会 EPUB3とは？](https://www.jepa.or.jp/ebookpedia/201512_2781/)
 などを参考にしてください。
 
-残念なことに、Kindleはルビタグを認識しても、アシスタントリーダーは参照して読んでくれませんでした。残念 2024-11-23 20:26 追記
+2024-11-23 20:26追記:残念なことに、Kindleはルビタグを認識しても、アシスタントリーダーは参照して読んでくれませんでした。残念です。
 
 ### この記事を書いた動機
 
@@ -42,17 +42,17 @@ Debian GNU/Linux Sidは開発版なので、わりと新しいソフトウェア
 ## 本文
 
 1. 編集したいEPUBを用意する
-2. sigilをインストールする
-3. sigilの初期設定をする
+2. Sigilをインストールする
+3. Sigilの初期設定をする
 4. EPUBを編集する
 5. send to kindleでパーソナルドキュメントエリアに送り込む
 6. 読み上げたい端末でダウンロードして内容を確認する
 
 気がすむまで4から6を繰り返します。
 
-### sigilのインストールと初期設定
+### Sigilのインストールと初期設定
 
-Debian GNU/Linuxで、Sigleを導入します。
+Debian GNU/Linuxで、Sigilを導入します。
 `sudo apt intall sigil`
 
 編集(E)→環境設定(F5)で環境設定のダイアログを出します。
@@ -60,7 +60,7 @@ Debian GNU/Linuxで、Sigleを導入します。
 ![環境設定ダイアログ](<https://yabuki.github.io/friendly-potato/articles/images/2024-11-23_18-11.png> =600x)
 
 変更点は、EPUBのversionを3に指定すること。次のセクションでpageeditを使うなら、エディターのパスを設定する事です。
-sigilとpageeditをaptでいれるなら、画像と同じ設定にしてください。
+Sigilとpageeditをaptでいれるなら、画像と同じ設定にしてください。
 
 ### EPUBの編集
 
@@ -72,7 +72,7 @@ pageeditなしでもちょこちょこと変更はできます。OCRの誤認識
 ちょこちょこ書き換えるのではく、がっつりと書き換えるのなら、pageeditを使ってみるのも良いでしょう。
 `sudo apt install pageedit`
 
-pageeditは、sigilと同じ所が開発しているEPUBエディターです。(XHTMLエディターというべきか)
+pageeditは、Sigilと同じ所が開発しているEPUBエディターです。(XHTMLエディターというべきか)
 
 余談ですが、他にEPUBを生成するには下記の方法があります。
 
@@ -95,7 +95,7 @@ pandocについては、自分で書くドキュメントも読み上げ可能�
 
 ## 参考文献
 
-### sigil
+### Sigil
 
 - [Sigil User Guide - Sigil-Ebook](https://sigil-ebook.com/sigil/guide/)
 - [Download Sigil - Sigil-Ebook](https://sigil-ebook.com/sigil/download/)
