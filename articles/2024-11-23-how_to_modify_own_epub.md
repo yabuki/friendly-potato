@@ -55,7 +55,7 @@ Debian GNU/Linuxで、Sigleを導入します。
 
 編集(E)→環境設定(F5)で環境設定のダイアログを出します。
 
-![環境設定ダイアログ](./images/2024-11-23_18-11.png)
+![環境設定ダイアログ](<https://yabuki.github.io/friendly-potato/articles/images/2024-11-23_18-11.png> =600x)
 
 変更点は、EPUBのversionを3に指定すること。次のセクションでpageeditを使うなら、エディターのパスを設定する事です。
 sigilとpageeditをaptでいれるなら、画像と同じ設定にしてください。
