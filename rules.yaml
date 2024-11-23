@@ -93,6 +93,9 @@ rules:
   - expected: "Send to Kindle"
     pattern:
       - "send to kindle"
+  - expected: "PageEdit"
+    pattern:
+        - "pageedit"
 
   ### 略語
   - expected: オンプレミス
