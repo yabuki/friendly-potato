@@ -82,6 +82,23 @@ rules:
       - "epub"
       - "Epub"
       - "EPub"
+  - expected: "Sigil"
+    pattern:
+      - "sigil"
+      - "sigile"
+      - "sigle"
+  - expected: "Kindle"
+    pattern:
+      - "kindle"
+  - expected: "Send to Kindle"
+    pattern:
+      - "send to kindle"
+  - expected: "PageEdit"
+    pattern:
+        - "pageedit"
+  - expected: "Pandoc"
+    pattern:
+      - "pandoc"
 
   ### 略語
   - expected: オンプレミス

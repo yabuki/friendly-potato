@@ -18,10 +18,12 @@ EPUBには、規格があります。[EPUB 3.3](https://www.w3.org/TR/epub-33/)
 大まかな導入として、EPUB3の特徴については、[JEPA｜日本電子出版協会 EPUB3とは？](https://www.jepa.or.jp/ebookpedia/201512_2781/)
 などを参考にしてください。
 
+2024-11-23 20:26追記:残念なことに、Kindleはルビタグを認識しても、アシスタントリーダーは参照して読んでくれませんでした。残念です。
+
 ### この記事を書いた動機
 
-kindleの読み上げ機能を使って積ん読を解消する記事は世の中にいくつかあります。EPUBをkindleに送って読み上げてもらっていると
-最新版では修正されいる誤植やOCRからEPUBにしている場合の文字化け、読み方の指示がないためにkindleの読み間違いがあると
+Kindleの読み上げ機能を使って積ん読を解消する記事は世の中にいくつかあります。EPUBをKindleに送って読み上げてもらっていると
+最新版では修正されいる誤植やOCRからEPUBにしている場合の文字化け、読み方の指示がないためにKindleの読み間違いがあると
 気になるので、EPUBの中身を書き換えたくなります。
 
 そのため、自分の使っているDebian GNU/LinuxでどうしたらEPUBの中身を書き換えられるかについて調べて、EPUBを修正し、Kindleに
@@ -40,46 +42,46 @@ Debian GNU/Linux Sidは開発版なので、わりと新しいソフトウェア
 ## 本文
 
 1. 編集したいEPUBを用意する
-2. sigilをインストールする
-3. sigilの初期設定をする
+2. Sigilをインストールする
+3. Sigilの初期設定をする
 4. EPUBを編集する
-5. send to kindleでパーソナルドキュメントエリアに送り込む
+5. Send to Kindleでパーソナルドキュメントエリアに送り込む
 6. 読み上げたい端末でダウンロードして内容を確認する
 
 気がすむまで4から6を繰り返します。
 
-### sigilのインストールと初期設定
+### Sigilのインストールと初期設定
 
-Debian GNU/Linuxで、Sigleを導入します。
+Debian GNU/Linuxで、Sigilを導入します。
 `sudo apt intall sigil`
 
 編集(E)→環境設定(F5)で環境設定のダイアログを出します。
 
-![環境設定ダイアログ](/images/2024-11-23_18-11.png)
+![環境設定ダイアログ](<https://yabuki.github.io/friendly-potato/articles/images/2024-11-23_18-11.png> =600x)
 
-変更点は、EPUBのversionを3に指定すること。次のセクションでpageeditを使うなら、エディターのパスを設定する事です。
-sigilとpageeditをaptでいれるなら、画像と同じ設定にしてください。
+変更点は、EPUBのversionを3に指定すること。次のセクションでPageEditを使うなら、エディターのパスを設定する事です。
+SigilとPageEditをaptでいれるなら、画像と同じ設定にしてください。
 
 ### EPUBの編集
 
-pageeditなしでもちょこちょこと変更はできます。OCRの誤認識由来の文字化けを訂正したり
+PageEditなしでもちょこちょこと変更はできます。OCRの誤認識由来の文字化けを訂正したり
 ルビをつけるぐらいならなくても不便ではありません。
 
-#### pageedit
+#### PageEdit
 
-ちょこちょこ書き換えるのではく、がっつりと書き換えるのなら、pageeditを使ってみるのも良いでしょう。
+ちょこちょこ書き換えるのではく、がっつりと書き換えるのなら、PageEditを使ってみるのも良いでしょう。
 `sudo apt install pageedit`
 
-pageeditは、sigilと同じ所が開発しているEPUBエディターです。(XHTMLエディターというべきか)
+PageEditは、Sigilと同じ所が開発しているEPUBエディターです。(XHTMLエディターというべきか)
 
 余談ですが、他にEPUBを生成するには下記の方法があります。
 
 - markdownから*pandoc*を使ってEPUBを生成する方法がある。
 - 他のOSで動くソフトウェアでは、ワードプロセッサーから変換するものがある。
 
-pandocについては、自分で書くドキュメントも読み上げ可能にできるので、試す時間があれば書きます。
+Pandocについては、自分で書くドキュメントも読み上げ可能にできるので、試す時間があれば書きます。
 
-### kindleのパーソナルドキュメントエリアに送り込む
+### Kindleのパーソナルドキュメントエリアに送り込む
 
 自分のマシンから、[Send to Kindle](https://www.amazon.co.jp/sendtokindle)にアクセスして、変更したEPUBファイルを
 アップロードします。
@@ -93,14 +95,14 @@ pandocについては、自分で書くドキュメントも読み上げ可能�
 
 ## 参考文献
 
-### sigil
+### Sigil
 
 - [Sigil User Guide - Sigil-Ebook](https://sigil-ebook.com/sigil/guide/)
 - [Download Sigil - Sigil-Ebook](https://sigil-ebook.com/sigil/download/)
 
 - [Sigilの初心者向け使い方、電子書籍のEPUBの作成に最適！ | 定年後のスローライフブログ](https://yanai-ke.com/sigil/)
 
-### pageedit
+### PageEdit
 
 - [What is PageEdit? - Sigil-Ebook](https://sigil-ebook.com/pageedit/)
 
@@ -111,10 +113,10 @@ pandocについては、自分で書くドキュメントも読み上げ可能�
 ## さいごに
 
 OCRに大量の処理をさせると、やはりぼつぽつと誤認識します。また本のレイアウトが複雑だと
-狙った順番に文章が配置されるわけではないです。何度もkindleに読み上げさせるなら、修正した
+狙った順番に文章が配置されるわけではないです。何度もKindleに読み上げさせるなら、修正した
 い部分を変更できるとストレスがなくなります。
 
-私は自分の手元にできるだけデータを置きたい人なので、kindleの本を買うのよほどの時です。
+私は自分の手元にできるだけデータを置きたい人なので、Kindleの本を買うのよほどの時です。
 頭の中に知識を定着させるのに、何度も読んだり聞いたりするこの手法は、コスパ・タイパが
 悪いように見えて、実は血肉になっているのではないか。と密かに思っています。
 
