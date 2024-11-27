@@ -22,3 +22,7 @@ rules:
         to:   Aまでです
   - expected: を
     pattern:  をを
+  - expected: です。
+    pattern: でず。
+  - expected: ます。
+    pattern: まず。
