@@ -126,6 +126,9 @@ subvolume set-defaultしているのは、/mnt/varでなく、/varとして見�
 
 ## 参考文献
 
+- [イマドキのディスクマウント方法 #Linux - Qiita](https://qiita.com/pluser/items/645531b570dfcc65e324)
+- [uuidによるデバイスのマウント #Linux - Qiita](https://qiita.com/qpSHiNqp/items/8e33f11b0f1a4a717e1a)
+
 - [Subvolumes — BTRFS documentation](https://btrfs.readthedocs.io/en/latest/Subvolumes.html#subvolume-flags)
 - [Btrfs を練習してみた #RaspberryPi - Qiita](https://qiita.com/masataka55/items/0ee9254ad9d0cf6b457a)
 
