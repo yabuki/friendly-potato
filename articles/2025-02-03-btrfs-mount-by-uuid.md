@@ -74,8 +74,10 @@ major minor  #blocks  name
 
 ### ストレージのマウント
 
-/etc/fstabにストレージのマウントするエントリーを書きます。予め/mnt2は作っておくこと。
-`UUID=b70f725b-1db9-4539-b2a6-a82d1804bb7e /mnt2           btrfs defaults,noatime,autodefrag,compress-force=lzo,space_cache   0       0`
+/etc/fstabにストレージのマウントする下記のように一行エントリーを書きます。予め/mnt2は作っておくこと。
+```
+UUID=b70f725b-1db9-4539-b2a6-a82d1804bb7e /mnt2           btrfs defaults,noatime,autodefrag,compress-force=lzo,space_cache   0       0
+```
 mount -aコマンドだけだと
 ```
 root@Orlanth:~# mount -a
