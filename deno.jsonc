@@ -21,5 +21,8 @@
     "singleQuote": false,
     "proseWrap": "preserve",
     "include": ["/articles", "/books"]
+  },
+  "imports": {
+    "zenn-cli": "npm:zenn-cli@^0.1.158"
   }
 }
