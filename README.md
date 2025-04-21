@@ -1,6 +1,6 @@
 # Zenn Contents
 
- - [How to use](https://zenn.dev/zenn/articles/zenn-cli-guide)
+- [How to use](https://zenn.dev/zenn/articles/zenn-cli-guide)
 
 ## markdownlintのドキュメント
 
@@ -16,7 +16,7 @@
   - [prh/rules: A collection of prh rules](https://github.com/prh/rules)
   - [textlint + prhで表記ゆれを検出する | Web Scratch](https://efcl.info/2015/09/14/textlint-rule-prh/)
   - [textlint + prhで文章を校正する方法 #textlint - Qiita](https://qiita.com/munieru_jp/items/83c2c44fcadb177d2806)
-  - 
+  -
 
 ## 2024-10-24
 
