@@ -3,7 +3,7 @@ title: "Postgresqlをpodman-composeでDebian Bookworm 上で動かす。2025/04�
 emoji: "📌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [postgresql, podman, debian, docker]
-published: false
+published: true
 ---
 ## 要約
 
