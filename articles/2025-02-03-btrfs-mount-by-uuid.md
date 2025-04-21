@@ -75,19 +75,22 @@ major minor  #blocks  name
 ### ストレージのマウント
 
 /etc/fstabにストレージのマウントする下記のように一行エントリーを書きます。予め/mnt2は作っておくこと。
+
 ```
 UUID=b70f725b-1db9-4539-b2a6-a82d1804bb7e /mnt2           btrfs defaults,noatime,autodefrag,compress-force=lzo,space_cache   0       0
 ```
+
 mount -aコマンドだけだと
+
 ```
 root@Orlanth:~# mount -a
 mount: (hint) your fstab has been modified, but systemd still uses
        the old version; use 'systemctl daemon-reload' to reload.
 ```
+
 と言われるので、systemctl daemon-reloadもやります。
 
 ### subvolumeの作成
-
 
 ```
 # btrfs subvolume create /mnt2/var
@@ -118,13 +121,11 @@ var
 
 subvolume set-defaultしているのは、/mnt/varでなく、/varとして見せるため。と昔のメモだでてきたので、そのように。/varの内容を/mnt2/varにコピーもしておきます。
 
-
 #### tips
 
 /etc/fstabにエントリーを書いて、/varに/mnt2/varをマウントします。参考例としてデバイスネームばかりの例がでてきましたが、UUIDで指定したかったのでbtrfs subvolme showで表示されるUUIDを指定して、そんなUUIDはない。と怒られていたわけですが。
 
 よくよく考えてみると、/dev/sda1の代わりにUUIDを使っているので、b70f725b-から始まるUUIDを指定すべきというのに思いつくまで少々時間がかかってしまいました。わかってしまえば、そうゃそうだ。と納得するわけですけど。
-
 
 ## 参考文献
 
@@ -135,7 +136,6 @@ subvolume set-defaultしているのは、/mnt/varでなく、/varとして見�
 - [Btrfs を練習してみた #RaspberryPi - Qiita](https://qiita.com/masataka55/items/0ee9254ad9d0cf6b457a)
 
 ## 謝辞
-
 
 ## さいごに
 
