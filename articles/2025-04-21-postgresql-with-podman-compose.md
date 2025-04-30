@@ -160,11 +160,65 @@ PHPのデータベース管理のインタフェースであるadminerにアク�
 
 それじゃ、あとは動かして楽しんで!
 
+### 2025-04-30 追記
+
+#### ロケールをja_JP.utf8にする。およびタイムゾーンをAisa/Tokyoにする。
+
+Dockerと同じであるが、
+
+Dockerfileを下記にする。
+
+```Dockerfile
+FROM postgres:17
+RUN DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y tzdata
+# containerの中では、systemdは動かないので、timezoneの設定
+# は別の方法ですること。
+run echo 'Asia/Tokyo' > /etc/timezone
+ENV TZ=Asia/Tokyo
+#run apt-get update && apt-get install -y postgresql-15
+RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+        && localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8
+ENV LANG ja_JP.utf8
+```
+
+```compose.yml
+version: '3'
+services:
+  postgres:
+    container_name: sample-db
+    build: .
+    restart: always
+    ports: 
+      - "5432:5432"
+    volumes:
+      - ./postgres/init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+```
+
+psqlは、`podman exec -it sample_db bash`してから、psql -U postgres で接続するとか
+手元に apt install postgresql-clientをいれて、`psql -U postgres -h localhost -d データベース名`
+とする。Debian stableのpostgresqlは15なので、17をつかっているので警告はでるが事実上は問題ない。
+
+./postgres/init/の内容については、参考文献の3を参照のこと。初期化のsqlを置くことができる。
+
+接続文字列としては、だいたい下記のようになってる。
+
+```
+DATABASE_URL=postgresql://[user[:password]@][host][:port]/[dbname]
+```
+
+```
+DATABASE_URL=postgresql://[postgres:postgrespassword@localhost/[接続したいデータベース名]
+```
+
 ## 参考文献
 
 1. [Podman - Debian Wiki](https://wiki.debian.org/Podman)
 2. [postgres - Official Image | Docker Hub](https://hub.docker.com/_/postgres/)
-
+3. [【PostgreSQL】docker-composeで起動と初期データ投入 #Docker - Qiita](https://qiita.com/ke_suke0215/items/90deba2bf484293000fc)
 ## 謝辞
 
 ## さいごに
@@ -173,7 +227,7 @@ PHPのデータベース管理のインタフェースであるadminerにアク�
 |:----               |:--------:|
 |記事を書きはじめた日|2025-04-21|
 |  記事を公開した日  |2025-04-21|
-|  記事を変更した日  |----------|
+|  記事を変更した日  |2025-04-30|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
