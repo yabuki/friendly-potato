@@ -23,10 +23,15 @@ rules:
 #  ### DataBase
   - expected: PostgreSQL
     patterns:
-      - postgres
+#      - postgres(?:ql)
       - ポスグレ
+      - ボスグレ
     specs:
-      - from: postgres
-        to: PostgreSQL
+#      - from: postgresql
+#        to: PostgreSQL
+#          #      - from: postgres
+#          #        to: PostgreSQL
       - from: ポスグレ
+        to: PostgreSQL
+      - from: ボスグレ
         to: PostgreSQL
