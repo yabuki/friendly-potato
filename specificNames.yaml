@@ -1,0 +1,32 @@
+# prh version
+version: 1
+rules:
+  # 固有名詞の統一と間違い訂正
+  ### Linux Distro
+    ### AlmaLinux
+  - expected: AlmaLinux
+    specs:
+      - from: almalinux
+        to: AlmaLinux
+      - from: Almalinux
+        to: AlmaLinux
+    ### Rocky Linux
+  ### container 関係
+  - expected: Docker
+    specs:
+      - from: docker
+        to: Docker
+  - expected: Podman
+    specs:
+      - from: podman
+        to: Podman
+#  ### DataBase
+  - expected: PostgreSQL
+    patterns:
+      - postgres
+      - ポスグレ
+    specs:
+      - from: postgres
+        to: PostgreSQL
+      - from: ポスグレ
+        to: PostgreSQL

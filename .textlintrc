@@ -23,6 +23,7 @@
     "prh": {
       "rulePaths": [
         "./typo.yml",
+        "./specificNames.yaml",
         "./rules.yaml"
       ]
     }
