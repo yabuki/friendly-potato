@@ -1,138 +1,148 @@
 ---
-title: "Deno、drizzleとPostgreSQLを使って開発イテレーションを回す 2025/05版"
+title: "Deno、DrizzleとPostgreSQLを使った開発イテレーション高速化 (2025/05版)"
 emoji: "🚀"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Deno, drizzle, postgresql, podman, contest2025ts]
-published: false
+published: true
 ---
 ## 要約
 
-タイトルのTypeScriptをDenoORMをdrizzleデータベースをPostgreSQLをBetter DockerおよびDocker composeとしてPodmanおよびPodman Composeを使い、開発イテレーションを早く回す方法について書いてみた。
+本記事では、TypeScriptランタイムとしてDeno、ORMとしてDrizzle、データベースとしてPostgreSQL、コンテナ管理としてPodmanおよびPodman Composeを用いた開発環境を構築し、開発イテレーションを高速化する方法を2025年5月時点の情報に基づいて解説します。
 
 ## はじめに
 
-参考文献の書籍1. Tidy First?、2. テスト駆動開発や3. リファクタリング(第2版)を読んで実践している人にとっては下記は自明です。
+Kent Beck氏の『Tidy First?』や『テスト駆動開発』、Martin Fowler氏の『リファクタリング(第2版)』などの書籍で提唱されている原則は、本記事で目指す開発スタイルと親和性が高いです。これらの実践は、設計と実装の距離を縮め、開発イテレーションを高速化し、将来の変更に対する柔軟性を確保することに繋がります。
 
-設計と実装の距離を短くするし開発イテレーションを回し将来への柔軟性を確保する。
-
-このような記事を読む人は意識されているでしょう。
-
-それを実験する一環として試行錯誤中の開発環境を書きます。
+この記事では、その一環として筆者が試行錯誤中の開発環境を紹介します。
 
 ### この記事の読み方
 
-使っている技術については、順番に読んでください。
+本記事では、環境構築から実際のコード実行までを順を追って説明します。各セクションで使用する技術についても解説しますので、順番にお読みいただくことを推奨します。
 
-この技術セットを選択した理由などは、「この記事を書いた動機と意図」に記しておくので興味があれば読んでください。
+技術選択の理由や背景に興味がある方は、「この記事を書いた動機と意図」セクションもご覧ください。
 
-この記事は方法論を示しその中で得た成果の一部を例示しています。タイトルの中に2025/05版という時期を入れています。昔はそうだったや、いまでは違う解決方法がある場合は適宜読み替えて下さい。
+この記事は特定の方法論を示し、その中で得られた知見や成果の一部を例として紹介するものです。タイトルに「2025/05版」とあるように、技術の進化やベストプラクティスの変化により、将来的には異なる解決方法が存在する可能性があることをご了承ください。
 
 ### この記事はだれ向けか
 
-複数の言語を経験しており一通りコードは書けるがTypeScriptを熟練するためにシステム全体を書いてみたい人です。
-ORMは、どういうSQLに変換されるか気になるので確認する方法も知りたいなど、なにか問題が起きたときに解決するための調査方法も興味がある人です。
+- 複数のプログラミング言語経験があり、TypeScriptのスキルを深めるためにシステム全体の構築を経験したい方。
+- ORMが生成するSQLを確認する方法や、問題発生時の調査方法にも興味がある方。
 
 ## 本文
 
 ### 使った環境
 
-- オペレーティング・システム: Debian GNU/Linux Bookworm
-- TypeScript実行環境: Deno 2.3.1
-- コンテナ: Debian stableにあるPodmanおよびPodman-compose
-    -  Podman         4.3.1+ds1-8+deb12u1
-    -  Podman-compose 1.0.3-3
+- オペレーティング・システム: Debian GNU/Linux 12 (Bookworm)
+- TypeScript実行環境: Deno 2.3.1 (またはそれ以降の安定版)
+- コンテナ: Podman 4.3.1, Podman-compose 1.0.3 (Debian stableリポジトリ提供版)
+    - Podman (podman version 4.3.1+ds1-8+deb12u1)
+    - Podman-compose (1.0.3-3)
+- PostgreSQL: 17 (コンテナイメージ)
+- Drizzle ORM / Drizzle Kit: (インストールするバージョンに依存)
 
-### ディレクトリなど
+### ディレクトリ構造
 
+プロジェクトルート（例: etude-podman-drizzle）は以下のようになります。
 ```
-+ etude-podman-drizzle
-+ .env
-+ Dockerfile
-+ compose.yml
-+ deno.json
-+ deno.lock
-+ drizzle
-+ drizzle.config.ts
-+ postgres
-  + init
-    + init.sql
-+ src
-  + db
-    + schema.ts
-  + script.ts
+etude-podman-drizzle/
+├── .env
+├── Dockerfile  # PostgreSQLコンテナのカスタマイズ用
+├── compose.yml # Podman Compose設定ファイル
+├── deno.json   # Denoプロジェクト設定ファイル
+├── deno.lock   # Denoロックファイル
+├── drizzle/    # Drizzle Kitが生成するファイル (マイグレーションSQLやスキーマなど)
+├── drizzle.config.ts # Drizzle Kit設定ファイル
+├── postgres/
+│   └── init/
+│       └── init.sql # PostgreSQL初期化用SQL
+└── src/
+    ├── db/
+    │   └── schema.ts # アプリケーション用DBスキーマ定義(Drizzle Kit生成物を元に作成・配置)
+    └── scripts.ts   # 動作確認用スクリプト
 ```
 
 ### 設定手順
 
-好きな名前で、ディレクトリを作ります。例は、カレントディレクトリにetude-Podman-drizzleというプロジェクトを作ります。
+1. プロジェクトディレクトリ作成と初期化
+任意の名前でプロジェクトディレクトリを作成します。
 
+```bash
+mkdir etude-podman-drizzle
+cd etude-podman-drizzle
+deno init # deno.json と deno.lock を生成
+git init  # 必要に応じてGitリポジトリを初期化
 ```
-deno init etude-podman-drizzle
-```
-できたら、`git init`などをするのもいいでしょう。
 
 
-使った環境ができている前提で、参考文献Web 5を読んで初期設定をします。
+2. Drizzle関連パッケージのインストール
+Drizzle ORM、Drizzle Kit (スキーマ生成・マイグレーションツール)、およびPostgreSQLドライバをインストールします。
 
-```
+```bash
+# Denoにnpmパッケージをインストール
 deno install npm:drizzle-orm npm:drizzle-kit npm:pg npm:@types/pg
 ```
 
-PostgreSQLに初期データを投入する方法などは、参考文献Web 7を参考にしました。
+3. 設定ファイルの準備
+以下の設定ファイルを作成します。詳しい内容はアコーディオン形式で示します。
 
-設定する、Docerfile compose.yml init.sqlについては、読みやすや優先でアコーデオンににしておきます。
+:::details .env (環境変数ファイル)
+データベース接続情報を記述します。compose.yml の設定と合わせてください。
+```dotenv
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/sample_db"
+```
+:::
 
-
-
-:::details Dockerfile
+:::details Dockerfile(PostgreSQLイメージカスタマイズ用)
 ```Dockerfile
 FROM postgres:17
 RUN DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y tzdata
-# containerの中では、systemdは動いてないっぽいので、timezoneの設定
-# は別の方法ですること。
-#run ls -la /etc/timezone
 run echo 'Asia/Tokyo' > /etc/timezone
 ENV TZ=Asia/Tokyo
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
         && localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8
-ENV LANG ja_JP.utf8
-
+ENV LANG ja_JP.UTF8
 ```
 :::
 
-:::details compose.yml
+:::details compose.yml(Podman Compose設定)
 
 ```compose.yml
 version: '3'
 services:
   postgres:
+    build: . # Dockerfileを使う
     container_name: sample-db
-    image: postgres:17
-      #build: . -t yab1
+    #image: postgres:17
     restart: always
     ports: 
       - "5432:5432"
     volumes:
       - ./postgres/init:/docker-entrypoint-initdb.d
+      # 永続化が必要なら、下記のpostgres_dataのコメントを外せ
+      # - postgres_data:/var/lib/postgresql/data # データ永続化のためボリュームを追加推奨
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "sample_db" # DB名をここで指定
+      TZ: "Asia/Tokyo"         # コンテナのタイムゾーン設定
+      PGTZ: "Asia/Tokyo"       # PostgreSQL内部のタイムゾーン設定
+#volumes: # トップレベルにvolumesセクションを追加
+- #  postgres_data:
 ```
 :::
 
-:::details init.sql
+:::details init.sql(PostgreSQL初期化スクリプト)
 
 ``` postgres/init/init.sql
 -- DB作成
-CREATE DATABASE sample_db;
+-- compose.ymlで定義したので、init.sqlでは実行しなくてよい。
+-- CREATE DATABASE sample_db;
 --CREATE DATABASE test
 --   LOCALE_PROVIDER icu
 --   ICU_LOCALE "en-US"
 --   LOCALE "en_US.utf8"
 --   TEMPLATE template0;
--- 作成したDBに接続
-\c sample_db;
 -- テーブル作成
 -- テーブル種別
 DROP TABLE IF EXISTS table_kind;
@@ -235,12 +245,15 @@ insert into jis_x0401(prefecture_id, name) values(47,'沖縄県');
 ```
 :::
 
+`.env` ファイルには、`compose.yml` で設定したデータベースのユーザー名やパスワードなど、接続情報を記述します。例は以下の通りです。
+
+
 .envは、compose.ymlに設定した。idとパスワードを設定します。例としては下記になります。
 ```.env
 DATABASE_URL=postgresql://postgres:postgres@localhost/sample_db
 ```
 
-そして、Denoは、dotenvを使いません。環境変数への適用はdeno組み込みの `--env`オプションを使います。
+Denoは標準では `.env` ファイルを自動で読み込みませんが、`--env` オプションを使用することで、指定したファイルから環境変数を読み込むことができます。
 
 データベースの内容を確認するため、下記の操作でpsqlを動かす準備をします。
 
@@ -258,6 +271,7 @@ psql -U postgres -d sample_db
 
 ```drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
+// import "std/dotenv/load.ts"; // もし --env を使わずスクリプト内で読み込みたい場合
 
 export default defineConfig({
   out: "./drizzle",
@@ -266,15 +280,21 @@ export default defineConfig({
   dbCredentials: {
     url: Deno.env.get("DATABASE_URL")!,
   },
+  // verbose: true, // SQLログを見たい場合
+  // strict: true,  // 厳格モード
 });
 ```
 
 そして、databaseの内容をdrizzleに取り込みます。
 `deno --env -A --node-modules-dir npm:drizzle-kit pull`
 
-`--node-mmodules-dir`オプションはnode_modulesディレクトリを作りますが、drizzle-kitを動かすために必要です。実行権限は`-A`で全部与えていますが、気になる人は制限してください。--envオプションで。envの内容を読み取って環境変数に渡しています。
+`--node-modules-dir`オプションはnode_modulesディレクトリを作りますが、drizzle-kitを動かすために必要です。実行権限は`-A`で全部与えていますが、気になる人は制限してください。--envオプションで。envの内容を読み取って環境変数に渡しています。
 
-drizzle-kitのpullサブコマンドで、データベースの内容を、drizzle/schema.tsなどに書き出します。
+drizzle-kitのpullサブコマンドは、DBからスキーマを読み取り、`drizzle.config.ts` の `schema` で指定されたファイル (この場合は `./src/db/schema.ts`) を**上書き**または生成します。
+
+また、`drizzle/` ディレクトリはマイグレーションファイル (`drizzle-kit generate` で生成) の出力先 (`out` オプション) です。
+
+データベースの内容を、drizzle/schema.tsなどに書き出します。
 ```
 ls -la drizzle/*
 -rw-r--r-- 1 yabuki yabuki 1585  5月  4 08:22 drizzle/0000_parallel_squadron_sinister.sql
@@ -292,7 +312,7 @@ drwxr-xr-x 1 yabuki yabuki  120  5月  4 08:22 ..
 スキーマが生成されるので、src/dbにコピーしておきます。
 srcに、サンプルスクリプトを置きます。
 
-```script.ts
+```scripts.ts
 
 import * as schema from './db/schema.ts';
 import { drizzle } from "drizzle-orm/node-postgres";
@@ -311,7 +331,8 @@ console.log(result);
 これを `deno run -A --env src/scripts.ts` で実行するとselectされた結果が帰っています。
 これを足がかりにして、処理を作っていくことができるでしょう。
 
-ちなみに、drizzleは現在のところ通貨型はサポートしていないようです。関係する一例はしては下記です。
+通貨型の扱いについて
+
 
 ```
 export const kenpoMoney = pgTable("kenpo_money", {
@@ -328,7 +349,9 @@ export const kenpoMoney = pgTable("kenpo_money", {
 ]);
 ```
 
-となり、TODOとなっていて、unknownになっているのがわかります。今の所、通貨型(see also参考文献Web 8) はデータベースの別の型で代用しないといけないみたいです。
+となり、TODOとなっていて、unknownになっているのがわかります。
+
+現在のDrizzle Kitでは、PostgreSQLの `money` 型を直接サポートしておらず `unknown` 型として解釈されます。そのため、`NUMERIC` 型などで代用し、アプリケーション側で適切に扱うことになるでしょう。（参考文献Web 8参照）。
 
 こんな風に動かして、コードを確認して堅牢なコードを書いていきましょう。AIにサポートは受けても、確認は必要なので。
 
@@ -337,15 +360,6 @@ export const kenpoMoney = pgTable("kenpo_money", {
 ```
 import { pgTable, integer, char, timestamp, unique, serial, text, date, smallint, varchar, pgSequence } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
-
-
-export const sampleIdSeq = pgSequence("sample_id_seq", {  startWith: "1", increment: "1", minValue: "1", maxValue: "9223372036854775807", cache: "1", cycle: false })
-
-export const sample = pgTable("sample", {
-	id: integer().primaryKey().notNull(),
-	name: char({ length: 100 }).notNull(),
-	createdDateTime: timestamp("created_date_time", { mode: 'string' }).default(sql`CURRENT_TIMESTAMP`).notNull(),
-});
 
 export const tableKind = pgTable("table_kind", {
 	id: serial().primaryKey().notNull(),
@@ -396,6 +410,11 @@ export const jisX0401 = pgTable("jis_x0401", {
 ```
 :::
 
+### ToDoリスト
+
+- PostgredSQLのmoney型を変更する。
+- Deno.json/Deno.jsoncにtaskを定義して、`deno -A npm drizzle-kit <subcommnd>`を簡単に呼び出せるようににする。
+- すでに下ごしらえをしている`sheetJS`を利用し社会保険データを抜き出して、データの検算をする。
 
 ## この記事を書いた動機と意図
 
@@ -404,11 +423,12 @@ export const jisX0401 = pgTable("jis_x0401", {
 - 新しいことを覚えるにあたって、一度にいっぱいの変化がやってくると受け入れる側が大変なので下記を気にしました。
     - 開発環境は自分の手慣れて、安定しているDebian GNU/Linux 12(Bookworm)を選択した。
 
+- AI(LLM)のサポートを受けながら、プログラミングをすることをVibe Codingと呼んでいる。
 - Vibe Codingをするのに、現状ではTypeScriptかPythonに一日の長があるように見える。フロントエンドとバックエンドの両方をひとつの言語で済むTypeScriptを選ぶことにした。
 - Vibe CodingをおこなうためにCopilotを使い始めた。ただしcopilotの無料枠なので、学習されても構わないプログラミング対象を選択する。つまりオープンソースとして出せそうな対象を題目とした。
 
-- TypeScriptの実行環境にDenoを選んだのは次の理由があります。node.jsは真面目にプログラミング環境を揃えるのに個別にlsp/linter/formatter/test suite/profilingなどをインストールする必要かあります。Denoは初期状態で全部入っています。
-- OSは、自分か使い慣れたDebian GNU/Linux stableを使いました。そのDebian GNU/Linuxのstableに収録されているPodmanをDockerの代わりとして使っていました。特別な設定をしなくてもPodmanならほぼDockerと同じように使えます。具体的な使い方については、手前味噌になりますが、参考文献のWeb 4。を参照してください。
+- TypeScriptの実行環境にDenoを選んだのは次の理由があります。node.jsは真面目にプログラミング環境を揃えるのに個別にlsp/linter/formatter/test suite/profilingインストールする必要かあります。Denoは初期状態で全部入っています。
+- OSは、自分が使い慣れたDebian GNU/Linux stableを使いました。そのDebian GNU/Linuxのstableに収録されているPodmanをDockerの代わりとして使っていました。特別な設定をしなくてもPodmanならほぼDockerと同じように使えます。具体的な使い方については、参考文献Web 4。を参照してください。
 
 - 社会保険料の料率計算は、公開情報であり自分で検算をするのにもちょうど良い題材に思えた。Excelでデータが提供されており、TypeScriptでエクセルを読み取るのに、複数パッケージを比較検討し、読み取るだけだしSheetJS(a.k.a xlsx package) が妥当そうだという結論に達した。
 
@@ -418,7 +438,7 @@ export const jisX0401 = pgTable("jis_x0401", {
 
 Mizchi氏のPGLiteは手元でも動かすことができましたが、そのうちdrizzle-kit studioなども動かしてみたいのと、psqlでどういうデーターが入っていくのか確認したい。というのもありこの構成にしています。
 
-CREATE TABLEや初期データの投入はスクリプトで行い、それをDrizzleで反映して確認するもの目的のひとつです。
+CREATE TABLEや初期データの投入はスクリプトで行い、それをDrizzleでスキーマとして取り込み、確認することも目的のひとつです。
 
 この記事は、[記事投稿コンテスト「TypeScriptでやってみた 挑戦・学び・工夫」 | Zenn](https://zenn.dev/contests/contest2025ts)に向けても書いています。
 
@@ -455,7 +475,7 @@ TypeScriptやPythonを使ったシステム構築や、プロジェクトのマ�
 |       件名         |   日付   |
 |:----               |:--------:|
 |記事を書きはじめた日|2025-05-04|
-|  記事を公開した日  |----------|
+|  記事を公開した日  |2025-05-21|
 |  記事を変更した日  |----------|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
