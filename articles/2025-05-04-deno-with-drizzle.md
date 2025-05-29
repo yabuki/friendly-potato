@@ -17,6 +17,8 @@ Kent Beck氏の『Tidy First?』や『テスト駆動開発』、Martin Fowler�
 
 なお、podman/podman-composeは、docker/docker composeと互換があるので、dockerのエコシステムでも動くはずです。
 
+2025-05-30 compose.ymlにミスを見つけたので修正しました。
+
 ### この記事の読み方
 
 本記事では、環境構築から実際のコード実行までを順を追って説明します。各セクションで使用する技術についても解説しますので、順番にお読みいただくことを推奨します。
@@ -126,12 +128,19 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
-      POSTGRES_DB: "sample_db" # DB名をここで指定
+      # POSTGRES_DB: "sample_db" # DB名をここで指定するとテーブルができない。
       TZ: "Asia/Tokyo"         # コンテナのタイムゾーン設定
       PGTZ: "Asia/Tokyo"       # PostgreSQL内部のタイムゾーン設定
 #volumes: # トップレベルにvolumesセクションを追加
 - #  postgres_data:
 ```
+
+2025-05-30 追記
+
+compose.ymlでデータベースを指定してしまうと、init.sqlで
+CREATE DATABASE 文で失敗するので、後に続くinit.sqlの内容
+が失敗する。なのでここは、指定しないのが正解です。
+
 :::
 
 :::details init.sql(PostgreSQL初期化スクリプト)
@@ -478,7 +487,7 @@ TypeScriptやPythonを使ったシステム構築や、プロジェクトのマ�
 |:----               |:--------:|
 |記事を書きはじめた日|2025-05-04|
 |  記事を公開した日  |2025-05-21|
-|  記事を変更した日  |----------|
+|  記事を変更した日  |2025-05-30|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
