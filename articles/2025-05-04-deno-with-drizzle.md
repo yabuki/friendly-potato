@@ -5,6 +5,11 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Deno, drizzle, postgresql, podman, contest2025ts]
 published: true
 ---
+
+:::message alert
+2025-05-30 compose.ymlにミスを見つけたので修正しました。
+:::
+
 ## 要約
 
 本記事では、TypeScriptランタイムとしてDeno、ORMとしてDrizzle、データベースとしてPostgreSQL、コンテナ管理としてPodmanおよびPodman Composeを用いた開発環境を構築し、開発イテレーションを高速化する方法を2025年5月時点の情報に基づいて解説します。
@@ -17,7 +22,6 @@ Kent Beck氏の『Tidy First?』や『テスト駆動開発』、Martin Fowler�
 
 なお、podman/podman-composeは、docker/docker composeと互換があるので、dockerのエコシステムでも動くはずです。
 
-2025-05-30 compose.ymlにミスを見つけたので修正しました。
 
 ### この記事の読み方
 
