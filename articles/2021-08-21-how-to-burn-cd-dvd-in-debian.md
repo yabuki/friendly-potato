@@ -107,7 +107,7 @@ brw-rw----+ 1 root cdrom 11, 0  8月 21 16:27 /dev/sr0
 uid=1000(yabuki) gid=1000(yabuki) groups=1000(yabuki),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),108(netdev),111(bluetooth),999(docker)
 ```
 
-Debian GNU/Linuxだと勝手に、/dev/sr0へ /dev/cdromや /dev/dvdからシンボリックリンクを作ってくれています。また、`id`コマンドで、自分のユーザが、/dev/sr0に書き込めることを確認しています。
+Debian GNU/Linuxだと勝手に、/dev/sr0へ /dev/cdromや /dev/dvdからシンボリックリンクを作ってくれています。また、`id`コマンドで、自分のユーザーが、/dev/sr0に書き込めることを確認しています。
 
 さて、接続を確認します。
 

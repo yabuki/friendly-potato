@@ -19,7 +19,7 @@ Debian GNU/Linux 12(Bookworm)を自分好みの設定にしたいことがあり
 そこで新規にコンテナを使って自分好みの設定にするべく作業した記録を残して
 将来の自分のために書き残しておきます。
 
-[^1]: incusについては、[第824回 Dockerコンテナをダイレクトに動かせるようになった「Incus 6.3」を、Ubuntu 24.04で試す | gihyo.jp](https://gihyo.jp/admin/serial/01/ubuntu-recipe/0824) などから、情報をたぐってみてください。わたしはdockerもいいけど、永続化できるコンテナで管理しやすく、軽量なものを探していたので、incusを使っています。ちなみに`incus file mount`コマンドは、dockerのvolumeより、私にはわかりやすかったです。sshfs経由で設定ファイルをコピーすればいいので、lxdのときのcpより使いやすいです。
+[^1]: incusについては、[第824回 Dockerコンテナをダイレクトに動かせるようになった「Incus 6.3」を、Ubuntu 24.04で試す | gihyo.jp](https://gihyo.jp/admin/serial/01/ubuntu-recipe/0824) などから、情報をたぐってみてください。わたしはDockerもいいけど、永続化できるコンテナで管理しやすく、軽量なものを探していたので、incusを使っています。ちなみに`incus file mount`コマンドは、Dockerのvolumeより、私にはわかりやすかったです。sshfs経由で設定ファイルをコピーすればいいので、lxdのときのcpより使いやすいです。
 
 ### この文章はだれ向けか
 
@@ -39,7 +39,7 @@ Debian GNU/Linuxをインストールされた環境を自分好みにしたい�
 1. システムのロカールをja_JP.UTF-8にする
 1. システムのローカルタイムをAsia/Tokyoにする
 1. 普段使いのユーザーを作る
-    - ユーザからsudoをできるように設定する
+    - ユーザーからsudoをできるように設定する
 
 ちなみに、openssh-serverを入れていないのは、テンプレート化する時に
 openssh-serverの鍵を生成しておくと同じ鍵が使いまわされてよくない
@@ -105,8 +105,8 @@ localectl set-locale ja_JP.UTF-8
 ### 別解
 
 2024-09-26バッチ処理をするときに便利な別解を見つけましたので、追記しておきます。
-2024-11-25 この別解、コマンドラインでロカールを設定するのは、incusで動かした
-Debian 12だと機能しませんでした。ひとまず、dpkg-reconfigure locales でインタラクティブ
+2024-11-25この別解、コマンドラインでロカールを設定するのは、incusで動かした
+Debian 12だと機能しませんでした。ひとまず、dpkg-reconfigure localesでインタラクティブ
 に設定したのですが、また追試して確かめておきます。
 
 参考文献にもあるように、下記のコマンドを投入します。debconfを使っているので、debian系限定です。
@@ -140,12 +140,12 @@ debconf: /usr/share/man/man8/dpkg-reconfigure.8.gz
 `timedatectl set-timezone Asia/Tokyo`
 で日本のローカル時間に合わせます。システムクロックはUTC前提です。
 
-### 一般ユーザの設定
+### 一般ユーザーの設定
 
 `adduser`で、普段使いのユーザーを作ります。私の場合は、rootで
 `adduser yabuki` としました。
 
-新規作成した一般ユーザでもsudoを使えるように、`visudo`コマンドで、/etc/sudoersを編集します。
+新規作成した一般ユーザーでもsudoを使えるように、`visudo`コマンドで、/etc/sudoersを編集します。
 
 visudoを使うとsudoersの設定をミスると終了前に教えてくれるのが良い所です。
 
