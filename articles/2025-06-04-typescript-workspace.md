@@ -138,6 +138,8 @@ repositoryのtopに存在するdeno.jsonまたはdeno.jsoncには下記のよう
 ```
 packageまたはmoduleも置けます。
 
+その他のworkspaceの利点については、参考文献 Web 5を参照してください。
+
 ## 参考文献
 
 ### Web
@@ -146,6 +148,7 @@ packageまたはmoduleも置けます。
 2. [JavaScript モジュール - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Modules)
 3. [Publishing packages - Docs - JSR](https://jsr.io/docs/publishing-packages)
 4. [npm-publish | npm Docs](https://docs.npmjs.com/cli/v11/commands/npm-publish)
+5. [Deno workspaces - uki00a](https://scrapbox.io/uki00a/Deno_workspaces)
 
 ### 書籍
 
