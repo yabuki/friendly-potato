@@ -78,7 +78,7 @@ podman search postgresql
 
 で、結果を見ます。
 
-:::message note
+:::message
 
 podmanは、storageのタイプを指定しないと、vfsが選択されます。
 あとから、storageの変更をするには`podman system reset --force` を実行してデータを全部吹き飛ばす必要があります。
