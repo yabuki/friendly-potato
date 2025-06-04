@@ -27,7 +27,7 @@ Deno 2.0系がリリースされ、新規にDenoを使い始めた人もいる�
 
 ### この文章を書いた動機
 
-Visual Studio Codeを使ってDenoで一つのGitリポジトリに複数のプロジェクトを使ってサンプルプログラムを作るにあたって調べたことを中心に2024年10月の時点で良さそうなプラクティスや設定をまとめたものです。
+Visual Studio Codeを使ってDenoでひとつのGitリポジトリに複数のプロジェクトを使ってサンプルプログラムを作るにあたって調べたことを中心に2024年10月の時点で良さそうなプラクティスや設定をまとめたものです。
 
 また1から調べるのも大変だし、これから変わっていくにしても、自分の中で差分元を設定する必要があり、どこからでも参照できるようにZenn.devで公開するのが良いと判断しました。
 
@@ -52,7 +52,7 @@ Visual Studio Codeを使ってDenoで一つのGitリポジトリに複数のプ�
 
 Denoのサンプルプログラムをいくつも作るにあたって、いちいちGitのレポジトリを用意するのは面倒だし、面倒だと腰が重くなってやらなくなってしまう。
 
-参考文献のリンク[monorepoとworkspace](#monorepoとworkspace)には、わりと大層なMonorepoの説明がされているし、実際そういう部分もある。だが私が意図しているのは、いくつもの独立したプロジェクトを一つのリポジトリに置いて気軽にコードを書いていきたい。という所です。
+参考文献のリンク[monorepoとworkspace](#monorepoとworkspace)には、わりと大層なMonorepoの説明がされているし、実際そういう部分もある。だが私が意図しているのは、いくつもの独立したプロジェクトをひとつのリポジトリに置いて気軽にコードを書いていきたい。という所です。
 
 例えば、下記は不要な部分を消していますが、実際使っている`etude-deno`というリポジトリに、root project/cliffy/ndcdir/syahoなどの書き捨てのプロジェクトを量産しています。
 
@@ -99,7 +99,7 @@ Denoのサンプルプログラムをいくつも作るにあたって、いち�
 
 [この文章を書いた動機](#この文章を書いた動機)にもあるように、Deno自身のインストールや、拡張機能のDenoの[Deno - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)設定はできているものとします。
 
-[リポジトリの構成](#リポジトリの構成)のプロジェクト例にある`.vscode`ディレクトリー配下の`settings.json`について私の設定を下記に例示します。設定内容の意味は、Visual Studio Codeのホバーが教えてくれますし、ドキュメントは[Deno &amp; Visual Studio Code](https://docs.deno.com/runtime/reference/vscode/)を参照します。
+[リポジトリの構成](#リポジトリの構成)のプロジェクト例にある`.vscode`ディレクトリ配下の`settings.json`について私の設定を下記に例示します。設定内容の意味は、Visual Studio Codeのホバーが教えてくれますし、ドキュメントは[Deno &amp; Visual Studio Code](https://docs.deno.com/runtime/reference/vscode/)を参照します。
 
 私に取ってはCode Lens機能はないと困るので、有効にしています。editor関係の設定は、`deno fmt`の設定に合わせること。デフォルトでは同じはずです。ですが、設定を変えたときハマらないように注意喚起をしておきます。
 

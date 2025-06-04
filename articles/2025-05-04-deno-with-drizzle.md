@@ -20,7 +20,7 @@ Kent Beck氏の『Tidy First?』や『テスト駆動開発』、Martin Fowler�
 
 この記事では、その一環として筆者が試行錯誤中の開発環境を紹介します。
 
-なお、podman/podman-composeは、docker/docker composeと互換があるので、dockerのエコシステムでも動くはずです。
+なお、Podman/Podman-composeは、Docker/Docker composeと互換があるので、Dockerのエコシステムでも動くはずです。
 
 
 ### この記事の読み方
@@ -43,14 +43,14 @@ Kent Beck氏の『Tidy First?』や『テスト駆動開発』、Martin Fowler�
 - オペレーティング・システム: Debian GNU/Linux 12 (Bookworm)
 - TypeScript実行環境: Deno 2.3.1 (またはそれ以降の安定版)
 - コンテナ: Podman 4.3.1, Podman-compose 1.0.3 (Debian stableリポジトリ提供版)
-    - Podman (podman version 4.3.1+ds1-8+deb12u1)
+    - Podman (Podman version 4.3.1+ds1-8+deb12u1)
     - Podman-compose (1.0.3-3)
 - PostgreSQL: 17 (コンテナイメージ)
 - Drizzle ORM / Drizzle Kit: (インストールするバージョンに依存)
 
 ### ディレクトリ構造
 
-プロジェクトルート（例: etude-podman-drizzle）は以下のようになります。
+プロジェクトルート（例: etude-Podman-drizzle）は以下のようになります。
 ```
 etude-podman-drizzle/
 ├── .env
@@ -94,7 +94,7 @@ deno install npm:drizzle-orm npm:drizzle-kit npm:pg npm:@types/pg
 以下の設定ファイルを作成します。詳しい内容はアコーディオン形式で示します。
 
 :::details .env (環境変数ファイル)
-データベース接続情報を記述します。compose.yml の設定と合わせてください。
+データベース接続情報を記述します。compose.ymlの設定と合わせてください。
 ```dotenv
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/sample_db"
 ```
@@ -139,10 +139,10 @@ services:
 - #  postgres_data:
 ```
 
-2025-05-30 追記
+2025-05-30追記
 
 compose.ymlでデータベースを指定してしまうと、init.sqlで
-CREATE DATABASE 文で失敗するので、後に続くinit.sqlの内容
+CREATE DATABASE文で失敗するので、後に続くinit.sqlの内容
 が失敗する。なのでここは、指定しないのが正解です。
 
 :::

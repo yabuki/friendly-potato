@@ -7,16 +7,16 @@ published: true
 ---
 ## 要約
 
-Debian GNU/Linux bookwormで、docker.ioを追加して、PostgresqlのOffical Docker Imageを動かします。
+Debian GNU/Linux bookwormで、Docker.ioを追加して、PostgresqlのOffical Docker Imageを動かします。
 
 ## はじめに
 
-この記事を書いている、2025-04-21現在、Debian GNU/Linuxは、現行の12(コードネーム bookworm)から次のバージョン 13(コードネーム trixie)をリリースするためにパッケージのフリーズをしてバグ出しをしています。
-2年単位でリリースされるDebian GNU/Linuxに収録されているDocker互換のpodmanとpodman-composeを使ってここまでできたという報告になります。
+この記事を書いている、2025-04-21現在、Debian GNU/Linuxは、現行の12(コードネームbookworm)から次のバージョン13(コードネームtrixie)をリリースするためにパッケージのフリーズをしてバグ出しをしています。
+2年単位でリリースされるDebian GNU/Linuxに収録されているDocker互換のPodmanとPodman-composeを使ってここまでできたという報告になります。
 
 ### この記事を書いた動機
 
-dockerは基本、rootで動くので、dockerが作成するファイルはownerがrootになりがちです。一般ユーザの領域にrootのファイルが置いてあると処置が面倒なんで、基本ユーザーで動くpodmanを使いたいと思っていました。
+Dockerは基本、rootで動くので、Dockerが作成するファイルはownerがrootになりがちです。一般ユーザーの領域にrootのファイルが置いてあると処置が面倒なんで、基本ユーザーで動くPodmanを使いたいと思っていました。
 
 Debian GNU/Linuxに、PostgreSQLのパッケージは存在しますが、アプリケーション開発時にSQLiteの機能では足りないときに事実上Dockerコンテナを使うことが多々あるのと、ORMでコードをいっぱい書かないと実現できないことを、標準のSQLで確認する簡単に作って壊せる環境が欲しかったのもあります。
 
@@ -26,31 +26,31 @@ SQLを初心者だけでなく、中級者(caseとかを使いたくなった人
 
 2種類の人を想定しています。
 
-1. さくっと PostgreSQLを試したい。ちゃんとしたデータベースの設計(ハードウェアやパーティション、チューニング込み)は、それなりの必要が出てからでよいと思っている人です。
+1. さくっとPostgreSQLを試したい。ちゃんとしたデータベースの設計(ハードウェアやパーティション、チューニング込み)は、それなりの必要が出てからでよいと思っている人です。
 2. Debian系のディストリビューションを使っており、Dockerだけにbidするのは、いまいちだな。と思って別の方法のノウハウを貯めておきたいと動き始めた人です。
 
 ### この記事の読み方
 
-この記事は、大別して２つトピックがあります。
+この記事は、大別して2つトピックがあります。
 
-1. Debian GNU/Linux 12(bookworm)で、podmanをインストールしてdocker.ioからイメージを取得するようにする。
-2. podman-composeで、docker.ioに登録されているOffical PostgreSQL imageをdocker-compose.ymlを書いて起動し、その使い方の説明をする。
+1. Debian GNU/Linux 12(bookworm)で、PodmanをインストールしてDocker.ioからイメージを取得するようにする。
+2. Podman-composeで、Docker.ioに登録されているOffical PostgreSQL imageをDocker-compose.ymlを書いて起動し、その使い方の説明をする。
 
 です。片方のトピックだけ興味がある場合は、片方だけ読むのもありだと思います。
 
 ## 本文
 
-### Debian GNU/Linux 12(bookworm)でpodman-composeをインストールする
+### Debian GNU/Linux 12(bookworm)でPodman-composeをインストールする
 
-私は、aptitudeを使っているので、podmanとpodman-composeを指定して、インストールしました。aptでなら、
+私は、aptitudeを使っているので、PodmanとPodman-composeを指定して、インストールしました。aptでなら、
 
 ```
 sudo apt install podman podman-compose
 ```
 
-でよいです。あとは、参考文献の1.にあるDebian Wikiを参考に確認していきます。
+でよいです。あとは、参考文献の1。にあるDebian Wikiを参考に確認していきます。
 
-podmanのインストール後の動作確認として
+Podmanのインストール後の動作確認として
 
 ```
 podman search --limit 3 quay.io/podman
@@ -58,7 +58,7 @@ podman search --limit 3 quay.io/podman
 
 を実行しておきます。
 
-ここまでのステップでdocker.ioを追加します。
+ここまでのステップでDocker.ioを追加します。
 
 ```
 mkdir -p $HOME/.config/containers
@@ -73,15 +73,15 @@ podman search postgresql
 
 で、結果を見ます。
 
-### PostgreSQLのOffical Imageをpodman-composeで使う
+### PostgreSQLのOffical ImageをPodman-composeで使う
 
 参考文献の2で示す、PostgreSQLをオンメモリで使う設定は、ちょこっとSQLの独習にはちょうどいい。
 テストデータをちょこっと入れたりとかにもいい。
 
 留意点は下記
 
-- 正しく docker-compose.yml をコピペしよう。
-  - 間違えると、podman-compose up -dするときに
+- 正しくDocker-compose.ymlをコピペしよう。
+  - 間違えると、Podman-compose up -dするときに
 
 ```
   File "/usr/lib/python3/dist-packages/podman_compose.py", line 239, in <listcomp>
@@ -90,9 +90,9 @@ podman search postgresql
 AttributeError: 'dict' object has no attribute 'split'
 ```
 
-みたいなエラーででて、困ることがある。新しいバージョンだともっとロバストになっている可能性はあるが、まずは間違えないことが重要です。
+みたいなエラーでて、困ることがある。新しいバージョンだともっとロバストになっている可能性はあるが、まずは間違えないことが重要です。
 
-#### podman-composeに成功したら
+#### Podman-composeに成功したら
 
 下記のような表示がでて、サービスが起動します。
 
@@ -154,15 +154,15 @@ exit code: 0
 ```
 
 PHPのデータベース管理のインタフェースであるadminerにアクセスするには、http://localhost:8080/か、http://動いている環境のIP:8080/にアクセスします。
-ドキュメントどおりなら、ユーザ名:postgres パスワードはdocker-compose.ymlに書いている database名はpostgresでアクセスできます。
+ドキュメントどおりなら、ユーザー名:postgresパスワードはDocker-compose.ymlに書いているdatabase名はpostgresでアクセスできます。
 
 一回動かしてしまえば、あとはドキュメントを読みながらちょこちょこと書き換えて試せます。
 
-それじゃ、あとは動かして楽しんで!
+それじゃ、あとは動かして楽しんで！
 
 ### 2025-04-30 追記
 
-#### ロケールをja_JP.utf8にする。およびタイムゾーンをAisa/Tokyoにする。
+#### ロケールをja_JP.utf8にする。およびタイムゾーンをAisa/Tokyoにする
 
 Dockerと同じであるが、
 
@@ -198,8 +198,8 @@ services:
       POSTGRES_PASSWORD: "postgres"
 ```
 
-psqlは、`podman exec -it sample_db bash`してから、psql -U postgres で接続するとか
-手元に apt install postgresql-clientをいれて、`psql -U postgres -h localhost -d データベース名`
+psqlは、`podman exec -it sample_db bash`してから、psql -U postgresで接続するとか
+手元にapt install postgresql-clientをいれて、`psql -U postgres -h localhost -d データベース名`
 とする。Debian stableのpostgresqlは15なので、17をつかっているので警告はでるが事実上は問題ない。
 
 ./postgres/init/の内容については、参考文献の3を参照のこと。初期化のsqlを置くことができる。

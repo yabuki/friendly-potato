@@ -45,7 +45,7 @@ Mountするストレージデバイスを初期化する。具体的にはパー
 
 何も指定しないと、manにあるように、/proc/partitionsにあるパーティションを対象にします。
 
-ちなみに接続しているのは、1TBのm.2 SSDがEFI/filesystem/swap SCSI接続の500GBが/dev/sda1 SCSIの変換アダプター経由の m.2 SSDが/dev/sdbになります。
+ちなみに接続しているのは、1TBのm.2 SSDがEFI/filesystem/swap SCSI接続の500GBが/dev/sda1 SCSIの変換アダプター経由のm.2 SSDが/dev/sdbになります。
 
 ```
 $ cat /proc/partitions 

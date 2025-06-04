@@ -31,7 +31,7 @@ deno初心者は足りない情報を別の文書で探して読む必要があ�
 
 1. deno.jsonに、既定値のnoneではなく、manualを設定する。 [Deno 2.0 Release Candidate](https://deno.com/blog/v2.0-release-candidate#the-manual-mode)
 1. denoで読み替えて、`deno add npm:next@latest npm:react@latest npm:react-dom@latest`を実行する。
-    - typescriptの実行環境はdenoが持っているし、型情報は`--dev`でインストールする
+    - TypeScriptの実行環境はdenoが持っているし、型情報は`--dev`でインストールする
 
 ### 下準備
 
@@ -203,8 +203,8 @@ denoのpermissionをちゃんと検討するなら、taskを実行させる時�
 動きました。が、正しく設定されているか。との間には距離があるのは技術者なら自覚していますよね。
 他の方もどんどん試して、記事にして切磋琢磨していくことになるでしょう。
 
-特にtypescriptの実行環境であるdenoで動かしているが、
-依存関係でtypescriptを導入しているのが気になっています。
+特にTypeScriptの実行環境であるdenoで動かしているが、
+依存関係でTypeScriptを導入しているのが気になっています。
 
 発生していたエラー `deno add --dev npm:typescirpt`すると、もちろん発生しない。
 
