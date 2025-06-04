@@ -163,6 +163,7 @@ TypeScriptやPythonを使ったシステム構築や、プロジェクトのマ�
 GitHubから[yabuki (YABUKI Yukiharu)](https://github.com/yabuki) 連絡お待ちしております。
 
 
+|       件名         |   日付   |
 |:----               |:--------:|
 |記事を書きはじめた日|2025-06-04|
 |  記事を公開した日  |----------|
