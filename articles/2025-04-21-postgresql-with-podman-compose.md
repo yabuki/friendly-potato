@@ -5,6 +5,11 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [postgresql, podman, debian, docker]
 published: true
 ---
+
+:::message alert
+2025-06-05 podmanのstorage方式の既定値がVFSだったので、OverlayFSに置き換える方法を追記しました。
+:::
+
 ## 要約
 
 Debian GNU/Linux bookwormで、Docker.ioを追加して、PostgresqlのOffical Docker Imageを動かします。
@@ -45,7 +50,7 @@ SQLを初心者だけでなく、中級者(caseとかを使いたくなった人
 私は、aptitudeを使っているので、PodmanとPodman-composeを指定して、インストールしました。aptでなら、
 
 ```
-sudo apt install podman podman-compose
+sudo apt install podman podman-compose containers-storage
 ```
 
 でよいです。あとは、参考文献の1。にあるDebian Wikiを参考に確認していきます。
@@ -72,6 +77,21 @@ podman search postgresql
 ```
 
 で、結果を見ます。
+
+:::message note
+
+podmanは、storageのタイプを指定しないと、vfsが選択されます。
+あとから、storageの変更をするには`podman system reset --force` を実行してデータを全部吹き飛ばす必要があります。
+そのため、最初からstorage typeを好みのタイプにしておくのは結構重要です。
+
+```ini:$HOME/.config/containers/storage.conf
+[storage]
+driver = "overlay"
+```
+
+などとしておきましょう。詳しくは `man 5 containers-storage.conf`を実行してください。containers-storage.confのマニュアルはcontainers-storageパッケージに入っているので入っていない場合はインストールしておきましょう。VFSだけならなくても困らないかもですが。VFSを使いつづけるの非効率です。
+
+:::
 
 ### PostgreSQLのOffical ImageをPodman-composeで使う
 
@@ -223,11 +243,15 @@ DATABASE_URL=postgresql://[postgres:postgrespassword@localhost/[接続したい�
 
 ## さいごに
 
+TypeScriptやPythonを使ったシステム構築や、プロジェクトのマネージメントなどシステム構築や開発のサポートなどお仕事を募集しております。
+GitHubから[yabuki (YABUKI Yukiharu)](https://github.com/yabuki) 連絡お待ちしております。
+
+
 |       件名         |   日付   |
 |:----               |:--------:|
 |記事を書きはじめた日|2025-04-21|
 |  記事を公開した日  |2025-04-21|
-|  記事を変更した日  |2025-04-30|
+|  記事を変更した日  |2025-06-05|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
