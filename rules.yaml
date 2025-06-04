@@ -59,6 +59,16 @@ rules:
         to:   プロジェクト
       - from: プロジエクト
         to:   プロジェクト
+  - expected: レジストリ
+    pattern:  レジストリー
+    spec:
+      from: レジストリー
+      to: レジストリ
+  - expected: ディレクトリ
+    pattern:  ディレクトリー
+    spec:
+      from: ディレクトリー
+      to: ディレクトリ
 
   ### 送り仮名
   - expected: 取り扱い
