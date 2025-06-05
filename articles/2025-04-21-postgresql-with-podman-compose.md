@@ -23,7 +23,7 @@ Debian GNU/Linux bookwormで、Docker.ioを追加して、PostgresqlのOffical D
 
 ### この記事を書いた動機
 
-Dockerは基本、rootで動くので、Dockerが作成するファイルはownerがrootになりがちです。一般ユーザーの領域にrootのファイルが置いてあると処置が面倒なんで、基本ユーザーで動くPodmanを使いたいと思っていました。
+Dockerは基本、rootで動くので、Dockerが作成するファイルはownerがrootになりがちです。一般ユーザーの領域にrootのファイルが存在すると対処が面倒なんで、基本ユーザーのパーミッションで動くPodmanを使いたいと思っていました。
 
 Debian GNU/Linuxに、PostgreSQLのパッケージは存在します。しかし、アプリケーション開発時にSQLiteの機能では足りないときに事実上Dockerコンテナを使うことが多々あります。
 またORMでコードをいっぱい書かないと実現できない処理を、標準のSQLで実現するために、SQLクエリを簡単に作って壊せる環境が欲しかったのもあります。
@@ -36,8 +36,8 @@ SQLを初心者だけでなく中級者(caseとかを使いたくなった人向
 
 2種類の人を想定しています。
 
-1. すぐにPostgreSQLを使ってみたい人です。
-2. Debian系のディストリビューションを使っており、かつDocker以外も試したい人です。
+1. すぐにPostgreSQLを使ってみたい人。
+2. Debian系のディストリビューションを使っていて、かつDocker以外も試したい人。
 
 ### この記事の読み方
 
@@ -46,7 +46,7 @@ SQLを初心者だけでなく中級者(caseとかを使いたくなった人向
 1. Debian GNU/Linux 12(bookworm)で、PodmanをインストールしてDocker.ioからイメージを取得するようにする。
 2. Podman-composeで、Docker.ioに登録されているOffical PostgreSQL imageをDocker-compose.ymlを書いて起動し、その使い方の説明をする。
 
-です。片方のトピックだけ興味がある場合は、片方だけ読むのもありです。
+です。片方のトピックだけ興味をもっているなら、片方だけ読むのもありです。
 
 ## 本文
 
@@ -58,7 +58,7 @@ SQLを初心者だけでなく中級者(caseとかを使いたくなった人向
 sudo apt install podman podman-compose containers-storage
 ```
 
-参考文献の1。にあるDebian Wikiを参考にしてください。
+参考文献の1のDebian Wikiを参考にしてください。
 
 Podmanのインストール後の動作確認として下記を実行します。
 
