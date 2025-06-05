@@ -7,7 +7,9 @@ published: true
 ---
 
 :::message alert
-2025-06-05 podmanのstorage方式の既定値がVFSだったので、OverlayFSに置き換える方法を追記しました。
+
+2025-06-05Podmanのstorage方式の既定値がVFSだったので、OverlayFSに置き換える方法を追記しました。
+
 :::
 
 ## 要約
@@ -23,16 +25,19 @@ Debian GNU/Linux bookwormで、Docker.ioを追加して、PostgresqlのOffical D
 
 Dockerは基本、rootで動くので、Dockerが作成するファイルはownerがrootになりがちです。一般ユーザーの領域にrootのファイルが置いてあると処置が面倒なんで、基本ユーザーで動くPodmanを使いたいと思っていました。
 
-Debian GNU/Linuxに、PostgreSQLのパッケージは存在しますが、アプリケーション開発時にSQLiteの機能では足りないときに事実上Dockerコンテナを使うことが多々あるのと、ORMでコードをいっぱい書かないと実現できないことを、標準のSQLで確認する簡単に作って壊せる環境が欲しかったのもあります。
+Debian GNU/Linuxに、PostgreSQLのパッケージは存在します。しかし、アプリケーション開発時にSQLiteの機能では足りないときに事実上Dockerコンテナを使うことが多々あります。
+またORMでコードをいっぱい書かないと実現できない処理を、標準のSQLで実現するために、SQLクエリを簡単に作って壊せる環境が欲しかったのもあります。
 
-SQLを初心者だけでなく、中級者(caseとかを使いたくなった人向け)SQL関係の本を読みながら、手を動かすのにも良いので、記事にして、本と一緒に、これ読んで。と渡せるのが良いと考えています。
+SQLを初心者だけでなく中級者(caseとかを使いたくなった人向け)SQL関係の本を読みながら手を動かすのにも良い環境を作って、zenn.devの記事にしておくとSQLを学ぶ本と一緒にこれ読んで。
+
+と渡せるのが良いと考えています。
 
 ### この記事はだれ向けか
 
 2種類の人を想定しています。
 
-1. さくっとPostgreSQLを試したい。ちゃんとしたデータベースの設計(ハードウェアやパーティション、チューニング込み)は、それなりの必要が出てからでよいと思っている人です。
-2. Debian系のディストリビューションを使っており、Dockerだけにbidするのは、いまいちだな。と思って別の方法のノウハウを貯めておきたいと動き始めた人です。
+1. すぐにPostgreSQLを使ってみたい人です。
+2. Debian系のディストリビューションを使っており、かつDocker以外も試したい人です。
 
 ### この記事の読み方
 
@@ -41,27 +46,25 @@ SQLを初心者だけでなく、中級者(caseとかを使いたくなった人
 1. Debian GNU/Linux 12(bookworm)で、PodmanをインストールしてDocker.ioからイメージを取得するようにする。
 2. Podman-composeで、Docker.ioに登録されているOffical PostgreSQL imageをDocker-compose.ymlを書いて起動し、その使い方の説明をする。
 
-です。片方のトピックだけ興味がある場合は、片方だけ読むのもありだと思います。
+です。片方のトピックだけ興味がある場合は、片方だけ読むのもありです。
 
 ## 本文
 
 ### Debian GNU/Linux 12(bookworm)でPodman-composeをインストールする
 
-私は、aptitudeを使っているので、PodmanとPodman-composeを指定して、インストールしました。aptでなら、
+私は、aptitudeを使っているので、PodmanとPodman-composeを指定して、インストールしました。
 
 ```
 sudo apt install podman podman-compose containers-storage
 ```
 
-でよいです。あとは、参考文献の1。にあるDebian Wikiを参考に確認していきます。
+参考文献の1。にあるDebian Wikiを参考にしてください。
 
-Podmanのインストール後の動作確認として
+Podmanのインストール後の動作確認として下記を実行します。
 
 ```
 podman search --limit 3 quay.io/podman
 ```
-
-を実行しておきます。
 
 ここまでのステップでDocker.ioを追加します。
 
@@ -80,7 +83,7 @@ podman search postgresql
 
 :::message
 
-podmanは、storageのタイプを指定しないと、vfsが選択されます。
+Podmanは、storageのタイプを指定しないと、vfsが選択されます。
 あとから、storageの変更をするには`podman system reset --force` を実行してデータを全部吹き飛ばす必要があります。
 そのため、最初からstorage typeを好みのタイプにしておくのは結構重要です。
 
@@ -91,6 +94,29 @@ driver = "overlay"
 
 などとしておきましょう。詳しくは `man 5 containers-storage.conf`を実行してください。containers-storage.confのマニュアルはcontainers-storageパッケージに入っているので入っていない場合はインストールしておきましょう。VFSだけならなくても困らないかもですが。VFSを使いつづけるの非効率です。
 
+確認方法はいくつかあります。
+
+```bash
+ls ~/.local/share/containers/storage
+defaultNetworkBackend  mounts    overlay             overlay-images  storage.lock  userns.lock
+libpod                 networks  overlay-containers  overlay-layers  tmp           volumes
+```
+
+おすすめは `containers-storage status`コマンドです。
+私の手元では、下記の結果になります。
+
+```bash
+sudo containers-storage status
+Root: /var/lib/containers/storage
+Run Root: /run/containers/storage
+Driver Name: overlay
+Driver Options: [overlay.mountopt=nodev]
+Backing Filesystem: btrfs
+Supports d_type: true
+Native Overlay Diff: true
+Using metacopy: false
+```
+
 :::
 
 ### PostgreSQLのOffical ImageをPodman-composeで使う
@@ -98,7 +124,7 @@ driver = "overlay"
 参考文献の2で示す、PostgreSQLをオンメモリで使う設定は、ちょこっとSQLの独習にはちょうどいい。
 テストデータをちょこっと入れたりとかにもいい。
 
-留意点は下記
+留意点は下記です。
 
 - 正しくDocker-compose.ymlをコピペしよう。
   - 間違えると、Podman-compose up -dするときに
@@ -110,7 +136,7 @@ driver = "overlay"
 AttributeError: 'dict' object has no attribute 'split'
 ```
 
-みたいなエラーでて、困ることがある。新しいバージョンだともっとロバストになっている可能性はあるが、まずは間違えないことが重要です。
+みたいなエラーでて、困ることがあります。新しいバージョンだともっとロバストになっている可能性はありますが、まずは間違えないことが重要です。
 
 #### Podman-composeに成功したら
 
@@ -173,7 +199,7 @@ a63aacb8933f810b366895c7173cc7f141e5f0d80c28b720706e3875832d3558
 exit code: 0
 ```
 
-PHPのデータベース管理のインタフェースであるadminerにアクセスするには、http://localhost:8080/か、http://動いている環境のIP:8080/にアクセスします。
+PHPのデータベース管理のインタフェースadminerにアクセスするには、http://localhost:8080/か、http://動いている環境のIP:8080/にアクセスします。
 ドキュメントどおりなら、ユーザー名:postgresパスワードはDocker-compose.ymlに書いているdatabase名はpostgresでアクセスできます。
 
 一回動かしてしまえば、あとはドキュメントを読みながらちょこちょこと書き換えて試せます。
@@ -184,9 +210,7 @@ PHPのデータベース管理のインタフェースであるadminerにアク�
 
 #### ロケールをja_JP.utf8にする。およびタイムゾーンをAisa/Tokyoにする
 
-Dockerと同じであるが、
-
-Dockerfileを下記にする。
+Dockerと同じように、Dockerfileを下記のように記述する。
 
 ```Dockerfile
 FROM postgres:17
@@ -261,10 +285,3 @@ GitHubから[yabuki (YABUKI Yukiharu)](https://github.com/yabuki) 連絡お待�
 
 記事に対するTypoの指摘などは、pull reqをしてもらえるとありがたいです。
 受け入れるかどうかは、差分とPull reqの文章で判断いたします。
-
-<!-- 文章の目的は何か -->
-<!-- 読み手に何の情報を伝えるのか -->
-<!-- 読んだひとにどういう行動をしてもらいたいのか -->
-<!-- だれに向けての文章か -->
-<!-- この文章の肝はどこか -->
-<!-- 画像はrepoのtopにあるimagesに入れよ -->
