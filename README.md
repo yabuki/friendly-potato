@@ -18,6 +18,10 @@
   - [textlint + prhで文章を校正する方法 #textlint - Qiita](https://qiita.com/munieru_jp/items/83c2c44fcadb177d2806)
   -
 
+## 2025-06-05
+
+箇条書きで、ですますで指摘される場合は体言止めをしてみるのも良い。
+
 ## 2024-10-24
 
 markdownlintのlint内容で、zenn.devのキャプションが指摘されるのを抑制するのに
