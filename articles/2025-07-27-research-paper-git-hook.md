@@ -40,8 +40,6 @@ git commit`コマンドは頻繁に使っているので、そこに対して自
 
 また別の切り口として、自分のよく知っているツールでフックの管理をしている場合もあります。私は最近、TypeScript/JavaScriptのランタイムDenoをよく使っているので、参考文献7の記事から、参考文献8の`deno hooks`を知りました。
 
-
-
 ## 参考文献
 
 1. [Git - Git フック](https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA-Git-%E3%83%95%E3%83%83%E3%82%AF)
@@ -56,9 +54,6 @@ git commit`コマンドは頻繁に使っているので、そこに対して自
 8. [Yakiyo/deno_hooks: Husky inspired easy-to-use git hooks manager for deno](https://github.com/Yakiyo/deno_hooks)
 9. [commitlint の紹介 #Git - Qiita](https://qiita.com/ybiquitous/items/74225bc4bf0a9ddcd7dd)
 10. [Git Hooks (commit-msg) でコミットメッセージの書式チェック #githooks - Qiita](https://qiita.com/aKuad/items/f345331baa37c605e08a)
-
-## 謝辞
-
 
 ## さいごに
 
