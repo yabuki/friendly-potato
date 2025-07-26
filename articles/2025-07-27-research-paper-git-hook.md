@@ -1,5 +1,5 @@
 ---
-title: "git hootに関するリサーチペーパーっぽい何か 2025年07月"
+title: "git hookに関するリサーチペーパーっぽい何か 2025年07月"
 emoji: "😊"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: [git]
