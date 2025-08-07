@@ -35,3 +35,4 @@ rules:
         to: PostgreSQL
       - from: ボスグレ
         to: PostgreSQL
+  - expected: ROCm

@@ -1,9 +1,9 @@
 ---
-title: "自作PCでgpt-ossを動かす"
+title: "自作PCでGPT-OSSを動かす"
 emoji: "🌟"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [debian, podman, ollama, llm]
-published: false
+published: true
 ---
 ## 要約
 
@@ -64,10 +64,59 @@ Incusのコンテナで、gmini-cliなど試す記事は別途書く予定です
 
 また、autofsで必要にに応じてNFSマウントをしており、使用頻度が低くなったデータで消せないものなどはどんどんNASに追い出しています。
 
+必要なコマンドは、install済みとします。今回は、podmanです。podmanのインストールに関しては、[Postgresqlをpodman-composeでDebian Bookworm 上で動かす。2025/04版](https://zenn.dev/yabuki/articles/2025-04-21-postgresql-with-podman-compose)が、2025-08-07 時点でも参考になります。
 
 ## 本文
 
+自作マシンには、ASUS製のRX7900XTX 24GBを載せている。そのためAMDの[ROCm™ 7 ソフトウェア](https://www.amd.com/ja/products/software/rocm/whats-new.html)が供給しているソフトウェアを使うのが良い。ollamaはROCm入りのコンテナ・イメージを供給している。(参考文献2)
+podmanで利用するには、下記のコマンドを実行する。
+
+```
+podman run -d --device /dev/kfd --device /dev/dri -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama:rocm
+```
+
+上記のコマンドで、ollamaを起動する。gpt-oss:20bをコマンドラインで実行するのに、ollama pullなどでもモデルを取ってこれるが、
+```
+podman exec -it ollama ollama run gpt-oss:20b
+```
+
+とすると、参考文献3にあるリストのモデルを取ってきて実行する。これらのモデルも大きい物がおおい。
+
+![13GBを越えるgpt-oss:20bのでーた量](/images/2025-08-07_08-02.png)
+*13GBを越えるgpt-oss:20bのデータ量をダウンロードしている様子*
+
+GPT-OSSについては、参考文献4参照すること。
+
+こんな感じで動いています。
+[![asciicast](https://asciinema.org/a/27kn7ZrF9yhmzkvnxIgnCNO4E.svg)](https://asciinema.org/a/27kn7ZrF9yhmzkvnxIgnCNO4E)
+
+### ollamaでGPT OSS:20Bを動かした所感
+
+まずは、モデルの大きさが気になりました。
+
+```
+podman exec -it ollama ollama ls
+NAME           ID              SIZE     MODIFIED    
+gpt-oss:20b    f2b8351c629c    13 GB    9 hours ago 
+```
+*ollamaコマンドで取得してきたモデルを確認してみた例*
+
+podmanがイメージを置いている場所を確認して、大きなイメージをいっぱい置いても大丈夫にしたいですね。
+
+また、ROCmが有効に動いているかを確認する方法はどうしたらいいのか。も気になりました。
+暫定として`apt install -y radeontop` として、GPUのモニタリングをしてみることにしました。
+
+![radeontop](/images/2025-08-07_16-39.png)
+*radeontopの表示例*
+
+
 ## 参考文献
+
+1. [ollama/ollama - Docker Image | Docker Hub](https://hub.docker.com/r/ollama/ollama)
+2. [ollama/ollama - Docker Image | Docker Hub](https://hub.docker.com/r/ollama/ollama#amd-gpu)
+    - AMD GPUに対応する ROCmを利用するならここを参照すること。
+3. [library](https://ollama.com/library)
+4. [gpt-oss](https://ollama.com/library/gpt-oss)
 
 
 
@@ -79,7 +128,7 @@ Incusのコンテナで、gmini-cliなど試す記事は別途書く予定です
 |       件名         |   日付   |
 |:----               |:--------:|
 |記事を書きはじめた日|2025-08-06|
-|  記事を公開した日  |----------|
+|  記事を公開した日  |2025-08-07|
 |  記事を変更した日  |----------|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
