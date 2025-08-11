@@ -274,6 +274,8 @@ projectです。より詳しい説明は、参考文献9を参照してくださ
 
 文献8を参考に、profileを作る。profileの基礎的なことは、参考文献11を参照すること。
 
+:::details incus profile create
+
 ```
 incus profile create --help
 Description:
@@ -302,6 +304,7 @@ Global Flags:
   -v, --verbose        Show all information messages
       --version        Print version number
 ```
+:::
 
 ```
 incus profile create bridge
