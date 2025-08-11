@@ -204,6 +204,19 @@ drwxr-xr-x 1 root root        1352  8月 11 11:08 ..
 localeを日本語にして、timezoneをAsia/Tokyoにしたりなど毎回やらないといけない処理を省くには王道としてはincusのイメージを作ることですが、
 [サードパーティーツールと統合 - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/third_party/)にあるDistrobuilderをつかうのかもしれません。^[GRAM: GitHub の自己ホストランナーを稼働できる Github Actions Runner Manager を作るのも楽しそう]
 
+:::message 2025-08-12 追記
+
+タイムゾーンの変更方法は cloud-init を使う方法もあると教えてもらいました。
+
+https://x.com/hnakamur2/status/195492179443726783://x.com/hnakamur2/status/1954921794437267837
+
+イメージの後ろに/cloudとあるやつが、cloud-init対応だそうです。cloud-initに関しては 
+[cloud-init 25.1.4 documentation](https://cloudinit.readthedocs.io/en/latest/index.html)
+がドキュメントのようです。Cloud上で初期設定をするのに広く使われているようですね。
+
+:::
+
+
 incusに対して、terraformやOpenTofuで設定する方法もありますが、ansibleがお手軽っぽい。でも今回はもっと簡単にインスタンスのバックアップから任意のインスタンスを作る方法を試します。
 
 Odaylaというマシンで、trixieという名前でDebian 13を設定したコンテナを作りました。
@@ -374,8 +387,8 @@ incus network attach-profile enp6s0 bridge eth0
 |       件名         |   日付   |
 |:----               |:--------:|
 |記事を書きはじめた日|2025-08-11|
-|  記事を公開した日  |----------|
-|  記事を変更した日  |----------|
+|  記事を公開した日  |2025-08-11|
+|  記事を変更した日  |2025-08-12|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
