@@ -3,7 +3,7 @@ title: "コンテナをVMみたいに使うならincusが便利だよ。2025/08�
 emoji: "🫙"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [incus, debian, container]
-published: false
+published: true
 ---
 ## 要約
 
@@ -35,7 +35,9 @@ Debian GNU/Linux stable(Debian 12)でも、backportされて、aptでインス�
 
 ### この記事の読み方
 
-推奨は、順番に読むことを想定しています。記事の中でそうしている
+推奨は、順番に読むことを想定しています。設定済みのインスタンスの部分まで読んでもらえたらokです。
+
+それ以降は、よりincusを便利に使いたい人向けのやりこみコンテンツになります。
 
 ## 本文
 
@@ -181,7 +183,8 @@ projects:
 ```
 :::
 
-ログの置き場所
+### ログの置き場所
+
 ```
 ls -la /var/log/incus/
 合計 4
@@ -191,6 +194,153 @@ drwxr-xr-x 1 root root        1352  8月 11 11:08 ..
 -rw------- 1 root root           0  8月 11 11:03 incus.log
 -rw------- 1 root root         159  8月 11 11:03 incus.log.1
 ```
+
+### インスタンスの立ち上げ方
+
+`incus launch` すればいい。参考文献12を参照してください。
+
+### 設定済みのインスタンスを動かす
+
+localeを日本語にして、timezoneをAsia/Tokyoにしたりなど毎回やらないといけない処理を省くには王道としてはincusのイメージを作ることですが、
+[サードパーティーツールと統合 - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/third_party/)にあるDistrobuilderをつかうのかもしれません。^[GRAM: GitHub の自己ホストランナーを稼働できる Github Actions Runner Manager を作るのも楽しそう]
+
+incusに対して、terraformやOpenTofuで設定する方法もありますが、ansibleがお手軽っぽい。でも今回はもっと簡単にインスタンスのバックアップから任意のインスタンスを作る方法を試します。
+
+Odaylaというマシンで、trixieという名前でDebian 13を設定したコンテナを作りました。
+```
+incus export trixie ./trixie-backup.tar.gz
+```
+でバックアップファイルを作ります。
+
+scpでOrlanthという新しくincusをセットアップしたマシンに、trixie-backup.tar.gzを
+コピーします。
+
+上記のファイルを元にvibe coding用のコンテナを作ります。
+
+```
+incus import ./trixie-backup.tar.gz vibe
+```
+進捗表示がでたあとにコマンドプロンプトが戻ってくるのでコピーできたか確認します。
+
+```
+incus list
++------+---------+------+------+-----------+-----------+
+| NAME |  STATE  | IPV4 | IPV6 |   TYPE    | SNAPSHOTS |
++------+---------+------+------+-----------+-----------+
+| vibe | STOPPED |      |      | CONTAINER | 0         |
++------+---------+------+------+-----------+-----------+
+```
+望むインタンスができているようなので、
+`incus start vibe`で起動させます。
+
+```
+incus list
++------+---------+-----------------------+------------------------------------------------+-----------+-----------+
+| NAME |  STATE  |         IPV4          |                      IPV6                      |   TYPE    | SNAPSHOTS |
++------+---------+-----------------------+------------------------------------------------+-----------+-----------+
+| vibe | RUNNING | 10.184.187.149 (eth0) | fd42:41ff:4ab7:deb4:1266:6aff:fe69:93e5 (eth0) | CONTAINER | 0         |
++------+---------+-----------------------+------------------------------------------------+-----------+-----------+
+
+```
+
+ひとまず、ここまでで、一区切りとします。以下は追加的なコンテンツです。
+気になる人だけ読んでください。
+
+
+### project と profile
+
+以下はincusを便利に使うための話になります。だんだんと複雑になります。
+
+個々のインスタンスに統一したプロファイルを適用して、インスタンスをグループ化して扱うのが
+projectです。より詳しい説明は、参考文献9を参照してください。
+
+ただし、プロジェクトにはユーザーのできることを制限することにも使えるが、それを設定すると参考文献10のような罠があるので困ったときのためのリンクを置いておきます。
+
+#### incusのインスタンスをLANのIPで運用したい。
+
+文献8を参考に、profileを作る。profileの基礎的なことは、参考文献11を参照すること。
+
+```
+incus profile create --help
+Description:
+  Create profiles
+ 
+Usage:
+  incus profile create [<remote>:]<profile> [flags]
+ 
+Examples:
+  incus profile create p1
+      Create a profile named p1
+ 
+  incus profile create p1 < config.yaml
+      Create a profile named p1 with configuration from config.yaml
+ 
+Flags:
+      --description   Profile description
+ 
+Global Flags:
+      --debug          Show all debug messages
+      --force-local    Force using the local unix socket
+  -h, --help           Print help
+      --project        Override the source project
+  -q, --quiet          Don't show progress information
+      --sub-commands   Use with help or --help to view sub-commands
+  -v, --verbose        Show all information messages
+      --version        Print version number
+```
+
+```
+incus profile create bridge
+```
+
+Linux machineで利用しているイーサネットのデバイス名を取得する
+```
+ip a | grep  'state UP'
+2: enp6s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+```
+:::details incus network list
+```
+incus network list
++----------+----------+---------+-----------------+---------------------------+-------------+---------+---------+
+|   NAME   |   TYPE   | MANAGED |      IPV4       |           IPV6            | DESCRIPTION | USED BY |  STATE  |
++----------+----------+---------+-----------------+---------------------------+-------------+---------+---------+
+| enp6s0   | physical | NO      |                 |                           |             | 0       |         |
++----------+----------+---------+-----------------+---------------------------+-------------+---------+---------+
+| incusbr0 | bridge   | YES     | 10.184.187.1/24 | fd42:41ff:4ab7:deb4::1/64 |             | 1       | CREATED |
++----------+----------+---------+-----------------+---------------------------+-------------+---------+---------+
+| lo       | loopback | NO      |                 |                           |             | 0       |         |
++----------+----------+---------+-----------------+---------------------------+-------------+---------+---------+
+```
+:::
+
+`incus network list`を確認することで、incusのnetworkにenp6s0が生成されているのを確認した。
+
+:::details incus network attach-profileコマンドの確認
+```
+incus network attach-profile --help
+Description:
+  Attach network interfaces to profiles
+ 
+Usage:
+  incus network attach-profile [<remote>:]<network> <profile> [<device name>] [<interface name>] [flags]
+ 
+Global Flags:
+      --debug          Show all debug messages
+      --force-local    Force using the local unix socket
+  -h, --help           Print help
+      --project        Override the source project
+  -q, --quiet          Don't show progress information
+      --sub-commands   Use with help or --help to view sub-commands
+  -v, --verbose        Show all information messages
+      --version        Print version number
+```
+:::
+
+
+```
+incus network attach-profile enp6s0 bridge eth0
+```
+
 
 
 ## 参考文献
@@ -208,16 +358,22 @@ drwxr-xr-x 1 root root        1352  8月 11 11:08 ..
 
 8. [プロのインフラエンジニアが、incus で Docker してみた。 ② ～ incus 編 ～｜笛あおい。](https://note.com/fueaoi/n/n417dd67c2895)
 
+9. [プロジェクトについて - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/explanation/projects/#projects-confined)
+10.  [Incus(≒LXD)の&quot;User restricted project&quot;の設定方法について - turgenev’s blog](https://turgenev.hatenablog.com/entry/2025/04/24/022718)
+11. [プロファイルを使用するには - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/profiles/)
+12. [インスタンスを作成するには - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/howto/instances_create/)
+
 - [第459回 LXDを使ってDockerコンテナをマイグレーション | gihyo.jp](https://gihyo.jp/admin/serial/01/ubuntu-recipe/0459)
 
 ## 謝辞
 
+言及している参考文献の方々に御礼申し上げます。とりわけincusのドキュメントを翻訳していただいている方々。
 
 ## さいごに
 
 |       件名         |   日付   |
 |:----               |:--------:|
-|記事を書きはじめた日|2025-07-19|
+|記事を書きはじめた日|2025-08-11|
 |  記事を公開した日  |----------|
 |  記事を変更した日  |----------|
 
