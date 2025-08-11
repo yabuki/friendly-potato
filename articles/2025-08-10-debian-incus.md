@@ -20,7 +20,7 @@ Debian GNU/Linux 13(code name:trixie)で、Vibe Codingをする準備のため�
 用途によって道具を使い分けるのが良いのではないか。という提案が本記事になります。参考文献の7のスライド、水野さんはLXDの話をしていますが、これはほぼIncusでも通用する話です。
 
 IncusはLXDからのForkになります。(詳しくは、参考文献の3.を参照せよ) snapdをインストールしなくても使えるので、私がメインで使っている。
-Debian GNU/Linux stable(Debian 12)でも、backportされて、aptでインストール可能になっています。BackportされているIncusは、LTSバージョンの6.0.4です。
+Debian GNU/Linux stable(Debian 13)でも、aptでインストール可能になっています。Debian 12でもIncusはBackportされておりIncusは、LTSバージョンの6.0.4です。
 
 ちなみに私も必要があれば、イミュータブルなコンテナは使います。Podmanを試してからDockerにすることが多いです。
 また、Incusの中で、PodmanやDockerを動かせます。まさに開発環境をコンテナの中に閉じ込めて、保存することができます。
