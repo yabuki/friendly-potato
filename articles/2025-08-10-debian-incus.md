@@ -208,7 +208,7 @@ localeを日本語にして、timezoneをAsia/Tokyoにしたりなど毎回や�
 
 タイムゾーンの変更方法は cloud-init を使う方法もあると教えてもらいました。
 
-https://x.com/hnakamur2/status/195492179443726783://x.com/hnakamur2/status/1954921794437267837
+https://x.com/hnakamur2/status/1954921794437267837
 
 イメージの後ろに/cloudとあるやつが、cloud-init対応だそうです。cloud-initに関しては 
 [cloud-init 25.1.4 documentation](https://cloudinit.readthedocs.io/en/latest/index.html)
