@@ -208,7 +208,7 @@ localeを日本語にして、timezoneをAsia/Tokyoにしたりなど毎回や�
 
 2025-08-12 追記
 
-タイムゾーンの変更方法は cloud-init を使う方法もあると教えてもらいました。
+タイムゾーンの変更方法は cloud-init を使う方法もあると教えてもらいました。詳しくは参考文献13を読んでください。
 
 https://x.com/hnakamur2/status/1954921794437267837
 
@@ -376,6 +376,7 @@ incus network attach-profile enp6s0 bridge eth0
 10.  [Incus(≒LXD)の&quot;User restricted project&quot;の設定方法について - turgenev’s blog](https://turgenev.hatenablog.com/entry/2025/04/24/022718)
 11. [プロファイルを使用するには - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/profiles/)
 12. [インスタンスを作成するには - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/howto/instances_create/)
+13. [cloud-initを使用するには - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/cloud-init/)
 
 - [第459回 LXDを使ってDockerコンテナをマイグレーション | gihyo.jp](https://gihyo.jp/admin/serial/01/ubuntu-recipe/0459)
 
