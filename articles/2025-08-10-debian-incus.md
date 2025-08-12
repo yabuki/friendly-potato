@@ -28,6 +28,25 @@ Debian GNU/Linux stable(Debian 13)でも、aptでインストール可能にな�
 保存方法も、snapshotを取って、切り戻ししたり、export/importしたり、複数のIncusが立ち上がっているなら、別のIncusに移すこともできます。
 詳細については、参考文献の1または2で説明があります。
 
+### IncusとDockerの共存について
+
+:::message
+
+IncusとDockerの共存について
+
+可能なら、IncusとDockerは、ネットワークの設定がぶつかることがあり、Incusの中でDockerを動かすのが良いでしょう。
+
+[なぜ私のインスタンスはネットワークアクセスがないのですか？ --- よく聞かれる質問（FAQ） - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/faq/#id1)
+にから回避方法がたどれます。
+
+Incusの中で、Dockerを動かす(Nested container)をするには
+[Incus コンテナの内部で Docker を実行するには？ ---  よく聞かれる質問（FAQ） - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/faq/#incus-docker)
+を設定してください。
+
+2025-08-12 追加
+
+:::
+
 ### この記事はだれ向けか
 
 イミュータブルな機能が不要なののに、頑張ってDockerコンテナを使って苦労している人向けです。
@@ -37,7 +56,7 @@ Debian GNU/Linux stable(Debian 13)でも、aptでインストール可能にな�
 
 推奨は、順番に読むことを想定しています。設定済みのインスタンスの部分まで読んでもらえたらokです。
 
-それ以降は、よりincusを便利に使いたい人向けのやりこみコンテンツになります。
+それ以降は、よりIncusを便利に使いたい人向けのやりこみコンテンツになります。
 
 ## 本文
 
@@ -49,16 +68,16 @@ Debian GNU/Linux stable(Debian 13)でも、aptでインストール可能にな�
 開発用に使っているので、ext4よりもコンテナを活用するのに、インストール時からbtrfsを使っています。パックアップ用HDDなどは耐障害性から、ext4を使うこともあります。
 ハードディスクなどで、Readできないセクターが発生したら`fsck -c`などを使いますから。
 
-Debian 13(trixie)には、[Debian -- パッケージ検索結果 -- incus](https://packages.debian.org/search?searchon=sourcenames&keywords=incus)で確認できますが、incusパッケージがあります。
+Debian 13(trixie)には、[Debian -- パッケージ検索結果 -- incus](https://packages.debian.org/search?searchon=sourcenames&keywords=incus)で確認できますが、Incusパッケージがあります。
 
 まだ、Debian 12(bookworm)を使っている場合は、 参考文献の4を見るとわかりますが、backports.debian.orgにIncusを使います。
 商用サポートや参考文献の5にあるdockerイメージを動かしたい場合は別途Debianのexperimentalのソースパッケージを使うか、別のリポジトリを使ってください。
 
 aptでbackports.debian.orgを参照して、パッケージをインストールする方法については、参考文献6を読んで実行しておいてください。
 
-### incusの導入
+### Incusの導入
 
-incusパッケージには、lxcコンテナを扱うものと、kvmで仮想マシンも使えるものに分割されています。今回は軽量なコンテナだけを扱う予定です。
+Incusパッケージには、LXCコンテナを扱うものと、KVMで仮想マシンも使えるものに分割されています。今回は軽量なコンテナだけを扱う予定です。
 したがって、`apt update;apt -y install incus-client incus-base`とします。
 
 参考文献8では、incus-adminグループを作っていたりしますが、Debian packageではすでに、incus, incus-adminグループは作成ずみです。
@@ -254,7 +273,6 @@ incus list
 +------+---------+-----------------------+------------------------------------------------+-----------+-----------+
 | vibe | RUNNING | 10.184.187.149 (eth0) | fd42:41ff:4ab7:deb4:1266:6aff:fe69:93e5 (eth0) | CONTAINER | 0         |
 +------+---------+-----------------------+------------------------------------------------+-----------+-----------+
-
 ```
 
 ひとまず、ここまでで、一区切りとします。以下は追加的なコンテンツです。
