@@ -15,6 +15,11 @@ Google ChromeやVisual Studio Codeもコンテナの中からホスト側で動�
 Vibe Codingに必要なツール、たとえばGoogle ChromeやVisual Studio Codeなどを使うコンテナ環境を構築しておくと、壊しても簡単に元に戻せる。(Incusのスナップショット機能でスナップショットを取った時点に戻せる)
 これで安心して、面倒くさい作業にとりかかれる。
 
+- [Dev Containers上でClaude Codeの認証が安定しない問題](https://zenn.dev/nstock/articles/2c1ea72861f87c)
+このへんの永続化で問題がでるのもimmutableなコンテナを使っているから発生しているように私からは見える。
+
+常に永続化され、snapshotで巻き戻せるincusを使えば上記の問題からは解放される。
+
 ### この記事を書いた動機
 
 安全に、Vibe Codingする独立した環境を作る。
