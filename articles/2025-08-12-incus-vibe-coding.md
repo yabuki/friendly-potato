@@ -131,6 +131,17 @@ Visual Studio Code からエージェントモードで使える。
 - [Gemini CLI が切り拓く！待望のエージェントモード(Agent Mode)が Gemini Code Assist に！ 【紹介編】](https://zenn.dev/google_cloud_jp/articles/8911c960113904)
     - この辺の記事も読んでおきたい。
 
+### 戻りたい時点にきたら
+
+設定やコーディングで一区切りして、環境を一度保存したいなら、Incusだと下記の方法があります。
+
+1. `incus create snapshot`でスナップショットを取っておく。
+2. `incus export`と`incus import`コマンドを使って、環境をファイルに書き出す。
+3. 別のincusサーバーを用意してインスタンスを退避しておく。
+
+詳しくは、[インスタンスをバックアップするには - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/howto/instances_backup/)にあります。
+btrfsを使っているなら、snapshotがおすすめ。
+
 ## 参考文献
 
 1. [インスタンス内のファイルにアクセスするには - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/howto/instances_access_files/)
