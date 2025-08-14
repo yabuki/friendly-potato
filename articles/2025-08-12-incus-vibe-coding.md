@@ -145,6 +145,9 @@ rootで
 `npm -g update`
 で最新にあげたりします。
 
+`npm outdate`に関しては、参考文献2を参照してください。
+`npm update`に関しては、参考文献3を参照してください。
+
 :::
 
 ### 戻りたい時点にきたら
@@ -161,6 +164,10 @@ btrfsを使っているなら、snapshotがおすすめ。
 ## 参考文献
 
 1. [インスタンス内のファイルにアクセスするには - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/howto/instances_access_files/)
+2. [npm-outdated | npm Docs](https://docs.npmjs.com/cli/v9/commands/npm-outdated)
+    - Debian trixieのnpmが"9.2.0"なので、9系を指している。
+3. [npm-update | npm Docs](https://docs.npmjs.com/cli/v9/commands/npm-update)
+    - Debian trixieのnpmが"9.2.0"なので、9系を指している。
 
 ## さいごに
 
