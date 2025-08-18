@@ -157,6 +157,11 @@ Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_ap
 
 お疲れさまでした。インストールが完了しました。
 
+![使えるクレジットの量](/images/2025-08-18_19-48.png)
+*使えるクレジットの量*
+
+
+
 ## 参考文献
 
 1. [Hello Kiro ~要件定義からアプリ起動まで~](https://zenn.dev/acntechjp/articles/f501c283aecba8)
