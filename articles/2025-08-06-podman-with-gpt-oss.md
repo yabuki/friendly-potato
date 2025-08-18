@@ -68,6 +68,74 @@ Incusのコンテナで、gmini-cliなど試す記事は別途書く予定です
 
 ## 本文
 
+### ROCmの設定
+
+参考文献5のrocm-podman-supportをインストールします。apt-proxy-ngパッケージも入ります。
+
+```
+/usr/bin/rocm-podman-setup -h
+ 
+Verifies that a given user can use an AMD GPU in a rootless podman container.
+ 
+If USER isn't specified, then the invoking user will be checked.
+ 
+Synopsis:
+  /usr/bin/rocm-podman-setup -h
+ 
+  /usr/bin/rocm-podman-setup [-u USER]
+ 
+Options:
+  -h     Show this help
+ 
+Examples:
+ 
+  $ /usr/bin/rocm-podman-setup
+ 
+  $ /usr/bin/rocm-podman-setup -u someuser
+```
+
+`/usr/bin/rocm-podman-setup`を実行すると下記のように修正点を教えてくれます。
+
+```
+Checks
+======
+  [OK] Key packages are installed
+  [OK] Local APT cache detected, make sure to use it
+  [OK] /dev/kfd is present
+  [OK] Group 'render' is present
+[TODO] User 'yabuki' is not in group 'render'.
+       You can fix this with: sudo gpasswd -a yabuki render
+  [OK] User 'yabuki' is in group 'video'
+  [OK] unprivileged_userns_clone is enabled
+[TODO] /etc/subgid is missing a subordinate GID mapping for user 'yabuki' group 'render'.
+       You can fix this by adding the folowing line to /etc/subgid:
+           yabuki:105:1
+[TODO] /etc/subgid is missing a subordinate GID mapping for user 'yabuki' group 'video'.
+       You can fix this by adding the folowing line to /etc/subgid:
+           yabuki:44:1
+  [OK] /etc/subgid contains a large subordinate GID range
+  [OK] /etc/subuid contains a large subordinate UID range
+```
+修正して再実行し、下記の結果がでてlogout/loginして有効にします。
+```
+Checks
+======
+  [OK] Key packages are installed
+  [OK] Local APT cache detected, make sure to use it
+  [OK] /dev/kfd is present
+  [OK] Group 'render' is present
+  [OK] User 'yabuki' is in group 'render'
+  [OK] User 'yabuki' is in group 'video'
+  [OK] unprivileged_userns_clone is enabled
+  [OK] /etc/subgid contains a subordinate GID mapping for user 'yabuki' group 'render'
+  [OK] /etc/subgid contains a subordinate GID mapping for user 'yabuki' group 'video'
+  [OK] /etc/subgid contains a large subordinate GID range
+  [OK] /etc/subuid contains a large subordinate UID range
+```
+
+
+### ollamaをpodmanで動かす。
+
 自作マシンには、ASUS製のRX7900XTX 24GBを載せている。そのためAMDの[ROCm™ 7 ソフトウェア](https://www.amd.com/ja/products/software/rocm/whats-new.html)が供給しているソフトウェアを使うのが良い。ollamaはROCm入りのコンテナ・イメージを供給している。(参考文献2)
 podmanで利用するには、下記のコマンドを実行する。
 
@@ -119,7 +187,7 @@ podmanがイメージを置いている場所を確認して、大きなイメ�
     - AMD GPUに対応する ROCmを利用するならここを参照すること。
 3. [library](https://ollama.com/library)
 4. [gpt-oss](https://ollama.com/library/gpt-oss)
-
+5. [Debian -- trixie の rocm-podman-support パッケージに関する詳細](https://packages.debian.org/ja/trixie/rocm-podman-support)
 
 
 ## 謝辞
@@ -130,8 +198,8 @@ podmanがイメージを置いている場所を確認して、大きなイメ�
 |       件名         |   日付   |
 |:----               |:--------:|
 |記事を書きはじめた日|2025-08-06|
-|  記事を公開した日  |2025-08-18|
-|  記事を変更した日  |----------|
+|  記事を公開した日  |2025-08-07|
+|  記事を変更した日  |2025-08-18|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
