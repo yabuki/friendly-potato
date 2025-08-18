@@ -11,7 +11,9 @@ published: true
 
 ## はじめに
 
-
+:::message alert
+2025-08-18 PodmanでROCmを使うのに必要な事前の設定について追記しました。
+:::
 
 ### この記事を書いた動機
 
