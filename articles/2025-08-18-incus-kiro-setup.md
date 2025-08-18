@@ -3,7 +3,7 @@ title: "Incusで作ったコンテナに、Kiroをインストールした"
 emoji: "🐷"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [incus, kiro, debian]
-published: false
+published: true
 ---
 ## 要約
 
