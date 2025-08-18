@@ -72,10 +72,12 @@ Incusのコンテナで、gmini-cliなど試す記事は別途書く予定です
 
 ### ROCmの設定
 
+Debian 13(Trixie)では、ROCmが使いやすくなっていますが、設定は必要です。参考文献6のDebian Wikiを読んでおきましょう。
+
 参考文献5のrocm-podman-supportをインストールします。apt-proxy-ngパッケージも入ります。
 また、rocminfoコマンドも使えるように、`apt install rocminfo`を実行します。
 
-:::details rocminfoの結果長いのでアコーデオンにしておく
+:::details rocminfoの結果長いのでアコーデオンにしておきます。
 ```
 [37mROCk module is loaded[0m
 =====================    
@@ -364,7 +366,7 @@ podmanがイメージを置いている場所を確認して、大きなイメ�
 3. [library](https://ollama.com/library)
 4. [gpt-oss](https://ollama.com/library/gpt-oss)
 5. [Debian -- trixie の rocm-podman-support パッケージに関する詳細](https://packages.debian.org/ja/trixie/rocm-podman-support)
-
+6. [ROCm - Debian Wiki](https://wiki.debian.org/ROCm)
 
 ## 謝辞
 
