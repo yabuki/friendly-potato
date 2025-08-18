@@ -88,7 +88,7 @@ podman exec -it ollama ollama run gpt-oss:20b
 GPT-OSSについては、参考文献4参照すること。
 
 こんな感じで動いています。
-[![asciicast](https://asciinema.org/a/27kn7ZrF9yhmzkvnxIgnCNO4E.svg)](https://asciinema.org/a/27kn7ZrF9yhmzkvnxIgnCNO4E)
+https://youtu.be/IatGpNTCZbU
 
 ### ollamaでGPT OSS:20Bを動かした所感
 
@@ -130,7 +130,7 @@ podmanがイメージを置いている場所を確認して、大きなイメ�
 |       件名         |   日付   |
 |:----               |:--------:|
 |記事を書きはじめた日|2025-08-06|
-|  記事を公開した日  |2025-08-07|
+|  記事を公開した日  |2025-08-18|
 |  記事を変更した日  |----------|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
