@@ -1,5 +1,5 @@
 ---
-title: "Incusで作ったコンテナに、Kiroをインストールした"
+title: "Incusで作ったコンテナーにKiroをインストールした"
 emoji: "🐷"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [incus, kiro, debian]
@@ -7,7 +7,7 @@ published: true
 ---
 ## 要約
 
-参考文献1を参考に、Incusで作ったmutableなコンテナで、Kiroを設定した事例紹介です。
+参考文献1を参考に、Incusで作ったmutableなコンテナーにKiroを設定した事例紹介です。
 Debを使ってインストールしたり、AWS Builders IDを使って使い始める部分は新しいかなと。
 
 ## はじめに
@@ -20,17 +20,17 @@ Incusの設定と、Gemini-cliをセットアップした、参考文献2まで�
 下記の順番に作業を進めます。
 
 1. Kiroからの応答メールにあるダウンロードリンクを使って、Kiroのバイナリをダウンロードする。
-2. ダウンロードしたDebパッケージをincusで作ったコンテナに移す。
-3. コンテナ内部でインストールする。
+2. ダウンロードしたDebパッケージをincusで作ったコンテナーに移す。
+3. コンテナー内部でインストールする。
 
 ### Kiroバイナリのダウンロード
 
 ![Kiroのダウンロード画面](/images/2025-08-18_17-32.png)
 *Kiroのダウンロード画面*
 
-使っているコンテナは、Debian 13(Trixie)なので、debパッケージ版を選択します。
+使っているコンテナーは、Debian 13(Trixie)なので、debパッケージ版を選択します。
 
-### ダウンロードしたDebパッケージをコンテナ内部に移す
+### ダウンロードしたDebパッケージをコンテナー内部に移す
 
 ダウンロードしたKiroは下記のようなファイル名です。一見するとKiroの名前が入っていないので間違えないようにします。
 
@@ -39,7 +39,7 @@ ls -la 202508150626-distro-linux-x64.deb
 -rw-rw-r-- 1 yabuki yabuki 185723420  8月 18 17:18 202508150626-distro-linux-x64.deb
 ```
 
-今回はdebファイル一個だけなので、`incus file push` コマンドを使って、コンテナ内部に送り込みます。
+今回はdebファイル一個だけなので、`incus file push` コマンドを使って、コンテナー内部に送り込みます。
 ```
 incus file push --help
 Description:
@@ -70,7 +70,7 @@ Global Flags:
       --version        Print version number
 ```
 
-~/Downloads/202508150626-distro-linux-x64.deb を コンテナvibeの/rootに送り込むので
+~/Downloads/202508150626-distro-linux-x64.debをコンテナーvibeの/rootに送り込むので
 ```
 incus file push ~/Downloads/202508150626-distro-linux-x64.deb vibe/root/
 ```
@@ -95,8 +95,8 @@ drwx------ 1 root   root           0  7月 21 14:25 .ssh
 -rw------- 1 root   root        8940  8月 12 20:02 .viminfo
 -rw-rw-r-- 1 yabuki yabuki 185723420  8月 18 18:05 202508150626-distro-linux-x64.deb
 ```
-のように、ファイルが転送されたのがわかります。ちなみにownerとgroupがそのまま引き継がれているのも確認できます。
-コンテナの外と中で、yabukiアカウントを同じuid、gidで作っているからです。
+のように、ファイルが転送されました。ちなみにownerとgroupがそのまま引き継がれているのも確認できます。
+コンテナーの外と中で、yabukiアカウントを同じuid、gidで作っているからです。
 
 ```
 apt install ./202508150626-distro-linux-x64.deb 
@@ -120,7 +120,7 @@ shared-mime-info (2.4-5+b2) のトリガを処理しています ...
 Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_apt' からアクセスできないため、ダウンロードは root でサンドボックスを通さずに行われます。 - pkgAcquire::Run (13: 許可がありません)
 ```
 
-調べたところ、インストールは成功しているが、`/root/202508150626-distro-linux-x64.deb`がuid:gidがyabuki:yabukiなのでユーザ`_apt`からアクセスできないだけのようだ。依存関係があるといやだったので`apt`コマンドを使ったが、`dpkg -i`コマンドを使えば良かったのかもしれない。
+調べたところ、インストールは成功している。`/root/202508150626-distro-linux-x64.deb`のuid:gidがyabuki:yabukiなのでユーザ`_apt`からアクセスできないだけのようだ。依存関係があるといやだったので`apt`コマンドを使ったが、`dpkg -i`コマンドを使えば良かったのかもしれない。
 ということで次に進む。気になるひとは、参考文献3を読むのもいいでしょう。
 
 ### Kiro起動
@@ -131,7 +131,7 @@ Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_ap
 *サインイン画面*
 
 私の場合は、AWS Builder IDを持っているので、それでサインインしてみる。
-コンテナ内のブラウザで、AWS Builder IDの入力画面が開いて認証開始となる。
+コンテナー内のブラウザで、AWS Builder IDの入力画面が開いて認証開始となる。
 ![](/images/2025-08-18_18-56.png)
 
 認証したら、メールアドレスに認証コードを送ってくるので、そいつを入力する。
@@ -142,7 +142,7 @@ Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_ap
 *情報読み取りの許可画面*
 
 ![Visual Studio Codeからの設定をインポート](/images/2025-08-18_19-00.png)
-*Viual Studio Codeからの設定をインポート*
+*Visual Studio Codeからの設定をインポート*
 
 ![DarkかLightかのテーマ選択](/images/2025-08-18_19-07.png)
 *DarkかLightかのテーマ選択画面*
@@ -174,7 +174,7 @@ Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_ap
 |:----               |:--------:|
 |記事を書きはじめた日|2025-08-18|
 |  記事を公開した日  |2025-08-18|
-|  記事を変更した日  |----------|
+|  記事を変更した日  |2025-08-21|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
@@ -191,3 +191,4 @@ Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_ap
 <!-- だれに向けての文章か -->
 <!-- この文章の肝はどこか -->
 <!-- 画像はrepoのtopにあるimagesに入れよ -->
+<1-- Cspell:ignore kiro distro Preconfiguring zenn trixie dpkg -->
