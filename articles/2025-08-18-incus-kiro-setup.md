@@ -10,6 +10,17 @@ published: true
 参考文献1を参考に、Incusで作ったmutableなコンテナーにKiroを設定した事例紹介です。
 Debを使ってインストールしたり、AWS Builders IDを使って使い始める部分は新しいかなと。
 
+:::message alert
+この記事を書いてから、ぼちぼちと調べていたのですが
+2025-09-06 現在、原因はわからないのですが、LLMを利用しようとすると"Kiro access not available for this account"と表示され、Kiroの力をまともに使えない状態です。
+Previewだし、のんびり待つしかないようです。使える人と使えない人で何が違うんでしょうね。
+
+"Kiro access not available for this account"となる問題については、
+[Kiro access not available for this account · Issue #1712 · kirodotdev/Kiro](https://github.com/kirodotdev/Kiro/issues/1712)
+を参照してください。
+
+:::
+
 ## はじめに
 
 Waiting Listに入れていたKiroからの応答が2025-08-12にあり、ようやく時間ができたのでIncusで設定を始めた。
@@ -160,8 +171,6 @@ Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_ap
 ![使えるクレジットの量](/images/2025-08-18_19-48.png)
 *使えるクレジットの量*
 
-
-
 ## 参考文献
 
 1. [Hello Kiro ~要件定義からアプリ起動まで~](https://zenn.dev/acntechjp/articles/f501c283aecba8)
@@ -174,7 +183,7 @@ Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_ap
 |:----               |:--------:|
 |記事を書きはじめた日|2025-08-18|
 |  記事を公開した日  |2025-08-18|
-|  記事を変更した日  |2025-08-21|
+|  記事を変更した日  |2025-09-06|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
@@ -191,4 +200,4 @@ Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_ap
 <!-- だれに向けての文章か -->
 <!-- この文章の肝はどこか -->
 <!-- 画像はrepoのtopにあるimagesに入れよ -->
-<1-- Cspell:ignore kiro distro Preconfiguring zenn trixie dpkg -->
+<!-- Cspell:ignore kiro distro Preconfiguring zenn trixie dpkg -->
