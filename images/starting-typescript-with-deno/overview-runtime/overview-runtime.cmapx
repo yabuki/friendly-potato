@@ -1,0 +1,9 @@
+<map id="plantuml_map" name="plantuml_map">
+<area shape="rect" id="id1" href="https://nodejs.org/en" title="[Node.js — Run JavaScript Everywhere]" alt="" coords="322,175,371,189"/>
+<area shape="rect" id="id2" href="https://www.graalvm.org/javascript/" title="[JavaScript]" alt="" coords="329,499,378,513"/>
+<area shape="rect" id="id3" href="ブラウザ" title="ブラウザ" alt="" coords="322,121,378,135"/>
+<area shape="rect" id="id4" href="https://github.com/microsoft/TypeScript" title="[GitHub - microsoft/TypeScript: TypeScript is a superset of JavaScript that compiles to clean JavaScript output.]" alt="" coords="322,577,497,591"/>
+<area shape="rect" id="id5" href="https://bun.sh/" title="[Bun — A fast all-in-one JavaScript runtime]" alt="" coords="322,229,343,645"/>
+<area shape="rect" id="id6" href="(https://deno.com/" title=" [Deno, the next-generation JavaScript runtime]" alt="" coords="322,283,350,699"/>
+</map>
+
