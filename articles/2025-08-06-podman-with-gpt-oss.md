@@ -11,7 +11,9 @@ published: true
 
 ## はじめに
 
-
+:::message alert
+2025-08-18 PodmanでROCmを使うのに必要な事前の設定について追記しました。
+:::
 
 ### この記事を書いた動機
 
@@ -68,6 +70,250 @@ Incusのコンテナで、gmini-cliなど試す記事は別途書く予定です
 
 ## 本文
 
+### ROCmの設定
+
+Debian 13(Trixie)では、ROCmが使いやすくなっていますが、設定は必要です。参考文献6のDebian Wikiを読んでおきましょう。
+
+参考文献5のrocm-podman-supportをインストールします。apt-proxy-ngパッケージも入ります。
+また、rocminfoコマンドも使えるように、`apt install rocminfo`を実行します。
+
+:::details rocminfoの結果長いのでアコーデオンにしておきます。
+```
+[37mROCk module is loaded[0m
+=====================    
+HSA System Attributes    
+=====================    
+Runtime Version:         1.1
+Runtime Ext Version:     1.4
+System Timestamp Freq.:  1000.000000MHz
+Sig. Max Wait Duration:  18446744073709551615 (0xFFFFFFFFFFFFFFFF) (timestamp count)
+Machine Model:           LARGE                              
+System Endianness:       LITTLE                             
+Mwaitx:                  DISABLED
+DMAbuf Support:          YES
+
+==========               
+HSA Agents               
+==========               
+*******                  
+Agent 1                  
+*******                  
+  Name:                    AMD Ryzen 7 5700G with Radeon Graphics
+  Uuid:                    CPU-XX                             
+  Marketing Name:          AMD Ryzen 7 5700G with Radeon Graphics
+  Vendor Name:             CPU                                
+  Feature:                 None specified                     
+  Profile:                 FULL_PROFILE                       
+  Float Round Mode:        NEAR                               
+  Max Queue Number:        0(0x0)                             
+  Queue Min Size:          0(0x0)                             
+  Queue Max Size:          0(0x0)                             
+  Queue Type:              MULTI                              
+  Node:                    0                                  
+  Device Type:             CPU                                
+  Cache Info:              
+    L1:                      32768(0x8000) KB                   
+  Chip ID:                 0(0x0)                             
+  ASIC Revision:           0(0x0)                             
+  Cacheline Size:          64(0x40)                           
+  Max Clock Freq. (MHz):   4673                               
+  BDFID:                   0                                  
+  Internal Node ID:        0                                  
+  Compute Unit:            16                                 
+  SIMDs per CU:            0                                  
+  Shader Engines:          0                                  
+  Shader Arrs. per Eng.:   0                                  
+  WatchPts on Addr. Ranges:1                                  
+  Features:                None
+  Pool Info:               
+    Pool 1                   
+      Segment:                 GLOBAL; FLAGS: FINE GRAINED        
+      Size:                    131700956(0x7d998dc) KB            
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:4KB                                
+      Alloc Alignment:         4KB                                
+      Accessible by all:       TRUE                               
+    Pool 2                   
+      Segment:                 GLOBAL; FLAGS: KERNARG, FINE GRAINED
+      Size:                    131700956(0x7d998dc) KB            
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:4KB                                
+      Alloc Alignment:         4KB                                
+      Accessible by all:       TRUE                               
+    Pool 3                   
+      Segment:                 GLOBAL; FLAGS: COARSE GRAINED      
+      Size:                    131700956(0x7d998dc) KB            
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:4KB                                
+      Alloc Alignment:         4KB                                
+      Accessible by all:       TRUE                               
+  ISA Info:                
+*******                  
+Agent 2                  
+*******                  
+  Name:                    gfx1100                            
+  Uuid:                    GPU-5a8a5cba25b0f036               
+  Marketing Name:          AMD Radeon RX 7900 XTX             
+  Vendor Name:             AMD                                
+  Feature:                 KERNEL_DISPATCH                    
+  Profile:                 BASE_PROFILE                       
+  Float Round Mode:        NEAR                               
+  Max Queue Number:        128(0x80)                          
+  Queue Min Size:          64(0x40)                           
+  Queue Max Size:          131072(0x20000)                    
+  Queue Type:              MULTI                              
+  Node:                    1                                  
+  Device Type:             GPU                                
+  Cache Info:              
+    L1:                      32(0x20) KB                        
+    L2:                      6144(0x1800) KB                    
+    L3:                      98304(0x18000) KB                  
+  Chip ID:                 29772(0x744c)                      
+  ASIC Revision:           0(0x0)                             
+  Cacheline Size:          128(0x80)                          
+  Max Clock Freq. (MHz):   2431                               
+  BDFID:                   768                                
+  Internal Node ID:        1                                  
+  Compute Unit:            96                                 
+  SIMDs per CU:            2                                  
+  Shader Engines:          6                                  
+  Shader Arrs. per Eng.:   2                                  
+  WatchPts on Addr. Ranges:4                                  
+  Coherent Host Access:    FALSE                              
+  Features:                KERNEL_DISPATCH 
+  Fast F16 Operation:      TRUE                               
+  Wavefront Size:          32(0x20)                           
+  Workgroup Max Size:      1024(0x400)                        
+  Workgroup Max Size per Dimension:
+    x                        1024(0x400)                        
+    y                        1024(0x400)                        
+    z                        1024(0x400)                        
+  Max Waves Per CU:        32(0x20)                           
+  Max Work-item Per CU:    1024(0x400)                        
+  Grid Max Size:           4294967295(0xffffffff)             
+  Grid Max Size per Dimension:
+    x                        4294967295(0xffffffff)             
+    y                        4294967295(0xffffffff)             
+    z                        4294967295(0xffffffff)             
+  Max fbarriers/Workgrp:   32                                 
+  Packet Processor uCode:: 542                                
+  SDMA engine uCode::      24                                 
+  IOMMU Support::          None                               
+  Pool Info:               
+    Pool 1                   
+      Segment:                 GLOBAL; FLAGS: COARSE GRAINED      
+      Size:                    25149440(0x17fc000) KB             
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:2048KB                             
+      Alloc Alignment:         4KB                                
+      Accessible by all:       FALSE                              
+    Pool 2                   
+      Segment:                 GLOBAL; FLAGS: EXTENDED FINE GRAINED
+      Size:                    25149440(0x17fc000) KB             
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:2048KB                             
+      Alloc Alignment:         4KB                                
+      Accessible by all:       FALSE                              
+    Pool 3                   
+      Segment:                 GROUP                              
+      Size:                    64(0x40) KB                        
+      Allocatable:             FALSE                              
+      Alloc Granule:           0KB                                
+      Alloc Recommended Granule:0KB                                
+      Alloc Alignment:         0KB                                
+      Accessible by all:       FALSE                              
+  ISA Info:                
+    ISA 1                    
+      Name:                    amdgcn-amd-amdhsa--gfx1100         
+      Machine Models:          HSA_MACHINE_MODEL_LARGE            
+      Profiles:                HSA_PROFILE_BASE                   
+      Default Rounding Mode:   NEAR                               
+      Default Rounding Mode:   NEAR                               
+      Fast f16:                TRUE                               
+      Workgroup Max Size:      1024(0x400)                        
+      Workgroup Max Size per Dimension:
+        x                        1024(0x400)                        
+        y                        1024(0x400)                        
+        z                        1024(0x400)                        
+      Grid Max Size:           4294967295(0xffffffff)             
+      Grid Max Size per Dimension:
+        x                        4294967295(0xffffffff)             
+        y                        4294967295(0xffffffff)             
+        z                        4294967295(0xffffffff)             
+      FBarrier Max Size:       32                                 
+*** Done ***             
+```
+:::
+
+```
+/usr/bin/rocm-podman-setup -h
+ 
+Verifies that a given user can use an AMD GPU in a rootless podman container.
+ 
+If USER isn't specified, then the invoking user will be checked.
+ 
+Synopsis:
+  /usr/bin/rocm-podman-setup -h
+ 
+  /usr/bin/rocm-podman-setup [-u USER]
+ 
+Options:
+  -h     Show this help
+ 
+Examples:
+ 
+  $ /usr/bin/rocm-podman-setup
+ 
+  $ /usr/bin/rocm-podman-setup -u someuser
+```
+
+`/usr/bin/rocm-podman-setup`を実行すると下記のように修正点を教えてくれます。
+
+```
+Checks
+======
+  [OK] Key packages are installed
+  [OK] Local APT cache detected, make sure to use it
+  [OK] /dev/kfd is present
+  [OK] Group 'render' is present
+[TODO] User 'yabuki' is not in group 'render'.
+       You can fix this with: sudo gpasswd -a yabuki render
+  [OK] User 'yabuki' is in group 'video'
+  [OK] unprivileged_userns_clone is enabled
+[TODO] /etc/subgid is missing a subordinate GID mapping for user 'yabuki' group 'render'.
+       You can fix this by adding the folowing line to /etc/subgid:
+           yabuki:105:1
+[TODO] /etc/subgid is missing a subordinate GID mapping for user 'yabuki' group 'video'.
+       You can fix this by adding the folowing line to /etc/subgid:
+           yabuki:44:1
+  [OK] /etc/subgid contains a large subordinate GID range
+  [OK] /etc/subuid contains a large subordinate UID range
+```
+修正して再実行し、下記の結果がでてlogout/loginして有効にします。
+```
+Checks
+======
+  [OK] Key packages are installed
+  [OK] Local APT cache detected, make sure to use it
+  [OK] /dev/kfd is present
+  [OK] Group 'render' is present
+  [OK] User 'yabuki' is in group 'render'
+  [OK] User 'yabuki' is in group 'video'
+  [OK] unprivileged_userns_clone is enabled
+  [OK] /etc/subgid contains a subordinate GID mapping for user 'yabuki' group 'render'
+  [OK] /etc/subgid contains a subordinate GID mapping for user 'yabuki' group 'video'
+  [OK] /etc/subgid contains a large subordinate GID range
+  [OK] /etc/subuid contains a large subordinate UID range
+```
+
+
+### ollamaをpodmanで動かす。
+
 自作マシンには、ASUS製のRX7900XTX 24GBを載せている。そのためAMDの[ROCm™ 7 ソフトウェア](https://www.amd.com/ja/products/software/rocm/whats-new.html)が供給しているソフトウェアを使うのが良い。ollamaはROCm入りのコンテナ・イメージを供給している。(参考文献2)
 podmanで利用するには、下記のコマンドを実行する。
 
@@ -88,7 +334,7 @@ podman exec -it ollama ollama run gpt-oss:20b
 GPT-OSSについては、参考文献4参照すること。
 
 こんな感じで動いています。
-[![asciicast](https://asciinema.org/a/27kn7ZrF9yhmzkvnxIgnCNO4E.svg)](https://asciinema.org/a/27kn7ZrF9yhmzkvnxIgnCNO4E)
+https://youtu.be/IatGpNTCZbU
 
 ### ollamaでGPT OSS:20Bを動かした所感
 
@@ -119,8 +365,8 @@ podmanがイメージを置いている場所を確認して、大きなイメ�
     - AMD GPUに対応する ROCmを利用するならここを参照すること。
 3. [library](https://ollama.com/library)
 4. [gpt-oss](https://ollama.com/library/gpt-oss)
-
-
+5. [Debian -- trixie の rocm-podman-support パッケージに関する詳細](https://packages.debian.org/ja/trixie/rocm-podman-support)
+6. [ROCm - Debian Wiki](https://wiki.debian.org/ROCm)
 
 ## 謝辞
 
@@ -131,7 +377,7 @@ podmanがイメージを置いている場所を確認して、大きなイメ�
 |:----               |:--------:|
 |記事を書きはじめた日|2025-08-06|
 |  記事を公開した日  |2025-08-07|
-|  記事を変更した日  |----------|
+|  記事を変更した日  |2025-08-19|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
