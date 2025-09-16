@@ -23,6 +23,6 @@
     "include": ["/articles", "/books"]
   },
   "imports": {
-    "zenn-cli": "npm:zenn-cli@^0.2.1"
+    "zenn-cli": "npm:zenn-cli@^0.2.3"
   }
 }
