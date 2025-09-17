@@ -2,7 +2,7 @@
 title: "Debian PackageをGit buildpackageに関するメモ"
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [debian,git, #zennfes2025free]
+topics: [debian,git,zennfes2025free]
 published: true
 ---
 ## 要約
