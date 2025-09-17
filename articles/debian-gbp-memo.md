@@ -68,7 +68,49 @@ cat debian/source/format
 - upstream ブランチ
 - パッケージを作るために作業するブランチ、debianの開発版だけに作業するなら、mainないしはmasterを指定する。複数のディストリビューションや、Debianだけでも開発版以外にbackportsにパッケージを提供する場合などはブランチを使い分ける。
 
-の3つに加えて、`gbp pq import`で作られ`gbp pq export`で消滅するpatch-queue/作業ブランチ の4つを意識する必要がある。
+の3つに加えて、`gbp pq import`で作られ`gbp pq export`で最終的には消滅させるpatch-queue/作業ブランチ の4つを意識する必要がある。
+
+実例としては下記のような感じ。この状態では`gbp pq import`コマンドでpatch-queueブランチを作っていないので
+
+- 作業ブランチがmasterブランチ
+- upstreamのtarballから展開されたソースコードを保持しているupstramブランチ
+- pristine-tarが、upstreamのtarballの情報を新しいリリースがでる毎にデルタと呼ばれる差分管理を保持するブランチが、pristine-tarブランチです。
+    - pristine-tarの扱いで、deltaの管理もパッケージ更新時に思い出す必要がありますが、ここでは深入りしません。
+```
+git branch -a
+* master                                             pristine-tar
+remotes/origin/HEAD -> origin/master                 remotes/origin/pristine-tar
+remotes/origin/master                                upstream
+remotes/origin/upstream
+```
+
+```
+git switch pristine-tar 
+Switched to branch 'pristine-tar'
+Your branch is up to date with 'origin/pristine-tar'.
+
+ls -la
+合計 16
+drwxrwxr-x 1 yabuki yabuki  130  9月 18 00:14 .
+drwxr-xr-x 1 yabuki yabuki 1934  9月 15 06:34 ..
+drwxrwxr-x 1 yabuki yabuki  220  9月 18 00:14 .git
+-rw-rw-r-- 1 yabuki yabuki 2032  9月 18 00:14 xfireworks_1.3.orig.tar.gz.delta
+-rw-rw-r-- 1 yabuki yabuki   41  9月 18 00:14 xfireworks_1.3.orig.tar.gz.id
+```
+
+```
+git switch upstream 
+Switched to branch 'upstream'
+Your branch is up to date with 'origin/upstream'.
+
+ls
+AUTHORS        COPYRIGHT      ColorGC.c   DispP.h   OMAKE.jpn  Piece.h   StreamP.h      arguments.h  mkconf.c
+AfterImage.c   Calculator.c   ColorGC.h   HISTORY   Obj.c      PieceP.h  XFireworks.c   configure.h  xfireworks.1
+AfterImage.h   Calculator.h   ColorGCP.h  INSTALL   Obj.h      README    XFireworks.h   etc.c        xfireworks.conf
+AfterImageP.h  CalculatorP.h  Disp.c      Makefile  ObjP.h     Stream.c  XFireworksP.h  etc.h
+COPYING        ChangeLog      Disp.h      NEWS      Piece.c    Stream.h  arguments.c    main.c
+```
+
 
 ### formatが3.0 (quilt)の形式って何よ?
 
@@ -138,10 +180,12 @@ patch-queueのインポートに失敗したときに、現在のブランチの
 
 `--[no-]drop`
 > Whether to automatically drop (delete) the patch queue branch after a successful export
+
 `gbp pq export`と一緒に使う場合、exportが成功した後にpatch-queueブランチは削除されます。指定しない場合はpatch-queueブランチを消しません。
 
 `--commit`
 > In case of export, commit debian/patches the changes to Git after exporting the patches.
+
 `gbp pq export`で指定された場合、patchesをエキスポートした後にdebian/patchesへの変更を`git commit`します。
 
 本来は、
@@ -184,7 +228,7 @@ git commit
 |:----               |:--------:|
 |記事を書きはじめた日|2025-09-17|
 |  記事を公開した日  |2025-09-17|
-|  記事を変更した日  |----------|
+|  記事を変更した日  |2025-09-18|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
