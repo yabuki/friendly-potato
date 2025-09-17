@@ -2,9 +2,13 @@
 title: "Debian Projectの公式リポジトリsalsa.debian.orgでCIするための前提知識"
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [debian, ci, gitlab]
-published: false
+topics: [debian, ci, gitlab, zennfes2025free]
+published: true
 ---
+:::message
+実際にドキュメントを読み進めて、わかったことがあれば書き加えていくスタイルです。
+:::
+
 ## 要約
 
 salsa.debian.orgでパッケージのメンテナンスを行い、パッケージの品質を上げるためにCIを導入するにあたっての前提知識をまとめる。
@@ -14,8 +18,7 @@ salsa.debian.orgでパッケージのメンテナンスを行い、パッケー�
 Debian GNU/Linuxをリリースしている、Debian Projectは、Debパッケージをメンテナンスするのに、salsa.debian.orgを提供しています。
 
 Debian Developerおよび、コントリビュータなどのパッケージ・メンテナンス作業をするにあたってCIを使うことが推奨されています。
-実際にsalsa.debian.orgでCIを始めるのは簡単ですが、使われている用語や概念、実際に何がどう動いているのか？がわからない
-と対処ができないことがあります。
+実際にsalsa.debian.orgでCIを始めるのは簡単ですが、使われている用語や概念、実際に何がどう動いているのか？がわからないと対処ができないことがあります。
 
 理解してないけど、なんか動いた。では困るのは自分を含めた関係者の誰も幸せにならないので、つらつらと必要そうな知識を列挙していく
 記事になります。逐次更新していくので変更履歴を知りたい人は、「さいごに」の部分で、GitHubのpublic repositoryから見てください。
@@ -40,6 +43,17 @@ salsa.debian.orgでCIする人向け。なのでDebian Developerやコントリ�
 
 ## 基礎的な前提条件
 
+![GitLabとsalsa.debian.orgとの関係図](/images/20250918_030223.png =250x)
+*GitLabとsalsa.debian.orgとの関係図*
+
+まずは、参考文献2をザッと目を通すが、そもそもGitLabの用語や概念を十全に理解していないので具体的なイメージが脳内に構築できてないことを自覚した。
+
+そのため、GitLabのドキュメントを読むのが先っぽい。そしてドキュメントやリポジトリのIssueを見るとビルドのバックエンドではコンテナ(Docker?)がRunnerとして動いているような気もする。掘っていくと確信できるだろうか。
+
+- パイプラインって何?
+    - [CI/CDパイプライン | GitLab](https://gitlab-docs.creationline.com/ee/ci/pipelines/)
+        - 日本語に翻訳してくれているのがあるのでそちらにリンク
+
 ## CIで使うプログラムたち
 
 1. [blhc - Debian Wiki](https://wiki.debian.org/blhc)
@@ -47,6 +61,18 @@ salsa.debian.orgでCIする人向け。なのでDebian Developerやコントリ�
 
 ## 参考文献
 
+1. [Files · master · Salsa CI Team / Salsa CI pipeline · GitLab](https://salsa.debian.org/salsa-ci-team/pipeline)
+    - ローカルで読みたいなら、cloneしよう。
+2. [README.md · master · Salsa CI Team / Salsa CI pipeline · GitLab](https://salsa.debian.org/salsa-ci-team/pipeline/-/blob/master/README.md)
+    - まずはここから。
+3. [RUNNERS.md · master · Salsa CI Team / Salsa CI pipeline · GitLab](https://salsa.debian.org/salsa-ci-team/pipeline/-/blob/master/RUNNERS.md)
+    - CIで動かしているRunnerについて
+4. [STRUCTURE.md · master · Salsa CI Team / Salsa CI pipeline · GitLab](https://salsa.debian.org/salsa-ci-team/pipeline/-/blob/master/STRUCTURE.md)
+    - CIパイプラインの構造についての説明
+5. [GitLab Docs](https://docs.gitlab.com/)
+    - 公式ドキュメント
+6. [GitLabのドキュメント | GitLab](https://gitlab-docs.creationline.com/ee/)
+    - 日本の会社がGitLabのドキュメントを機械翻訳をかけて日本語にしている。
 
 ## 謝辞
 
@@ -56,7 +82,7 @@ salsa.debian.orgでCIする人向け。なのでDebian Developerやコントリ�
 |       件名         |   日付   |
 |:----               |:--------:|
 |記事を書きはじめた日|2025-09-17|
-|  記事を公開した日  |----------|
+|  記事を公開した日  |2025-09-18|
 |  記事を変更した日  |----------|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
