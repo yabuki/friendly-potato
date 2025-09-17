@@ -1,5 +1,5 @@
 ---
-title: "Debian PackageをGit buildpackageに関するメモ"
+title: "Git buildpackageでDebian Packageを扱うメモ"
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [debian,git,zennfes2025free]
