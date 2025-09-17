@@ -167,6 +167,7 @@ patch-queueの内容を確認しなくていいなら(あなたがcommitする�
 
 `--force`オプションは、
 > In case of import, import even if the patch-queue branch already exists and overwrite its content with debian/patches.
+
 という説明で、patch-queue ブランチが存在していても、現在のdebian/patches/の内容でpatch-queueブランチを上書きします。
 
 `--time-machine=数値`オプションは、
