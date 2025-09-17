@@ -7,7 +7,9 @@ published: true
 ---
 ## 要約
 
-gbp pq コマンドを使いこなそう。
+`gbp pq` コマンドを使いこなそう。`
+
+`gbp pq``コマンドは、patch queue (upstreamのソースコードに対するパッチ集でdebian/patches/に存在するファイル群)をGitのコミットから生成するためのコマンドです。
 
 ## はじめに
 
