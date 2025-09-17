@@ -161,6 +161,8 @@ patch-queueの内容を確認しなくていいなら(あなたがcommitする�
 
 ### gbp pq でよく使うコマンド
 
+下記の場合は、一般的にupstreamのソースコードを変更する場合の話です。新しく upstream がリリースをした場合は、gbpを使ってnew upstreamに対応する の部分を読んでください。
+
 `gbp pq import --force --time-machine=10`
 
 `--force`オプションは、
@@ -198,6 +200,62 @@ git commit
 ## gbp dch --release
 
 ちゃんと、patch-queueでコミットを作っていると、debian/changelogに一行目のサマリーを転写してchangelogを作るのに楽ができます。
+
+## gbpを使ってnew upstramに対応する
+
+- `debian/watch`を設定していたら、uscanで新しいリリース(tarballなど)を入手します。
+- 入手したtarballをgbp import します。ここでミスるとpristine-tarのdelta管理で失敗して、オリジナルのtarballの内容と違うじゃねーか。という困った状況になるのでよく調べてから実行しましょう。
+    - `gbp import-orig --uscan`から調べるのがよいでしょう。
+- importが成功しました、次は既存のパッチ(debian/patches/が存在するものたち)が新しいリリースでも必要かどうか、うまく適用できるかなどを確認します。
+- ここで、`gbp pq rebase`が活躍します。
+- 不必要なパッチは`gbp pq drop`して、必要なパッチを残して、場合によっては書き換えてコミットして`debian/patches/`に書き出すパッチを整理していきます。
+- 作業が終了したら、`gbp pq export`して、コミットからパッチを生成します。
+- debianディレクトリ配下のファイルを書き換える必要があれば、`--debian-branch=`で指定しているブランチで作業してコミットする。`debian/changelog`に関しては`gbp dch --release`コマンドを使えばコミットからchangelogの雛形を生成してくれる。
+- ローカルでビルドやテストを通しているのは前提ですが、salsa.debian.orgのリポジトリにpushしてsalsa.debian.orgのCIチームが用意してくれているCIにかけます。
+- 満足できる結果であれば、source only uploadをdputなどで行います。
+
+### `gbp pq rebase`の概要
+
+1. アップストリームの新バージョンへの対応
+アップストリームの新しいバージョンがリリースされた際に、既存の Debian パッチセットを新しいベースに適用し直す場合
+
+例：libfoo 1.2.0 用に作成したパッチを libfoo 1.3.0 に適用する
+
+2. パッチの競合解決
+アップストリームの変更と Debian パッチ間に競合が発生した場合の解決
+
+競合を手動で解決しながらパッチを再適用する
+
+3. パッチセットの整理
+パッチの順序変更や統合が必要な場合
+
+不要になったパッチの削除やパッチ間の依存関係調整
+
+
+実例
+```
+gbp pq rebase
+gbp:info: No pq branch found, importing patches
+gbp:info: Trying to apply patches at '9e1b621a05637b260c349b766cc935ac53889bce'
+gbp:info: 8 patches listed in 'debian/patches/series' imported on 'patch-queue/master'
+gbp:info: Switching to 'patch-queue/master'
+Current branch patch-queue/master is up to date.
+```
+
+`gbp pq rebase`コマンドを実行すると、patch-queue/作業ブランチ に移される。ここで、gitコマンドや、エディタを使って意図したパッチを作ったり、落としたりします。
+必要に応じて、`gbp pq export`コマンドで debian/patches/にパッチを書き出すのもよいでしょう。書き出さないなら、`gbp pq switch`でブランチ移動するのもよいでしょう。
+
+現時点では、`gbp pq switch`がgit switchに対する優位を理解してないので理解したら追記する。インタフェースの統一以外あるんだろうか。
+
+`gbp pq rebase`は、git rebaseに似て、失敗した所で止まって、コードや設定を書き換えてコミットを作り、次のパッチにすすめるので問題の範囲を小さくしておける。
+オプションも `--continue`, `--abort`, `--skip`などのgitと同じなので理解しやすい。問題が起きて、修正できたコミットが作れたら、`--continue`だし、不要なpatchだと判断できたら`--skip`だし、中断して他を調べてから戻りたいなら、`--abort`を指定することになる。
+
+upstreamの変更に対してパッチの順番や、内容をhealthyに保ちたいときに使う。
+
+#### 代替手段との比較
+
+- `gbp pq apply`：単純にパッチを適用するのみ
+- `gbp pq rebase`：競合解決やパッチの再編成が必要な場合
 
 ## 参考文献
 
