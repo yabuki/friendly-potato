@@ -33,17 +33,18 @@ gbpは、さまざまな背景を持つDebianパッケージに対応するた�
 
 ## gbpを使うにあたっての前提知識
 
-gbpを使う前に、Debian packageの前提知識として、Debianのソースコードに対する考え方と、パッケージメンテナーが抱える
-問題があります。
+<!-- textlint-disable textlint-rule-no-doubled-joshi  -->
+gbpを使う前にDebian packageの前提知識としてDebianのソースコードに対する考え方、パッケージメンテナーが注意する2つの問題があります。
+<!-- textlint-disable textlint-rule-no-doubled-joshi  -->
 
 Debian Projectでは、既存のソフトウェアをDebパッケージにしてDebian Packageを作っています。
 基本は、Upstreamがリリースしたソフトウェア一式のtarballを使うことが多いです。
 
-Debian Packageではパッケージ化を行う際に、厳密にupstreamのリリースした内容と、Debianパッケージを作るに当たって
+Debian Packageではパッケージ化をおこなう際に、厳密にupstreamのリリースした内容と、Debianパッケージを作るに当たって
 upstreamのソースコードを改変するパッチ集を分離します。パッチを監査して、upstreamとパッケージメンテナの責任を分離
 するためです。
 
-そのパッチ管理システムが quiltです。debian/source/formatが下記のようになっているのをdebian packageをひもといて
+そのパッチ管理システムがquiltです。"debian/source/format"が下記のようになっているのをdebian packageをひもといて
 いるとわかります。
 ```
 cat debian/source/format 
@@ -57,24 +58,25 @@ cat debian/source/format
 ではないので同様の情報を残したくなるでしょう。
 
 
-ただし、gbpを使うなら、生の`quilt`や、`dquilt`または、`dpkg-source --commit`を使うのは自分で自分の足を撃ち抜いても
-直せる人だけがわかって使うのならいいけど、基本は「混ぜるな危険」です。今回xfireworksで苦労したのも`gbp pq`
-を理解せずに、`dpkg-source --commit`を使ったのが原因でした。
+ただしgbpを使うなら生の`quilt`や`dquilt`または、`dpkg-source --commit`を使うのは自分で自分の足を撃ち抜いても直せる人だけがわかって使うのならいいけど、基本は「混ぜるな危険」です。
+今回xfireworksで苦労したのも`gbp pq`を理解せずに、`dpkg-source --commit`を使ったのが原因でした。
 
 ### gbpで知るべきブランチ
 
-- pristine-tar ブランチ
-- upstream ブランチ
-- パッケージを作るために作業するブランチ、debianの開発版だけに作業するなら、mainないしはmasterを指定する。複数のディストリビューションや、Debianだけでも開発版以外にbackportsにパッケージを提供する場合などはブランチを使い分ける。
+- pristine-tarブランチ
+- upstreamブランチ
+- パッケージを作るために作業するブランチ。
+    - debianの開発版だけに作業するなら、mainないしはmasterを指定する。
+    - 複数のディストリビューションや、Debianだけでも開発版以外にbackportsへパッケージを提供する場合などはブランチを使い分ける。
 
-の3つに加えて、`gbp pq import`で作られ`gbp pq export`で最終的には消滅させるpatch-queue/作業ブランチ の4つを意識する必要がある。
+以上3つのブランチに加えて、`gbp pq import`で作られ`gbp pq export`で最終的には消滅させる"patch-queue/作業ブランチ"の合計4つのブランチを意識する必要がある。
 
-実例としては下記のような感じ。この状態では`gbp pq import`コマンドでpatch-queueブランチを作っていないので
+実例としては下記のような感じ。この状態では`gbp pq import`コマンドはpatch-queueブランチを作っていない。
 
-- 作業ブランチがmasterブランチ
-- upstreamのtarballから展開されたソースコードを保持しているupstramブランチ
-- pristine-tarが、upstreamのtarballの情報を新しいリリースがでる毎にデルタと呼ばれる差分管理を保持するブランチが、pristine-tarブランチです。
-    - pristine-tarの扱いで、deltaの管理もパッケージ更新時に思い出す必要がありますが、ここでは深入りしません。
+- 作業ブランチがmasterブランチ。
+- upstreamのtarballから展開されたソースコードを保持しているupstramブランチ。
+- pristine-tarが、upstreamのtarballの情報を新しいリリースがでる毎にデルタと呼ばれる差分管理を保持するブランチが、pristine-tarブランチ。
+    - pristine-tarの扱いで、deltaの管理もパッケージ更新時に思い出す必要があります。ここでは深入りしません。
 ```
 git branch -a
 * master                                             pristine-tar
@@ -113,7 +115,7 @@ COPYING        ChangeLog      Disp.h      NEWS      Piece.c    Stream.h  argumen
 
 ### formatが3.0 (quilt)の形式って何よ?
 
-gbpはquiltを使わずにdebianディレトクリ配下の patches/を操作します。内容は下記のような感じです。
+gbpはquiltを使わずにdebianディレトクリ配下の"patches/"を操作します。内容は下記のような感じです。
 ```
 ls -la debian/patches/
 合計 40
@@ -130,7 +132,7 @@ drwxrwxr-x 1 yabuki yabuki  212  9月 16 23:04 ..
 -rw-rw-r-- 1 yabuki yabuki  214  9月 16 23:04 series
 ```
 xfireworksは途中から、gbpに移行したので、最初に連番がついてないやつとついているやつが混在しています。gbpを使うと最初に連番と
-patch-queue/masterなどのパッチキューで作業したコミットです。大事なのは、seriesというファイルで
+patch-queue/masterなどのパッチキューにて作業したコミットです。パッチキューのファイルを管理しているのが"series"というファイルです。
 ```
 cat debian/patches/series 
 debian-changes-1.3-7
@@ -146,10 +148,10 @@ Fix-FBTFS-for-mkconf
 
 ### gbp pq は何をするコマンドなのか?
 
-Debian packageを管理するのに、debian/patches/にパッチを作る必要があります。gbp pq import でpatch-queueブランチを作り
-patch-queue/作業ブランチで upstream のソースを変更します。Gitの作法に則って、一行目にsummary、2行目は空けて、3行目
-から詳細を書く。詳細には上記で説明した[DEP-3: Patch Tagging Guidelines](https://dep-team.pages.debian.net/deps/dep3/)
-は自動的に付かないので、必要な情報は説明に含める。
+Debian packageを管理するのに、"debian/patches/"にパッチを作る必要があります。`gbp pq import`で"patch-queue"ブランチを作り
+"patch-queue/作業ブランチ"で"upstream"のソースを変更します。Gitの作法に則って、一行目にsummary、2行目は空けて、3行目
+から詳細を書きます。詳細には上記で説明した[DEP-3: Patch Tagging Guidelines](https://dep-team.pages.debian.net/deps/dep3/)
+は自動的に付かないので、必要な情報はコミットメッセージに書く説明に含める。
 
 `gbp pq export`でpatch-queueのコミット毎に、一行目をファイル名としてquilt形式のpatchがdebian/patches/に生成される。
 patch-queueの内容を確認しなくていいなら(あなたがcommitするのを忘れっぽいなら:-))、`gbp pq export --commit`とするのもいいだろう。
@@ -286,7 +288,7 @@ upstreamの変更に対してパッチの順番や、内容をhealthyに保ち�
 |:----               |:--------:|
 |記事を書きはじめた日|2025-09-17|
 |  記事を公開した日  |2025-09-17|
-|  記事を変更した日  |2025-09-18|
+|  記事を変更した日  |2025-09-27|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
