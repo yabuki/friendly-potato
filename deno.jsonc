@@ -23,6 +23,7 @@
     "include": ["/articles", "/books"]
   },
   "imports": {
+    "textlint-filter-rule-comments": "npm:textlint-filter-rule-comments@^1.2.2",
     "zenn-cli": "npm:zenn-cli@^0.2.3"
   }
 }
