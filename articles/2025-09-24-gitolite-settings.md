@@ -258,6 +258,7 @@ list of gitolite commands available:
 rcファイルに関しては、[「rc」ファイル - Gitolite(英文)](https://gitolite.com/gitolite/rc#structure-of-the-rc-file)
 を入り口に読み解くのが良い。
 
+rcファイルは、debianの設定ファイルポリシーで/etc/gitolite3/gitolite.rcにハードリンクされており、Debian系に慣れている人はハードリンク先を変更する作法になれている。
 
 ### 私がよくわかっていないもの
 
