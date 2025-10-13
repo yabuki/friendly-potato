@@ -175,8 +175,9 @@ root@Orlanth:/var/lib/gitolite3/repositories/bookkeeping.git# cat description
 
 `gitolite3`パッケージをインストールすると、`/usr/bin/gitolite` コマンドがインストールされます。
 
-rootや一般ユーザ(gitoliteアカウントや普段お使いのユーザー)からも利用可能です。
-しかし、gitoliteのログなどはgitolite3ユーザの`.gitolite`ディレクトリ配下に存在しており`gitolite`サブコマンドをどのユーザーでどこで実行するかは調べた方が良い。
+rootや一般ユーザー(gitoliteアカウントや普段お使いのユーザー)からも利用可能です。
+しかしgitoliteのログなどはgitolite3ユーザーの`.gitolite`ディレクトリ配下に存在いる。
+`gitolite`サブコマンドをどのユーザーで実行するかは確認しながら実行する。
 
 ```
 $ gitolite 
@@ -208,7 +209,7 @@ available.  They may or may not respond to '-h', depending on how they were
 written.
 ```
 
-Debianパッケージでインストールしているので、setupは利用する機会はないでしょう。
+Debianパッケージでインストールしているので、setupを利用する機会はないでしょう。
 
 gitolite3ユーザーで理解して実行しないとダメそうなコマンド群のヘルプは下記です。
 
