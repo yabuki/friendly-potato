@@ -163,6 +163,11 @@ root@Orlanth:/var/lib/gitolite3/repositories/bookkeeping.git# cat description
 
 ## 参考文献
 
+- [Gitolite](https://gitolite.com/gitolite/)
+    - 公式サイト
+    - [basic administration - Gitolite](https://gitolite.com/gitolite/basic-admin.html)
+        - この辺から管理方法についてや設定ファイルについて学ぶのが良い。bare repositoryの生成はgitoliteにやらせること。
+
 - [Debian -- trixie の git-review パッケージに関する詳細](https://packages.debian.org/trixie/git-review)
 - [Filesystem Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html)
 - [gitolite3とgitwebの導入@Ubuntu #Git - Qiita](https://qiita.com/kyokuheki/items/643ba491d7031fafb23d)
