@@ -54,7 +54,7 @@ gerritや、git reviewは書いていません。
 
 ### 予備知識
 
-Gitoliteは、Debianパッケージ名だと *gitolite3*になります。
+Gitoliteは、Debianパッケージ名だと **gitolite3**になります。
 
 パッケージをインストールすると、gitolite3ユーザーとグループが生成されます。
 日常の利用では気にすることはありませんが、gitolite3ユーザーのHomeは/var/lib/gitolite3/になります。
@@ -107,13 +107,13 @@ debconfで、管理者のssh鍵を登録するように指示されます。file
 #### 利用者のssh鍵登録
 
 私のおすすめは、管理者のssh鍵と、普段使いのssh鍵を分けてgitoliteに設定します。rootのssh鍵を生成しておいたので
-ed25518.pubの*公開鍵*の方を指定します。
+ed25518.pubの**公開鍵**の方を指定します。
 
-設定が終了したら、gitolite-adminリポジトリをcloneして、普段使いのアカウントや複数人でgitolite3を使うなら、その人たちのssh*公開鍵*をkeydirの下に置いてコミットしていきます。
+設定が終了したら、gitolite-adminリポジトリをcloneして、普段使いのアカウントや複数人でgitolite3を使うなら、その人たちのssh**公開鍵**をkeydirの下に置いてコミットしていきます。
 ここで各人の権限管理について気になりますが、`@all`などのディレクティブについては、本家の英語ドキュメントを参考にしてください。
 
 
-登録したssh鍵を確認したいならgitolite3ユーザになり下記のコマンドを実行する。gitoliteコマンドに関してはもっと先に説明を書いた。
+登録したssh鍵を確認したいならgitolite3ユーザーになり下記のコマンドを実行する。gitoliteコマンドに関してはもっと先に説明を書いた。
 
 ```
 ~$ gitolite sshkeys-lint
