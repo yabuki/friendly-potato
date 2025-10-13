@@ -308,6 +308,9 @@ permsは調べてないです。
 - [gitolite3とgitwebの導入@Ubuntu #Git - Qiita](https://qiita.com/kyokuheki/items/643ba491d7031fafb23d)
     - 2016年07月の記事なので、いまの手順とは異なるが、参考になる部分もある。
 
+- [gitoliteでhook | あぁ そうだった](https://passing.breeze.cc/mt/archives/2015/10/gitolite-hook.html)
+    - 日本語でgitoliteのhookについて書いてある。現在もそのまま使えるかは2025-10-13時点では試していない。
+
 ## 謝辞
 
 
