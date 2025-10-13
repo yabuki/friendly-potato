@@ -158,6 +158,17 @@ hello yabuki, this is gitolite3@Orlanth running gitolite3 3.6.12-4 (Debian) on g
  R W    testing
 ```
 
+```
+# ssh gitolite3@localhost info
+hello admin, this is gitolite3@Orlanth running gitolite3 3.6.12-4 (Debian) on git 2.47.3
+ 
+ R W    etude-refactoring
+ R W    gitolite-admin
+ R W    testing
+```
+
+ユーザーyabukiとrootで見えているリポジトリの違いがわかるだろうか。(bookkeepingの有無)
+
 #### リポジトリの説明の参照と設定
 
 ```
