@@ -16,25 +16,34 @@ Debian GNU/Linux 13(code name:trixie)で、Vibe Codingをする準備のため�
 イミュータブル(immutable)な特性を持つDockerコンテナで何でも解決しようとしているでしょうか。
 イミュータブルなコンテナは、コンテナを再起動すると永続化可能な領域にデーターを置いていない限り初期状態に戻ります。
 
-この特性は便利な場面も多々ありますが、Virtual Machine(以下VM)のように、中に入って作業しても作業内容が消えないことが便利な場合もあります。
-用途によって道具を使い分けるのが良いのではないか。という提案が本記事になります。参考文献の7のスライド、水野さんはLXDの話をしていますが、これはほぼIncusでも通用する話です。
+この特性は便利な場面も多々あります。しかしVirtual Machine(以下VM)のように中に入って作業しても作業内容が消えない。
+つまりimmutableでない方が便利な場合もあり用途によって道具を使い分けようという提案が本記事です。
 
-IncusはLXDからのForkになります。(詳しくは、参考文献の3.を参照せよ) snapdをインストールしなくても使えるので、私がメインで使っている。
-Debian GNU/Linux stable(Debian 13)でも、aptでインストール可能になっています。Debian 12でもIncusはBackportされておりIncusは、LTSバージョンの6.0.4です。
+参考文献の7のスライド水野さんはLXDの話をしていますが、これはほぼIncusでも通用します。
+
+IncusはLXDからのForkです。(詳しくは、参考文献の3を参照せよ) snapdをインストールしなくても使えます。
+メインで使っているDebian GNU/Linux stable(Debian 13)でも、aptでインストール可能です。
+Debian 12でもIncusはBackportされておりIncusは、LTSバージョンの6.0.4です。
 
 ちなみに私も必要があれば、イミュータブルなコンテナは使います。Podmanを試してからDockerにすることが多いです。
-また、Incusの中で、PodmanやDockerを動かせます。まさに開発環境をコンテナの中に閉じ込めて、保存することができます。
+また、Incusの中で、PodmanやDockerを動かせます。まさに開発環境をコンテナの中に閉じ込めて、保存できます。
 
-保存方法も、snapshotを取って、切り戻ししたり、export/importしたり、複数のIncusが立ち上がっているなら、別のIncusに移すこともできます。
-詳細については、参考文献の1または2で説明があります。
+保存方法も下記のような種類があります。
+
+- snapshotを作り切り戻しする。
+- export/importする。
+- 複数のIncusが立ち上がっているなら、別のIncusに移す。
+
+それぞれの詳細については、参考文献の1または2で説明があります。
 
 ### IncusとDockerの共存について
 
 :::message
 
-IncusとDockerの共存について
+IncusとDockerの共存について言及します。
 
-可能なら、IncusとDockerは、ネットワークの設定がぶつかることがあり、Incusの中でDockerを動かすのが良いでしょう。
+IncusとDockerを同じホストにインストールするとネットワークの設定がぶつかる設定になりえます。
+回避方法としてはIncusの中でDockerを動かすのが良い。
 
 [なぜ私のインスタンスはネットワークアクセスがないのですか？ --- よく聞かれる質問（FAQ） - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/faq/#id1)
 にから回避方法がたどれます。
@@ -43,7 +52,7 @@ Incusの中で、Dockerを動かす(Nested container)をするには
 [Incus コンテナの内部で Docker を実行するには？ ---  よく聞かれる質問（FAQ） - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/faq/#incus-docker)
 を設定してください。
 
-2025-08-12 追加
+2025-08-12追加しました。
 
 :::
 
@@ -62,16 +71,16 @@ Incusの中で、Dockerを動かす(Nested container)をするには
 
 ### 所与の条件
 
-今回の記事に入る前に、事前に決定済みの条件は下記になります。
+事前に決定済みの条件は下記になります。
 
-今回使うOSは、Debian GNU/Linux 13(コードネーム trixie)です。2025-08-10 時点での安定版です。file systemは、btrfsを使っています。
+今回使うOSは、Debian GNU/Linux 13(コードネームtrixie)です。2025-08-10時点での安定版です。file systemは、btrfsを使っています。
 開発用に使っているので、ext4よりもコンテナを活用するのに、インストール時からbtrfsを使っています。パックアップ用HDDなどは耐障害性から、ext4を使うこともあります。
 ハードディスクなどで、Readできないセクターが発生したら`fsck -c`などを使いますから。
 
 Debian 13(trixie)には、[Debian -- パッケージ検索結果 -- incus](https://packages.debian.org/search?searchon=sourcenames&keywords=incus)で確認できますが、Incusパッケージがあります。
 
 まだ、Debian 12(bookworm)を使っている場合は、 参考文献の4を見るとわかりますが、backports.debian.orgにIncusを使います。
-商用サポートや参考文献の5にあるdockerイメージを動かしたい場合は別途Debianのexperimentalのソースパッケージを使うか、別のリポジトリを使ってください。
+商用サポートや参考文献の5にあるDockerイメージを動かしたい場合は別途Debianのexperimentalのソースパッケージを使うか、別のリポジトリを使ってください。
 
 aptでbackports.debian.orgを参照して、パッケージをインストールする方法については、参考文献6を読んで実行しておいてください。
 
@@ -84,24 +93,23 @@ Incusパッケージには、LXCコンテナを扱うものと、KVMで仮想マ
 /etc/groupsを見て確認できます。
 
 私は、普段使いのアカウント(yabuki)でincusを操作したいので、incus,incus-adminのどちらに属するか悩みましたが、`sudo usermod -aG yabuki`として
-ログインしなおして、
+ログインしなおして下記になっているのを確認します。
 ```
 id
 uid=1000(yabuki) gid=1000(yabuki) groups=1000(yabuki),6(disk),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),100(users),106(netdev),111(bluetooth),113(lpadmin),116(scanner),993(incus-admin)
 ```
-となっていることを確認しました。
 
 ### incus admin init
 
-incusの初期設定です。この辺は特にデフォルトの設定のままでいいかと思います。気になるなら、参考文献1,2,8あたりを参照すると良いかと。
+incusの初期設定です。この辺は特にデフォルトの設定のままでいいです。気になるなら、参考文献1,2,8あたりを参照しましょう。
 
-:::details 初期化する前の状態
+:::details  初期化する前の状態。
 
 ```
 btrfs subvolume list /var
 ID 259 gen 70386 top level 5 path videos
 ```
-/var/videos は、会議などを録画する領域としてHDD上に事前に用意して、/home/yabuki/Videos/の下にmountしています。
+/var/videosは、会議などを録画する領域としてHDD上に予め用意した/home/yabuki/Videos/の下にmountしています。
 ```
 incus admin init --dump
 config: {}
@@ -145,7 +153,7 @@ Would you like stale cached images to be updated automatically? (yes/no) [defaul
 Would you like a YAML "init" preseed to be printed? (yes/no) [default=no]: 
 ```
 
-:::details 初期化後の状態
+:::details  初期化後の状態。
 
 ```
  btrfs subvolume list /var
@@ -221,23 +229,25 @@ drwxr-xr-x 1 root root        1352  8月 11 11:08 ..
 ### 設定済みのインスタンスを動かす
 
 localeを日本語にして、timezoneをAsia/Tokyoにしたりなど毎回やらないといけない処理を省くには王道としてはincusのイメージを作ることですが、
-[サードパーティーツールと統合 - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/third_party/)にあるDistrobuilderをつかうのかもしれません。^[GRAM: GitHub の自己ホストランナーを稼働できる Github Actions Runner Manager を作るのも楽しそう]
+[サードパーティーツールと統合 - Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/third_party/)にあるDistrobuilderを使う方法もあります。^[GRAM: GitHub の自己ホストランナーを稼働できる Github Actions Runner Manager を作るのも楽しそう]
 
 :::message
 
-2025-08-12 追記
+2025-08-12追記。
 
-タイムゾーンの変更方法は cloud-init を使う方法もあると教えてもらいました。詳しくは参考文献13を読んでください。
+タイムゾーンの変更方法はcloud-initを使う方法もあると教えてもらいました。詳しくは参考文献13を読んでください。
 
 https://x.com/hnakamur2/status/1954921794437267837
 
 イメージの後ろに/cloudとあるやつが、cloud-init対応だそうです。cloud-initに関しては 
 [cloud-init 25.1.4 documentation](https://cloudinit.readthedocs.io/en/latest/index.html)
 がドキュメントのようです。Cloud上で初期設定をするのに広く使われているようですね。
+
 :::
 
 
-incusに対して、terraformやOpenTofuで設定する方法もありますが、ansibleがお手軽っぽい。でも今回はもっと簡単にインスタンスのバックアップから任意のインスタンスを作る方法を試します。
+incusに対して、terraformやOpenTofuで設定する方法もありますが、ansibleがお手軽っぽい。
+でも今回はもっと簡単にインスタンスのバックアップから任意のインスタンスを作る方法を試します。
 
 Odaylaというマシンで、trixieという名前でDebian 13を設定したコンテナを作りました。
 ```
@@ -291,7 +301,7 @@ projectです。より詳しい説明は、参考文献9を参照してくださ
 
 ただし、プロジェクトにはユーザーのできることを制限することにも使えるが、それを設定すると参考文献10のような罠があるので困ったときのためのリンクを置いておきます。
 
-#### incusのインスタンスをLANのIPで運用したい。
+#### incusのインスタンスをLANのIPで運用したい
 
 文献8を参考に、profileを作る。profileの基礎的なことは、参考文献11を参照すること。
 
@@ -331,7 +341,7 @@ Global Flags:
 incus profile create bridge
 ```
 
-Linux machineで利用しているイーサネットのデバイス名を取得する
+Linux machineで利用しているイーサネットのデバイス名を取得する。
 ```
 ip a | grep  'state UP'
 2: enp6s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
@@ -353,7 +363,7 @@ incus network list
 
 `incus network list`を確認することで、incusのnetworkにenp6s0が生成されているのを確認した。
 
-:::details incus network attach-profileコマンドの確認
+:::details incus network attach-profileコマンドの確認。
 ```
 incus network attach-profile --help
 Description:
@@ -386,9 +396,8 @@ incus network attach-profile enp6s0 bridge eth0
 1. [Incus documentation](https://linuxcontainers.org/incus/docs/main/)
     - incusのドキュメント(英文)
 2. [Incus ドキュメント](https://incus-ja.readthedocs.io/ja/latest/)
-    - 1.のドキュメントを有志の方々が日本語訳を作ってくれています。ありがたいことです。
+    - 1のドキュメントを有志の方々が日本語訳を作っている
 3. [第796回 LXDとIncus、今後どちらをUbuntuユーザーは使うべきか？ | gihyo.jp](https://gihyo.jp/admin/serial/01/ubuntu-recipe/0796)
-    - LXDのコミュニティ・フォークがIncusとなります。
 4. [Incus - Debian Wiki](https://wiki.debian.org/Incus)
 5. [第824回 Dockerコンテナをダイレクトに動かせるようになった「Incus 6.3」を、Ubuntu 24.04で試す | gihyo.jp](https://gihyo.jp/admin/serial/01/ubuntu-recipe/0824#sec5)
 6. [Debian Backports](https://backports.debian.org/)
@@ -414,7 +423,7 @@ incus network attach-profile enp6s0 bridge eth0
 |:----               |:--------:|
 |記事を書きはじめた日|2025-08-11|
 |  記事を公開した日  |2025-08-11|
-|  記事を変更した日  |2025-08-12|
+|  記事を変更した日  |2025-10-14|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
