@@ -22,6 +22,7 @@ GitHub EnterpriseやGitLabは、それらやIssue管理までやってくれま�
 また、少数の人間で開発するときにNDAの関係で外部に情報送信ができないときは全部、自前で環境を作ることになります。その時少人数なのに手間をかけて、GitHub EnterpriseやGitLabやその他便利だが重厚長大なソフトウェアをインストールして更新していくのはToo muchです。
 もっと、人数が増えて作業が分化したときに導入すればいいのです。
 
+
 ### この記事を書いた動機
 
 自分が、gitoliteをインストールして使い始めるまでのTipsを記録して置かないと、忘れた頃に何だったかな。と、この記事を読むために書いています。
@@ -34,6 +35,14 @@ GitHub EnterpriseやGitLabは、それらやIssue管理までやってくれま�
 ### この記事の読み方
 
 Debian系のLinuxディストロなら、だいたい同じかとおもいますが、適宜確認してあなたの環境に合わせてください。
+
+::: message
+
+個人で複数のgit bare repositorを持つだけなら、ここに書いてある話は過剰です。
+ssh公開鍵を登録して、利用するリポジトリを設定してcommitしてpushすれば対象のrepoができます。
+
+:::
+
 
 ### この記事には何を書いていないか
 
@@ -311,8 +320,13 @@ permsは調べてないです。
 - [(quick! how do I...) the cookbook - Gitolite](https://gitolite.com/gitolite/cookbook)
     - gitoliteのコマンド追加や、hookの設定について書いてある。必要になったら読むこと。
 
+### gitolite hook
+
+- [絶対領域(AbsoluteArea)の徒然: gitolite3 で、hook スクリプトを設定する](http://absolutearea.blogspot.com/2014/10/gitolite3-hook.html)
+    - 2014年10月5日日曜日の記述gitolite 3.5系の設定方法について記述がある。ubuntuでの話なので、Debianユーザーにとっても近い環境でhookを設定している。
+
 - [gitoliteでhook | あぁ そうだった](https://passing.breeze.cc/mt/archives/2015/10/gitolite-hook.html)
-    - 日本語でgitoliteのhookについて書いてある。現在もそのまま使えるかは2025-10-13時点では試していない。
+    - 現在もそのまま使えるかは2025-10-13時点では試していない。
 
 ## 謝辞
 
