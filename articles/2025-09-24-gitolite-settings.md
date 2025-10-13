@@ -112,6 +112,17 @@ ed25518.pubの*公開鍵*の方を指定します。
 設定が終了したら、gitolite-adminリポジトリをcloneして、普段使いのアカウントや複数人でgitolite3を使うなら、その人たちのssh*公開鍵*をkeydirの下に置いてコミットしていきます。
 ここで各人の権限管理について気になりますが、`@all`などのディレクティブについては、本家の英語ドキュメントを参考にしてください。
 
+```
+
+登録したssh鍵を確認したいならgitolite3ユーザになり下記のコマンドを実行する。gitoliteコマンドに関してはもっと先に説明を書いた。
+
+~$ gitolite sshkeys-lint
+sshkeys-lint: ==== checking authkeys file:
+sshkeys-lint: ==== checking pubkeys:
+sshkeys-lint: admin.pub maps to user admin
+sshkeys-lint: yabuki.pub maps to user yabuki
+```
+
 #### 利用するリポジトリの設定
 
 gitolite-adminリポジトリのconfの下にgitolite.confがあります。初期値から、@adminとetude-refactoringおよび、bookkeepingを追加しています。それぞれの意味については英文の公式ドキュメントを参考にしてください。まあ何となくわかるかも知れませんが。
@@ -165,6 +176,7 @@ root@Orlanth:/var/lib/gitolite3/repositories/bookkeeping.git# cat description
 `gitolite3`パッケージをインストールすると、`/usr/bin/gitolite` コマンドがインストールされます。
 
 rootや一般ユーザ(gitoliteアカウントや普段お使いのユーザー)からも利用可能です。
+しかし、gitoliteのログなどはgitolite3ユーザの`.gitolite`ディレクトリ配下に存在しており`gitolite`サブコマンドをどのユーザーでどこで実行するかは調べた方が良い。
 
 ```
 $ gitolite 
@@ -197,6 +209,54 @@ written.
 ```
 
 Debianパッケージでインストールしているので、setupは利用する機会はないでしょう。
+
+gitolite3ユーザーで理解して実行しないとダメそうなコマンド群のヘルプは下記です。
+
+```
+$ gitolite help
+hello, this is gitolite3@Orlanth running gitolite3 3.6.12-4 (Debian) on git 2.47.3
+ 
+list of gitolite commands available:
+ 
+        1plus1
+        D
+        access
+        compile-template-data
+        config
+        create
+        creator
+        desc
+        fork
+        git-annex-shell
+        git-config
+        help
+        htpasswd
+        info
+        list-dangling-repos
+        lock
+        mirror
+        motd
+        newbranch
+        option
+        owns
+        perms
+        print-default-rc
+        push
+        readme
+        rsync
+        sshkeys-lint
+        sskm
+        sudo
+        svnserve
+        symbolic-ref
+        who-pushed
+        writable
+```
+
+既定値のrcファイルを参照したいなら、gitolite3ユーザーで`gitolite print-default-rc`を実行する。
+rcファイルに関しては、[「rc」ファイル - Gitolite(英文)](https://gitolite.com/gitolite/rc#structure-of-the-rc-file)
+を入り口に読み解くのが良い。
+
 
 ### 私がよくわかっていないもの
 
