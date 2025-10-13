@@ -224,6 +224,8 @@ Debianパッケージでインストールしているので、setupを利用す
 
 gitolite3ユーザーで理解して実行しないとダメそうなコマンド群のヘルプは下記です。
 
+多くは、全員には不必要で`/etc/gitolite3/gitolite.rc`を設定して有効にする。
+
 ```
 $ gitolite help
 hello, this is gitolite3@Orlanth running gitolite3 3.6.12-4 (Debian) on git 2.47.3
@@ -267,7 +269,7 @@ list of gitolite commands available:
 
 既定値のrcファイルを参照したいなら、gitolite3ユーザーで`gitolite print-default-rc`を実行する。
 rcファイルに関しては、[「rc」ファイル - Gitolite(英文)](https://gitolite.com/gitolite/rc#structure-of-the-rc-file)
-を入り口に読み解くのが良い。
+を入り口に読み解くのが良い。ドキュメントと設定ファイルのコメントを良く読むこと。
 
 rcファイルは、debianの設定ファイルポリシーで/etc/gitolite3/gitolite.rcにハードリンクされており、Debian系に慣れている人はハードリンク先を変更する作法になれている。
 
