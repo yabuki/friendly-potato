@@ -18,6 +18,12 @@
   - [textlint + prhで文章を校正する方法 #textlint - Qiita](https://qiita.com/munieru_jp/items/83c2c44fcadb177d2806)
   -
 
+## 2025-10-13
+
+deno task lint を実行するときには、リポジトリトップから実行すること。
+    - denoは`node_modules`がなくてもnodeやnpmパッケージを実行できるが互換性が100%ではないのでカレントディレクトリを変えてのtextlintの実行は、deno runならいけるがtaskのなかだとまだ問題がある。
+    - textlintはnpmパッケージで分割されており、それぞれがimportできる必要がある。それが`node_modules`をもってないdenoだと、まだ難しいようだ。
+
 ## 2025-06-05
 
 箇条書きで、ですますで指摘される場合は体言止めをしてみるのも良い。
