@@ -160,6 +160,66 @@ root@Orlanth:/var/lib/gitolite3/repositories/bookkeeping.git# cat description
 会計情報を扱うリポジトリ
 ```
 
+### gitoliteコマンド
+
+`gitolite3`パッケージをインストールすると、`/usr/bin/gitolite` コマンドがインストールされます。
+
+rootや一般ユーザ(gitoliteアカウントや普段お使いのユーザー)からも利用可能です。
+
+```
+$ gitolite 
+ 
+Usage:  gitolite [sub-command] [options]
+ 
+The following built-in subcommands are available; they should all respond to
+'-h' if you want further details on each:
+ 
+    setup                       1st run: initial setup; all runs: hook fixups
+    compile                     compile gitolite.conf
+ 
+    query-rc                    get values of rc variables
+ 
+    list-groups                 list all group names in conf
+    list-users                  list all users/user groups in conf
+    list-repos                  list all repos/repo groups in conf
+    list-phy-repos              list all repos actually on disk
+    list-memberships            list all groups a name is a member of
+    list-members                list all members of a group
+ 
+Warnings:
+  - list-users is disk bound and could take a while on sites with 1000s of repos
+  - list-memberships does not check if the name is known; unknown names come
+    back with 2 answers: the name itself and '@all'
+ 
+In addition, running 'gitolite help' should give you a list of custom commands
+available.  They may or may not respond to '-h', depending on how they were
+written.
+```
+
+Debianパッケージでインストールしているので、setupは利用する機会はないでしょう。
+
+### 私がよくわかっていないもの
+
+私に取ってgitoliteを十全に活用するにはわかっていたほうが良いが、知らなくても困っていない事項です。
+
+```
+sh gitolite3@Orlanth.local help
+Warning: Permanently added 'orlanth.local' (ED25519) to the list of known hosts.
+Enter passphrase for key '/home/yabuki/.ssh/id_ed25519': 
+hello yabuki, this is gitolite3@Orlanth running gitolite3 3.6.12-4 (Debian) on git 2.47.3
+ 
+list of remote commands available:
+ 
+        desc
+        help
+        info
+        perms
+        writable
+```
+
+writableは設定が足りていないのかちゃんと動いていない動きをしている。
+permsは調べてないです。
+
 
 ## 参考文献
 
