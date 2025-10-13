@@ -37,7 +37,7 @@ v14.2.0
 こうすることで必要なnpmパッケージが`deno.json`or`deno.jsonc`に登録されます。
 npmパッケージが記録されているので`git clone`して`deno run`実行時に必要なパッケージをネット経由でとってローカルキャッシュに保存し、`node_modules`を生成せずにnodeとnpmパッケージを動かします。
 
-参考文献2。の記事にはtextlintを`node_modules`なしに動かす方法を書いているが、`deno run`が`node_mocules`なしにtextlintを動かしているの考慮すべき点が多いことに気がつく。
+参考文献2の記事にはtextlintを`node_modules`なしに動かす方法を書いているが、`deno run`が`node_mocules`なしにtextlintを動かしているの考慮すべき点が多いことに気がつく。
 とりわけtextlintからimportできないと、プラグインが動かないのをどうやって回避しているのか、Denoのnpm互換性について、理解をしていないが大変そうなのは理解できた。
 
 ### この記事を書いた動機は？
