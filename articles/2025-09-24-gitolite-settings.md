@@ -112,10 +112,10 @@ ed25518.pubの*公開鍵*の方を指定します。
 設定が終了したら、gitolite-adminリポジトリをcloneして、普段使いのアカウントや複数人でgitolite3を使うなら、その人たちのssh*公開鍵*をkeydirの下に置いてコミットしていきます。
 ここで各人の権限管理について気になりますが、`@all`などのディレクティブについては、本家の英語ドキュメントを参考にしてください。
 
-```
 
 登録したssh鍵を確認したいならgitolite3ユーザになり下記のコマンドを実行する。gitoliteコマンドに関してはもっと先に説明を書いた。
 
+```
 ~$ gitolite sshkeys-lint
 sshkeys-lint: ==== checking authkeys file:
 sshkeys-lint: ==== checking pubkeys:
