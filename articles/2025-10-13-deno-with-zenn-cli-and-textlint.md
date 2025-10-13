@@ -31,7 +31,7 @@ v14.2.0
 
 :::
 
-参考文献1の記事を読んで、deps.tsを使っていた。しかし今では``deno add`で、npmパッケージをインストールする方法がofficalからアナウンスされています。
+参考文献1の記事を読んで、deps.tsを使っていた。しかし今では`deno add`で、npmパッケージをインストールする方法がofficalからアナウンスされています。
 その時`deno outdated`や`deno update`を使えとドキュメントにあります。
 
 こうすることで必要なnpmパッケージが`deno.json`or`deno.jsonc`に登録されます。
