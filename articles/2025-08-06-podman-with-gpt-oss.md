@@ -66,7 +66,7 @@ Incusのコンテナで、gmini-cliなど試す記事は別途書く予定です
 
 また、autofsで必要にに応じてNFSマウントをしており、使用頻度が低くなったデータで消せないものなどはどんどんNASに追い出しています。
 
-必要なコマンドは、install済みとします。今回は、podmanです。podmanのインストールに関しては、[Postgresqlをpodman-composeでDebian Bookworm 上で動かす。2025/04版](https://zenn.dev/yabuki/articles/2025-04-21-postgresql-with-podman-compose)が、2025-08-07 時点でも参考になります。
+必要なコマンドは、install済みとします。今回は、Podmanです。Podmanのインストールに関しては、[Postgresqlをpodman-composeでDebian Bookworm 上で動かす。2025/04版](https://zenn.dev/yabuki/articles/2025-04-21-postgresql-with-podman-compose)が、2025-08-07時点でも参考になります。
 
 ## 本文
 
@@ -74,10 +74,10 @@ Incusのコンテナで、gmini-cliなど試す記事は別途書く予定です
 
 Debian 13(Trixie)では、ROCmが使いやすくなっていますが、設定は必要です。参考文献6のDebian Wikiを読んでおきましょう。
 
-参考文献5のrocm-podman-supportをインストールします。apt-proxy-ngパッケージも入ります。
-また、rocminfoコマンドも使えるように、`apt install rocminfo`を実行します。
+参考文献5のROCm-Podman-supportをインストールします。apt-proxy-ngパッケージも入ります。
+また、ROCminfoコマンドも使えるように、`apt install rocminfo`を実行します。
 
-:::details rocminfoの結果長いのでアコーデオンにしておきます。
+:::details ROCminfoの結果長いのでアコーデオンにしておきます。
 ```
 [37mROCk module is loaded[0m
 =====================    
@@ -312,10 +312,10 @@ Checks
 ```
 
 
-### ollamaをpodmanで動かす。
+### ollamaをPodmanで動かす
 
 自作マシンには、ASUS製のRX7900XTX 24GBを載せている。そのためAMDの[ROCm™ 7 ソフトウェア](https://www.amd.com/ja/products/software/rocm/whats-new.html)が供給しているソフトウェアを使うのが良い。ollamaはROCm入りのコンテナ・イメージを供給している。(参考文献2)
-podmanで利用するには、下記のコマンドを実行する。
+Podmanで利用するには、下記のコマンドを実行する。
 
 ```
 podman run -d --device /dev/kfd --device /dev/dri -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama:rocm
@@ -347,7 +347,7 @@ gpt-oss:20b    f2b8351c629c    13 GB    9 hours ago
 ```
 *ollamaコマンドで取得してきたモデルを確認してみた例*
 
-podmanがイメージを置いている場所を確認して、大きなイメージをいっぱい置いても大丈夫にしたいですね。
+Podmanがイメージを置いている場所を確認して、大きなイメージをいっぱい置いても大丈夫にしたいですね。
 
 また、ROCmが有効に動いているかを確認する方法はどうしたらいいのか。も気になりました。
 暫定として`apt install -y radeontop` として、GPUのモニタリングをしてみることにしました。
@@ -356,13 +356,13 @@ podmanがイメージを置いている場所を確認して、大きなイメ�
 *radeontopの表示例*
 
 
-追記予定としては、podmanのイメージ置き場をDisk容量に余裕のある/varに移す部分を書く予定です。
+追記予定としては、Podmanのイメージ置き場をDisk容量に余裕のある/varに移す部分を書く予定です。
 
 ## 参考文献
 
 1. [ollama/ollama - Docker Image | Docker Hub](https://hub.docker.com/r/ollama/ollama)
 2. [ollama/ollama - Docker Image | Docker Hub](https://hub.docker.com/r/ollama/ollama#amd-gpu)
-    - AMD GPUに対応する ROCmを利用するならここを参照すること。
+    - AMD GPUに対応するROCmを利用するならここを参照すること。
 3. [library](https://ollama.com/library)
 4. [gpt-oss](https://ollama.com/library/gpt-oss)
 5. [Debian -- trixie の rocm-podman-support パッケージに関する詳細](https://packages.debian.org/ja/trixie/rocm-podman-support)
