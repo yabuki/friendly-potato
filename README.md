@@ -18,6 +18,18 @@
   - [textlint + prhで文章を校正する方法 #textlint - Qiita](https://qiita.com/munieru_jp/items/83c2c44fcadb177d2806)
   -
 
+## 2025-10-14
+
+昨日の指示は、私が`deno task`の仕様を理解していないので起きた。`deno task`は実行時カレントを deno.json/deno.jsoncのある場所にする。
+そのため article/にいても
+```
+deno task lint articles/2020-09-19-build-zenn-writing-env-on-debian-sid.md
+```
+や `--cwd`オプションを使う方法があります。
+```
+deno task --cwd . lint 2020-09-19-build-zenn-writing-env-on-debian-sid.md
+```
+
 ## 2025-10-13
 
 deno task lint を実行するときには、リポジトリトップから実行すること。
