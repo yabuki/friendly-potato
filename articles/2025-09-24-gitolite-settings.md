@@ -311,7 +311,8 @@ permsは調べてないです。
     - 公式サイト
     - [basic administration - Gitolite](https://gitolite.com/gitolite/basic-admin.html)
         - この辺から管理方法についてや設定ファイルについて学ぶのが良い。bare repositoryの生成はgitoliteにやらせること。
-
+    - [core and &quot;non-core&quot; gitolite - Gitolite](https://gitolite.com/gitolite/non-core.html#core-versus-non-core)
+        - gitoliteの用語や概念について書いているので、複雑な設定をする前に読んでおこう。
 - [Debian -- trixie の git-review パッケージに関する詳細](https://packages.debian.org/trixie/git-review)
 - [Filesystem Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html)
 - [gitolite3とgitwebの導入@Ubuntu #Git - Qiita](https://qiita.com/kyokuheki/items/643ba491d7031fafb23d)
@@ -340,7 +341,7 @@ permsは調べてないです。
 |:----               |:--------:|
 |記事を書きはじめた日|2025-09-24|
 |  記事を公開した日  |2025-10-13|
-|  記事を変更した日  |----------|
+|  記事を変更した日  |2025-10-14|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
