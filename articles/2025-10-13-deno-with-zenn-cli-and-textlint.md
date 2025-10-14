@@ -124,7 +124,28 @@ fi
 ```
 deno task lint articles/2025-10-13-deno-with-zenn-cli-and-textlint.md
 ```
-のようにします。articlesにcdすると`deno task lint`は現状うまくうごきません。deno runで直接 `--config`オプションなどを指定すると動きますがおすすめはひとつ上のディレクトリから操作することです。
+のようにします。~~articlesにcdすると`deno task lint`は現状うまくうごきません。deno runで直接 `--config`オプションなどを指定すると動きますがおすすめはひとつ上のディレクトリから操作することです。~~
+
+
+:::message
+
+2025-10-14 kt3kさんに教えていただいた内容を反映した。
+
+articleディレクトリにcdした場合であっても、`deno task`は**deno.json/deno.jsoncが存在するディレクトリをカレントとして実行します。**
+
+そのため、article/以下にいても、プログラムから見えるように引数を与える必要があります。
+
+```
+deno task lint articles/2020-09-19-build-zenn-writing-env-on-debian-sid.md
+```
+
+`deno task`に`--cwd`オプションを与える方法もあります。
+
+```
+deno task --cwd . lint 2020-09-19-build-zenn-writing-env-on-debian-sid.md
+```
+
+:::
 
 ### 3.textlintが指摘してきた内容を修正する
 
