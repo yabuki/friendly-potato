@@ -96,7 +96,7 @@ denoも2.5系になり現状で執筆環境を新しく記事にしておく必�
 
 ### 1.記事生成
 
-article/の下にmdファイルを作って、記事を書いていきます。雛形には`deno task zenn:create:article`の実行結果などが役立つでしょう。
+articles/の下にmdファイルを作って、記事を書いていきます。雛形には`deno task zenn:create:article`の実行結果などが役立つでしょう。
 
 私はwrapperで下記のようなスクリプトを利用しています。
 ```bash:new-article.sh
@@ -119,7 +119,7 @@ fi
 
 ### 2.textlintを実行する
 
-.textlintrcやdeno.jsoncの存在するディレクトリから、article/配下のmdファイルを呼び出します。
+.textlintrcやdeno.jsoncの存在するディレクトリから、articles/配下のmdファイルを呼び出します。
 ```
 deno task lint articles/2025-10-13-deno-with-zenn-cli-and-textlint.md
 ```
@@ -130,9 +130,9 @@ deno task lint articles/2025-10-13-deno-with-zenn-cli-and-textlint.md
 
 2025-10-14 kt3kさんに教えていただいた内容を反映した。
 
-articleディレクトリにcdした場合であっても、`deno task`は**deno.json/deno.jsoncが存在するディレクトリをカレントとして実行します。**
+articlesディレクトリにcdした場合であっても、`deno task`は**deno.json/deno.jsoncが存在するディレクトリをカレントとして実行します。**
 
-そのため、article/以下にいても、プログラムから見えるように引数を与える必要があります。
+そのため、articles/以下にいても、プログラムから見えるように引数を与える必要があります。
 
 ```
 deno task lint articles/2020-09-19-build-zenn-writing-env-on-debian-sid.md
@@ -144,7 +144,7 @@ deno task lint articles/2020-09-19-build-zenn-writing-env-on-debian-sid.md
 deno task --cwd . lint 2020-09-19-build-zenn-writing-env-on-debian-sid.md
 ```
 
-article/にcdすると動かないと思っていたのは、私が`deno task`の仕様を把握してなかったために誤解でした。
+articles/にcdすると動かないと思っていたのは、私が`deno task`の仕様を把握してなかったために誤解でした。
 
 :::
 
