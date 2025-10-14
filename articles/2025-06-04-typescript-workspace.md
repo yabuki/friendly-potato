@@ -138,7 +138,7 @@ repositoryのtopに存在するdeno.jsonまたはdeno.jsoncには下記のよう
 ```
 packageまたはmoduleも置けます。
 
-その他のworkspaceの利点については、参考文献 Web 5を参照してください。
+その他のworkspaceの利点については、参考文献Web 5を参照してください。
 
 ## 参考文献
 

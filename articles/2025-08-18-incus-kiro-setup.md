@@ -12,7 +12,7 @@ Debを使ってインストールしたり、AWS Builders IDを使って使い�
 
 :::message alert
 この記事を書いてから、ぼちぼちと調べていたのですが
-2025-09-06 現在、原因はわからないのですが、LLMを利用しようとすると"Kiro access not available for this account"と表示され、Kiroの力をまともに使えない状態です。
+2025-09-06現在、原因はわからないのですが、LLMを利用しようとすると"Kiro access not available for this account"と表示され、Kiroの力をまともに使えない状態です。
 Previewだし、のんびり待つしかないようです。使える人と使えない人で何が違うんでしょうね。
 
 "Kiro access not available for this account"となる問題については、
@@ -131,7 +131,7 @@ shared-mime-info (2.4-5+b2) のトリガを処理しています ...
 Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_apt' からアクセスできないため、ダウンロードは root でサンドボックスを通さずに行われます。 - pkgAcquire::Run (13: 許可がありません)
 ```
 
-調べたところ、インストールは成功している。`/root/202508150626-distro-linux-x64.deb`のuid:gidがyabuki:yabukiなのでユーザ`_apt`からアクセスできないだけのようだ。依存関係があるといやだったので`apt`コマンドを使ったが、`dpkg -i`コマンドを使えば良かったのかもしれない。
+調べたところ、インストールは成功している。`/root/202508150626-distro-linux-x64.deb`のuid:gidがyabuki:yabukiなのでユーザー`_apt`からアクセスできないだけのようだ。依存関係があるといやだったので`apt`コマンドを使ったが、`dpkg -i`コマンドを使えば良かったのかもしれない。
 ということで次に進む。気になるひとは、参考文献3を読むのもいいでしょう。
 
 ### Kiro起動

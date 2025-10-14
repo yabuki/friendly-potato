@@ -30,7 +30,7 @@ immutableなコンテナでなく、VMみたいな使い心地のコンテナで
 
 ## 本文
 
-### X11でアプリケーションのフォワードを設定する。
+### X11でアプリケーションのフォワードを設定する
 
 下記のように、sshでコンテナの中のX11 clientをホスト側のX11 serverで動かしたいときに下記のようにメッセージが出ますが、
 
@@ -60,7 +60,7 @@ ls -la ~/.Xauthority
 
 X11のForwardingを有効にしたので、次はブラウザをインストールします。
 ただし、ブラウザが使っているFontは事前にインストールしておきましょう。
-私の場合は、UD Biz フォントを入れ忘れていたので、ブラウザの日本語が豆腐だらけになってあわてました。
+私の場合は、UD Bizフォントを入れ忘れていたので、ブラウザの日本語が豆腐だらけになってあわてました。
 
 自分がブラウザで使っているFontは事前にインストールしてから下記をやってください。
 
@@ -83,11 +83,11 @@ sudo apt install ./google-chrome-stable_138.0.7204.168-1_amd64.deb
 
 そして、`ssh -X` した端末から、`chrome`コマンドを実行するとホスト側にブラウザが立ち上がれば認証用のブラウザの設定はおわりです。
 
-### gmini-cliをインストールする。
+### gmini-cliをインストールする
 
 まずは、[google-gemini/gemini-cli: An open-source AI agent that brings the power of Gemini directly into your terminal.](https://github.com/google-gemini/gemini-cli)を確認します。
 
-System Requirementは、Node.jsの20以上とのことで、Debian 13(trixie)に収録されている nodejsは20.19.2+dfsg-1ということでDebianパッケージで提供されているものを使う事にします。
+System Requirementは、Node.jsの20以上とのことで、Debian 13(trixie)に収録されているnodejsは20.19.2+dfsg-1ということでDebianパッケージで提供されているものを使う事にします。
 パッケージの確認方法は、`apt-cache search nodejs`したあとに`apt-cache show nodejs`するのが良いでしょう。
 
 ```
@@ -124,7 +124,7 @@ sudo apt -y install nodejs npm
 
 ドキュメントを読みながら設定していくことになる。
 
-Visual Studio Code からエージェントモードで使える。
+Visual Studio Codeからエージェントモードで使える。
 コンテナにはリモートでVisual Studio Codeをつなぐと考えていたが、Incusで動かしているコンテナ内にVisual Stuido Codeをインストールしてgeminiと連携させるのが良さそう。
 [Gemini Code Assist エージェント モード --- Gemini CLI | Gemini Code Assist | Google for Developers](https://developers.google.com/gemini-code-assist/docs/gemini-cli?hl=ja)
 

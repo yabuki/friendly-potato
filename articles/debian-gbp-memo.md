@@ -69,14 +69,16 @@ cat debian/source/format
     - debianの開発版だけに作業するなら、mainないしはmasterを指定する。
     - 複数のディストリビューションや、Debianだけでも開発版以外にbackportsへパッケージを提供する場合などはブランチを使い分ける。
 
-以上3つのブランチに加えて、`gbp pq import`で作られ`gbp pq export`で最終的には消滅させる"patch-queue/作業ブランチ"の合計4つのブランチを意識する必要がある。
+以上3つのブランチに加えて、`gbp pq import`で作られ`gbp pq export`にて最終的には消滅させる"patch-queue/作業ブランチ"の合計4つ
+のブランチを意識する必要がある。
 
-実例としては下記のような感じ。この状態では`gbp pq import`コマンドはpatch-queueブランチを作っていない。
+実例としては下記です。この状態では`gbp pq import`コマンドはpatch-queueブランチを作っていない。
 
-- 作業ブランチがmasterブランチ。
-- upstreamのtarballから展開されたソースコードを保持しているupstramブランチ。
-- pristine-tarが、upstreamのtarballの情報を新しいリリースがでる毎にデルタと呼ばれる差分管理を保持するブランチが、pristine-tarブランチ。
-    - pristine-tarの扱いで、deltaの管理もパッケージ更新時に思い出す必要があります。ここでは深入りしません。
+- 作業ブランチがmasterブランチ
+- upstreamのtarballから展開されたソースコードを保持しているupstramブランチ
+
+pristine-tarが、upstreamのtarballの情報を新しいリリースがでる毎にデルタと呼ばれる差分管理を保持するブランチがpristine-tarブランチです。
+pristine-tarの扱いでdeltaの管理もパッケージ更新時に思い出す必要があります。
 ```
 git branch -a
 * master                                             pristine-tar
@@ -150,8 +152,8 @@ Fix-FBTFS-for-mkconf
 
 Debian packageを管理するのに、"debian/patches/"にパッチを作る必要があります。`gbp pq import`で"patch-queue"ブランチを作り
 "patch-queue/作業ブランチ"で"upstream"のソースを変更します。Gitの作法に則って、一行目にsummary、2行目は空けて、3行目
-から詳細を書きます。詳細には上記で説明した[DEP-3: Patch Tagging Guidelines](https://dep-team.pages.debian.net/deps/dep3/)
-は自動的に付かないので、必要な情報はコミットメッセージに書く説明に含める。
+から詳細を書きます。書く内容は上記で説明した[DEP-3: Patch Tagging Guidelines](https://dep-team.pages.debian.net/deps/dep3/)
+です。この内容はプログラムで自動的に作られません。作業者が必要な情報はコミットメッセージに含める。
 
 `gbp pq export`でpatch-queueのコミット毎に、一行目をファイル名としてquilt形式のpatchがdebian/patches/に生成される。
 patch-queueの内容を確認しなくていいなら(あなたがcommitするのを忘れっぽいなら:-))、`gbp pq export --commit`とするのもいいだろう。
@@ -162,22 +164,22 @@ patch-queueの内容を確認しなくていいなら(あなたがcommitする�
 
 ### gbp pq でよく使うコマンド
 
-下記の場合は、一般的にupstreamのソースコードを変更する場合の話です。新しく upstream がリリースをした場合は、gbpを使ってnew upstreamに対応する の部分を読んでください。
+下記の場合は、一般的にupstreamのソースコードを変更する場合の話です。新しくupstreamがリリースをした場合は、gbpを使ってnew upstreamに対応するの部分を読んでください。
 
 `gbp pq import --force --time-machine=10`
 
-`--force`オプションは、
+`--force`オプションは下記のように、patch-queueブランチが存在していても、現在のdebian/patches/の内容でpatch-queueブランチを上書きします。
 > In case of import, import even if the patch-queue branch already exists and overwrite its content with debian/patches.
 
-という説明で、patch-queue ブランチが存在していても、現在のdebian/patches/の内容でpatch-queueブランチを上書きします。
 
-`--time-machine=数値`オプションは、
+`--time-machine=数値`オプションは下記の意味になります。
+
 > --time-machine=NUM
 > When importing a patch queue fails, go back commit-by-commit on the current branch to check if the patch-queue applies there.
 > Do this at most NUM times. This can be useful if the patch-queue doesn't apply to the current branch HEAD anymore,
 > e.g. after importing a new upstream version.
 
-patch-queueのインポートに失敗したときに、現在のブランチのコミット毎にコミットを遡ってpatch-queueが適用できるか確認します。
+patch-queueのインポートに失敗しすると、現在のブランチのコミット毎にコミットを遡ってpatch-queueが適用できるか確認します。
 (コミットを)遡る回数を指定します。新しいupstream versionをインポートする時など、現在のブランチのHEADにもはやpatch-queueが適用できない時に有用です。
 
 `gbp pq export --drop --commit`
@@ -192,12 +194,12 @@ patch-queueのインポートに失敗したときに、現在のブランチの
 
 `gbp pq export`で指定された場合、patchesをエキスポートした後にdebian/patchesへの変更を`git commit`します。
 
-本来は、
+本来は、下記のようにする必要があります。
 ```
 git add debian/patches
 git commit
 ```
-とする必要があるのを楽にしてくれています。
+上記をする必要がなく、操作を楽にします。
 
 ## gbp dch --release
 
@@ -205,26 +207,25 @@ git commit
 
 ## gbpを使ってnew upstramに対応する
 
-- `debian/watch`を設定していたら、uscanで新しいリリース(tarballなど)を入手します。
-- 入手したtarballをgbp import します。ここでミスるとpristine-tarのdelta管理で失敗して、オリジナルのtarballの内容と違うじゃねーか。という困った状況になるのでよく調べてから実行しましょう。
-    - `gbp import-orig --uscan`から調べるのがよいでしょう。
-- importが成功しました、次は既存のパッチ(debian/patches/が存在するものたち)が新しいリリースでも必要かどうか、うまく適用できるかなどを確認します。
-- ここで、`gbp pq rebase`が活躍します。
-- 不必要なパッチは`gbp pq drop`して、必要なパッチを残して、場合によっては書き換えてコミットして`debian/patches/`に書き出すパッチを整理していきます。
+- `debian/watch`を設定していたら、uscanで新しいリリース(tarballなど)を入手します
+- 入手したtarballをgbp importします。ここでミスるとpristine-tarのdelta管理で失敗して、オリジナルのtarballの内容と違うじゃねーか。という困った状況になるのでよく調べてから実行する。`gbp import-orig --uscan`から調べるのがよい
+- importが成功しました、次は既存のパッチ(debian/patches/が存在するものたち)が新しいリリースでも必要か？うまく適用できるか？などを確認します。
+- ここで`gbp pq rebase`が活躍します
+- 不必要なパッチは`gbp pq drop`し必要なパッチを残し、場合によっては書き換えてコミットして`debian/patches/`に書き出すパッチを整理していきます
 - 作業が終了したら、`gbp pq export`して、コミットからパッチを生成します。
 - debianディレクトリ配下のファイルを書き換える必要があれば、`--debian-branch=`で指定しているブランチで作業してコミットする。`debian/changelog`に関しては`gbp dch --release`コマンドを使えばコミットからchangelogの雛形を生成してくれる。
 - ローカルでビルドやテストを通しているのは前提ですが、salsa.debian.orgのリポジトリにpushしてsalsa.debian.orgのCIチームが用意してくれているCIにかけます。
-- 満足できる結果であれば、source only uploadをdputなどで行います。
+- 満足できる結果であれば、source only uploadをdputなどで行います
 
 ### `gbp pq rebase`の概要
 
 1. アップストリームの新バージョンへの対応
-アップストリームの新しいバージョンがリリースされた際に、既存の Debian パッチセットを新しいベースに適用し直す場合
+アップストリームの新しいバージョンがリリースされた際に、既存のDebianパッチセットを新しいベースに適用し直す場合
 
-例：libfoo 1.2.0 用に作成したパッチを libfoo 1.3.0 に適用する
+例：libfoo 1.2.0用に作成したパッチをlibfoo 1.3.0に適用する
 
 2. パッチの競合解決
-アップストリームの変更と Debian パッチ間に競合が発生した場合の解決
+アップストリームの変更とDebianパッチ間に競合が発生した場合の解決
 
 競合を手動で解決しながらパッチを再適用する
 
@@ -244,8 +245,8 @@ gbp:info: Switching to 'patch-queue/master'
 Current branch patch-queue/master is up to date.
 ```
 
-`gbp pq rebase`コマンドを実行すると、patch-queue/作業ブランチ に移される。ここで、gitコマンドや、エディタを使って意図したパッチを作ったり、落としたりします。
-必要に応じて、`gbp pq export`コマンドで debian/patches/にパッチを書き出すのもよいでしょう。書き出さないなら、`gbp pq switch`でブランチ移動するのもよいでしょう。
+`gbp pq rebase`コマンドを実行すると、patch-queue/作業ブランチに移される。ここで、gitコマンドや、エディタを使って意図したパッチを作ったり、落としたりします。
+必要に応じて、`gbp pq export`コマンドでdebian/patches/にパッチを書き出すのもよいでしょう。書き出さないなら、`gbp pq switch`でブランチ移動するのもよいでしょう。
 
 現時点では、`gbp pq switch`がgit switchに対する優位を理解してないので理解したら追記する。インタフェースの統一以外あるんだろうか。
 
