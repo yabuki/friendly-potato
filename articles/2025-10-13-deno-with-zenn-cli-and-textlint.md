@@ -31,7 +31,7 @@ v14.2.0
 :::
 
 参考文献1の記事を読んで、deps.tsを使っていた。しかし今では`deno add`で、npmパッケージをインストールする方法がofficalからアナウンスされています。
-その時`deno outdated`や`deno update`を使えとドキュメントにあります。
+その時`deno outdated`(参考文献3)や`deno update`(参考文献4および5)を使えとドキュメントにあります。
 
 こうすることで必要なnpmパッケージが`deno.json`or`deno.jsonc`に登録されます。
 npmパッケージが記録されているので`git clone`して`deno run`実行時に必要なパッケージをネット経由でとってローカルキャッシュに保存し、`node_modules`を生成せずにnodeとnpmパッケージを動かします。
@@ -178,6 +178,10 @@ article/にcdすると動かないと思っていたのは、私が`deno task`�
 
 1. [Denoでtextlintを使ってZennリポジトリを運用する](https://zenn.dev/estra/articles/deno-textlint-zenn)
 2. [textlintをDenoで動かした](https://zenn.dev/kn1cht/articles/deno-textlint)
+3. [deno outdated](https://docs.deno.com/runtime/reference/cli/outdated/)
+4. [deno update](https://docs.deno.com/runtime/reference/cli/update/)
+5. [Deno 2.4: deno bundle is back | Deno](https://deno.com/blog/v2.4#easier-dependency-management-with-deno-update)
+    - Deno 2.4での公式blogによる`deno update`の紹介記事
 
 ## 謝辞
 
