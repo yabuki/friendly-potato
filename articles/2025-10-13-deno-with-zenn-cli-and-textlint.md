@@ -161,6 +161,8 @@ article/にcdすると動かないと思っていたのは、私が`deno task`�
 
 `deno test`では `--` で引数をinvokeしたプログラムに渡すオプションがあるが `deno task`では、`npm:textlint`のように指定した前か後かで、どれにargumentを渡すのかを指示していると明解に教えていただきました。
 
+が、私が困っていた問題は上記でも書いていますが、`deno task`は実行時に、deno.json/deno.jsoncのあるディレクトリで実行される。という仕様をわかっていなかったため間違った方向に進んでいました。
+
 ## 参考文献
 
 1. [Denoでtextlintを使ってZennリポジトリを運用する](https://zenn.dev/estra/articles/deno-textlint-zenn)
