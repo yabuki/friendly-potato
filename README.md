@@ -20,21 +20,32 @@
 
 ## 2025-10-14
 
-昨日の指示は、私が`deno task`の仕様を理解していないので起きた。`deno task`は実行時カレントを deno.json/deno.jsoncのある場所にする。
-そのため article/にいても
+昨日の指示は、私が`deno task`の仕様を理解していないので起きた。`deno task`は実行時カレントをdeno.json/deno.jsoncのある場所にする。
+カレントディレクトリをrepository rootから`articles/`に移動しても`deno task`のカレントディレクトリは変わらない。
+
+下記のような解決方法がある。
+
 ```
 deno task lint articles/2020-09-19-build-zenn-writing-env-on-debian-sid.md
 ```
-や `--cwd`オプションを使う方法があります。
+
+また `--cwd`オプションを使う方法もある。
+
 ```
 deno task --cwd . lint 2020-09-19-build-zenn-writing-env-on-debian-sid.md
 ```
 
 ## 2025-10-13
 
-deno task lint を実行するときには、リポジトリトップから実行すること。
-    - denoは`node_modules`がなくてもnodeやnpmパッケージを実行できるが互換性が100%ではないのでカレントディレクトリを変えてのtextlintの実行は、deno runならいけるがtaskのなかだとまだ問題がある。
-    - textlintはnpmパッケージで分割されており、それぞれがimportできる必要がある。それが`node_modules`をもってないdenoだと、まだ難しいようだ。
+deno task lintを実行するときには、リポジトリトップから実行すること。
+
+denoは`node_modules`がなくてもnodeやnpmパッケージを実行できる。しかし互換性は現在100%ではない。
+カレントディレクトリを変えてのtextlintの実行は、deno runならいけるがtaskのなかだとまだ問題がある。
+(2025-10-14この問題にであっていた訳ではなかった)
+
+textlintはnpmパッケージで分割されている。それぞれのnpmパッケージをimportできる必要がある。
+それが`node_modules`をもってないdenoだと、まだ難しいようだ。
+(2025-10-14この問題にであっていた訳ではなかった)
 
 ## 2025-06-05
 
@@ -46,21 +57,24 @@ markdownlintのlint内容で、zenn.devのキャプションが指摘される�
 コメントで、markdownlint-next-lineを指定する方法を覚えた。
 
 あと、linkで怒られることがあるのは、lower caseで統一されてないから。
-a タグのidをzenn.devで使えるといいのだが。
+aタグのidをzenn.devで使えるといいのだが。
 
 もしくはローカルのリンクの警告は、markdownlintを黙らせる方向になるのかも知れない。
 
 ## 2024-10-01
 
-deno upgrade rc でdeno 2.0.0-rc.8にバージョンを上げる。
-deno.jsoncに "node-modules-dir": "none"
-deno cache -r deps.ts
-または、
-deno install -r --entrypont deps.ts (2.0からはこっちがおすすめらしい)
-deno install -r -e deps.ts も等価
+deno upgrade rcでdeno 2.0.0-rc.8にバージョンを上げる。
 
-単に deno install すると node-modules/やpackage.json, package-lock.jsonができて
-しまう。
+deno.jsoncに "node-modules-dir": "none"とする。
+`deno cache -r deps.ts`を実行する。
+
+または、下記のようにする。
+```
+deno install -r --entrypont deps.ts (2.0からはこっちがおすすめらしい)
+deno install -r -e deps.tsも等価
+```
+
+単にdeno installするとnode-modules/やpackage.json, package-lock.jsonができる。
 
 ## 2024-08-30
 
