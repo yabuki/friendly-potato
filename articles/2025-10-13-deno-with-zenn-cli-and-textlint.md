@@ -163,6 +163,17 @@ article/にcdすると動かないと思っていたのは、私が`deno task`�
 
 が、私が困っていた問題は上記でも書いていますが、`deno task`は実行時に、deno.json/deno.jsoncのあるディレクトリで実行される。という仕様をわかっていなかったため間違った方向に進んでいました。
 
+### 今回の調査で`deno task`に関する私の学び
+
+- `deno test` には、良くあるパターンの `--` でinvokeしたプログラムへの引数を書くという書式がある。
+    - しかし、`deno task` だと`--`をいちいち書くのは面倒なので、下記のようにする。
+        - `deno.json` or `deno.jsonc`のtaskセクションで`deno task`を定義するが、`deno`や `deno run`へのオプションはそれぞれ渡される。
+        - `deno run`が `npm:なんちゃら`を呼び出すときのオプションは、`npm:なんちゃら`のあとに書けば良い。
+            - `deno run npm:textlint --help` の`--help`オプションが例となる。
+        - `deno task`がtaskを呼び出すと、`deno.json`または`deno.jsonc`があるディレクトリをカレントとして実行する。
+            - 呼び出す側で上記を意識して、与えるPathを修正する。
+            - または`deno task`に`--cwd`オプション与える方法もある。
+
 ## 参考文献
 
 1. [Denoでtextlintを使ってZennリポジトリを運用する](https://zenn.dev/estra/articles/deno-textlint-zenn)
