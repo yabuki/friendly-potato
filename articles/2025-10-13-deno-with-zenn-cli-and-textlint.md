@@ -145,6 +145,8 @@ deno task lint articles/2020-09-19-build-zenn-writing-env-on-debian-sid.md
 deno task --cwd . lint 2020-09-19-build-zenn-writing-env-on-debian-sid.md
 ```
 
+article/にcdすると動かないと思っていたのは、私が`deno task`の仕様を把握してなかったために誤解でした。
+
 :::
 
 ### 3.textlintが指摘してきた内容を修正する
