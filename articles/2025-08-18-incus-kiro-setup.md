@@ -11,9 +11,12 @@ published: true
 Debを使ってインストールしたり、AWS Builders IDを使って使い始める部分は新しいかなと。
 
 :::message alert
-この記事を書いてから、ぼちぼちと調べていたのですが
-2025-09-06現在、原因はわからないのですが、LLMを利用しようとすると"Kiro access not available for this account"と表示され、Kiroの力をまともに使えない状態です。
-Previewだし、のんびり待つしかないようです。使える人と使えない人で何が違うんでしょうね。
+
+2025-10-16 Kiro 0.4.0でAWS Builder IDを使ってKiroが動いてそうなことを確認しました。使い込む必要があります。
+Waiting Listも廃止されて誰でも試めせるようになってます。
+
+~~2025-09-06現在、原因はわからないのですが、LLMを利用しようとすると"Kiro access not available for this account"と表示され、Kiroの力をまともに使えない状態です。~~
+~~Previewだし、のんびり待つしかないようです。使える人と使えない人で何が違うんでしょうね。~~
 
 "Kiro access not available for this account"となる問題については、
 [Kiro access not available for this account · Issue #1712 · kirodotdev/Kiro](https://github.com/kirodotdev/Kiro/issues/1712)
@@ -81,7 +84,7 @@ Global Flags:
       --version        Print version number
 ```
 
-~/Downloads/202508150626-distro-linux-x64.debをコンテナーvibeの/rootに送り込むので
+~/Downloads/202508150626-distro-linux-x64.debをコンテナーvibeの/rootに送り込みます。
 ```
 incus file push ~/Downloads/202508150626-distro-linux-x64.deb vibe/root/
 ```
@@ -91,7 +94,7 @@ Error: sftp: "open /root: is a directory" (SSH_FX_FAILURE)
 ```
 というメッセージでエラーが発生します。
 
-成功すると
+成功すると下記のようになります。
 ```
 root@vibe:~# ls -la /root/
 合計 181400
@@ -106,7 +109,7 @@ drwx------ 1 root   root           0  7月 21 14:25 .ssh
 -rw------- 1 root   root        8940  8月 12 20:02 .viminfo
 -rw-rw-r-- 1 yabuki yabuki 185723420  8月 18 18:05 202508150626-distro-linux-x64.deb
 ```
-のように、ファイルが転送されました。ちなみにownerとgroupがそのまま引き継がれているのも確認できます。
+ファイルが転送されました。ちなみにownerとgroupがそのまま引き継がれているのも確認できます。
 コンテナーの外と中で、yabukiアカウントを同じuid、gidで作っているからです。
 
 ```
@@ -131,8 +134,10 @@ shared-mime-info (2.4-5+b2) のトリガを処理しています ...
 Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_apt' からアクセスできないため、ダウンロードは root でサンドボックスを通さずに行われます。 - pkgAcquire::Run (13: 許可がありません)
 ```
 
-調べたところ、インストールは成功している。`/root/202508150626-distro-linux-x64.deb`のuid:gidがyabuki:yabukiなのでユーザー`_apt`からアクセスできないだけのようだ。依存関係があるといやだったので`apt`コマンドを使ったが、`dpkg -i`コマンドを使えば良かったのかもしれない。
-ということで次に進む。気になるひとは、参考文献3を読むのもいいでしょう。
+調べたところ、インストールは成功している。
+`/root/202508150626-distro-linux-x64.deb`のuid:gidがyabuki:yabukiなのでユーザー`_apt`からアクセスできないだけのようです。
+依存関係があるといやだったので`apt`コマンドを使いました。しかし`dpkg -i`コマンドを使うべきだったか。
+ということで次に進みます。気になるひとは参考文献3を読むのもいいでしょう。
 
 ### Kiro起動
 
@@ -183,7 +188,7 @@ Notice: ファイル '/root/202508150626-distro-linux-x64.deb' がユーザ '_ap
 |:----               |:--------:|
 |記事を書きはじめた日|2025-08-18|
 |  記事を公開した日  |2025-08-18|
-|  記事を変更した日  |2025-09-06|
+|  記事を変更した日  |2025-10-16|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
