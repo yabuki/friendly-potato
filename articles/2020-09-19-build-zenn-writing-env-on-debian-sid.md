@@ -46,10 +46,11 @@ githubと連携して記事をgithubに残せるので記事のコントロー�
 
 ## 前提条件
 
-1. GitHubにアカウントを所有し使い方を理解している前提です。
-1. Zenn.devにアカウントを作っていること。これは、2020-09-19現在Google Accountしか作れないようなので、さまざまな理由でブロック要因になりえますが、そこも前提条件とさせてください。2024-10-24メールアドレスでもログインできるようになったので、この件は解消した。
-1. Debian GNU/Linux SidつまりDebianの開発版を使っています。が、本記事の範囲は、とくにDebian固有の部分はありません。
-1. nvmは、[nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)で、userのホームディレクトリで複数のバージョンのnodejsを管理できるので、わたしは必要に迫られて使っていますが、他の人は別の方法でnodejsをインストールしているでしょう。
+1. GitHubにアカウントを所有し使い方を理解している前提
+1. Zenn.devにアカウントを作っていること。これは、2020-09-19現在Google Accountしか作れないようなので、さまざまな理由でブロック要因になりえますが、そこも前提条件とさせてください。2024-10-24メールアドレスでもログインできるようになったので、この件は解消した
+1. Debian GNU/Linux SidつまりDebianの開発版を使っていますが、本記事の範囲ではDebian固有の部分はありません
+1. nvmは[nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)をつかっている
+1. nvmでuserのホームディレクトリで複数のバージョンのnodejsを管理している
 
 ## Install
 
@@ -57,13 +58,13 @@ githubと連携して記事をgithubに残せるので記事のコントロー�
 
 [nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)の中身をよく読んでインストールしてください。
 
-使うnodejsは、
+使うnodejsは下記です。
 
 ```bash
 nvm install --lts
 ```
 
-で、2020-09-19現在のltsであるlts/eribuimを使っています。
+2020-09-19現在のltsであるlts/eribuimを使っています。
 
 ```bash
 nvm ls
@@ -96,13 +97,13 @@ lts/erbium -> v12.18.4
 
 ### git clone する
 
-私は、~/scm/git/のしたにgit repoをおいているので、そこで
+私は、~/scm/git/のしたにgit repoをおいているので、下記を実行します。
 
 ```
 git clone git@github.com:yabuki/friendly-potato.git
 ```
 
-とします。作成されているブランチは、gh-pagesブランチだけだったので、ステージング環境を作るべく、下記のようなブランチ構成にしています。暫定ですけど。
+作成されているブランチは、gh-pagesブランチだけだったので、ステージング環境を作るべく、下記のようなブランチ構成にしています。
 
 ```
 * docs
@@ -113,14 +114,13 @@ git clone git@github.com:yabuki/friendly-potato.git
 
 ### Zenn CLI のインストール
 
-グローバルにインストールするのではなく、このrepoだけにインストールしたいので、
+グローバルにインストールするのではなく、このrepoだけにインストールします。
 
 [Zenn CLIをインストールする | Zenn](https://zenn.dev/zenn/articles/install-zenn-cli)
 
-の中身を確認して、そのままのインストラクションで、docsブランチにZenn CLIをインストールします。
+上記の中身を確認し、そのままのインストラクションで、docsブランチにZenn CLIをインストールします。
 
 ```
-
 npm init --yes # プロジェクトをデフォルト設定で初期化
 Wrote to /home/yabuki/scm/git/friendly-potato/package.json:
 
@@ -200,7 +200,7 @@ npx zenn init
 bash: zenn: コマンドが見つかりません
 ```
 
-ってことで、fullpath指定で、
+ってことで、fullpath指定をします。
 
 ```
 $ ls
@@ -215,7 +215,7 @@ $ node_modules/zenn-cli/bin/zenn.js preview
 
 ### zenn CLIをlatestにアップグレード
 
-下記のようなエラーが出たものの無事に書き込んだら自動リロードしてくれるバージョンに変わった模様だ。
+下記のようなエラーが出たものの無事に書き込んだら自動リロードしてくれるバージョンに変わりました。
 
 ```
 npm install zenn-cli@latest

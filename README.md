@@ -37,14 +37,16 @@ deno task --cwd . lint 2020-09-19-build-zenn-writing-env-on-debian-sid.md
 
 ## 2025-10-13
 
-deno task lintを実行するときには、リポジトリトップから実行すること。
+~~deno task lintを実行するときには、リポジトリトップから実行すること。~~
 
-denoは`node_modules`がなくてもnodeやnpmパッケージを実行できる。しかし互換性は現在100%ではない。
-カレントディレクトリを変えてのtextlintの実行は、deno runならいけるがtaskのなかだとまだ問題がある。
+~~denoは`node_modules`がなくてもnodeやnpmパッケージを実行できる。しかし互換性は現在100%ではない。
+カレントディレクトリを変えてのtextlintの実行は、deno runならいけるがtaskのなかだとまだ問題がある。~~
+
 (2025-10-14この問題にであっていた訳ではなかった)
 
-textlintはnpmパッケージで分割されている。それぞれのnpmパッケージをimportできる必要がある。
-それが`node_modules`をもってないdenoだと、まだ難しいようだ。
+~~textlintはnpmパッケージで分割されている。それぞれのnpmパッケージをimportできる必要がある。
+それが`node_modules`をもってないdenoだと、まだ難しいようだ。~~
+
 (2025-10-14この問題にであっていた訳ではなかった)
 
 ## 2025-06-05
