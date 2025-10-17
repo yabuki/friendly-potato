@@ -34,20 +34,22 @@ screenshotは、環境に左右されるので、下記は、Xを使っている
 
 年代順不同です。
 
-* gimp
-  * 範囲指定とかもしやすかったが、やっぱりscreenshot取るだけに使うにはtoo much
-* imagemagickのimportコマンド
-  * コマンドラインから簡単にscreenshotを取るのに使っていたが、毎回使い方を思い出さないといけなかった。
-* gnome-screenshot
-  * i3wmのmeta-dのdmenu経由で使っていた。
-* scrot
-  * コマンドラインから指定してscreenshotを取るのは便利だが、.i3/configにbindsymとして登録しておかないと毎回manを引くことになりインストールしているが使っていない状態になってしまった。
-  * そのコンピュータdesktopの状態を定点観測の用途にも使えるので、また使うことがはわからない。
-* flameshot
+- gimp
+  - 範囲指定とかもしやすかったが、やっぱりscreenshot取るだけに使うにはtoo much
+- imagemagickのimportコマンド
+  - コマンドラインから簡単にscreenshotを取るのに使っていたが毎回使い方を思い出さないといけなかった
+- gnome-screenshot
+  - i3wmのmeta-dのdmenu経由で使っていた
+- scrot
+  - コマンドラインから指定してscreenshotを取るのは便利だ。しかし`.i3/config`に`bindsym`として登録しておかないと毎回manを引くことになる
+  - そのコンピュータdesktopの状態を定点観測の用途にも使えるので、また使うことがはわからない
+- flameshot
+  - いま使っているプログラム
+
 
 いまのおすすめは、flameshotで、Debian GNU/Linux Bullseye/Sidなら `apt install flameshot` で入ります。
 
-Screenshotを取ると~/Pictures/に保存されます。
+Screenshotを取ると`~/Pictures/`に保存されます。
 
 範囲指定して、切り取って加工したりがしやすいので気に入りました。gimpを使うほどでもないってのにぴったりです。
 
