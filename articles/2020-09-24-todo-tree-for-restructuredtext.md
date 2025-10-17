@@ -11,7 +11,9 @@ published: true
 |記事を書いた日  |2020-09-24|
 |記事を変更した日|2024-10-23|
 
-上記は、この記事の鮮度を判断する一助のために、書き手が載せたものであり、詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
+上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
+
+詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
 
 記事に対するTypoの指摘などは、pull reqをしてもらえると嬉しい。受け入れるかどうかは、差分とPull reqの文章で判断します。
 
@@ -23,12 +25,13 @@ TagのRestructuredtextは、タグが切れるので抜きました。
 
 ## TODO Tree とはなにか
 
-プログラムや文書う作っている時に、
+プログラムや文書う作っている時に、下記のようにコメントに埋めて込むものです。
+主にコードや文書の手が回っていないがやらないといけないことについてチケットなどにする前のメモ書きです。
+メモ書きを対象のソースコードや設計文書に埋め込んで、作業を進めていくスタイルの人にはとても便利な拡張です。
 
 * TODO
 * FIXME
 
-などをコメントに埋めて込んで、コードや文書の手が回っていないがやらないといけないことについて、チケットなどにする前の段階を、対象のソースコードや設計文書に埋め込んで、作業を進めていくスタイルの人にはとても便利な拡張です。
 
 * [Todo Tree - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
 
@@ -38,29 +41,31 @@ TagのRestructuredtextは、タグが切れるので抜きました。
 
 2つあります。
 
-1. 自分の使っているタグがないことがある
-1. 残念なことに、Todo Treeのデフォルト状態では、restructured textのコメント形式には、対応していないので、文中に書き込まない限り、Todo Treeは検知しません。
+1. 自分の使っているタグがない。
+1. 残念なことにTodo Treeのデフォルト状態ではrestructured textのコメント形式には対応していない。
+  そのため文中に書き込まない限りTodo Treeはタグを検知しません。
 
-なので、
+そのために次の施策をする。
 
 ## Todo Treeをrestructued textに対応させる
 
 ### Tagの追加
 
-ユーザー設定->設定　で設定画面をだして、拡張機能から、Todo Treeaを選択して、下記のような画面を出します。
+<!-- textlint-disable -->
+"ユーザー設定->設定"　で設定画面をだして、拡張機能から、Todo Treeaを選択して、下記のような画面を出します。
+<!-- textlint-enable -->
 
 ![Todo Tree settings](<https://yabuki.github.io/friendly-potato/articles/images/2020-09-24_18-26.png> =600x)
 
 ここに書いてあるタグでたりないなら、チームで、共有するならワークスペース経由で、個人ならそのまま設定に書きます。
 
-例えば、人によっては *NOTE* Tagが足りてないと思う人もいるでしょう。ただし、sphinxの記法で注釈を表す
-
+例えば、人によっては *NOTE* Tagが足りてない人もいるでしょう。ただし、sphinxの記法で注釈を表す下記の
+記法があります。
 ```
 .. note::
 ```
 
-記法があるので、注意深くUpper Lowerを管理できる人でないなら、Restructured textというか、sphinx
-の時には気をつけた方がいいでしょう。
+注意深くUpper Lowerを管理できる人でないなら、Restructured textというか、sphinxの時には気をつけた方が良いです。
 
 Restructured textのコメントになる条件は、みなさん一度はハマるので、確認したほうがいいとおもいますが、
 簡単に言うと　.. (dot)2つでコメントです。
@@ -73,14 +78,13 @@ restructued textもpythonと同じく、**インデント**が重要なのです
 > Regular expression for matching TODOs. Note: $TAGS will be replaced by the tag list.
 
 上記のセクションもとは、下記でしたが、
+`..`も見てくれるように`\\.\\。`を追加したのが下記になります。"--"と";"の間に正規表現を追加しています。
 
 ```
 ((//|#|<!--|;|/\*|^)\s*($TAGS)|^\s*- \[ \])
 ```
 
-.. も見てくれるように\\.\\。を追加したのが下記になります。--と;の間に正規表現を追加しています。
-
-Escapeせずに書いてて、dotが正規表現だったことを思い出して、この記事を書いてよかった。
+Escapeせずに書いておりdotが正規表現だったことを思い出したので、この記事を書いた価値はありました。
 
 あと、ユーザー設定とワークスペース設定だと、ワークスペース設定の方が強いのでそこも注意する。
 
