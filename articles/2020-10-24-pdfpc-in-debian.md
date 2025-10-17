@@ -9,9 +9,10 @@ published: true
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2020-10-24|
-|記事を変更した日|2024-10-23|
+|記事を変更した日|2025-10-17|
 
-上記は、この記事の鮮度を判断する一助のために、書き手が載せたものであり、詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照せよ。
+上記はこの記事の鮮度を判断する一助のために、書き手が載せたものです。
+詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照せよ。
 
 記事に対するTypoの指摘などは、pull reqをしてもらえると嬉しい。受け入れるかどうかは、差分とPull reqの文章で判断します。
 
@@ -43,13 +44,15 @@ Debian GNU/Linuxにおける、pdf-presenter-consoleの更新状況は、 [Debia
 
 下記は、メンテナーに確認していないので想像で書きます。pdfpcというバイナリの名前は一緒だが、パッケージ名はより説明的な名前を選択したのだとおもいます。
 
-UbuntuなどのDebianからの派生プロジェクトにも、なにもなければ、このパッケージ名でインストールすることになると思いますので、一筆言上さしあげました。
+UbuntuなどのDebianからの派生プロジェクトでも、このパッケージ名でインストールします。
 
 ## 別解
 
-下記のように、rootか、sudoでapt-file update後に、一般ユーザーでpdfpcを含むファイルを探すことで、どのパッケージに、そのファイルが属しているかを調べることができます。
+下記のようにrootかまたはsudoで`apt-file update`後に、pdfpcを含むファイルを探します。
+こうやってどのパッケージに、探すファイルが属しているかを調べることができます。
 
-存外に喜ばしいのは、pdfpcのLaTeXスタイルがあることが分かったことです。これを使えばスライドの時間などの情報を指定できる模様です。あと動画埋め込みも。
+存外に喜ばしいのはpdfpcにLaTeXスタイルがあることです。
+これを使えば、動画の埋め込みやスライドの時間などの情報を指定できるようです。
 
 ```bash
 $ apt-file search pdfpc
