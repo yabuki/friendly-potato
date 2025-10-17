@@ -31,7 +31,8 @@ published: true
 gettextはプログラムが出力する言語を切り替えるために使われてきました。
 現在では、[man po4a (1): PO ファイルと翻訳済みドキュメントを一括更新](http://ja.manpages.org/po4a) を使って文書の翻訳に使う例もあります。
 
-技術文書のように頻繁に更新され翻訳が追いつかない部分は英語でいいから把握したいというニーズに応えます。^[ [nginx をネタに po4a で翻訳管理を始めてみる例 - Qiita](https://qiita.com/nabetaro/items/fe05e35b48dad3566a02)]
+技術文書のような文書は頻繁に更新されます。翻訳が追いつかない部分は英語でいいから把握したいというニーズがあります。
+そのニーズに応えます。^[ [nginx をネタに po4a で翻訳管理を始めてみる例 - Qiita](https://qiita.com/nabetaro/items/fe05e35b48dad3566a02)]
 
 ### この文章を書いた動機
 
@@ -60,17 +61,17 @@ gettextを扱えるひとが増えて、より多くの優れたソフトウェ�
 
 1. Debian GNU/Linux上での環境設定
 1. gettext.shの説明をして
-1. リポジトリのクローンをして、プログラムが動くのを確認します。
-1. その背景の説明をします。
+1. リポジトリのクローンをし、プログラムが動くのを確認する
+1. その背景の説明をおこなう
 
 ### 環境設定
 
-この文章を試すのに必要なパッケージは、
+この文章を試すのに必要なパッケージは下記です。
 
 - gettext
 - git
 
-です。その他のプログラムはご自分でお好きに選んでください。Debian標準はdashをshとして使っているのでdashを利用しますが、たぶんbashでも動くでしょう。
+その他のプログラムはご自分でお好きに選んでください。Debian標準はdashをshとして使っているのでdashを利用しますが、たぶんbashでも動くでしょう。
 
 この記事を書いている時点(2020-12-13)で、私が利用しているのは、Debian GNU/Linux bullseye/sidです。gettextは充分に古いので、他のUnix系でも何らかの方法でパッケージなどがあるでしょう。
 
@@ -82,8 +83,6 @@ backup-manager: /usr/share/backup-manager/gettext.sh
 fcitx-libs-dev: /usr/share/cmake/fcitx/fcitx-extract-gettext.sh
 gettext-base: /usr/bin/gettext.sh
 ```
-
-なので、
 
 ```
 dpkg -l gettext*
@@ -131,7 +130,7 @@ message.poに枝番をつけたファイルは、初期に `xgettext` コマン�
 
 git cloneした所から、cd dash/gettest.shへ移動して、`dash ./hello.sh` と実行してください。
 
-私の環境では、
+私の環境では、下記のように表示されます。
 
 ```
 $ dash ./hello.sh 
@@ -139,7 +138,7 @@ $ dash ./hello.sh
 こんにちは世界
 ```
 
-と、表示されます。LANGが、ja_JP.UTF-8に設定してあるからです。
+LANGが、ja_JP.UTF-8に設定してあるからです。
 
 それでは、`LANG=C dash ./hello.sh`を実行してください。
 
@@ -179,10 +178,10 @@ Hello World
 
 - 1行め:実行内容をトレースしながら動け
 - 4行め:おまじない
-- 7行め:実行プログラム名などを入れる。翻訳の入ったmoファイル名でもあります。
-- 10行め:どこにmoファイルを置くlocaleディレクトリが存在しているか。を **絶対ディレクトリ**で指定します。相対ではダメです。`pwd`コマンドが効いてきます。
-- 13行め:eval_gettextに文字を渡して、翻訳した結果を受け取ります。echoで改行してます。
-- 14行め:echoを先に書きたい派の人はこっちを使います。この段階では、13行めと14行めの書き方は好みの範囲です。変数が関係するとエスケープの個数を変化させる必要があります。しかし、いまはこれ以上踏み込みません。
+- 7行め:実行プログラム名などを入れる翻訳の入ったmoファイル名
+- 10行め:どこにmoファイルを置くlocaleディレクトリが存在しているかを **絶対ディレクトリ**で指定すること
+- 13行め:eval_gettextに文字を渡して、翻訳した結果を受け取る。echoで改行している
+- 14行め:echoを先に書きたい派の人はこっちを使う。この段階では13行めと14行めの書き方は好みの範囲。変数が関係するとエスケープの個数を変化させる必要がある。いまはこれ以上解説しません
 
 ここまでで、やりたいことの半分が達成できました。
 
@@ -191,12 +190,12 @@ Hello World
 ## po ファイル作成手順
 
 1. xgettextコマンドで、shell scriptから、翻訳すべき文字列を取り出す。指定がなければmessage.poファイルを生成する。
-1. msginitコマンドで、ロケール情報、扱う文字列のエンコード情報などの情報をあたえて、日本語で指定がないなら、ja.poファイルを生成する。
+1. msginitコマンドでロケール情報扱う文字列のエンコード情報などの情報をあたえて日本語で指定がないならja.poファイルを生成する。
 1. 好きなエディタで、poファイルを編集する。
-1. 翻訳ができあがったらmsgfmtコマンドでmoファイルを生成します。その時ファイル名はTEXTDOMAINと合わせること。
-1. moファイルができたらつぎのようにします。
-1. TEXTDIMAINDIRで指定されている`pwd`/localeを起点として、ja(地域と同じ)のディレクトリ配下にLC_MESSAGESのディレクトリがあることを確認します。英語圏ならjaの代わりにenです。フランス語ならfrです。同一地域で複数言語ならbn_ID,bn_BDになるのでしょう。en@arabicのような表記については不勉強なのですいませんがわかりません。
-1. `pwd`/local/ja/LC_MESSAGES/ファイルをコピーします。
+1. 翻訳ができあがったらmsgfmtコマンドでmoファイルを生成する。その際ファイル名はTEXTDOMAINと合わせること
+1. moファイルができたらつぎのようにする
+1. TEXTDIMAINDIRで指定されている`pwd`/localeを起点として、ja(地域と同じ)のディレクトリ配下にLC_MESSAGESのディレクトリがあることを確認する。英語圏ならjaの代わりにen。フランス語ならfr。同一地域で複数言語ならbn_ID,bn_BDになりうる。en@arabicのような表記については不勉強なのですいませんがわかりません。
+1. `pwd`/local/ja/LC_MESSAGES/ファイルをコピーする。
 
 プログラムを作っているプロジェクトの構成に応じて、もっと柔軟に変更できる例を出すことができるといいのですが。
 
@@ -234,21 +233,21 @@ gettextを使ってプログラム作成から翻訳を入れ、表示する文�
 技術者の間では、会話の情報密度をあげるのに複数のことがらをひとつにまとめる言葉を専門用語として使っていることがあります。
 
 <!-- @suppress SentenceLength -->
-[^1]: 細かい話をすると、そこには何が入るのかについて、IETF言語タグの話 [IETF language tag - Wikipedia](https://en.wikipedia.org/wiki/IETF_language_tag) とかISO 639-1の話や言語コード毎にジャンプできる [ISO 639-3 - Wikipedia](https://en.wikipedia.org/wiki/ISO_639-3) の話をする必要があるのかもしれませんが、ここはふんわりとした理解でまずは慣れよう。という記事です。
+[^1]: 細かい話をすると、そこには何が入るのかについて、IETF言語タグの話 [IETF language tag - Wikipedia](https://en.wikipedia.org/wiki/IETF_language_tag) とかISO 639-1の話や言語コード毎にジャンプできる [ISO 639-3 - Wikipedia](https://en.wikipedia.org/wiki/ISO_639-3) の話をする必要がある。ここではふんわりとした理解でまずは慣れよう。という記事です。
 [^2]: 文字コードの符号化について、エンコードも説明する必要があるかも知れないが、符号化以上にもろもろをコンパクトに説明するほど理解できていないので、他の本や文書を参照してほしい。
 
 ### gettext を使う手順
 
-1. gettextを適用するオリジナルのプログラムを作ったり、見つけて改変します。どのように改変するかは、後述します。
+1. gettextを適用するオリジナルのプログラムを作ったり、見つけて改変する。どのように改変するかは後述する。
 1. xgettextコマンドで翻訳対象とする文字列が入ったファイル、(指示をしなければ)message.poファイルを作成する
-1. msginitコマンドで前述のmessage.poファイルを入力とし、コマンドラインから取得した情報を入れてja.poなどのファイルとして出力します。[^3]このプログラムを使うと手で書く部分が減って間違いが減ります。
-1. ja.poを慣れているエディタで開いて翻訳します。多くのエディタ(vimやEmacsなど)はpoファイルを編集するのに便利な機能を提供しています。余裕があれば調べておくと良いでしょう。
+1. msginitコマンドで前述のmessage.poファイルを入力とし、コマンドラインから取得した情報を入れてja.poなどのファイルとして出力する。[^3]このプログラムを使うと手で書く部分が減って間違いが減る。
+1. ja.poを慣れているエディタで開いて翻訳する。多くのエディタ(vimやEmacsなど)はpoファイルを編集するのに便利な機能を提供している。余裕があれば調べておくと良い。
 <!-- @suppress DobuleJoshi -->
-1. 人間が読みやすいja.poファイルから、msgfmtコマンドを用いて、gettextプログラムが扱いやすいmoファイル形式へ変更します。
-1. 生成された、既定のファイルをプログラムが読み取る場所にコピーします。
+1. 人間が読みやすいja.poファイルから、msgfmtコマンドを用いて、gettextプログラムが扱いやすいmoファイル形式へ変更する。
+1. 生成された、既定のファイルをプログラムが読み取る場所にコピーする。
 
 <!-- @suppress SentenceLength -->
-[^3]: ja.poファイルって、確かに日本語の翻訳ファイル名ということで納得していました。が、msginitに `--locale=ja_JP.UTF-8`を与えることで、`ja_JP.UTF-8`がTokenizeされて、ja.poのファイルないに展開され、出力ファイル名も日本の地域=jaを表すファイルが生成されて、納得度が高まりました。
+[^3]: ja.poファイルは確かに日本語の翻訳ファイル名ということで納得していました。msginitに `--locale=ja_JP.UTF-8`を与えることで`ja_JP.UTF-8`がTokenizeされてja.poのファイル内に展開される。出力ファイル名も日本の地域(=ja)を表すファイルが生成され、納得度が高まりました。
 
 ### shell script における gettext 対象
 
@@ -258,20 +257,18 @@ gettextを使ってプログラム作成から翻訳を入れ、表示する文�
 
 対象とするブログラム(po4aの場合は文書)内の文字列をスキャンして、指定がないときは、 messages.poを生成します。プログラムの開発が進むと表示すべき文字列の増減や変更はしばしばあります。
 
-<!-- @suppress SuggestExpression -->
 その変更に追従するためgettextコマンドを実行する必要があります。そうやって翻訳内容を追従させるのです。
 
 必要に応じて `man 1 xgettext` を参考にしてください。いくつか書く必要があるオプションを書き出します。
 
-<!-- @suppress DoubledJoshi CommaNumber SentenceLength ParenthesizedSentence -->
-- -Lまたは --languageオプション今回の場合なら -L "shell"を渡します。(C, C++, ObjectiveC, PO, Shell, Python, Lisp, EmacsLisp, librep, Scheme, Smalltalk, Java, JavaProperties, C#, awk, YCP, Tcl, Perl, PHP, GCC-source, NXStringTable, RST, Glade,  Lua, JavaScript, Vala, Desktop) が対象のもようです。これはmanからの引用なので、ソースコードは確認していません。
-<!-- @suppress SuccessiveSentence -->
+<!-- textlint-disable ja-technical-writing/max-comma -->
+- -Lまたは --languageオプション今回の場合なら -L "shell"を渡す。(C, C++, ObjectiveC, PO, Shell, Python, Lisp, EmacsLisp, librep, Scheme, Smalltalk, Java, JavaProperties, C#, awk, YCP, Tcl, Perl, PHP, GCC-source, NXStringTable, RST, Glade,  Lua, JavaScript, Vala, Desktop) が対象。これはmanからの引用なのでソースコードは確認していない
+<!-- textlint-enable ja-technical-writing/max-comma -->
 - 入力ファイルやディレクトリを指定するオプション
 - 出力ファイルやディレクトリを指定するオプション。とりわけdefault-domainはそのプログラム名、またはプロジェクト名の概念なので、インターネットのドメインと取り違えないように。
 - 既存のファイルに追加する -j --joinexisting
 - TAGという概念 (調べて書く必要がある)
 - コメントどのように使うかは例示がいるか。
-<!-- @suppress ParenthesizedSentence -->
 - --checkでunicodeの妥当性チェック (ellipsis-unicode, space-ellipsis, quote-unicode, bullet-unicode)
 - --copyright-holder=STRING poファイルの翻訳をした著作権者を書く(著作の管理に関する事項です)
 - --foreign-user omit FSF copyright in output for foreign user
@@ -297,11 +294,9 @@ gettextを使ってプログラム作成から翻訳を入れ、表示する文�
 ## 参考にしたドキュメントたち
 
 - [GNU gettext utilities: Preparing Shell Scripts](https://ayatakesi.github.io/gettext/0.18.3/html/Preparing-Shell-Scripts.html)
-  - 同じドキュメントは、Debianのgettext-docパッケージをインストールすると、/usr/share/doc/gettext-doc/gettext_15.htmlで読むことができます。Offlineで集中したい人は、あらかじめパッケージをインストールして、お好きなブラウザで、ローカルファイルを指定して読んでください。
+  - 同じドキュメントは、Debianのgettext-docパッケージをインストールすると、/usr/share/doc/gettext-doc/gettext_15.htmlで読むことができる。Offlineで集中したい人は、あらかじめパッケージをインストールし、お好きなブラウザで、ローカルファイルを指定して読め
 - [GNU gettext utilities: Preparing Strings](https://ayatakesi.github.io/gettext/0.18.3/html/Preparing-Strings.html#Preparing-Strings)
-<!-- @suppress DoubledJoshi JapaneseAmbiguousNounConjunction -->
 - [gettext API - Oracle Solaris でのアプリケーションの国際化とローカライズ](https://docs.oracle.com/cd/E56342_01/html/E54072/gnkbn.html)
-<!-- @suppress DoubledJoshi -->
 - [gettext のコマンドラインツールを使おう: SuperTuxKart を例に - Qiita](https://qiita.com/okano_t/items/da2ba18a65f46b31b699)
 - `man 1 xgettext`
 - `man 1 msginit`
@@ -317,7 +312,7 @@ shellで使えるように整備してもらい、この文章ができました
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2020-12-11|
-|記事を変更した日|2024-10-23|
+|記事を変更した日|2025-10-17|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
