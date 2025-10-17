@@ -5,12 +5,6 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Debian]
 published: true
 ---
-<!-- 文章の目的は何か -->
-  <!-- 読み手に何の情報を伝えるのか -->
-  <!-- 読んだひとにどういう行動をしてもらいたいのか -->
-<!-- だれに向けての文章か -->
-<!-- この文章の肝はどこか -->
-
 ## 要約
 
 Debian 11 Bullseyeのインストーラを試す方法です。これは記録です。
@@ -35,7 +29,7 @@ Debian installerをテスト時、まごつかないようにドキュメント�
 
 ### この文章はだれ向けか
 
-Linuxのコンソールを使っている。かつDebian installerのテストをしたい人。Install時から新しめのカーネルを使ってRyzenを動かしたい人
+Linuxのコンソールを使っている。かつDebian installerのテストをしたい人。Install時から新しめのカーネルを使ってRyzenを動かしたい人です。
 
 ### この文書の読み方
 
@@ -85,11 +79,9 @@ Gnome以外をインストールして、日本語環境を設定したり、Gno
 
 ##### Linux マシンでの確認方法
 
-usb memory stickをlinux machineにさして、 dmesgを確認して、/dev/sdXのxが何に割当たっているか確認します。ここを間違えると、正常な機器をぶっ壊すことになるので、指差し呼称をして確認するぐらいの慎重さがいるでしょう。
+usb memory stickをlinux machineにさして、 dmesgを確認して、"/dev/sdX"の"X"が何に割当たっているか確認します。ここを間違えると、正常な機器をぶっ壊すことになるので、指差し呼称をして確認するぐらいの慎重さが必要です。
 
-usb meory stickをぶっ刺してからsudo dmesgすると
-
-下記のようなメッセージが、出ているはずです。
+usb meory stickをぶっ刺してからsudo dmesgすると下記のようなメッセージが、出ているはずです。
 
 ```
 [97646.998501] usb-storage 4-1.1:1.0: USB Mass Storage device detected
@@ -134,18 +126,18 @@ F1を使う作法や、DELを使う作法などありますが、Lenovo M75t gen
 
 #### install
 
-とくに、初期状態だと、日本語を選択したあとは、マシン名とか、rootやユーザー設定をするぐらい。
+初期状態だと日本語を選択したあとはマシン名とかrootやユーザー設定をするぐらい。
 
 ディスクの切り方にこだわりがあるなら、好きなように切ってください。
 
 わたしはHDDとM2を積んでいるので、/ はbtrfsとした。
-swapはHDDに置きました。SWAPすると負け前提です。
+swapはHDDに置いた。SWAPすると負けという前提です。
 
-その他はとくに気にならなかった。 secure bootもon設定のままでした。
+その他、とくに気がついたことは発見できず。secure bootもon設定のままでした。
 
 しかし、biosを変更せずに、インストール後bootした。
 
-desktopとかも、わざとdefault設定のまま、gnomeでやった。
+desktopとかも、わざとdefault設定のまま、gnomeを選択した。
 
 #### 追加でやったこと
 
@@ -153,13 +145,12 @@ Gnomeを選択したので、ログインしたら当然gnomeがあがってく�
 
 sudoの設定はせずにrootを有効にしていたため、`su -` したい。
 
-Gnome検索でtermを入力するとgnome-terminal? が選べる
+Gnome検索でtermを入力するとgnome-terminal? が選べる。
 
 そのターミナルで、`su -`する。
 
-そのあと`apt update;apt install ibus-mozc` を実行する。DVDを入れろといわれるので、もうネットワークにつながっているなら、
-
-`vi /etc/apt/source.ist`を実行し、DVDの参照をやめてしまおう。
+そのあと`apt update;apt install ibus-mozc`を実行する。DVDを入れろといわれるのでネットワークにつながっているなら、
+`vi /etc/apt/source.ist`を実行し、DVDの参照をやめる。
 
 apt lineが、初期値ではmain  のみになので、必要に応じてcontribやnon-freeを追加する。
 
@@ -184,14 +175,14 @@ apt lineが、初期値ではmain  のみになので、必要に応じてcontri
 
 ## 謝辞
 
-2021-03-22に開催された、Debian勉強会にて、情報を頂いた各位
+2021-03-22に開催された、Debian勉強会にて、情報を頂いた各位に捧げます。
 
 ## さいごに
 
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2021-03-21|
-|記事を変更した日|2024-10-23|
+|記事を変更した日|2025-10-17|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
