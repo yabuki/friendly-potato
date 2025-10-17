@@ -9,7 +9,7 @@ published: true
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2020-09-24|
-|記事を変更した日|2025-10-15|
+|記事を変更した日|2025-10-17|
 
 上記は本記事の鮮度を判断する一助のために書き手が載せたものです。
 詳細な変更履歴は、 [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
