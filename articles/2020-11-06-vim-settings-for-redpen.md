@@ -9,7 +9,7 @@ published: true
 |     件名       |   日付   |
 |:----           |:----:|
 |記事を書いた日  |2020-11-06|
-|記事を変更した日|2024-10-23|
+|記事を変更した日|2025-10-17|
 
 上記はこの記事の鮮度を判断する一助のために書き手が載せたものです。詳細な変更履歴は [GitHub - yabuki/friendly-potato: zenn-contents](https://github.com/yabuki/friendly-potato) を参照してください。
 
@@ -28,13 +28,16 @@ VOoMなどの、アウトライナを使って文章を作っていると、Redp
 
 ## 対象となるRedpenのバージョン
 
-[Release Release 1.10.4 · redpen-cc/redpen](https://github.com/redpen-cc/redpen/releases/tag/redpen-1.10.4) を使っています。これ以前だとジャンプに必要な情報が足りないかと思います。
+[Release Release 1.10.4 · redpen-cc/redpen](https://github.com/redpen-cc/redpen/releases/tag/redpen-1.10.4) を使っています。
+これ以前だとvimで該当行へジャンプに必要な情報が足ません。
 
-Installする方法は、ドキュメントを読んでください。私の場合は、openjdkをいれているので、ダウンロードして実行場所にpathを通しただけで動いています。`redpen-distribution-1.10.4/bin`の下ですね。
+Installする方法は、ドキュメントを読んでください。
+私の場合は、openjdkをいれているのでダウンロードして実行場所にpathを通しただけで動いています。
+`redpen-distribution-1.10.4/bin`の下ですね。
 
 ## 対象となるvim/nvimのバージョン
 
-特に、依存はないと思います。
+特に、依存はない。
 
 <!-- @suppress -->
 ## ~/.vimrcに追加する内容
@@ -68,6 +71,6 @@ augroup END
 
 この設定をすると、文章校正が楽になります。
 
-別解としては、[mattn/efm-langserver: General purpose Language Server](https://github.com/mattn/efm-langserver) を使うという手もあるかと思います。
+別解としては、[mattn/efm-langserver: General purpose Language Server](https://github.com/mattn/efm-langserver) を使うという手もあります。
 
 P.S. autocmdの :setlocalは、&l: と等価であり、エスケープの部分が楽になるという知見も得ました。
