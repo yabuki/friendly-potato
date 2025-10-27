@@ -29,6 +29,6 @@
     "textlint-rule-preset-ja-technical-writing": "npm:textlint-rule-preset-ja-technical-writing@^12.0.2",
     "textlint-rule-preset-jtf-style": "npm:textlint-rule-preset-jtf-style@^3.0.3",
     "textlint-rule-prh": "npm:textlint-rule-prh@^6.1.0",
-    "zenn-cli": "npm:zenn-cli@^0.2.3"
+    "zenn-cli": "npm:zenn-cli@^0.2.8"
   }
 }
