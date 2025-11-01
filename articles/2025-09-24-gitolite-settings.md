@@ -304,6 +304,18 @@ list of remote commands available:
 writableは設定が足りていないのかちゃんと動いていない動きをしている。
 permsは調べてないです。
 
+### gitoliteのdefaultブランチをmasterからmainにする
+
+TODP: 以下を読んで下記の手順を試す。
+
+- [【Git】毎回masterからmainに変更するのが面倒くさいので、init時のデフォルトブランチ名を変更してみた #GitHub - Qiita](https://qiita.com/hiro0712/items/c9a081fa929d18d46593)
+
+gitoliteに対応すると下記の手順になる。
+
+1. sudo -s gitolteでgitoliteユーザーになる
+2. 現在の値を`git config --global --get init.defaultBranch`で確認する
+3. default branchを`git config --global init.defaultBranch main`で設定する。
+4. 再度2を実行して確認する。
 
 ## 参考文献
 
@@ -341,7 +353,7 @@ permsは調べてないです。
 |:----               |:--------:|
 |記事を書きはじめた日|2025-09-24|
 |  記事を公開した日  |2025-10-13|
-|  記事を変更した日  |2025-10-14|
+|  記事を変更した日  |2025-11-01|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
