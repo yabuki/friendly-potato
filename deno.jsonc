@@ -22,7 +22,7 @@
   "imports": {
     "@proofdict/textlint-rule-proofdict": "npm:@proofdict/textlint-rule-proofdict@^3.1.2",
     "markdownlint-cli2": "npm:markdownlint-cli2@^0.19.1",
-    "textlint": "npm:textlint@^15.4.0",
+    "textlint": "npm:textlint@^15.4.1",
     "textlint-filter-rule-comments": "npm:textlint-filter-rule-comments@^1.2.2",
     "textlint-rule-no-dropping-the-ra": "npm:textlint-rule-no-dropping-the-ra@^3.0.0",
     "textlint-rule-preset-ja-spacing": "npm:textlint-rule-preset-ja-spacing@^2.4.3",
