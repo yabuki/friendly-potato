@@ -92,7 +92,15 @@ Incusパッケージには、LXCコンテナを扱うものと、KVMで仮想マ
 参考文献8では、incus-adminグループを作っていたりしますが、Debian packageではすでに、incus, incus-adminグループは作成ずみです。
 /etc/groupsを見て確認できます。
 
-私は、普段使いのアカウント(yabuki)でincusを操作したいので、incus,incus-adminのどちらに属するか悩みましたが、`sudo usermod -aG yabuki`として
+:::message alert
+
+2026-01-31 usermod は、usermod [オプション] ログインアカウント という使い方で -Gには対象グループ名が必要です。
+なので、前の記述の`sudo usermod -aG yabuki`をそのまま打ち込むと反映されないので、incus-adminなどのグループ
+名が-Gの後には必要です。
+
+:::
+
+私は、普段使いのアカウント(yabuki)でincusを操作したいので、incus,incus-adminのどちらに属するか悩みましたが、`sudo usermod -aG incus-admin yabuki`として
 ログインしなおして下記になっているのを確認します。
 ```
 id
@@ -102,6 +110,8 @@ uid=1000(yabuki) gid=1000(yabuki) groups=1000(yabuki),6(disk),24(cdrom),25(flopp
 ### incus admin init
 
 incusの初期設定です。この辺は特にデフォルトの設定のままでいいです。気になるなら、参考文献1,2,8あたりを参照しましょう。
+
+私の場合は、btrfsを使っておりpoolの部分については内容を確認して納得して初期化しました。
 
 :::details  初期化する前の状態。
 
@@ -423,7 +433,7 @@ incus network attach-profile enp6s0 bridge eth0
 |:----               |:--------:|
 |記事を書きはじめた日|2025-08-11|
 |  記事を公開した日  |2025-08-11|
-|  記事を変更した日  |2025-10-14|
+|  記事を変更した日  |2026-02-01|
 
 上記は、この記事の鮮度を判断する一助のために書き手が載せたものです。
 
