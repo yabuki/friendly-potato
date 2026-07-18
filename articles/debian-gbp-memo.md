@@ -11,6 +11,7 @@ published: true
 
 `gbp pq`コマンドは、patch queue (upstreamのソースコードに対するパッチ集でdebian/patches/に存在するファイル群)をGitのコミットから生成するためのコマンドです。
 
+
 ## はじめに
 
 Debianパッケージを作ってメンテナンスするのにGitを利用するgit buildpackageを使うことは知っている人いるでしょう。
@@ -60,6 +61,14 @@ cat debian/source/format
 
 ただしgbpを使うなら生の`quilt`や`dquilt`または、`dpkg-source --commit`を使うのは自分で自分の足を撃ち抜いても直せる人だけがわかって使うのならいいけど、基本は「混ぜるな危険」です。
 今回xfireworksで苦労したのも`gbp pq`を理解せずに、`dpkg-source --commit`を使ったのが原因でした。
+
+### gbp pq はいつ、どんなときに使うか?
+
+Debian Projectはupstreamのソースコードを厳格に保全するために、Upstreamのプログラムやドキュメントなどの変更をすべて記録します。
+Gitなどが普及する前から変更管理をしており、歴史的経緯でquilt形式を使って変更管理をしています。
+
+なので、gbp pqの対象になるのはupstramの部分だけであり、debian/ディレクトリ配下はgbp pqではなくGit管理します。
+場所によって何で管理しているかは意識しておきましょう。
 
 ### gbpで知るべきブランチ
 
@@ -207,11 +216,11 @@ git commit
 
 ## gbpを使ってnew upstramに対応する
 
-- `debian/watch`を設定していたら、uscanで新しいリリース(tarballなど)を入手します
-- 入手したtarballをgbp importします。ここでミスるとpristine-tarのdelta管理で失敗して、オリジナルのtarballの内容と違うじゃねーか。という困った状況になるのでよく調べてから実行する。`gbp import-orig --uscan`から調べるのがよい
-- importが成功しました、次は既存のパッチ(debian/patches/が存在するものたち)が新しいリリースでも必要か？うまく適用できるか？などを確認します。
-- ここで`gbp pq rebase`が活躍します
-- 不必要なパッチは`gbp pq drop`し必要なパッチを残し、場合によっては書き換えてコミットして`debian/patches/`に書き出すパッチを整理していきます
+- `debian/watch`を設定していたら、uscanで新しいリリース(tarballなど)を入手する
+- 入手したtarballをgbp importする。ここでミスるとpristine-tarのdelta管理で失敗して、オリジナルのtarballの内容と違うじゃねーか。という困った状況になるのでよく調べてから実行する。`gbp import-orig --uscan`から調べるのがよい
+- importが成功した。次は既存のパッチ(debian/patches/に存在するものたち)が新しいリリースでも必要か？うまく適用できるか？などを確認する。
+- ここで`gbp pq rebase`が活躍する。
+- 不必要なパッチは`gbp pq drop`し必要なパッチを残す。場合によっては書き換えてコミットして`debian/patches/`に書き出すパッチを整理します
 - 作業が終了したら、`gbp pq export`して、コミットからパッチを生成します。
 - debianディレクトリ配下のファイルを書き換える必要があれば、`--debian-branch=`で指定しているブランチで作業してコミットする。`debian/changelog`に関しては`gbp dch --release`コマンドを使えばコミットからchangelogの雛形を生成してくれる。
 - ローカルでビルドやテストを通しているのは前提ですが、salsa.debian.orgのリポジトリにpushしてsalsa.debian.orgのCIチームが用意してくれているCIにかけます。
@@ -220,19 +229,20 @@ git commit
 ### `gbp pq rebase`の概要
 
 1. アップストリームの新バージョンへの対応
-アップストリームの新しいバージョンがリリースされた際に、既存のDebianパッチセットを新しいベースに適用し直す場合
 
-例：libfoo 1.2.0用に作成したパッチをlibfoo 1.3.0に適用する
+アップストリームの新しいバージョンがリリースされた際に、既存のDebianパッチセットを新しいベースに適用し直す。
+
+例：libfoo 1.2.0用に作成したパッチをlibfoo 1.3.0に適用する。
 
 2. パッチの競合解決
-アップストリームの変更とDebianパッチ間に競合が発生した場合の解決
 
-競合を手動で解決しながらパッチを再適用する
+アップストリームの変更とDebianパッチ間に競合が発生した場合の解決方法は下記です。
+
+競合を手動で解決しながらパッチを再適用する。
 
 3. パッチセットの整理
-パッチの順序変更や統合が必要な場合
 
-不要になったパッチの削除やパッチ間の依存関係調整
+パッチの順序変更や統合が必要な場合は、 不要になったパッチの削除やパッチ間の依存関係調整をする。
 
 
 実例
@@ -250,10 +260,10 @@ Current branch patch-queue/master is up to date.
 
 現時点では、`gbp pq switch`がgit switchに対する優位を理解してないので理解したら追記する。インタフェースの統一以外あるんだろうか。
 
-`gbp pq rebase`は、git rebaseに似て、失敗した所で止まって、コードや設定を書き換えてコミットを作り、次のパッチにすすめるので問題の範囲を小さくしておける。
-オプションも `--continue`, `--abort`, `--skip`などのgitと同じなので理解しやすい。問題が起きて、修正できたコミットが作れたら、`--continue`だし、不要なpatchだと判断できたら`--skip`だし、中断して他を調べてから戻りたいなら、`--abort`を指定することになる。
+`gbp pq rebase`は`git rebase`に似て、失敗した所で止まりコードや設定を書き換えてコミットを作る。そうやって次のパッチにすすめるので問題の範囲を小さくしておける。
+オプションも `--continue`, `--abort`, `--skip`などのgitと同じなので理解しやすい。問題が起きて修正できたコミットが作れたら、`--continue`する。または不要なpatchだと判断できたら`--skip`する。中断して他を調べてから戻りたいなら、`--abort`を指定する。
 
-upstreamの変更に対してパッチの順番や、内容をhealthyに保ちたいときに使う。
+upstreamの変更パッチの順番や、内容をhealthyに保ちたいときに使う。
 
 #### 代替手段との比較
 
@@ -274,7 +284,7 @@ upstreamの変更に対してパッチの順番や、内容をhealthyに保ち�
 ### 日本語で読めるもの
 
 - [東京エリア Debian 勉強会 Debian パッケージング道場 第 130 回 2015 年 9 月度](https://tokyodebian-team.pages.debian.net/pdf2015/debianmeetingresume201509-presentation.pdf)
-    - pdfです。
+    - pdf形式で取得できる。
 - [2019-04-11 git-buildpackageを用いたdebパッケージ管理方法の紹介](https://blog.cybozu.io/entry/2019/04/11/110000)
 
 - quilt
